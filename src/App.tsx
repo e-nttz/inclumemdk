@@ -1,13 +1,12 @@
 import "@/providers/i18n";
-import { useTranslation } from "react-i18next";
+
 import InclumeOSProvider from "./providers/InclumeOS";
+import OS from "./components";
 
 const App = () => {
-	const { t } = useTranslation();
-
 	return (
 		<InclumeOSProvider>
-			<p>{t("Welcome on Inclume !")}</p>
+			<OS />
 		</InclumeOSProvider>
 	);
 };

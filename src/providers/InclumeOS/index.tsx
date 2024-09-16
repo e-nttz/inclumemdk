@@ -1,12 +1,28 @@
 import { createContext, useContext, useState } from "react";
 
+const defaultTheme = "light";
+
 const InclumeOSContext = createContext<InclumeOSContextType>({
+	theme: defaultTheme,
+	changeTheme: () => {},
 	currentApp: "",
 	openedApp: [],
 	launchApp: () => {},
 });
 
 const InclumeOSProvider = ({ children }: InclumeOSProviderProps) => {
+	/**
+	 * The theme state
+	 */
+	const [theme, setTheme] = useState<Theme>(defaultTheme);
+
+	const changeTheme = (theme: Theme) => {
+		setTheme(theme);
+	};
+
+	/**
+	 * The current app state
+	 */
 	const [currentApp, setCurrentApp] = useState<string>("");
 
 	const [openedApp, setOpenedApp] = useState<App[]>([]);
@@ -20,7 +36,9 @@ const InclumeOSProvider = ({ children }: InclumeOSProviderProps) => {
 	};
 
 	return (
-		<InclumeOSContext.Provider value={{ currentApp, openedApp, launchApp }}>
+		<InclumeOSContext.Provider
+			value={{ theme, changeTheme, currentApp, openedApp, launchApp }}
+		>
 			{children}
 		</InclumeOSContext.Provider>
 	);
