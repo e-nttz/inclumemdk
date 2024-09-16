@@ -4,7 +4,7 @@ import InclumeOs from "./Os";
 import { useAuth } from "@/providers/auth";
 import { Transition } from "@headlessui/react";
 import { useEffect, useState } from "react";
-import SplashScreen from "./Splash";
+import BootScreen from "./Boot";
 
 export const OS = () => {
 	const [isAuth, setIsAuth] = useState<boolean>(false);
@@ -21,7 +21,7 @@ export const OS = () => {
 	}, [session]);
 
 	if (appLoading) {
-		return <SplashScreen />;
+		return <BootScreen />;
 	}
 
 	return (

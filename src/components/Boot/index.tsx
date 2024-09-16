@@ -1,7 +1,7 @@
 import Spinner from "@/assets/icons/spinner.svg?react";
 import { useTranslation } from "react-i18next";
 
-const SplashScreen = () => {
+const BootScreen = () => {
 	const { t } = useTranslation();
 
 	return (
@@ -27,4 +27,4 @@ const SplashScreen = () => {
 	);
 };
 
-export default SplashScreen;
+export default BootScreen;
