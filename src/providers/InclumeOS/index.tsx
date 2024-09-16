@@ -1,3 +1,4 @@
+import { getLocalStorage, setLocalStorage } from "@/helpers/storage";
 import { createContext, useContext, useState } from "react";
 
 const defaultTheme = "light";
@@ -14,10 +15,14 @@ const InclumeOSProvider = ({ children }: InclumeOSProviderProps) => {
 	/**
 	 * The theme state
 	 */
-	const [theme, setTheme] = useState<Theme>(defaultTheme);
+	const [theme, setTheme] = useState<Theme>(
+		(getLocalStorage("theme") as Theme) || defaultTheme
+	);
 
 	const changeTheme = (theme: Theme) => {
 		setTheme(theme);
+
+		setLocalStorage("theme", theme);
 	};
 
 	/**

@@ -15,7 +15,7 @@ const ThemeToggler = () => {
 			}}
 		>
 			<span className="sr-only">Changer le thème</span>
-			<Icon className="w-6 h-auto text-black dark:text-white" />
+			<Icon className="w-6 h-auto text-white mix-blend-difference" />
 		</button>
 	);
 };
