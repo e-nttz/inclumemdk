@@ -15,7 +15,7 @@ const Desktop = ({
 	setNotificationsOpen,
 }: DesktopProps) => {
 	const buttonClass =
-		"w-[100px] h-[100px] flex flex-col items-center justify-center p-4 transition duration-150 rounded group hover:bg-white/30 focus:bg-white/30 active:bg-white/75 dark:hover:bg-black/25 dark:active:bg-black/50";
+		"w-[100px] h-[100px] flex flex-col items-center justify-center p-4 transition duration-150 rounded group hover:bg-white/30 focus:bg-white/30 active:bg-white/75 dark:hover:bg-white/25 dark:active:bg-white/50";
 	return (
 		<>
 			<div id="desktop" className="relative grow">

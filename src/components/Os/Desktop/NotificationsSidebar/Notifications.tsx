@@ -6,7 +6,7 @@ const Notifications = () => {
 					className="text-sm font-medium text-blue-900 hover:text-blue-600 active:text-blue-900 dark:text-blue-400 dark:hover:text-blue-500 dark:active:text-blue-400"
 					href="javascript:void(0)"
 				>
-					Manage notifications
+					Gérer les notifications
 				</a>
 			</div>
 			<div className="space-y-2">
