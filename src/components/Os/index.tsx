@@ -22,6 +22,7 @@ const InclumeOs = ({ darkMode = false }: InclumeOsProps) => {
 			>
 				<Desktop
 					startMenuOpen={startMenuOpen}
+					setStartMenuOpen={setStartMenuOpen}
 					notificationsOpen={notificationsOpen}
 					setNotificationsOpen={setNotificationsOpen}
 				/>

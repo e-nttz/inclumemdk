@@ -1,11 +1,20 @@
 import { classNames } from "@/helpers/sanitize";
+import { useClickOutside } from "@/hooks/useClickOutside";
 import { Transition } from "@headlessui/react";
+import { useRef } from "react";
 
 interface StartMenuProps {
 	startMenuOpen: boolean;
+	setStartMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const StartMenu = ({ startMenuOpen }: StartMenuProps) => {
+const StartMenu = ({ startMenuOpen, setStartMenuOpen }: StartMenuProps) => {
+	const nodeRef = useRef<HTMLDivElement>(null);
+
+	// useClickOutside(nodeRef, () => {
+	// 	setStartMenuOpen(false);
+	// });
+
 	return (
 		<Transition
 			show={startMenuOpen}
@@ -15,12 +24,14 @@ const StartMenu = ({ startMenuOpen }: StartMenuProps) => {
 			leave="transition ease-in duration-125"
 			leaveFrom="opacity-100 translate-y-0"
 			leaveTo="opacity-0 translate-y-60"
+			unmount={false}
 		>
 			<div
 				id="start-menu"
 				className={classNames(
 					"absolute w-3/5 mx-auto overflow-hidden bg-blue-100 shadow-lg bottom-5 left-1/2 -ml-96 rounded-xl backdrop-blur-lg backdrop-filter dark:bg-gray-800/90 xl:w-2/5"
 				)}
+				ref={nodeRef}
 			>
 				<div className="px-12 py-10 space-y-6 grow">
 					<div className="space-y-4">
@@ -191,11 +202,11 @@ const StartMenu = ({ startMenuOpen }: StartMenuProps) => {
 									<svg
 										className="absolute inset-0 inline-block text-[#e9263c] transition duration-100 group-hover:scale-95 group-active:scale-100"
 										xmlns="http://www.w3.org/2000/svg"
-										fill-rule="evenodd"
+										fillRule="evenodd"
 										fill="currentColor"
 										strokeLinejoin="round"
-										stroke-miterlimit="2"
-										clip-rule="evenodd"
+										strokeMiterlimit="2"
+										clipRule="evenodd"
 										viewBox="0 0 134 134"
 									>
 										<path d="M0 66.667C0 29.872 29.872 0 66.667 0c36.794 0 66.666 29.872 66.666 66.667 0 36.794-29.872 66.666-66.666 66.666-19.903 0-37.781-8.74-50-22.589V125c0 4.599-3.734 8.333-8.334 8.333A8.337 8.337 0 0 1 0 125V66.667Zm16.667 0c0 27.595 22.404 50 50 50 27.595 0 50-22.405 50-50 0-27.596-22.405-50-50-50-27.596 0-50 22.404-50 50Z"></path>
@@ -203,11 +214,11 @@ const StartMenu = ({ startMenuOpen }: StartMenuProps) => {
 									<svg
 										className="absolute inset-0 inline-block text-[#1e293b] dark:text-slate-200"
 										xmlns="http://www.w3.org/2000/svg"
-										fill-rule="evenodd"
+										fillRule="evenodd"
 										fill="currentColor"
 										strokeLinejoin="round"
-										stroke-miterlimit="2"
-										clip-rule="evenodd"
+										strokeMiterlimit="2"
+										clipRule="evenodd"
 										viewBox="0 0 134 134"
 									>
 										<path d="M90.232 90.232C84.199 96.266 75.865 100 66.667 100c-18.398 0-33.334-14.936-33.334-33.333 0-18.398 14.936-33.334 33.334-33.334 9.198 0 17.532 3.734 23.566 9.768a8.305 8.305 0 0 1 2.494 5.942 8.337 8.337 0 0 1-8.333 8.333 8.31 8.31 0 0 1-5.944-2.493A16.614 16.614 0 0 0 66.667 50C57.468 50 50 57.468 50 66.667c0 9.198 7.468 16.666 16.667 16.666 4.599 0 8.766-1.866 11.783-4.883a8.308 8.308 0 0 1 5.944-2.494 8.337 8.337 0 0 1 8.333 8.333 8.304 8.304 0 0 1-2.495 5.943Z"></path>
@@ -229,9 +240,9 @@ const StartMenu = ({ startMenuOpen }: StartMenuProps) => {
 									xmlns="http://www.w3.org/2000/svg"
 								>
 									<path
-										fill-rule="evenodd"
+										fillRule="evenodd"
 										d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-										clip-rule="evenodd"
+										clipRule="evenodd"
 									/>
 								</svg>
 								<div>
