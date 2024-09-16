@@ -10,6 +10,7 @@ interface AppProps {
 type Theme = "light" | "dark";
 
 interface InclumeOSContextType {
+	appLoading: boolean;
 	theme: Theme;
 	changeTheme: (theme: Theme) => void;
 	currentApp: string;

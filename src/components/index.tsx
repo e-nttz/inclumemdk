@@ -4,11 +4,12 @@ import InclumeOs from "./Os";
 import { useAuth } from "@/providers/auth";
 import { Transition } from "@headlessui/react";
 import { useEffect, useState } from "react";
+import SplashScreen from "./Splash";
 
 export const OS = () => {
 	const [isAuth, setIsAuth] = useState<boolean>(false);
 
-	const { theme } = useOS();
+	const { theme, appLoading } = useOS();
 	const { session } = useAuth();
 
 	useEffect(() => {
@@ -18,6 +19,10 @@ export const OS = () => {
 			}, 300);
 		}
 	}, [session]);
+
+	if (appLoading) {
+		return <SplashScreen />;
+	}
 
 	return (
 		<div

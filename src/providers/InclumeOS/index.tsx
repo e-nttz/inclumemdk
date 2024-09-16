@@ -1,9 +1,11 @@
 import { getLocalStorage, setLocalStorage } from "@/helpers/storage";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { useAuth } from "../auth";
 
 const defaultTheme = "light";
 
 const InclumeOSContext = createContext<InclumeOSContextType>({
+	appLoading: true,
 	theme: defaultTheme,
 	changeTheme: () => {},
 	currentApp: "",
@@ -12,6 +14,25 @@ const InclumeOSContext = createContext<InclumeOSContextType>({
 });
 
 const InclumeOSProvider = ({ children }: InclumeOSProviderProps) => {
+	const [appLoading, setAppLoading] = useState<boolean>(true);
+
+	const { session, authLoading } = useAuth();
+
+	useEffect(() => {
+		(async () => {
+			if (session) {
+				setAppLoading(false);
+			}
+
+			if (authLoading) return;
+
+			// Make a fake loader
+			await new Promise((resolve) => setTimeout(resolve, 2000));
+
+			setAppLoading(false);
+		})();
+	}, [session]);
+
 	/**
 	 * The theme state
 	 */
@@ -42,7 +63,14 @@ const InclumeOSProvider = ({ children }: InclumeOSProviderProps) => {
 
 	return (
 		<InclumeOSContext.Provider
-			value={{ theme, changeTheme, currentApp, openedApp, launchApp }}
+			value={{
+				appLoading,
+				theme,
+				changeTheme,
+				currentApp,
+				openedApp,
+				launchApp,
+			}}
 		>
 			{children}
 		</InclumeOSContext.Provider>
