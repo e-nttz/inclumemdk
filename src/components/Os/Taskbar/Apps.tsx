@@ -47,30 +47,6 @@ const Apps = ({ startMenuOpen, setStartMenuOpen }: AppsProps) => {
 			</button>
 			<button
 				type="button"
-				className="relative transition duration-75 rounded group hover:bg-white/50 focus:outline-none active:bg-white/75 dark:hover:bg-black/25 dark:active:bg-black/50"
-			>
-				<span className="block p-2 transition duration-75 active:scale-90">
-					<img
-						className="relative w-8 h-8"
-						src="./images/icons/computer-dark.png"
-						alt="Dark mode"
-					/>
-				</span>
-			</button>
-			<button
-				type="button"
-				className="relative transition duration-150 rounded group hover:bg-white/50 focus:outline-none active:bg-white/75 dark:hover:bg-black/25 dark:active:bg-black/50"
-			>
-				<span className="block p-2 transition duration-75 active:scale-90">
-					<img
-						className="relative w-8 h-8"
-						src="./images/icons/edge.png"
-						alt="MS Edge"
-					/>
-				</span>
-			</button>
-			<button
-				type="button"
 				className="relative transition duration-150 rounded group hover:bg-white/50 focus:outline-none active:bg-white/75 dark:hover:bg-black/25 dark:active:bg-black/50"
 			>
 				<span className="block p-2 transition duration-75 active:scale-90">
@@ -78,18 +54,6 @@ const Apps = ({ startMenuOpen, setStartMenuOpen }: AppsProps) => {
 						className="relative w-8 h-8"
 						src="./images/icons/folder.png"
 						alt="Explorer"
-					/>
-				</span>
-			</button>
-			<button
-				type="button"
-				className="relative transition duration-150 rounded group hover:bg-white/50 focus:outline-none active:bg-white/75 dark:hover:bg-black/25 dark:active:bg-black/50"
-			>
-				<span className="block p-2 transition duration-75 active:scale-90">
-					<img
-						className="relative w-8 h-8"
-						src="./images/icons/store.png"
-						alt="Windows Store"
 					/>
 				</span>
 			</button>
