@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useAuth } from "@/providers/auth";
 import { useState } from "react";
 import { classNames } from "@/helpers/sanitize";
+import FullScreenToggler from "../Ui/Toggle/FullScreen";
 
 const LoginScreen = () => {
 	const { t } = useTranslation();
@@ -54,7 +55,8 @@ const LoginScreen = () => {
 				)}
 			</form>
 
-			<div className="self-end p-6 mt-auto justify-self-end">
+			<div className="flex flex-row self-end gap-4 p-6 mt-auto justify-self-end">
+				<FullScreenToggler />
 				<ThemeToggler />
 			</div>
 		</>
