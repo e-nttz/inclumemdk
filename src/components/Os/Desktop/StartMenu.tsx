@@ -38,9 +38,9 @@ const StartMenu = ({ startMenuOpen }: StartMenuProps) => {
 								>
 									<path
 										stroke="currentColor"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										stroke-width="1.5"
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										strokeWidth="1.5"
 										d="M10.75 8.75L14.25 12L10.75 15.25"
 									></path>
 								</svg>
@@ -174,9 +174,9 @@ const StartMenu = ({ startMenuOpen }: StartMenuProps) => {
 								>
 									<path
 										stroke="currentColor"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										stroke-width="1.5"
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										strokeWidth="1.5"
 										d="M10.75 8.75L14.25 12L10.75 15.25"
 									></path>
 								</svg>
@@ -193,7 +193,7 @@ const StartMenu = ({ startMenuOpen }: StartMenuProps) => {
 										xmlns="http://www.w3.org/2000/svg"
 										fill-rule="evenodd"
 										fill="currentColor"
-										stroke-linejoin="round"
+										strokeLinejoin="round"
 										stroke-miterlimit="2"
 										clip-rule="evenodd"
 										viewBox="0 0 134 134"
@@ -205,7 +205,7 @@ const StartMenu = ({ startMenuOpen }: StartMenuProps) => {
 										xmlns="http://www.w3.org/2000/svg"
 										fill-rule="evenodd"
 										fill="currentColor"
-										stroke-linejoin="round"
+										strokeLinejoin="round"
 										stroke-miterlimit="2"
 										clip-rule="evenodd"
 										viewBox="0 0 134 134"
@@ -260,30 +260,30 @@ const StartMenu = ({ startMenuOpen }: StartMenuProps) => {
 						<svg width="24" height="24" fill="none" viewBox="0 0 24 24">
 							<path
 								stroke="currentColor"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="1.5"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								strokeWidth="1.5"
 								d="M18.2813 12.0313L11.9687 5.7187C11.4896 5.23964 10.6829 5.36557 10.3726 5.96785L6.75 13L11 17.25L18.0321 13.6274C18.6344 13.3171 18.7604 12.5104 18.2813 12.0313Z"
 							></path>
 							<path
 								stroke="currentColor"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="1.5"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								strokeWidth="1.5"
 								d="M4.75 19.25L8.5 15.5"
 							></path>
 							<path
 								stroke="currentColor"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="1.5"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								strokeWidth="1.5"
 								d="M13.75 7.25L16.25 4.75"
 							></path>
 							<path
 								stroke="currentColor"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="1.5"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								strokeWidth="1.5"
 								d="M16.75 10.25L19.25 7.75"
 							></path>
 						</svg>
