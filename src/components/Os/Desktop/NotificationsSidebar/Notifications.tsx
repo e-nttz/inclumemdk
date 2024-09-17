@@ -4,7 +4,7 @@ const Notifications = () => {
 			<div className="text-right">
 				<a
 					className="text-sm font-medium text-blue-900 hover:text-blue-600 active:text-blue-900 dark:text-blue-400 dark:hover:text-blue-500 dark:active:text-blue-400"
-					href="javascript:void(0)"
+					href="#"
 				>
 					Gérer les notifications
 				</a>
@@ -37,7 +37,7 @@ const Notifications = () => {
 				</div>
 				<a
 					className="block p-3 space-y-1 text-sm rounded bg-white/50 hover:bg-white/25 active:bg-white/50 dark:bg-black/30 dark:hover:bg-black/50 dark:active:bg-black/30"
-					href="javascript:void(0)"
+					href="#"
 				>
 					<h3 className="font-medium">Welcome to Windows 11!</h3>
 					<p className="leading-5 text-gray-700 dark:text-gray-400">

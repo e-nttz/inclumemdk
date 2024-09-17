@@ -39,7 +39,7 @@ const StartMenu = ({ startMenuOpen, setStartMenuOpen }: StartMenuProps) => {
 							<h2 className="font-semibold">Pinned</h2>
 							<a
 								className="inline-flex items-center gap-1 px-2 py-1 text-xs font-medium text-left bg-white rounded hover:bg-white/50 focus:outline-none active:bg-white dark:bg-black/30 dark:hover:bg-black/50 dark:active:bg-black/30"
-								href="javascript:void(0)"
+								href="#"
 							>
 								<span>All Apps</span>
 								<svg
@@ -60,7 +60,7 @@ const StartMenu = ({ startMenuOpen, setStartMenuOpen }: StartMenuProps) => {
 						<div className="grid grid-cols-6 gap-1 text-center">
 							<a
 								className="block p-3 text-sm font-medium transition rounded hover:bg-blue-200 focus:outline-none active:bg-transparent dark:hover:bg-black/20 dark:active:bg-black/30"
-								href="javascript:void(0)"
+								href="#"
 							>
 								<img
 									className="w-16 mx-auto mb-2"
@@ -71,7 +71,7 @@ const StartMenu = ({ startMenuOpen, setStartMenuOpen }: StartMenuProps) => {
 							</a>
 							<a
 								className="block p-3 text-sm font-medium transition rounded hover:bg-blue-200 focus:outline-none active:bg-transparent dark:hover:bg-black/20 dark:active:bg-black/30"
-								href="javascript:void(0)"
+								href="#"
 							>
 								<img
 									className="w-16 mx-auto mb-2"
@@ -82,7 +82,7 @@ const StartMenu = ({ startMenuOpen, setStartMenuOpen }: StartMenuProps) => {
 							</a>
 							<a
 								className="block p-3 text-sm font-medium transition rounded hover:bg-blue-200 focus:outline-none active:bg-transparent dark:hover:bg-black/20 dark:active:bg-black/30"
-								href="javascript:void(0)"
+								href="#"
 							>
 								<img
 									className="w-16 mx-auto mb-2"
@@ -93,7 +93,7 @@ const StartMenu = ({ startMenuOpen, setStartMenuOpen }: StartMenuProps) => {
 							</a>
 							<a
 								className="block p-3 text-sm font-medium transition rounded hover:bg-blue-200 focus:outline-none active:bg-transparent dark:hover:bg-black/20 dark:active:bg-black/30"
-								href="javascript:void(0)"
+								href="#"
 							>
 								<img
 									className="w-16 mx-auto mb-2"
@@ -104,7 +104,7 @@ const StartMenu = ({ startMenuOpen, setStartMenuOpen }: StartMenuProps) => {
 							</a>
 							<a
 								className="block p-3 text-sm font-medium transition rounded hover:bg-blue-200 focus:outline-none active:bg-transparent dark:hover:bg-black/20 dark:active:bg-black/30"
-								href="javascript:void(0)"
+								href="#"
 							>
 								<img
 									className="w-16 mx-auto mb-2"
@@ -115,7 +115,7 @@ const StartMenu = ({ startMenuOpen, setStartMenuOpen }: StartMenuProps) => {
 							</a>
 							<a
 								className="block p-3 text-sm font-medium transition rounded hover:bg-blue-200 focus:outline-none active:bg-transparent dark:hover:bg-black/20 dark:active:bg-black/30"
-								href="javascript:void(0)"
+								href="#"
 							>
 								<img
 									className="w-16 mx-auto mb-2"
@@ -126,7 +126,7 @@ const StartMenu = ({ startMenuOpen, setStartMenuOpen }: StartMenuProps) => {
 							</a>
 							<a
 								className="block p-3 text-sm font-medium transition rounded hover:bg-blue-200 focus:outline-none active:bg-transparent dark:hover:bg-black/20 dark:active:bg-black/30"
-								href="javascript:void(0)"
+								href="#"
 							>
 								<img
 									className="w-16 mx-auto mb-2"
@@ -137,7 +137,7 @@ const StartMenu = ({ startMenuOpen, setStartMenuOpen }: StartMenuProps) => {
 							</a>
 							<a
 								className="block p-3 text-sm font-medium transition rounded hover:bg-blue-200 focus:outline-none active:bg-transparent dark:hover:bg-black/20 dark:active:bg-black/30"
-								href="javascript:void(0)"
+								href="#"
 							>
 								<img
 									className="w-16 mx-auto mb-2"
@@ -148,7 +148,7 @@ const StartMenu = ({ startMenuOpen, setStartMenuOpen }: StartMenuProps) => {
 							</a>
 							<a
 								className="block p-3 text-sm font-medium transition rounded hover:bg-blue-200 focus:outline-none active:bg-transparent dark:hover:bg-black/20 dark:active:bg-black/30"
-								href="javascript:void(0)"
+								href="#"
 							>
 								<img
 									className="w-16 mx-auto mb-2"
@@ -159,7 +159,7 @@ const StartMenu = ({ startMenuOpen, setStartMenuOpen }: StartMenuProps) => {
 							</a>
 							<a
 								className="block p-3 text-sm font-medium transition rounded hover:bg-blue-200 focus:outline-none active:bg-transparent dark:hover:bg-black/20 dark:active:bg-black/30"
-								href="javascript:void(0)"
+								href="#"
 							>
 								<img
 									className="w-16 mx-auto mb-2"
