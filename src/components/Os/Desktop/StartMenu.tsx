@@ -11,9 +11,9 @@ interface StartMenuProps {
 const StartMenu = ({ startMenuOpen, setStartMenuOpen }: StartMenuProps) => {
 	const nodeRef = useRef<HTMLDivElement>(null);
 
-	// useClickOutside(nodeRef, () => {
-	// 	setStartMenuOpen(false);
-	// });
+	useClickOutside(nodeRef, () => {
+		setStartMenuOpen(false);
+	});
 
 	return (
 		<Transition

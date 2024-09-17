@@ -1,18 +1,15 @@
-import { Transition } from "@headlessui/react";
 import Apps from "./Apps";
 import NotificationsArea from "./NotificationsArea";
 
 interface TaskbarProps {
 	startMenuOpen: boolean;
 	setStartMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
-	notificationsOpen: boolean;
 	setNotificationsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Taskbar = ({
 	startMenuOpen,
 	setStartMenuOpen,
-	notificationsOpen,
 	setNotificationsOpen,
 }: TaskbarProps) => {
 	return (

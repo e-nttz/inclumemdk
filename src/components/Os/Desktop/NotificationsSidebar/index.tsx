@@ -15,9 +15,9 @@ const NotificationsSidebar = ({
 }: NotificationsSidebarProps) => {
 	const nodeRef = useRef<HTMLDivElement>(null);
 
-	// useClickOutside(nodeRef, () => {
-	// 	setNotificationsOpen(false);
-	// });
+	useClickOutside(nodeRef, () => {
+		setNotificationsOpen(false);
+	});
 
 	return (
 		<Transition

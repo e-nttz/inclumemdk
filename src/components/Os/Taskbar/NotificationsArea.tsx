@@ -5,11 +5,11 @@ interface NotificationsAreaProps {
 const NotificationsArea = ({
 	setNotificationsOpen,
 }: NotificationsAreaProps) => {
-	let date = new Date() as Date;
-	let currentDay = date.toLocaleDateString("fr-FR", {
+	const date = new Date() as Date;
+	const currentDay = date.toLocaleDateString("fr-FR", {
 		day: "numeric",
 	});
-	let currentYear = date.toLocaleDateString("fr-FR", {
+	const currentYear = date.toLocaleDateString("fr-FR", {
 		year: "numeric",
 	});
 	let currentMonth = date.toLocaleDateString("fr-FR", {
