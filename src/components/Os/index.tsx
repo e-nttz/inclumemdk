@@ -17,7 +17,6 @@ const InclumeOs = () => {
 			<Taskbar
 				startMenuOpen={startMenuOpen}
 				setStartMenuOpen={setStartMenuOpen}
-				notificationsOpen={notificationsOpen}
 				setNotificationsOpen={setNotificationsOpen}
 			/>
 		</>
