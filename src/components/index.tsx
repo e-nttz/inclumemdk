@@ -5,12 +5,15 @@ import { useAuth } from "@/providers/auth";
 import { Transition } from "@headlessui/react";
 import { useEffect, useState } from "react";
 import BootScreen from "./Boot";
+import { useContextualMenu } from "@/hooks/useContextualMenu";
 
 export const OS = () => {
 	const [isAuth, setIsAuth] = useState<boolean>(false);
 
 	const { theme, appLoading } = useOS();
 	const { session } = useAuth();
+
+	useContextualMenu();
 
 	useEffect(() => {
 		if (session) {
