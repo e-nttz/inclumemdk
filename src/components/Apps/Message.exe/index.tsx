@@ -1,10 +1,13 @@
-import MessageIcon from "@/assets/icons/app-message.svg?react";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import BubbleChat from "./bubble";
 import { useTranslation } from "react-i18next";
 
+import MessageIcon from "@/assets/icons/app-message.svg?react";
+import PaperplaneIcon from "@/assets/icons/paperplane.svg?react";
+
 const Message = () => {
 	const { t } = useTranslation();
+	const messagesList = useRef<HTMLUListElement>(null);
 
 	const [messages, setMessages] = useState([
 		{
@@ -31,16 +34,29 @@ const Message = () => {
 	]);
 
 	useEffect(() => {
-		// Create custom event listener
+		/**
+		 * Listen to messages sent by the system
+		 *
+		 * @param {CustomEvent} e
+		 * @returns {Promise<void>}
+		 */
 		const listener = async (e: CustomEvent) => {
-			const { type, data } = e.detail;
+			const type = e.type;
 
-			if (type === "beaconMessage") {
-				setMessages((prev) => [...prev, data]);
+			if (type == "beaconMessage" && e.detail) {
+				setMessages((prev) => [...prev, e.detail]);
+
+				// Scroll to the bottom
+				setTimeout(() => {
+					messagesList.current?.scrollTo({
+						top: messagesList.current.scrollHeight,
+						behavior: "smooth",
+					});
+				}, 150);
 			}
 		};
 
-		// Add event listener
+		// Add event listener to receive messages from the entire system
 		window.addEventListener("beaconMessage", listener);
 
 		// Remove event listener
@@ -49,9 +65,58 @@ const Message = () => {
 		};
 	}, []);
 
+	const handleSubmit = (e: FormEvent) => {
+		// Add message to the list
+		e.preventDefault();
+
+		const form = e.target as HTMLFormElement;
+		const message = form.message.value;
+
+		if (message.trim() === "") return;
+
+		// Add message to the list
+		setMessages((prev) => [
+			...prev,
+			{
+				id: Math.random(),
+				sender: 1,
+				content: message,
+			},
+		]);
+
+		// Clear input
+		form.reset();
+
+		// Scroll to the bottom
+		// We set timeout to wait for the DOM to update
+		setTimeout(() => {
+			messagesList.current?.scrollTo({
+				top: messagesList.current.scrollHeight,
+				behavior: "smooth",
+			});
+		}, 150);
+	};
+
 	return (
-		<div className="flex flex-col w-full h-full text-black bg-white/90 backdrop-blur dark:bg-black/50">
-			<ul className="flex flex-col flex-1 gap-4 px-4">
+		<section className="flex flex-col w-full h-full text-black bg-white/90 backdrop-blur dark:bg-black/50">
+			<header className="px-6 py-4 bg-white dark:bg-black">
+				<div className="flex flex-row items-center gap-2">
+					<figure className="w-12 overflow-hidden rounded-full aspect-square">
+						<img
+							src="/images/avatar-message.jpg"
+							alt="Avatar"
+							className="object-cover w-full h-full"
+						/>
+					</figure>
+
+					<p className="font-bold dark:text-white">John Doe</p>
+				</div>
+			</header>
+
+			<ul
+				className="flex flex-col flex-1 gap-4 px-4 py-4 overflow-auto"
+				ref={messagesList}
+			>
 				{messages.map((message) => (
 					<li
 						key={message.id}
@@ -63,29 +128,8 @@ const Message = () => {
 			</ul>
 
 			<form
-				className="flex flex-row gap-4 p-4 bg-white dark:bg-black dark:text-white"
-				onSubmit={(e: FormEvent) => {
-					// Add message to the list
-					e.preventDefault();
-
-					const form = e.target as HTMLFormElement;
-
-					const message = form.message.value;
-
-					if (message.trim() === "") return;
-
-					setMessages((prev) => [
-						...prev,
-						{
-							id: Math.random(),
-							sender: 1,
-							content: message,
-						},
-					]);
-
-					// Clear input
-					form.reset();
-				}}
+				className="flex flex-row items-center gap-4 px-6 py-4 bg-white dark:bg-black dark:text-white"
+				onSubmit={handleSubmit}
 			>
 				<input
 					type="text"
@@ -97,20 +141,10 @@ const Message = () => {
 				<button className="peer-[:not(:placeholder-shown)]:text-accent dark:peer-[:not(:placeholder-shown)]:text-accent-dark text-gray-200 transition flex-shrink-0">
 					<span className="sr-only">{t("Envoyer")}</span>
 
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						fill="none"
-						viewBox="0 0 24 24"
-						className="w-6 h-auto"
-					>
-						<path
-							fill="currentColor"
-							d="M1.79.772 22.86 10.85a1.25 1.25 0 0 1 0 2.255L1.79 23.183a1.25 1.25 0 0 1-1.746-1.457l2.108-7.728a.5.5 0 0 1 .415-.364l10.21-1.387a.25.25 0 0 0 .195-.149l.018-.063a.25.25 0 0 0-.157-.268l-.055-.015-10.2-1.386a.5.5 0 0 1-.414-.364L.044 2.229A1.25 1.25 0 0 1 1.79.772Z"
-						/>
-					</svg>
+					<PaperplaneIcon className="w-6 h-auto" />
 				</button>
 			</form>
-		</div>
+		</section>
 	);
 };
 

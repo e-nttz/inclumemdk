@@ -1,6 +1,8 @@
 import { useContextualMenu } from "@/hooks/useContextualMenu";
 import { useOS } from "@/providers/InclumeOS";
 
+import PaperplaneIcon from "@/assets/icons/paperplane.svg?react";
+
 const ContextualMenu = () => {
 	const { isVisible, position, showMenu } = useContextualMenu();
 	const { changeTheme, theme } = useOS();
@@ -72,6 +74,28 @@ const ContextualMenu = () => {
 							></path>
 						</svg>
 						{theme === "light" ? "Dark Mode" : "Light Mode"}
+					</button>
+				</li>
+
+				<li>
+					<button
+						className="flex items-center w-full h-8 gap-3 px-[11px] text-sm text-black text-opacity-90 rounded-[3px] transition hover:bg-black hover:bg-opacity-[0.04]"
+						onClick={() => {
+							// Dispatch false message using "beacomMessage" event
+							window.dispatchEvent(
+								new CustomEvent("beaconMessage", {
+									detail: {
+										id: Math.random(),
+										sender: 4,
+										content:
+											"Velit enim sit magna. Nostrud do nisi adipisicing. Proident excepteur sint eiusmod sint. Ut ipsum incididunt non do aute sunt sint aliquip aute esse elit esse eiusmod anim non. Magna ea mollit consequat cupidatat consequat ea eiusmod irure officia tempor non cupidatat. Excepteur sit et mollit adipisicing occaecat occaecat proident. Id amet cillum dolore veniam reprehenderit in adipisicing est.",
+									},
+								})
+							);
+						}}
+					>
+						<PaperplaneIcon className="w-4 h-4" />
+						Envoyer un message de test
 					</button>
 				</li>
 			</ul>
