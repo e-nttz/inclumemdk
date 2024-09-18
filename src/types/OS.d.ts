@@ -16,6 +16,10 @@ interface InclumeOSContextType {
 	currentApp: string;
 	openedApp: App[];
 	launchApp: (app: App) => void;
+	startMenuOpen: boolean;
+	setStartMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+	notificationsOpen: boolean;
+	setNotificationsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface InclumeOSProviderProps {

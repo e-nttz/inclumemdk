@@ -1,17 +1,16 @@
+import { useOS } from "@/providers/InclumeOS";
 import { Transition } from "@headlessui/react";
 
-interface AppsProps {
-	startMenuOpen: boolean;
-	setStartMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
+const Apps = () => {
+	const { startMenuOpen, setStartMenuOpen } = useOS();
 
-const Apps = ({ startMenuOpen, setStartMenuOpen }: AppsProps) => {
 	return (
 		<nav className="flex items-center justify-center gap-1 h-14">
 			<button
 				type="button"
 				className="relative transition duration-150 rounded group hover:bg-white/50 focus:outline-none active:bg-white/75 dark:hover:bg-black/25 dark:active:bg-black/50"
 				onClick={() => setStartMenuOpen((prevState) => !prevState)}
+				id="start-menu"
 			>
 				<Transition
 					show={startMenuOpen}
@@ -32,6 +31,7 @@ const Apps = ({ startMenuOpen, setStartMenuOpen }: AppsProps) => {
 					/>
 				</span>
 			</button>
+
 			<button
 				type="button"
 				id="btn-fullscreen"
@@ -45,6 +45,7 @@ const Apps = ({ startMenuOpen, setStartMenuOpen }: AppsProps) => {
 					/>
 				</span>
 			</button>
+
 			<button
 				type="button"
 				className="relative transition duration-150 rounded group hover:bg-white/50 focus:outline-none active:bg-white/75 dark:hover:bg-black/25 dark:active:bg-black/50"

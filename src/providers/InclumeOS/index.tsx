@@ -11,6 +11,10 @@ const InclumeOSContext = createContext<InclumeOSContextType>({
 	currentApp: "",
 	openedApp: [],
 	launchApp: () => {},
+	startMenuOpen: false,
+	setStartMenuOpen: () => {},
+	notificationsOpen: false,
+	setNotificationsOpen: () => {},
 });
 
 const InclumeOSProvider = ({ children }: InclumeOSProviderProps) => {
@@ -61,6 +65,21 @@ const InclumeOSProvider = ({ children }: InclumeOSProviderProps) => {
 		setCurrentApp(app.name);
 	};
 
+	/**
+	 * UI State handler
+	 */
+	const [startMenuOpen, _setStartMenuOpen] = useState<boolean>(false);
+
+	const setStartMenuOpen = (open: boolean) => {
+		_setStartMenuOpen(open);
+	};
+
+	const [notificationsOpen, _setNotificationsOpen] = useState<boolean>(false);
+
+	const setNotificationsOpen = (open: boolean) => {
+		_setNotificationsOpen(open);
+	};
+
 	return (
 		<InclumeOSContext.Provider
 			value={{
@@ -70,6 +89,10 @@ const InclumeOSProvider = ({ children }: InclumeOSProviderProps) => {
 				currentApp,
 				openedApp,
 				launchApp,
+				startMenuOpen,
+				setStartMenuOpen,
+				notificationsOpen,
+				setNotificationsOpen,
 			}}
 		>
 			{children}

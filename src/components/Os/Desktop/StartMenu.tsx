@@ -1,17 +1,20 @@
 import { classNames } from "@/helpers/sanitize";
 import { useClickOutside } from "@/hooks/useClickOutside";
+import { useOS } from "@/providers/InclumeOS";
 import { Transition } from "@headlessui/react";
 import { useRef } from "react";
 
-interface StartMenuProps {
-	startMenuOpen: boolean;
-	setStartMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
+const StartMenu = () => {
+	const { startMenuOpen, setStartMenuOpen } = useOS();
 
-const StartMenu = ({ startMenuOpen, setStartMenuOpen }: StartMenuProps) => {
 	const nodeRef = useRef<HTMLDivElement>(null);
 
-	useClickOutside(nodeRef, () => {
+	useClickOutside(nodeRef, (e: MouseEvent) => {
+		// Check if e.target has the id of start-menu, or if it's a child of start-menu
+		if ((e.target as HTMLElement).closest("#start-menu")) {
+			return;
+		}
+
 		setStartMenuOpen(false);
 	});
 

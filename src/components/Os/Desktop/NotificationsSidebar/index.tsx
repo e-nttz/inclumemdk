@@ -3,19 +3,19 @@ import Actions from "./Actions";
 import Notifications from "./Notifications";
 import { useRef } from "react";
 import { useClickOutside } from "@/hooks/useClickOutside";
+import { useOS } from "@/providers/InclumeOS";
 
-interface NotificationsSidebarProps {
-	notificationsOpen: boolean;
-	setNotificationsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
+const NotificationsSidebar = () => {
+	const { notificationsOpen, setNotificationsOpen } = useOS();
 
-const NotificationsSidebar = ({
-	notificationsOpen,
-	setNotificationsOpen,
-}: NotificationsSidebarProps) => {
 	const nodeRef = useRef<HTMLDivElement>(null);
 
-	useClickOutside(nodeRef, () => {
+	useClickOutside(nodeRef, (e: MouseEvent) => {
+		// Check if e.target has the id of start-menu, or if it's a child of start-menu
+		if ((e.target as HTMLElement).closest("#notifications-button")) {
+			return;
+		}
+
 		setNotificationsOpen(false);
 	});
 

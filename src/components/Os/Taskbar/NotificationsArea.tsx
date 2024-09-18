@@ -1,10 +1,8 @@
-interface NotificationsAreaProps {
-	setNotificationsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
+import { useOS } from "@/providers/InclumeOS";
 
-const NotificationsArea = ({
-	setNotificationsOpen,
-}: NotificationsAreaProps) => {
+const NotificationsArea = () => {
+	const { setNotificationsOpen } = useOS();
+
 	const date = new Date() as Date;
 	const currentDay = date.toLocaleDateString("fr-FR", {
 		day: "numeric",
@@ -15,6 +13,7 @@ const NotificationsArea = ({
 	let currentMonth = date.toLocaleDateString("fr-FR", {
 		month: "long",
 	});
+
 	currentMonth =
 		currentMonth.length > 4 ? `${currentMonth.slice(0, 4)}.` : currentMonth;
 
@@ -85,6 +84,7 @@ const NotificationsArea = ({
 				type="button"
 				className="flex items-center justify-center w-8 h-8 transition duration-150 rounded hover:bg-white/50 focus:outline-none active:scale-90 active:bg-white dark:hover:bg-black/25 dark:active:bg-black/50"
 				onClick={() => setNotificationsOpen((prevState) => !prevState)}
+				id="notifications-button"
 			>
 				<svg className="block w-5 h-5" fill="none" viewBox="0 0 24 24">
 					<path

@@ -2,30 +2,14 @@ import GridIcons from "./GridIcons";
 import NotificationsSidebar from "./NotificationsSidebar";
 import StartMenu from "./StartMenu";
 
-interface DesktopProps {
-	startMenuOpen: boolean;
-	setStartMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
-	notificationsOpen: boolean;
-	setNotificationsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const Desktop = ({
-	startMenuOpen,
-	setStartMenuOpen,
-	notificationsOpen,
-	setNotificationsOpen,
-}: DesktopProps) => {
+const Desktop = () => {
 	return (
 		<div id="desktop" className="relative grow">
 			<GridIcons />
-			<StartMenu
-				startMenuOpen={startMenuOpen}
-				setStartMenuOpen={setStartMenuOpen}
-			/>
-			<NotificationsSidebar
-				notificationsOpen={notificationsOpen}
-				setNotificationsOpen={setNotificationsOpen}
-			/>
+
+			<StartMenu />
+
+			<NotificationsSidebar />
 		</div>
 	);
 };
