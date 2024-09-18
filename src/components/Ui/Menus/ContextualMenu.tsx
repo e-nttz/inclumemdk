@@ -1,7 +1,10 @@
 import { useContextualMenu } from "@/hooks/useContextualMenu";
+import { useOS } from "@/providers/InclumeOS";
 
 const ContextualMenu = () => {
 	const { isVisible, position, showMenu } = useContextualMenu();
+	const { changeTheme, theme } = useOS();
+
 	return isVisible ? (
 		<div
 			onContextMenu={showMenu}
@@ -50,7 +53,12 @@ const ContextualMenu = () => {
 					</button>
 				</li>
 				<li>
-					<button className="flex items-center w-full h-8 gap-3 px-[11px] text-sm text-black text-opacity-90 rounded-[3px] transition hover:bg-black hover:bg-opacity-[0.04]">
+					<button
+						className="flex items-center w-full h-8 gap-3 px-[11px] text-sm text-black text-opacity-90 rounded-[3px] transition hover:bg-black hover:bg-opacity-[0.04]"
+						onClick={() => {
+							changeTheme(theme === "light" ? "dark" : "light");
+						}}
+					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							fill="none"
@@ -63,7 +71,7 @@ const ContextualMenu = () => {
 								d="M8 1a7 7 0 110 14V1zm0-1a8 8 0 100 16A8 8 0 008 0z"
 							></path>
 						</svg>
-						Dark Mode
+						{theme === "light" ? "Dark Mode" : "Light Mode"}
 					</button>
 				</li>
 			</ul>
