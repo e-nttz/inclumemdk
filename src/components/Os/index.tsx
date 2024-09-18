@@ -1,9 +1,7 @@
-import { useState } from "react";
 import Desktop from "./Desktop";
 import Taskbar from "./Taskbar";
 
-const InclumeOs = () => {-
-
+const InclumeOs = () => {
 	return (
 		<>
 			<Desktop />
