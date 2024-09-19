@@ -1,6 +1,6 @@
 interface App extends React.FC {
 	name: string;
-	icon: React.FC;
+	icon: React.FC | Element;
 }
 
 interface AppProps {
@@ -14,7 +14,9 @@ interface InclumeOSContextType {
 	theme: Theme;
 	changeTheme: (theme: Theme) => void;
 	currentApp: string;
+	setCurrentApp: React.Dispatch<React.SetStateAction<string>>;
 	openedApps: App[];
+	setOpenedApps: React.Dispatch<React.SetStateAction<App[]>>;
 	launchApp: (app: App) => void;
 	startMenuOpen: boolean;
 	setStartMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;

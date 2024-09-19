@@ -1,13 +1,30 @@
+import { useOS } from "@/providers/InclumeOS";
+
 const Topbar = () => {
+	const { currentApp, setCurrentApp, setOpenedApps, openedApps } = useOS();
+
+	const handleReduceButton = () => {
+		setCurrentApp("");
+	};
+
+	const handleCloseButton = () => {
+		const openedAppsCopy = [...openedApps];
+		setOpenedApps(openedAppsCopy.filter((app) => app.name !== currentApp));
+		setCurrentApp("");
+	};
+
 	return (
 		<header className="w-full h-20">
 			<div className="h-10 bg-[#CCDEEC] flex items-center justify-between px-4">
 				<h2 className="px-2 text-sm font-medium text-black pointer-events-none text-opacity-80">
-					Nom de l'application
+					{currentApp}
 				</h2>
 				<ul className="flex items-center h-full gap-2">
 					<li className="flex items-center justify-center h-[80%]">
-						<button className="h-full px-2 transition rounded-md hover:bg-black hover:bg-opacity-20 focus-visible:bg-black focus-visible:bg-opacity-20 focus-visible:outline-none">
+						<button
+							className="h-full px-2 transition rounded-md hover:bg-black hover:bg-opacity-20 focus-visible:bg-black focus-visible:bg-opacity-20 focus-visible:outline-none"
+							onClick={handleReduceButton}
+						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								width="14"
@@ -56,7 +73,10 @@ const Topbar = () => {
 						</button>
 					</li>
 					<li className="flex items-center justify-center h-[80%]">
-						<button className="h-full px-2 transition rounded-md hover:bg-black hover:bg-opacity-20 focus-visible:bg-black focus-visible:bg-opacity-20 focus-visible:outline-none">
+						<button
+							className="h-full px-2 transition rounded-md hover:bg-black hover:bg-opacity-20 focus-visible:bg-black focus-visible:bg-opacity-20 focus-visible:outline-none"
+							onClick={handleCloseButton}
+						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								width="14"
