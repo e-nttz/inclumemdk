@@ -11,7 +11,7 @@ const ContextualMenu = () => {
 		<div
 			onContextMenu={showMenu}
 			style={{ height: "100vh", width: "100vw" }}
-			className="absolute inset-0"
+			className="absolute inset-0 z-[9999]"
 		>
 			<ul
 				style={{

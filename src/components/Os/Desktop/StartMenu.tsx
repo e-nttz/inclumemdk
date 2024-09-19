@@ -32,7 +32,7 @@ const StartMenu = () => {
 			<div
 				id="start-menu"
 				className={classNames(
-					"absolute w-3/5 mx-auto overflow-hidden bg-blue-100 shadow-lg bottom-5 left-1/2 -ml-96 rounded-xl backdrop-blur-lg backdrop-filter dark:bg-gray-800/90 xl:w-2/5"
+					"absolute w-3/5 mx-auto overflow-hidden bg-blue-100 shadow-lg bottom-5 left-1/2 -ml-96 rounded-xl backdrop-blur-lg backdrop-filter dark:bg-gray-800/90 xl:w-2/5 z-[9998]"
 				)}
 				ref={nodeRef}
 			>

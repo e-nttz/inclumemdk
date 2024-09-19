@@ -14,7 +14,7 @@ const Topbar = () => {
 	};
 
 	return (
-		<header className="w-full h-20">
+		<header className="fixed top-0 left-0 z-10 w-full h-20">
 			<div className="h-10 bg-[#CCDEEC] flex items-center justify-between px-4">
 				<h2 className="px-2 text-sm font-medium text-black pointer-events-none text-opacity-80">
 					{currentApp}
