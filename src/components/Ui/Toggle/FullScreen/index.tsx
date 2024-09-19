@@ -34,6 +34,8 @@ export const toggleFullscreen = () => {
 		} else if (elem.webkitRequestFullscreen) {
 			elem.webkitRequestFullscreen((Element as any).ALLOW_KEYBOARD_INPUT);
 		}
+
+		document.body.classList.remove("fullscreen-exited");
 	} else {
 		if (document.exitFullscreen) {
 			document.exitFullscreen();
