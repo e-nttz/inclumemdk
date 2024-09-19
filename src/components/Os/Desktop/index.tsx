@@ -2,16 +2,21 @@ import Message from "@/components/Apps/Message.exe";
 import GridIcons from "./GridIcons";
 import NotificationsSidebar from "./NotificationsSidebar";
 import StartMenu from "./StartMenu";
+import Window from "../Window";
+import { useOS } from "@/providers/InclumeOS";
 
 const Desktop = () => {
+	const { currentApp } = useOS();
+
 	return (
 		<div id="desktop" className="relative grow">
 			<GridIcons />
 
-			{/* App window */}
-			<div className="absolute inset-0">
-				<Message />
-			</div>
+			{currentApp && (
+				<Window>
+					<Message />
+				</Window>
+			)}
 
 			<StartMenu />
 
