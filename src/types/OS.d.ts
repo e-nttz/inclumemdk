@@ -14,7 +14,7 @@ interface InclumeOSContextType {
 	theme: Theme;
 	changeTheme: (theme: Theme) => void;
 	currentApp: string;
-	openedApp: App[];
+	openedApps: App[];
 	launchApp: (app: App) => void;
 	startMenuOpen: boolean;
 	setStartMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;

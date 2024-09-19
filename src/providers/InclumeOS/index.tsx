@@ -9,7 +9,7 @@ const InclumeOSContext = createContext<InclumeOSContextType>({
 	theme: defaultTheme,
 	changeTheme: () => {},
 	currentApp: "",
-	openedApp: [],
+	openedApps: [],
 	launchApp: () => {},
 	startMenuOpen: false,
 	setStartMenuOpen: () => {},
@@ -55,11 +55,11 @@ const InclumeOSProvider = ({ children }: InclumeOSProviderProps) => {
 	 */
 	const [currentApp, setCurrentApp] = useState<string>("");
 
-	const [openedApp, setOpenedApp] = useState<App[]>([]);
+	const [openedApps, setOpenedApps] = useState<App[]>([]);
 
 	const launchApp = (app: App) => {
-		if (!openedApp.find((a) => a.name === app.name)) {
-			setOpenedApp([...openedApp, app]);
+		if (!openedApps.find((a) => a.name === app.name)) {
+			setOpenedApps([...openedApps, app]);
 		}
 
 		setCurrentApp(app.name);
@@ -87,7 +87,7 @@ const InclumeOSProvider = ({ children }: InclumeOSProviderProps) => {
 				theme,
 				changeTheme,
 				currentApp,
-				openedApp,
+				openedApps,
 				launchApp,
 				startMenuOpen,
 				setStartMenuOpen,
