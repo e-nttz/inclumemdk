@@ -24,3 +24,37 @@ export const getLocalStorage = (key: string): string => {
 
 	return localStorage.getItem(key) || "";
 };
+
+/**
+ * Save the session linked to the user like `key-sessionId`
+ *
+ * @param {string} sessionId
+ * @param {string} key
+ * @param {object | string} value
+ *
+ * @returns {void}
+ */
+export const storeSession = (
+	sessionId: string,
+	key: string,
+	value: object | string
+) => {
+	if (typeof localStorage === "undefined") return;
+
+	return localStorage.setItem(`${key}-${sessionId}`, JSON.stringify(value));
+};
+
+/**
+ * Get the session linked to the user like `key-sessionId`
+ *
+ * @param {string} sessionId
+ * @param {string} key
+ *
+ * @returns {object | string}
+ *
+ */
+export const getSession = (sessionId: string, key: string): object | string => {
+	if (typeof localStorage === "undefined") return "";
+
+	return JSON.parse(localStorage.getItem(`${key}-${sessionId}`) || "");
+};

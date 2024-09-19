@@ -1,3 +1,4 @@
+import { toggleFullscreen } from "@/components/Ui/Toggle/FullScreen";
 import { useOS } from "@/providers/InclumeOS";
 import { Transition } from "@headlessui/react";
 
@@ -36,6 +37,9 @@ const Apps = () => {
 				type="button"
 				id="btn-fullscreen"
 				className="relative transition duration-75 rounded group hover:bg-white/50 focus:outline-none active:bg-white/75 dark:hover:bg-black/25 dark:active:bg-black/50"
+				onClick={() => {
+					toggleFullscreen();
+				}}
 			>
 				<span className="block p-2 transition duration-75 active:scale-90">
 					<img
