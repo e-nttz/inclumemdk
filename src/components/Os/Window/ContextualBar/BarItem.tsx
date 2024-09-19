@@ -1,6 +1,6 @@
 import { classNames } from "@/helpers/sanitize";
 import { useClickOutside } from "@/hooks/useClickOutside";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 interface BarItemProps {
 	name: string;
