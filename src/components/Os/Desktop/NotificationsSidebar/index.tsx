@@ -32,7 +32,7 @@ const NotificationsSidebar = () => {
 		>
 			<div
 				id="notifications-area"
-				className="absolute top-0 bottom-0 right-0 flex flex-col w-96 bg-white/75 backdrop-blur-lg backdrop-filter dark:bg-gray-800/75 dark:backdrop-blur-lg dark:backdrop-filter"
+				className="absolute top-0 bottom-0 right-0 flex flex-col w-96 bg-white/75 backdrop-blur-lg backdrop-filter dark:bg-gray-800/75 dark:backdrop-blur-lg dark:backdrop-filter z-[9998]"
 				ref={nodeRef}
 			>
 				<Notifications />
