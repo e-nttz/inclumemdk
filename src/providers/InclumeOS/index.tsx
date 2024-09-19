@@ -82,6 +82,28 @@ const InclumeOSProvider = ({ children }: InclumeOSProviderProps) => {
 		_setNotificationsOpen(open);
 	};
 
+	// Listener
+	useEffect(() => {
+		// Check if the user exit the full screen mode
+		const listener = () => {
+			if (document.fullscreenElement === null) {
+				document.body.classList.add("fullscreen-exited");
+			}
+		};
+
+		document.addEventListener("fullscreenchange", listener);
+
+		// Listen for onbeforeunload
+		window.onbeforeunload = () => {
+			// Avoid the user to leave the page
+			return false;
+		};
+
+		return () => {
+			document.removeEventListener("fullscreenchange", listener);
+		};
+	});
+
 	return (
 		<InclumeOSContext.Provider
 			value={{
