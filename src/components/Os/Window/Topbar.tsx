@@ -2,7 +2,7 @@ import { useOS } from "@/providers/InclumeOS";
 import ContextualBar from "./ContextualBar";
 import ControlButtons from "./ControlButtons";
 
-const Topbar = () => {
+const Topbar = ({ contextMenus }) => {
 	const { currentApp, openedApps } = useOS();
 
 	const currentAppIcon = openedApps.find(
@@ -22,7 +22,8 @@ const Topbar = () => {
 				</div>
 				<ControlButtons />
 			</div>
-			<ContextualBar />
+
+			<ContextualBar>{contextMenus}</ContextualBar>
 		</header>
 	);
 };

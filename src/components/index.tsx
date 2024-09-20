@@ -43,7 +43,8 @@ export const OS = () => {
 					</div>
 				</Transition>
 			)}
-			<ContextualMenu />
+
+			{/* <ContextualMenu /> */}
 		</div>
 	);
 };

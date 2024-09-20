@@ -94,10 +94,10 @@ const InclumeOSProvider = ({ children }: InclumeOSProviderProps) => {
 		document.addEventListener("fullscreenchange", listener);
 
 		// Listen for onbeforeunload
-		window.onbeforeunload = () => {
-			// Avoid the user to leave the page
-			return false;
-		};
+		// window.onbeforeunload = () => {
+		// 	// Avoid the user to leave the page
+		// 	return false;
+		// };
 
 		return () => {
 			document.removeEventListener("fullscreenchange", listener);

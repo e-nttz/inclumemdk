@@ -2,7 +2,6 @@ import Message from "@/components/Apps/Message.exe";
 import GridIcons from "./GridIcons";
 import NotificationsSidebar from "./NotificationsSidebar";
 import StartMenu from "./StartMenu";
-import Window from "../Window";
 import { useOS } from "@/providers/InclumeOS";
 
 const Desktop = () => {
@@ -12,11 +11,7 @@ const Desktop = () => {
 		<div id="desktop" className="relative grow">
 			<GridIcons />
 
-			{currentApp && (
-				<Window>
-					<Message />
-				</Window>
-			)}
+			{currentApp && <Message />}
 
 			<StartMenu />
 
