@@ -10,8 +10,11 @@ interface WindowProps {
 }
 
 const Window = ({ children, contextMenus, appName }: WindowProps) => {
-	const { currentApp } = useOS();
-	return (
+	const { currentApp, openedApps } = useOS();
+
+	const currentAppIndex = openedApps.findIndex((app) => app.title === appName);
+
+	return currentAppIndex >= 0 ? (
 		<Transition
 			show={currentApp === appName}
 			enter="transition ease-out duration-300"
@@ -33,7 +36,7 @@ const Window = ({ children, contextMenus, appName }: WindowProps) => {
 				</main>
 			</div>
 		</Transition>
-	);
+	) : null;
 };
 
 export default Window;
