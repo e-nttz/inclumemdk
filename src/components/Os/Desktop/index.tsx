@@ -1,8 +1,8 @@
-import Message from "@/components/Apps/Message.exe";
 import GridIcons from "./GridIcons";
 import NotificationsSidebar from "./NotificationsSidebar";
 import StartMenu from "./StartMenu";
 import { useOS } from "@/providers/InclumeOS";
+import AllApps from "@/components/Apps";
 
 const Desktop = () => {
 	const { currentApp } = useOS();
@@ -11,7 +11,7 @@ const Desktop = () => {
 		<div id="desktop" className="relative grow">
 			<GridIcons />
 
-			{currentApp && <Message />}
+			<AllApps />
 
 			<StartMenu />
 
