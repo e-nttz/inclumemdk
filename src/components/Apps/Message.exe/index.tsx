@@ -108,6 +108,7 @@ const Message: AppProps = () => {
 
 	return (
 		<Window
+			appName={Message.title}
 			contextMenus={
 				<>
 					<ContextualBar.Menu name="Hello">

@@ -1,7 +1,18 @@
 import { useOS } from "@/providers/InclumeOS";
+import { useEffect, useState } from "react";
 
 const NotificationsArea = () => {
 	const { setNotificationsOpen } = useOS();
+	const [currentTime, setCurrentTime] = useState(new Date());
+
+	// update clock every 5 seconds
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setCurrentTime(new Date());
+		}, 5000);
+
+		return () => clearInterval(interval);
+	}, []);
 
 	const date = new Date() as Date;
 	const currentDay = date.toLocaleDateString("fr-FR", {
@@ -73,7 +84,7 @@ const NotificationsArea = () => {
 				type="button"
 				className="flex items-center justify-center flex-shrink-0 h-8 px-2 text-xs font-medium transition duration-150 rounded hover:bg-white/50 focus:outline-none active:scale-90 active:bg-white dark:hover:bg-black/25 dark:active:bg-black/50"
 			>
-				{date.toLocaleTimeString("fr-FR", {
+				{currentTime.toLocaleTimeString("fr-FR", {
 					hour: "numeric",
 					minute: "numeric",
 				})}
