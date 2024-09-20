@@ -17,6 +17,7 @@ const InclumeOSContext = createContext<InclumeOSContextType>({
 	setStartMenuOpen: () => {},
 	notificationsOpen: false,
 	setNotificationsOpen: () => {},
+	focusedElement: null,
 });
 
 const InclumeOSProvider = ({ children }: InclumeOSProviderProps) => {
@@ -82,6 +83,10 @@ const InclumeOSProvider = ({ children }: InclumeOSProviderProps) => {
 		_setNotificationsOpen(open);
 	};
 
+	const [focusedElement, setFocusedElement] = useState<HTMLElement | null>(
+		null
+	);
+
 	// Listener
 	useEffect(() => {
 		// Check if the user exit the full screen mode
@@ -98,6 +103,12 @@ const InclumeOSProvider = ({ children }: InclumeOSProviderProps) => {
 		// 	// Avoid the user to leave the page
 		// 	return false;
 		// };
+
+		// Listen for right-click event
+		document.addEventListener("contextmenu", (e) => {
+			// If element is different than focusedElement, and is an input, textarea or something focusable
+			setFocusedElement(e.target as HTMLElement);
+		});
 
 		return () => {
 			document.removeEventListener("fullscreenchange", listener);
@@ -119,6 +130,7 @@ const InclumeOSProvider = ({ children }: InclumeOSProviderProps) => {
 				setStartMenuOpen,
 				notificationsOpen,
 				setNotificationsOpen,
+				focusedElement,
 			}}
 		>
 			{children}

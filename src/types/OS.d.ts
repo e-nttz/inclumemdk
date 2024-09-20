@@ -22,6 +22,7 @@ interface InclumeOSContextType {
 	setStartMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 	notificationsOpen: boolean;
 	setNotificationsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+	focusedElement: HTMLElement | null;
 }
 
 interface InclumeOSProviderProps {

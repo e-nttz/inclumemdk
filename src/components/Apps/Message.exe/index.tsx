@@ -8,8 +8,6 @@ import PaperplaneIcon from "@/assets/icons/paperplane.svg?react";
 import { ReactElement } from "react";
 import Window from "@/components/Os/Window";
 import ContextualBar from "@/components/Os/Window/ContextualBar";
-import { ContextMenu, ContextMenuTrigger } from "@/components/Ui/context-menu";
-import { OSContextualMenuMessage } from "@/components/Ui/Menus/ContextualMenu";
 
 interface AppProps extends React.FC {
 	title: string;
@@ -20,7 +18,7 @@ const Message: AppProps = () => {
 	const { t } = useTranslation();
 	const messagesList = useRef<HTMLUListElement>(null);
 
-	const [messages, setMessages] = useState([
+	const [messages, setMessages] = useState<any>([
 		{
 			id: 1,
 			sender: 4,
@@ -133,62 +131,108 @@ const Message: AppProps = () => {
 				</>
 			}
 		>
-			<ContextMenu>
-				<ContextMenuTrigger className="flex flex-col flex-1">
-					<section className="flex flex-col flex-1 w-full overflow-auto text-black bg-white/90 backdrop-blur dark:bg-black/70">
-						<header className="px-6 py-4 bg-white dark:bg-black">
-							<div className="flex flex-row items-center gap-2">
-								<figure className="w-12 overflow-hidden rounded-full aspect-square">
-									<img
-										src="/images/avatar-message.jpg"
-										alt="Avatar"
-										className="object-cover w-full h-full"
-									/>
-								</figure>
-
-								<p className="font-bold dark:text-white">John Doe</p>
-							</div>
-						</header>
-
-						<ul
-							className="flex flex-col flex-1 gap-4 px-4 py-4 overflow-auto"
-							ref={messagesList}
-						>
-							{messages.map((message) => (
-								<li
-									key={message.id}
-									className="flex flex-row items-center space-x-2"
-								>
-									<BubbleChat
-										message={message}
-										isMine={message.sender === 1}
-									/>
-								</li>
-							))}
-						</ul>
-
-						<form
-							className="flex flex-row items-center gap-4 px-6 py-4 bg-white dark:bg-black dark:text-white"
-							onSubmit={handleSubmit}
-						>
-							<input
-								type="text"
-								name="message"
-								placeholder="Type a message..."
-								className="flex-1 w-full p-2 border-2 border-solid rounded-lg bg-gray-50/50 border-gray-50/50 dark:hover:border-accent-dark dark:focus:border-accent-dark dark:bg-gray-900 dark:border-gray-900 hover:border-accent focus:border-accent focus:outline-none focus:shadow-none peer"
+			<section className="flex flex-col flex-1 w-full overflow-auto text-black bg-white/90 backdrop-blur dark:bg-black/70">
+				<header className="px-6 py-4 bg-white dark:bg-black">
+					<div className="flex flex-row items-center gap-2">
+						<figure className="w-12 overflow-hidden rounded-full aspect-square">
+							<img
+								src="/images/avatar-message.jpg"
+								alt="Avatar"
+								className="object-cover w-full h-full"
 							/>
+						</figure>
 
-							<button className="peer-[:not(:placeholder-shown)]:text-accent dark:peer-[:not(:placeholder-shown)]:text-accent-dark text-gray-200 transition flex-shrink-0">
-								<span className="sr-only">{t("Envoyer")}</span>
+						<p className="font-bold dark:text-white">John Doe</p>
+					</div>
+				</header>
 
-								<PaperplaneIcon className="w-6 h-auto" />
-							</button>
-						</form>
-					</section>
-				</ContextMenuTrigger>
+				<ul
+					className="flex flex-col flex-1 gap-4 px-4 py-4 overflow-auto"
+					ref={messagesList}
+				>
+					{messages.map((message) => (
+						<li
+							key={message.id}
+							className="flex flex-row items-center space-x-2"
+						>
+							<BubbleChat
+								message={message}
+								isMine={message.sender === 1}
+							/>
+						</li>
+					))}
+				</ul>
 
-				<OSContextualMenuMessage />
-			</ContextMenu>
+				<form
+					className="flex flex-row items-center gap-4 px-6 py-4 bg-white dark:bg-black dark:text-white"
+					onSubmit={handleSubmit}
+				>
+					<input
+						type="text"
+						name="message"
+						placeholder="Type a message..."
+						className="flex-1 w-full p-2 border-2 border-solid rounded-lg bg-gray-50/50 border-gray-50/50 dark:hover:border-accent-dark dark:focus:border-accent-dark dark:bg-gray-900 dark:border-gray-900 hover:border-accent focus:border-accent focus:outline-none focus:shadow-none peer"
+						// Listen when a paste event is made on input
+						onPaste={(e) => {
+							console.log(e);
+
+							// Get navigator clipboard data and check if this is a file
+							navigator.clipboard.read().then(async (data) => {
+								if (data[0].types.includes("image/png")) {
+									// Get the image dataset
+									const blob = await data[0].getType("image/png");
+
+									// Create a new file reader
+									const reader = new FileReader();
+
+									// Read the blob as a data URL
+									reader.readAsDataURL(blob);
+
+									// When the reader is done
+									reader.onload = () => {
+										// Create a new message
+										const message = {
+											id: Math.random(),
+											sender: 1,
+											content: (
+												<img
+													src={reader.result as string}
+													alt="Pasted image"
+													className="h-auto max-w-full"
+												/>
+											),
+										};
+
+										// Add message to the list
+										setMessages((prev) => [...prev, message]);
+
+										// Scroll to the bottom
+										setTimeout(() => {
+											messagesList.current?.scrollTo({
+												top: messagesList.current.scrollHeight,
+												behavior: "smooth",
+											});
+										}, 150);
+									};
+								}
+							});
+
+							// Paste selected content to target
+							navigator.clipboard.readText().then((text) => {
+								const target = e.target as HTMLInputElement;
+
+								target.value += text;
+							});
+						}}
+					/>
+
+					<button className="peer-[:not(:placeholder-shown)]:text-accent dark:peer-[:not(:placeholder-shown)]:text-accent-dark text-gray-200 transition flex-shrink-0">
+						<span className="sr-only">{t("Envoyer")}</span>
+
+						<PaperplaneIcon className="w-6 h-auto" />
+					</button>
+				</form>
+			</section>
 		</Window>
 	);
 };
