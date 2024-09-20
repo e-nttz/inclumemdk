@@ -11,7 +11,7 @@ const InclumeOs = () => {
 		<>
 			<div
 				id="fullscreen-notice"
-				className="absolute top-4 px-4 py-3 right-4 z-[100000] rounded border border-gray-100 bg-white/80 dark:border-gray dark:bg-gray/50 backdrop-blur flex gap-4 max-w-[320px] items-start text-sm hidden"
+				className="absolute top-6 px-4 py-3 right-6 z-[100000] rounded border border-gray-100 bg-white/80 dark:border-gray dark:bg-gray/50 backdrop-blur flex gap-4 max-w-[320px] items-start text-sm hidden"
 			>
 				<IconWarningColor className="flex-shrink-0 w-6 h-auto" />
 				<p>

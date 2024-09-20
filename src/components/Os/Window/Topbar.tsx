@@ -6,12 +6,12 @@ const Topbar = () => {
 	const { currentApp, openedApps } = useOS();
 
 	const currentAppIcon = openedApps.find(
-		(app) => app.name === currentApp
+		(app) => app.title === currentApp
 	)?.icon;
 
 	return (
-		<header className="fixed top-0 left-0 z-10 w-full h-20">
-			<div className="h-10 bg-[#CCDEEC] flex items-center justify-between px-4 dark:bg-black dark:bg-opacity-30 dark:backdrop-blur-3xl">
+		<header className="top-0 left-0 z-10 w-full h-20 ">
+			<div className="flex items-center justify-between h-10 px-4 border-b dark:border-gray-600/-20 border-gray-300/20 bg-white/75 backdrop-blur-lg backdrop-filter dark:bg-gray-800/75 dark:backdrop-blur-lg dark:backdrop-filter">
 				<div className="flex flex-row-reverse items-center">
 					<h2 className="px-2 text-sm font-medium text-black pointer-events-none text-opacity-80 dark:text-white">
 						{currentApp}

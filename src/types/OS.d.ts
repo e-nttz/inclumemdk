@@ -1,6 +1,6 @@
-interface App extends React.FC {
-	name: string;
-	icon: React.FC | Element;
+interface App {
+	title: string;
+	icon?: ReactElement;
 }
 
 interface AppProps {

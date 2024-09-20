@@ -9,7 +9,7 @@ const ControlButtons = () => {
 
 	const handleCloseButton = () => {
 		const openedAppsCopy = [...openedApps];
-		setOpenedApps(openedAppsCopy.filter((app) => app.name !== currentApp));
+		setOpenedApps(openedAppsCopy.filter((app) => app.title !== currentApp));
 		setCurrentApp("");
 	};
 	return (

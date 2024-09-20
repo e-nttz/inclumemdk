@@ -1,5 +1,9 @@
 import Message from "./Message.exe";
 
-export const apps = {
+interface Apps {
+	[key: string]: App;
+}
+
+export const apps: Apps = {
 	message: Message,
 };

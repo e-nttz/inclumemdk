@@ -8,7 +8,7 @@
 		"build": "vite build",
 		"lint": "eslint .",
 		"preview": "vite preview",
-		"test": "tsc --noEmit && eslint ."
+		"test": "tsc --project tsconfig.app.json --noEmit && eslint ."
 	},
 	"dependencies": {
 		"@headlessui/react": "^2.1.8",

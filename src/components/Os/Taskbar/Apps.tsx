@@ -85,9 +85,9 @@ const Apps = () => {
 						type="button"
 						className={classNames(
 							"relative transition duration-150 rounded group hover:bg-white/50 focus:outline-none active:bg-white/75 dark:hover:bg-black/25 dark:active:bg-black/50",
-							app.name === currentApp ? "bg-black bg-opacity-10" : ""
+							app.title === currentApp ? "bg-black bg-opacity-10" : ""
 						)}
-						onClick={() => handleAppClick(app.name)}
+						onClick={() => handleAppClick(app.title)}
 					>
 						<figure className="block p-2 transition duration-75 active:scale-90 [&>svg]:w-8 [&>svg]:h-8">
 							<>{app.icon}</>

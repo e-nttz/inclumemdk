@@ -60,11 +60,11 @@ const InclumeOSProvider = ({ children }: InclumeOSProviderProps) => {
 	const [openedApps, setOpenedApps] = useState<App[]>([]);
 
 	const launchApp = (app: App) => {
-		if (!openedApps.find((a) => a.name === app.name)) {
+		if (!openedApps.find((a) => a.title === app.title)) {
 			setOpenedApps([...openedApps, app]);
 		}
 
-		setCurrentApp(app.name);
+		setCurrentApp(app.title);
 	};
 
 	/**

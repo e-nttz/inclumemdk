@@ -5,7 +5,14 @@ import { useTranslation } from "react-i18next";
 import MessageIcon from "@/assets/icons/app-message.svg?react";
 import PaperplaneIcon from "@/assets/icons/paperplane.svg?react";
 
-const Message = () => {
+import { ReactElement } from "react";
+
+interface AppProps extends React.FC {
+	title: string;
+	icon: ReactElement;
+}
+
+const Message: AppProps = () => {
 	const { t } = useTranslation();
 	const messagesList = useRef<HTMLUListElement>(null);
 
@@ -98,7 +105,7 @@ const Message = () => {
 	};
 
 	return (
-		<section className="flex flex-col w-full h-full text-black bg-white/90 backdrop-blur dark:bg-black/50">
+		<section className="flex flex-col flex-1 w-full overflow-auto text-black bg-white/90 backdrop-blur dark:bg-black/70">
 			<header className="px-6 py-4 bg-white dark:bg-black">
 				<div className="flex flex-row items-center gap-2">
 					<figure className="w-12 overflow-hidden rounded-full aspect-square">
@@ -150,5 +157,5 @@ const Message = () => {
 
 export default Message;
 
-Message.title = () => "Message";
-Message.icon = () => <MessageIcon />;
+Message.title = "Message";
+Message.icon = <MessageIcon />;
