@@ -1,4 +1,3 @@
-import { apps } from "@/components/Apps";
 import Browser from "@/components/Apps/Browser.exe";
 import Message from "@/components/Apps/Message.exe";
 import { useOS } from "@/providers/InclumeOS";

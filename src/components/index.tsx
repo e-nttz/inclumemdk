@@ -5,7 +5,6 @@ import { useAuth } from "@/providers/auth";
 import { Transition } from "@headlessui/react";
 import { useEffect, useState } from "react";
 import BootScreen from "./Boot";
-import ContextualMenu from "./Ui/Menus/ContextualMenu";
 
 export const OS = () => {
 	const [isAuth, setIsAuth] = useState<boolean>(false);

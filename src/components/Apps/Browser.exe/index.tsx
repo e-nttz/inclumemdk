@@ -24,7 +24,11 @@ const Browser: AppProps = () => {
 			title: "Tab 3",
 		},
 	]);
+
 	const [currentTab, setCurrentTab] = useState(1);
+
+	// TODO: Remove this line when the browser is fully implemented
+	setTabs(tabs);
 
 	return (
 		<Window appName={Browser.title}>
