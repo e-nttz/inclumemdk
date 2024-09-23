@@ -196,7 +196,7 @@ const Message: AppProps = () => {
 					onSubmit={handleSubmit}
 				>
 					{selectedFiles && (
-						<div className="relative w-20 h-auto border-2 rounded border-accent dark:border-accent-dark">
+						<div className="relative w-20 h-auto overflow-hidden border-2 rounded-lg border-accent dark:border-accent-dark">
 							<img
 								src={selectedFiles}
 								alt="Avatar"
