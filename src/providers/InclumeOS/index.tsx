@@ -113,7 +113,7 @@ const InclumeOSProvider = ({ children }: InclumeOSProviderProps) => {
 		return () => {
 			document.removeEventListener("fullscreenchange", listener);
 		};
-	});
+	}, []);
 
 	return (
 		<InclumeOSContext.Provider
