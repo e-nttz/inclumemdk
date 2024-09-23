@@ -1,14 +1,14 @@
-import { FormEvent, useEffect, useRef, useState } from "react";
-import BubbleChat from "./bubble";
+import { ReactElement, FormEvent, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+
+import Window from "@/components/Os/Window";
+import ContextualBar from "@/components/Os/Window/ContextualBar";
+import BubbleChat from "./bubble";
 
 import MessageIcon from "@/assets/icons/app-message.svg?react";
 import PaperplaneIcon from "@/assets/icons/paperplane.svg?react";
-
-import { ReactElement } from "react";
-import Window from "@/components/Os/Window";
-import ContextualBar from "@/components/Os/Window/ContextualBar";
-
+import CameraIcon from "@/assets/icons/camera.svg?react";
+import DismissIcon from "@/assets/icons/dismiss.svg?react";
 interface AppProps extends React.FC {
 	title: string;
 	icon: ReactElement;
@@ -17,6 +17,10 @@ interface AppProps extends React.FC {
 const Message: AppProps = () => {
 	const { t } = useTranslation();
 	const messagesList = useRef<HTMLUListElement>(null);
+
+	const [selectedFiles, setSelectedFiles] = useState<string | null>(
+		"/images/avatar-message.jpg"
+	);
 
 	const [messages, setMessages] = useState<any>([
 		{
@@ -83,15 +87,38 @@ const Message: AppProps = () => {
 
 		if (message.trim() === "") return;
 
-		// Add message to the list
-		setMessages((prev) => [
-			...prev,
-			{
-				id: Math.random(),
-				sender: 1,
-				content: message,
-			},
-		]);
+		// If there's an image, send it
+		if (selectedFiles) {
+			window.dispatchEvent(
+				new CustomEvent("beaconMessage", {
+					detail: {
+						id: Math.random(),
+						sender: 1,
+						content: (
+							<img
+								src={selectedFiles}
+								alt="Pasted image"
+								className="h-auto max-w-full"
+							/>
+						),
+					},
+				})
+			);
+
+			// Clear input
+			setSelectedFiles(null);
+		}
+
+		// Send new message
+		window.dispatchEvent(
+			new CustomEvent("beaconMessage", {
+				detail: {
+					id: Math.random(),
+					sender: 1,
+					content: message,
+				},
+			})
+		);
 
 		// Clear input
 		form.reset();
@@ -165,73 +192,92 @@ const Message: AppProps = () => {
 				</ul>
 
 				<form
-					className="flex flex-row items-center gap-4 px-6 py-4 bg-white dark:bg-black dark:text-white"
+					className="gap-4 px-6 py-4 space-y-4 bg-white dark:bg-black dark:text-white"
 					onSubmit={handleSubmit}
 				>
-					<input
-						type="text"
-						name="message"
-						placeholder="Type a message..."
-						className="flex-1 w-full p-2 border-2 border-solid rounded-lg bg-gray-50/50 border-gray-50/50 dark:hover:border-accent-dark dark:focus:border-accent-dark dark:bg-gray-900 dark:border-gray-900 hover:border-accent focus:border-accent focus:outline-none focus:shadow-none peer"
-						// Listen when a paste event is made on input
-						onPaste={(e) => {
-							console.log(e);
+					{selectedFiles && (
+						<div className="relative w-20 h-auto border-2 rounded border-accent dark:border-accent-dark">
+							<img
+								src={selectedFiles}
+								alt="Avatar"
+								className="w-full h-auto"
+							/>
 
-							// Get navigator clipboard data and check if this is a file
-							navigator.clipboard.read().then(async (data) => {
-								if (data[0].types.includes("image/png")) {
-									// Get the image dataset
-									const blob = await data[0].getType("image/png");
+							<button
+								type="button"
+								className="absolute inset-0 flex items-center justify-center transition opacity-0 hover:opacity-100 focus-visible:opacity-100 bg-white/50 backdrop-blur-sm dark:text-black"
+								onClick={() => setSelectedFiles(null)}
+							>
+								<DismissIcon className="w-6 h-auto" />
+							</button>
+						</div>
+					)}
 
-									// Create a new file reader
-									const reader = new FileReader();
+					<div className="flex flex-row items-center gap-4">
+						<span className="relative flex-1 peer">
+							<input
+								type="text"
+								name="message"
+								placeholder="Type a message..."
+								autoComplete="off"
+								className="flex-1 w-full p-2 pr-12 border-2 border-solid rounded-lg bg-gray-50/50 border-gray-50/50 dark:hover:border-accent-dark dark:focus:border-accent-dark dark:bg-gray-900 dark:border-gray-900 hover:border-accent focus:border-accent focus:outline-none focus:shadow-none peer"
+								// Listen when a paste event is made on input
+								onPaste={async (e) => {
+									const text = await navigator.clipboard.readText();
 
-									// Read the blob as a data URL
-									reader.readAsDataURL(blob);
+									const filePattern =
+										/^\/images\/.*\.(png|jpg|jpeg|gif|webp|svg|pdf)$/;
+									if (filePattern.test(text)) {
+										e.preventDefault();
+										// Send new message with image
+										window.dispatchEvent(
+											new CustomEvent("beaconMessage", {
+												detail: {
+													id: Math.random(),
+													sender: 1,
+													content: (
+														<img
+															src={text}
+															alt="Pasted image"
+															className="h-auto max-w-full"
+														/>
+													),
+												},
+											})
+										);
 
-									// When the reader is done
-									reader.onload = () => {
-										// Create a new message
-										const message = {
-											id: Math.random(),
-											sender: 1,
-											content: (
-												<img
-													src={reader.result as string}
-													alt="Pasted image"
-													className="h-auto max-w-full"
-												/>
-											),
-										};
+										// Clear input
+										(e.target as HTMLInputElement).value = "";
 
-										// Add message to the list
-										setMessages((prev) => [...prev, message]);
+										return;
+									}
+								}}
+							/>
+							<button
+								type="button"
+								className="absolute text-gray-300 -translate-y-1/2 right-4 top-1/2 hover:text-accent dark:hover:text-accent-dark"
+								onClick={() => {
+									alert(
+										"Not implemented yet. A fake image is sent instead."
+									);
 
-										// Scroll to the bottom
-										setTimeout(() => {
-											messagesList.current?.scrollTo({
-												top: messagesList.current.scrollHeight,
-												behavior: "smooth",
-											});
-										}, 150);
-									};
-								}
-							});
+									setSelectedFiles("/images/avatar-message.jpg");
+								}}
+							>
+								<span className="sr-only">
+									{t("Insérez un fichier")}
+								</span>
 
-							// Paste selected content to target
-							navigator.clipboard.readText().then((text) => {
-								const target = e.target as HTMLInputElement;
+								<CameraIcon className="w-6 h-auto" />
+							</button>
+						</span>
 
-								target.value += text;
-							});
-						}}
-					/>
+						<button className="peer-[:not(:placeholder-shown)]:text-accent dark:peer-[:not(:placeholder-shown)]:text-accent-dark text-gray-200 transition flex-shrink-0">
+							<span className="sr-only">{t("Envoyer")}</span>
 
-					<button className="peer-[:not(:placeholder-shown)]:text-accent dark:peer-[:not(:placeholder-shown)]:text-accent-dark text-gray-200 transition flex-shrink-0">
-						<span className="sr-only">{t("Envoyer")}</span>
-
-						<PaperplaneIcon className="w-6 h-auto" />
-					</button>
+							<PaperplaneIcon className="w-6 h-auto" />
+						</button>
+					</div>
 				</form>
 			</section>
 		</Window>

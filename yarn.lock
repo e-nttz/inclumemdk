@@ -1171,6 +1171,11 @@
   resolved "https://registry.yarnpkg.com/@floating-ui/utils/-/utils-0.2.8.tgz#21a907684723bbbaa5f0974cf7730bd797eb8e62"
   integrity sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig==
 
+"@fluentui/svg-icons@^1.1.258":
+  version "1.1.258"
+  resolved "https://registry.yarnpkg.com/@fluentui/svg-icons/-/svg-icons-1.1.258.tgz#b92abb7701c1ab7bd141984776bb6853bfac3fbe"
+  integrity sha512-BOAx2jO026U4kxU7QJjHCKsej2+A6U+z4enunzwFErN0cuyGP0tSLE7PK96lb2GmYY8LpxFP5HFKJanq9WJB3Q==
+
 "@headlessui/react@^2.1.8":
   version "2.1.8"
   resolved "https://registry.yarnpkg.com/@headlessui/react/-/react-2.1.8.tgz#b0e254fdf8b1f65dbf28de444f70d0a9b61705dd"
