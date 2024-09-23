@@ -1,4 +1,5 @@
 import Browser from "./Browser.exe";
+import FaceTime from "./FaceTime.exe";
 import Message from "./Message.exe";
 
 interface Apps {
@@ -18,6 +19,8 @@ const RenderAllApps = () => {
 				const App = apps[key];
 				return <App key={`all-apps-${key}`} />;
 			})}
+
+			<FaceTime />
 		</>
 	);
 };

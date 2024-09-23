@@ -8,8 +8,6 @@ export const beacon = (
 	notify: boolean = false,
 	callback = () => {}
 ) => {
-	console.log("Hello");
-
 	window.dispatchEvent(
 		new CustomEvent("beacon", {
 			detail: {
@@ -21,4 +19,18 @@ export const beacon = (
 	);
 
 	callback();
+};
+
+export const listenBeacon = (type: string, callback: (e: any) => void) => {
+	const listener = (e: any) => {
+		if (e.detail && e.detail.type === type) {
+			callback(e);
+		}
+	};
+
+	window.addEventListener("beacon", listener);
+
+	return () => {
+		window.removeEventListener("beacon", listener);
+	};
 };

@@ -83,6 +83,13 @@ const Message: AppProps = () => {
 		};
 	}, []);
 
+	/**
+	 * Handle form submission
+	 *
+	 * @param {FormEvent} e
+	 *
+	 * @returns {void}
+	 */
 	const handleSubmit = (e: FormEvent) => {
 		// Add message to the list
 		e.preventDefault();
@@ -129,6 +136,12 @@ const Message: AppProps = () => {
 		}, 150);
 	};
 
+	/**
+	 * Handle file attachment
+	 *
+	 * @returns {void}
+	 *
+	 */
 	const handleFileAttachment = () => {
 		alert("Not implemented yet. A fake image is sent instead.");
 		setSelectedFiles("/images/restaurant.jpg");

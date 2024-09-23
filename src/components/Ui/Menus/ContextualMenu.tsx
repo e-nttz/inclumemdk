@@ -238,6 +238,16 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 					>
 						{t("Envoyer un message")}
 					</ContextMenuItem>
+					<ContextMenuItem
+						onClick={() => {
+							// Dispatch false message using "beacomMessage" event
+							beacon("call", {
+								status: "incoming",
+							});
+						}}
+					>
+						{t("Démarrer un appel")}
+					</ContextMenuItem>
 				</ContextMenuSubContent>
 			</ContextMenuSub>
 		</ContextMenuContent>
