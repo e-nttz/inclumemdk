@@ -1,3 +1,4 @@
+import Browser from "./Browser.exe";
 import Message from "./Message.exe";
 
 interface Apps {
@@ -6,9 +7,10 @@ interface Apps {
 
 export const apps: Apps = {
 	message: Message,
+	browser: Browser,
 };
 
-const AllApps = () => {
+const RenderAllApps = () => {
 	return (
 		// loop through all apps and render them
 		<>
@@ -20,4 +22,4 @@ const AllApps = () => {
 	);
 };
 
-export default AllApps;
+export default RenderAllApps;

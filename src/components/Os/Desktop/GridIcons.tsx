@@ -1,3 +1,5 @@
+import { apps } from "@/components/Apps";
+import Browser from "@/components/Apps/Browser.exe";
 import Message from "@/components/Apps/Message.exe";
 import { useOS } from "@/providers/InclumeOS";
 
@@ -11,13 +13,27 @@ const GridIcons = () => {
 					className="w-[100px] h-[100px] flex flex-col items-center justify-center p-4 transition duration-150 rounded group hover:bg-white/30 focus:bg-white/30 active:bg-white/75 dark:hover:bg-white/25 dark:active:bg-white/50 cursor-default"
 					onDoubleClick={() =>
 						launchApp({
-							title: "Message",
+							title: Message.title,
 							icon: Message.icon,
 						})
 					}
 				>
 					<figure className="w-16 h-16 p-1 mb-2">{Message.icon}</figure>
 					<span className="text-[12px] text-white">{Message.title}</span>
+				</button>
+			</li>
+			<li>
+				<button
+					className="w-[100px] h-[100px] flex flex-col items-center justify-center p-4 transition duration-150 rounded group hover:bg-white/30 focus:bg-white/30 active:bg-white/75 dark:hover:bg-white/25 dark:active:bg-white/50 cursor-default"
+					onDoubleClick={() =>
+						launchApp({
+							title: Browser.title,
+							icon: Browser.icon,
+						})
+					}
+				>
+					<figure className="w-16 h-16 p-1 mb-2">{Browser.icon}</figure>
+					<span className="text-[12px] text-white">{Browser.title}</span>
 				</button>
 			</li>
 		</ul>
