@@ -9,6 +9,7 @@ import MessageIcon from "@/assets/icons/app-message.svg?react";
 import PaperplaneIcon from "@/assets/icons/paperplane.svg?react";
 import CameraIcon from "@/assets/icons/camera.svg?react";
 import DismissIcon from "@/assets/icons/dismiss.svg?react";
+import { beacon } from "@/helpers/beacon";
 interface AppProps extends React.FC {
 	title: string;
 	icon: ReactElement;
@@ -60,7 +61,7 @@ const Message: AppProps = () => {
 		const listener = async (e: CustomEvent) => {
 			const type = e.type;
 
-			if (type == "beaconMessage" && e.detail) {
+			if (type == "beacon" && e.detail && e.detail.type == "message") {
 				setMessages((prev) => [...prev, e.detail]);
 
 				// Scroll to the bottom
@@ -74,11 +75,11 @@ const Message: AppProps = () => {
 		};
 
 		// Add event listener to receive messages from the entire system
-		window.addEventListener("beaconMessage", listener);
+		window.addEventListener("beacon", listener);
 
 		// Remove event listener
 		return () => {
-			window.removeEventListener("beaconMessage", listener);
+			window.removeEventListener("beacon", listener);
 		};
 	}, []);
 
@@ -91,37 +92,28 @@ const Message: AppProps = () => {
 
 		// If there's an image, send it
 		if (selectedFiles) {
-			window.dispatchEvent(
-				new CustomEvent("beaconMessage", {
-					detail: {
-						id: Math.random(),
-						sender: 1,
-						content: (
-							<img
-								src={selectedFiles}
-								alt="Pasted image"
-								className="h-auto max-w-full"
-							/>
-						),
-					},
-				})
-			);
+			beacon("message", {
+				id: Math.random(),
+				sender: 1,
+				content: (
+					<img
+						src={selectedFiles}
+						alt="Pasted image"
+						className="h-auto max-w-full"
+					/>
+				),
+			});
 
 			// Clear input
 			setSelectedFiles(null);
 		}
 
 		if (message.trim() !== "") {
-			// Send new message
-			window.dispatchEvent(
-				new CustomEvent("beaconMessage", {
-					detail: {
-						id: Math.random(),
-						sender: 1,
-						content: message,
-					},
-				})
-			);
+			beacon("message", {
+				id: Math.random(),
+				sender: 1,
+				content: message,
+			});
 
 			// Clear input
 			form.reset();
@@ -226,21 +218,18 @@ const Message: AppProps = () => {
 									if (filePattern.test(text)) {
 										e.preventDefault();
 										// Send new message with image
-										window.dispatchEvent(
-											new CustomEvent("beaconMessage", {
-												detail: {
-													id: Math.random(),
-													sender: 1,
-													content: (
-														<img
-															src={text}
-															alt="Pasted image"
-															className="h-auto max-w-full"
-														/>
-													),
-												},
-											})
-										);
+
+										beacon("message", {
+											id: Math.random(),
+											sender: 1,
+											content: (
+												<img
+													src={text}
+													alt="Pasted image"
+													className="h-auto max-w-full"
+												/>
+											),
+										});
 
 										// Clear input
 										(e.target as HTMLInputElement).value = "";

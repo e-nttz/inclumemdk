@@ -7,6 +7,7 @@ import {
 	ContextMenuSubContent,
 	ContextMenuSubTrigger,
 } from "@/components/Ui/context-menu";
+import { beacon } from "@/helpers/beacon";
 import { useOS } from "@/providers/InclumeOS";
 import { useTranslation } from "react-i18next";
 
@@ -46,11 +47,7 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 	const { t } = useTranslation();
 
 	return (
-		<ContextMenuContent
-			className="w-64 z-[15555000]"
-			sticky={"always"}
-			onPointerDown={(e) => console.log(e)}
-		>
+		<ContextMenuContent className="w-64 z-[15555000]" sticky={"always"}>
 			{actions?.map((action) => {
 				return (
 					<ContextMenuItem
@@ -133,22 +130,17 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 							const filePattern =
 								/^\/images\/.*\.(png|jpg|jpeg|gif|webp|svg|pdf)$/;
 							if (filePattern.test(text)) {
-								// Send new message with image
-								window.dispatchEvent(
-									new CustomEvent("beaconMessage", {
-										detail: {
-											id: Math.random(),
-											sender: 1,
-											content: (
-												<img
-													src={text}
-													alt="Pasted image"
-													className="h-auto max-w-full"
-												/>
-											),
-										},
-									})
-								);
+								beacon("message", {
+									id: Math.random(),
+									sender: 1,
+									content: (
+										<img
+											src={text}
+											alt="Pasted image"
+											className="h-auto max-w-full"
+										/>
+									),
+								});
 
 								return;
 							} else {
@@ -237,16 +229,11 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 					<ContextMenuItem
 						onClick={() => {
 							// Dispatch false message using "beacomMessage" event
-							window.dispatchEvent(
-								new CustomEvent("beaconMessage", {
-									detail: {
-										id: Math.random(),
-										sender: 4,
-										content:
-											"Velit enim sit magna. Nostrud do nisi adipisicing. Proident excepteur sint eiusmod sint. Ut ipsum incididunt non do aute sunt sint aliquip aute esse elit esse eiusmod anim non. Magna ea mollit consequat cupidatat consequat ea eiusmod irure officia tempor non cupidatat. Excepteur sit et mollit adipisicing occaecat occaecat proident. Id amet cillum dolore veniam reprehenderit in adipisicing est.",
-									},
-								})
-							);
+							beacon("message", {
+								id: Math.random(),
+								sender: 4,
+								content: "Hello, world!",
+							});
 						}}
 					>
 						{t("Envoyer un message")}
