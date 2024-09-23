@@ -1,20 +1,43 @@
 import { classNames } from "@/helpers/sanitize";
 
 import IconDismiss from "@/assets/icons/dismiss.svg?react";
+import { Tab } from ".";
 
 interface TabProps {
 	children: React.ReactNode;
 	id: number;
+	tabs: Tab[];
+	setTabs: (tabs: any) => void;
 	currentTab: number;
 	setCurrentTab: (tab: number) => void;
 }
 
-const Tab = ({ children, id, currentTab, setCurrentTab }: TabProps) => {
+const SingleTab = ({
+	children,
+	id,
+	tabs,
+	setTabs,
+	currentTab,
+	setCurrentTab,
+}: TabProps) => {
 	const handleTabChange = () => {
 		setCurrentTab(id);
 	};
 	const handleTabClose = () => {
-		alert("Fermer l'onglet");
+		// find tab index in tabs array
+		const tabIndex = tabs.findIndex((tab: any) => tab.id === id);
+
+		if (currentTab === id) {
+			if (tabIndex === 0) {
+				// if the tab to close is the first one, we select the next tab
+				setCurrentTab(tabs[1].id);
+			} else {
+				// if not, we select the previous tab
+				setCurrentTab(tabs[tabIndex - 1].id);
+			}
+		}
+
+		setTabs((prev: any) => prev.filter((tab: any) => tab.id !== id));
 	};
 
 	return (
@@ -39,26 +62,28 @@ const Tab = ({ children, id, currentTab, setCurrentTab }: TabProps) => {
 			<button
 				onClick={handleTabChange}
 				className={classNames(
-					"absolute inset-0",
+					"absolute inset-0 outline-none",
 					currentTab === id ? "pointer-events-none" : ""
 				)}
 			>
 				<span className="sr-only">Activer cet onglet</span>
 			</button>
-			<button
-				onClick={handleTabClose}
-				className={classNames(
-					"transition absolute top-0 bottom-0 my-auto right-4",
-					currentTab === id
-						? "opacity-100"
-						: "opacity-0 group-hover:opacity-100"
-				)}
-			>
-				<IconDismiss className="w-4 h-auto" />
-				<span className="sr-only">Fermer cet onglet</span>
-			</button>
+			{tabs.length > 1 && (
+				<button
+					onClick={handleTabClose}
+					className={classNames(
+						"transition absolute top-0 bottom-0 my-auto right-4 outline-none",
+						currentTab === id
+							? "opacity-100"
+							: "opacity-0 group-hover:opacity-100"
+					)}
+				>
+					<IconDismiss className="w-4 h-auto" />
+					<span className="sr-only">Fermer cet onglet</span>
+				</button>
+			)}
 		</div>
 	);
 };
 
-export default Tab;
+export default SingleTab;
