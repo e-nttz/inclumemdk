@@ -10,6 +10,8 @@ interface AppProps extends React.FC {
 }
 
 const Browser: AppProps = () => {
+	// @ts-expect-error - This state isn't yet used
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [tabs, setTabs] = useState([
 		{
 			id: 1,
@@ -26,9 +28,6 @@ const Browser: AppProps = () => {
 	]);
 
 	const [currentTab, setCurrentTab] = useState(1);
-
-	// TODO: Remove this line when the browser is fully implemented
-	setTabs(tabs);
 
 	return (
 		<Window appName={Browser.title}>
