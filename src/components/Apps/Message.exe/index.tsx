@@ -14,15 +14,19 @@ interface AppProps extends React.FC {
 	icon: ReactElement;
 }
 
+interface Message {
+	id: number;
+	sender: number;
+	content: string | ReactElement;
+}
+
 const Message: AppProps = () => {
 	const { t } = useTranslation();
 	const messagesList = useRef<HTMLUListElement>(null);
 
-	const [selectedFiles, setSelectedFiles] = useState<string | null>(
-		"/images/avatar-message.jpg"
-	);
+	const [selectedFiles, setSelectedFiles] = useState<string | null>(null);
 
-	const [messages, setMessages] = useState<any>([
+	const [messages, setMessages] = useState<Message[]>([
 		{
 			id: 1,
 			sender: 4,
@@ -85,8 +89,6 @@ const Message: AppProps = () => {
 		const form = e.target as HTMLFormElement;
 		const message = form.message.value;
 
-		if (message.trim() === "") return;
-
 		// If there's an image, send it
 		if (selectedFiles) {
 			window.dispatchEvent(
@@ -109,19 +111,21 @@ const Message: AppProps = () => {
 			setSelectedFiles(null);
 		}
 
-		// Send new message
-		window.dispatchEvent(
-			new CustomEvent("beaconMessage", {
-				detail: {
-					id: Math.random(),
-					sender: 1,
-					content: message,
-				},
-			})
-		);
+		if (message.trim() !== "") {
+			// Send new message
+			window.dispatchEvent(
+				new CustomEvent("beaconMessage", {
+					detail: {
+						id: Math.random(),
+						sender: 1,
+						content: message,
+					},
+				})
+			);
 
-		// Clear input
-		form.reset();
+			// Clear input
+			form.reset();
+		}
 
 		// Scroll to the bottom
 		// We set timeout to wait for the DOM to update
@@ -133,27 +137,19 @@ const Message: AppProps = () => {
 		}, 150);
 	};
 
+	const handleFileAttachment = () => {
+		alert("Not implemented yet. A fake image is sent instead.");
+		setSelectedFiles("/images/restaurant.jpg");
+	};
+
 	return (
 		<Window
 			appName={Message.title}
 			contextMenus={
 				<>
-					<ContextualBar.Menu name="Hello">
-						<ContextualBar.Item
-							onClick={() =>
-								console.log("C'est toi qui est beau Thomas")
-							}
-						>
-							World
-						</ContextualBar.Item>
-					</ContextualBar.Menu>
-					<ContextualBar.Menu name="Foo">
-						<ContextualBar.Item
-							onClick={() =>
-								console.log("C'est toi qui est beau Thomas")
-							}
-						>
-							Bra !
+					<ContextualBar.Menu name="Fichiers">
+						<ContextualBar.Item onClick={() => handleFileAttachment()}>
+							{t("Joindre un fichier")}
 						</ContextualBar.Item>
 					</ContextualBar.Menu>
 				</>
@@ -261,7 +257,7 @@ const Message: AppProps = () => {
 										"Not implemented yet. A fake image is sent instead."
 									);
 
-									setSelectedFiles("/images/avatar-message.jpg");
+									setSelectedFiles("/images/restaurant.jpg");
 								}}
 							>
 								<span className="sr-only">
