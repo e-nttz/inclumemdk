@@ -1,7 +1,9 @@
 /**
  * Set the class names dynamically
  *
- * @param  {...any} classes
+ * @method
+ *
+ * @param {string[]} classes - The classes to set
  *
  * @return {string}
  */

@@ -1,5 +1,15 @@
 import { useState, useEffect } from "react";
 
+/**
+ * A custom hook to handle audio playback.
+ *
+ * @function useAudioPlayer
+ *
+ * @param {string} src - The source of the audio file
+ * @param {boolean} loop - Whether to loop the audio
+ *
+ * @returns {object} - The audio player object
+ */
 const useAudioPlayer = (src: string, loop: boolean = false) => {
 	const [audio] = useState(new Audio(src));
 	const [playing, setPlaying] = useState(false);

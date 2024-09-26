@@ -1,50 +1,62 @@
-# React + TypeScript + Vite
+# 💻 Inclume OS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the Inclume app, built using ViteJS and TailwindCSS
 
-Currently, two official plugins are available:
+## ⚙️ Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+To install and run this project locally, you will need the following:
 
-## Expanding the ESLint configuration
+&bullet; Node.js (version > 18)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+To get started, clone this repository and navigate to the project directory:
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```sh
+git clone [https://github.com/MediakodTeam/inclume](https://github.com/MediakodTeam/inclume)
+cd inclume
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Then, install the necessary dependencies:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```sh
+yarn # or npm install
 ```
+
+## 🛠️ Usage
+
+To start the development server, juste use this command:
+
+```sh
+yarn dev # or npm run dev
+```
+
+## ⛅ Deployment
+
+In accord to use the project, you need to create a `.env` file in the root of the project and add the following variables:
+
+```sh
+API_TOKEN=""
+```
+
+## 📦 Dependencies
+
+To improve build and worklows, this project uses the following dependencies:
+
+### 🐶 Husky
+
+-  Validate the branch name
+-  ESLint possible error generated on staged file
+-  Validate commit name with conventionnal structure (type(?subject): message)
+
+## 📄 Documentation
+
+Documentation for this project can be found in the `/docs` directory. The documentation is generated using JSDoc, so be sure to run `npm run docs` to update the documentation if you make changes to the code.
+
+## 👥 Contributions
+
+Contributions to this project are welcome. To contribute, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your changes.
+3. Make your changes and commit them, with a clear and descriptive commit message.
+4. Push your changes to your fork.
+5. Submit a pull request to this repository, with a clear and descriptive title and description.
