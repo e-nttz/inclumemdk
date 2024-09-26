@@ -7,7 +7,7 @@ interface TabProps {
 	children: React.ReactNode;
 	id: number;
 	tabs: Tab[];
-	setTabs: (tabs: any) => void;
+	setTabs: (tabs: Tab[]) => void;
 	currentTab: number;
 	setCurrentTab: (tab: number) => void;
 }
@@ -25,7 +25,7 @@ const SingleTab = ({
 	};
 	const handleTabClose = () => {
 		// find tab index in tabs array
-		const tabIndex = tabs.findIndex((tab: any) => tab.id === id);
+		const tabIndex = tabs.findIndex((tab: Tab) => tab.id === id);
 
 		if (currentTab === id) {
 			if (tabIndex === 0) {
@@ -37,7 +37,7 @@ const SingleTab = ({
 			}
 		}
 
-		setTabs((prev: any) => prev.filter((tab: any) => tab.id !== id));
+		setTabs(tabs.filter((tab: Tab) => tab.id !== id));
 	};
 
 	return (
