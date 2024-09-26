@@ -5,7 +5,7 @@ import { FormEvent } from "react";
 
 const NavigationBar = () => {
 	return (
-		<div className="p-4 bg-[#F7F7F7] shadow flex items-center justify-between gap-6">
+		<div className="p-4 bg-[#F7F7F7] shadow flex items-center justify-between gap-6 dark:text-white dark:bg-[#292929]">
 			<div className="flex items-center gap-6">
 				<button type="button" className="px-2 first:pl-0">
 					<IconArrowLeft className="w-6 h-auto" />

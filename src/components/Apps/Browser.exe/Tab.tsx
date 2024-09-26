@@ -45,16 +45,16 @@ const SingleTab = ({
 			className={classNames(
 				"relative w-64 text-left py-2 px-4 rounded-t-md transition flex items-center justify-between group shadow",
 				currentTab === id
-					? "bg-[#F7F7F7]"
-					: "bg-[#E8E8E8] hover:bg-[#F7F7F7] hover:bg-opacity-70"
+					? "bg-[#F7F7F7] dark:bg-[#292929]"
+					: "bg-[#E8E8E8] hover:bg-[#F7F7F7] hover:bg-opacity-70 dark:bg-[#141414] dark:hover:bg-[#292929] dark:hover:bg-opacity-70"
 			)}
 		>
 			<span
 				className={classNames(
-					"line-clamp-1 text-clip",
+					"line-clamp-1 text-clip dark:text-white",
 					currentTab === id
-						? "cursor-default before:w-full before:h-full before:transition before:rounded-t-md before:absolute before:inset-0 before:bg-[linear-gradient(90deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0)_75%,rgba(247,247,247,1)_82%,rgba(247,247,247,1)_100%)]"
-						: "before:w-full before:h-full before:transition before:bg-transparent before:rounded-t-md before:absolute before:inset-0 group-hover:before:bg-[linear-gradient(90deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0)_75%,rgba(240,240,240,1)_82%,rgba(240,240,240,1)_100%)]"
+						? "cursor-default before:w-full before:h-full before:transition before:duration-1000 before:rounded-t-md before:absolute before:inset-0 before:bg-[linear-gradient(90deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0)_75%,rgb(247, 247, 247)_82%,rgba(247,247,247,1)_100%)] dark:before:bg-[linear-gradient(90deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0)_75%,rgb(41, 41, 41)_82%,rgba(41,41,41,1)_100%)]"
+						: "before:w-full before:h-full before:transition before:bg-transparent before:rounded-t-md before:absolute before:inset-0 group-hover:before:bg-[linear-gradient(90deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0)_75%,rgba(240,240,240,1)_82%,rgba(240,240,240,1)_100%)] dark:group-hover:before:bg-[linear-gradient(90deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0)_75%,rgba(41,41,41,1)_82%,rgba(41,41,41,1)_100%)]"
 				)}
 			>
 				{children}
@@ -72,7 +72,7 @@ const SingleTab = ({
 				<button
 					onClick={handleTabClose}
 					className={classNames(
-						"transition absolute top-0 bottom-0 my-auto right-4 outline-none",
+						"transition absolute top-0 bottom-0 my-auto right-4 outline-none dark:text-white",
 						currentTab === id
 							? "opacity-100"
 							: "opacity-0 group-hover:opacity-100"

@@ -28,7 +28,7 @@ const NewTabButton = ({ setTabs, setCurrentTab }: NewTabButtonProps) => {
 			<button
 				onClick={addTabHandle}
 				className={classNames(
-					"outline-none before:absolute before:inset-0"
+					"outline-none before:absolute before:inset-0 dark:text-white"
 				)}
 			>
 				<IconAdd className="w-3 h-auto" />

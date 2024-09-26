@@ -29,8 +29,8 @@ const Browser: AppProps = () => {
 
 	return (
 		<Window appName={Browser.title}>
-			<section className="flex flex-col flex-1 w-full overflow-auto text-black bg-white/90 backdrop-blur dark:bg-black/70">
-				<header className="bg-[#e8e8e8]">
+			<section className="flex flex-col flex-1 w-full overflow-auto text-black bg-white/90 backdrop-blur dark:bg-black/70 dark:backdrop-blur">
+				<header className="bg-[#e8e8e8] dark:bg-[#141414]">
 					<nav className="flex px-4 pt-2 space-x-2 overflow-hidden">
 						{tabs.map((tab) => (
 							<SingleTab
