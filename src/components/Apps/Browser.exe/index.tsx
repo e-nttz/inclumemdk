@@ -5,6 +5,7 @@ import BrowserIcon from "@/assets/icons/app-browser.svg?react";
 import SingleTab from "./Tab";
 import Welcome from "./Websites/Welcome";
 import NewTabButton from "./NewTabButton";
+import NavigationBar from "./NavigationBar";
 
 export type Tab = {
 	id: number;
@@ -29,20 +30,26 @@ const Browser: AppProps = () => {
 	return (
 		<Window appName={Browser.title}>
 			<section className="flex flex-col flex-1 w-full overflow-auto text-black bg-white/90 backdrop-blur dark:bg-black/70">
-				<header className="bg-[#e8e8e8] pt-2 px-4 space-x-2 flex overflow-hidden">
-					{tabs.map((tab) => (
-						<SingleTab
-							key={`browser-tab-${tab.id}`}
-							id={tab.id}
-							tabs={tabs}
+				<header className="bg-[#e8e8e8]">
+					<nav className="flex px-4 pt-2 space-x-2 overflow-hidden">
+						{tabs.map((tab) => (
+							<SingleTab
+								key={`browser-tab-${tab.id}`}
+								id={tab.id}
+								tabs={tabs}
+								setTabs={setTabs}
+								currentTab={currentTab}
+								setCurrentTab={setCurrentTab}
+							>
+								{tab.title}
+							</SingleTab>
+						))}
+						<NewTabButton
 							setTabs={setTabs}
-							currentTab={currentTab}
 							setCurrentTab={setCurrentTab}
-						>
-							{tab.title}
-						</SingleTab>
-					))}
-					<NewTabButton setTabs={setTabs} setCurrentTab={setCurrentTab} />
+						/>
+					</nav>
+					<NavigationBar />
 				</header>
 				<main className="relative flex-1 bg-[#F7F7F7]">
 					<Welcome />
