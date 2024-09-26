@@ -1,4 +1,6 @@
-const Welcome = () => {
+import IconEmptyTab from "@/assets/icons/empty-tab.svg?react";
+
+const Welcome: Website = () => {
 	return (
 		<div className="absolute inset-0 px-8 py-8">
 			<div className="relative z-10">
@@ -16,3 +18,13 @@ const Welcome = () => {
 };
 
 export default Welcome;
+
+Welcome.title = "Nouvel onglet";
+Welcome.favicon = <IconEmptyTab />;
+
+Welcome.pages = [
+	{
+		title: "Nouvel onglet",
+		url: "",
+	},
+];

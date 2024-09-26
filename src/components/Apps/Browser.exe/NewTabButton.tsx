@@ -12,7 +12,7 @@ const NewTabButton = ({ setTabs, setCurrentTab }: NewTabButtonProps) => {
 	const addTabHandle = () => {
 		const newTab: Tab = {
 			id: Math.floor(Math.random() * 1000),
-			title: `Nouvel onglet`,
+			history: [],
 		};
 
 		setTabs((prev: Tab[]) => [...prev, newTab]);

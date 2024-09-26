@@ -6,10 +6,15 @@ import SingleTab from "./Tab";
 import Welcome from "./Websites/Welcome";
 import NewTabButton from "./NewTabButton";
 import NavigationBar from "./NavigationBar";
+import { websites } from "./Websites";
 
 export type Tab = {
 	id: number;
-	title: string;
+	history: {
+		id: number;
+		app: React.FC;
+		url: string;
+	}[];
 };
 
 interface AppProps extends React.FC {
@@ -21,7 +26,13 @@ const Browser: AppProps = () => {
 	const [tabs, setTabs] = useState([
 		{
 			id: 1,
-			title: "Nouvel onglet",
+			history: [
+				{
+					id: 1,
+					app: websites.welcome,
+					url: "",
+				},
+			],
 		},
 	]);
 
@@ -35,14 +46,12 @@ const Browser: AppProps = () => {
 						{tabs.map((tab) => (
 							<SingleTab
 								key={`browser-tab-${tab.id}`}
-								id={tab.id}
+								tab={tab}
 								tabs={tabs}
 								setTabs={setTabs}
 								currentTab={currentTab}
 								setCurrentTab={setCurrentTab}
-							>
-								{tab.title}
-							</SingleTab>
+							/>
 						))}
 						<NewTabButton
 							setTabs={setTabs}
