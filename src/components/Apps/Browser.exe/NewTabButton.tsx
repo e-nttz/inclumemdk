@@ -1,20 +1,21 @@
 import { classNames } from "@/helpers/sanitize";
 
 import IconAdd from "@/assets/icons/add.svg?react";
+import { Tab } from ".";
 
 interface NewTabButtonProps {
-	setTabs: (tabs: any) => void;
+	setTabs: (tabs: Tab[] | ((prev: Tab[]) => Tab[])) => void;
 	setCurrentTab: (tab: number) => void;
 }
 
 const NewTabButton = ({ setTabs, setCurrentTab }: NewTabButtonProps) => {
 	const addTabHandle = () => {
-		const newTab = {
+		const newTab: Tab = {
 			id: Math.floor(Math.random() * 1000),
 			title: `Nouvel onglet`,
 		};
 
-		setTabs((prev: any) => [...prev, newTab]);
+		setTabs((prev: Tab[]) => [...prev, newTab]);
 		setCurrentTab(newTab.id);
 	};
 
