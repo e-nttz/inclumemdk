@@ -10,12 +10,32 @@ const AuthContext = createContext<AuthContextType>({
 	logout: () => {},
 });
 
+/**
+ * AuthProvider
+ *
+ * @interface AuthProvider
+ *
+ * @param {AuthProviderProps} { children }
+ * @return {*}
+ */
 const AuthProvider = ({ children }: AuthProviderProps) => {
 	const [session, setSession] = useState<string | null>(
 		getLocalStorage("session") || null
 	);
+
 	const [loading, setLoading] = useState<boolean>(false);
 
+	/**
+	 * Login the user
+	 *
+	 * This method is used to login the user
+	 *
+	 * @method
+	 * @memberof AuthProvider
+	 *
+	 * @param {string} session
+	 * @return {*}
+	 */
 	const login = async (session: string) => {
 		setLoading(true);
 

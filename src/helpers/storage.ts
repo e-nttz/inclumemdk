@@ -1,7 +1,12 @@
 /**
+ * @module Storage
+ */
+
+/**
  * Use local storage to save data
  *
  * @method
+ * @memberof module:Storage
  *
  * @param {string} key
  * @param {string} value
@@ -18,6 +23,7 @@ export const setLocalStorage = (key: string, value: string) => {
  * Get data from local storage
  *
  * @method
+ * @memberof module:Storage
  *
  * @param {string} key
  *
@@ -33,6 +39,7 @@ export const getLocalStorage = (key: string): string => {
  * Save the session linked to the user like `key-sessionId`
  *
  * @method
+ * @memberof module:Storage
  *
  * @param {string} sessionId
  * @param {string} key
@@ -54,6 +61,7 @@ export const storeSession = (
  * Get the session linked to the user like `key-sessionId`
  *
  * @method
+ * @memberof module:Storage
  *
  * @param {string} sessionId
  * @param {string} key

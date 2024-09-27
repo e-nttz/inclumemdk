@@ -37,3 +37,7 @@ interface Website extends React.FC {
 		url: string;
 	}[];
 }
+
+type AnyDetail = {
+	[key: string]: any;
+};

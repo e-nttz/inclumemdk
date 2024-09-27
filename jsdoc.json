@@ -1,6 +1,7 @@
 {
 	"tags": {
-		"allowUnknownTags": true
+		"allowUnknownTags": true,
+		"dictionaries": ["jsdoc"]
 	},
 	"plugins": [
 		"node_modules/better-docs/typescript",
@@ -22,8 +23,8 @@
 		"template": "node_modules/clean-jsdoc-theme"
 	},
 	"templates": {
-		"cleverLinks": false,
-		"monospaceLinks": false,
+		"cleverLinks": true,
+		"monospaceLinks": true,
 		"search": true,
 		"better-docs": {
 			"name": "Code Documentation",

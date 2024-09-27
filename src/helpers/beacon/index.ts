@@ -1,19 +1,25 @@
-type AnyDetail = {
-	[key: string]: any;
-};
+/**
+ * @module Beacon
+ * @description A module to dispatch and listen to events.
+ */
 
 /**
- * Dispatch a beacon event
+ * @typedef {Object} AnyDetail
+ * @property {any} [key] - Any additional detail for the event.
+ */
+
+/**
+ * Dispatch a beacon event.
  *
- * This method is used to dispatch an event that can be
- * listened to by other parts of the application.
+ * This method allows dispatching an event that other parts of the application can listen to.
  *
- * @method
+ * @function beacon
+ * @memberof module:Beacon
  *
  * @param {string} type - The type of the event
- * @param {AnyDetail} detail - The detail of the event
- * @param {boolean} notify - Whether to notify the user
- * @param {Function} callback - A callback function to run after the event is dispatched
+ * @param {AnyDetail} detail - The details of the event
+ * @param {boolean} [notify=false] - Whether the user should be notified
+ * @param {Function} [callback] - A callback function to run after the event is dispatched
  *
  * @returns {void}
  */
@@ -37,12 +43,15 @@ export const beacon = (
 };
 
 /**
- * Listen for a beacon event
+ * Listen for a beacon event.
  *
- * @method
+ * This method allows listening for an event of type "beacon."
  *
- * @param {string} type - The type of the event
- * @param {Function} callback - The callback function to run when the event is dispatched
+ * @function listenBeacon
+ * @memberof module:Beacon
+ *
+ * @param {string} type - The type of event to listen for
+ * @param {Function} callback - The callback function to execute when the event is received
  *
  * @returns {Function} - A function to remove the event listener
  */
