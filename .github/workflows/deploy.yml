@@ -47,6 +47,14 @@ jobs:
               endpoint: ${{ secrets.VERCEL_WEBHOOK }}
               configuration: '{ "method": "GET"}'
 
+         # Add another if success trigger
+         - name: Send trigger to Netlify to build docs
+           if: success()
+           uses: JamesIves/fetch-api-data-action@v2
+           with:
+              endpoint: "https://api.netlify.com/build_hooks/66f662ae67e03ee328511675"
+              configuration: '{ "method": "GET"}'
+
          - name: Send failure notification to Slack
            if: failure()
            run: |
