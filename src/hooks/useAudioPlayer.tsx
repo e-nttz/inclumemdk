@@ -1,14 +1,21 @@
 import { useState, useEffect } from "react";
 
 /**
- * A custom hook to handle audio playback.
+ * A custom React hook to handle audio playback.
+ * Provides controls to play, pause, toggle, and revoke audio files, with the option to loop the playback.
  *
- * @interface useAudioPlayer
+ * @function useAudioPlayer
+ * @memberof Hooks
  *
- * @param {string} src - The source of the audio file
- * @param {boolean} loop - Whether to loop the audio
+ * @param {string} src - The source URL of the audio file.
+ * @param {boolean} [loop=false] - Whether to loop the audio automatically upon finishing.
  *
- * @returns {object} - The audio player object
+ * @returns {object} An object containing methods to control the audio playback and its state.
+ * @returns {Function} play - Plays the audio.
+ * @returns {Function} pause - Pauses the audio.
+ * @returns {Function} toggle - Toggles between play and pause.
+ * @returns {boolean} playing - The current playing state of the audio.
+ * @returns {Function} revoke - Stops the audio and resets it to the start, freeing up memory.
  */
 const useAudioPlayer = (src: string, loop: boolean = false) => {
 	const [audio] = useState(new Audio(src));

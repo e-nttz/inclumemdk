@@ -1,12 +1,20 @@
 import { RefObject, useEffect } from "react";
 
 /**
- * A custom hook to handle click outside events.
+ * @module Hooks/useClickOutside
+ * @namespace Hooks
+ * @description A custom hook that triggers a callback when clicking outside a specified element.
+ */
+
+/**
+ * A custom React hook that triggers a callback when a user clicks outside of the referenced element.
+ * Useful for closing dropdowns, modals, or any other component when clicking outside.
  *
- * @interface useClickOutside
+ * @function useClickOutside
+ * @memberof Hooks
  *
- * @param {RefObject} ref - The reference to the element
- * @param {Function} callback - The callback function to run
+ * @param {RefObject<HTMLElement>} ref - A reference to the target element.
+ * @param {Function} callback - A function to execute when a click outside the target element occurs. Receives the MouseEvent as a parameter.
  *
  * @returns {void}
  */

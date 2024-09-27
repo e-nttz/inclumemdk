@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Storage - Documentation</title>
+    <title>Hooks - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">Storage</h1>
+    <h1 class="page-title">Hooks</h1>
     
 
     
@@ -41,11 +41,18 @@
 
 <header>
     
+        <h2>
+        Hooks
+        </h2>
+        
+    
 </header>
 
 <article>
     <div class="container-overview">
     
+        
+            <div class="description">A custom hook that triggers a callback when clicking outside a specified element.</div>
         
 
         
@@ -80,7 +87,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_storage.ts.html">helpers/storage.ts</a>, <a href="helpers_storage.ts.html#line2">line 2</a>
+        <a href="hooks_useClickOutside.tsx.html">hooks/useClickOutside.tsx</a>, <a href="hooks_useClickOutside.tsx.html#line3">line 3</a>
     </li></ul></dd>
     
 
@@ -117,14 +124,15 @@
 
     
 
-    <h4 class="name" id=".exports.getLocalStorage"><span class="type-signature">(static) </span>exports.getLocalStorage<span class="signature">(key)</span><span class="type-signature"> &rarr; {string}</span></h4>
+    <h4 class="name" id=".useAudioPlayer"><span class="type-signature">(static) </span>useAudioPlayer<span class="signature">(src, loop<span class="signature-attributes">opt</span>)</span><span class="type-signature"> &rarr; {object|function|function|function|boolean|function}</span></h4>
 
     
 
 
 
 <div class="description">
-    Get data from local storage
+    A custom React hook to handle audio playback.
+Provides controls to play, pause, toggle, and revoke audio files, with the option to loop the playback.
 </div>
 
 
@@ -160,7 +168,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_storage.ts.html">helpers/storage.ts</a>, <a href="helpers_storage.ts.html#line31">line 31</a>
+        <a href="hooks_useAudioPlayer.tsx.html">hooks/useAudioPlayer.tsx</a>, <a href="hooks_useAudioPlayer.tsx.html#line3">line 3</a>
     </li></ul></dd>
     
 
@@ -192,7 +200,11 @@
         <th>Type</th>
 
         
+        <th>Attributes</th>
+        
 
+        
+        <th>Default</th>
         
 
         <th class="last">Description</th>
@@ -204,7 +216,7 @@
 
         <tr>
             
-                <td class="name"><code>key</code></td>
+                <td class="name"><code>src</code></td>
             
 
             <td class="type">
@@ -217,11 +229,65 @@
             </td>
 
             
+                <td class="attributes">
+                
 
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                </td>
             
 
             <td class="description last">
+                The source URL of the audio file.
                 
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>loop</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>boolean</code></span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+
+                
+                </td>
+            
+
+            
+                <td class="default">
+                
+                    false
+                
+                </td>
+            
+
+            <td class="description last">
+                Whether to loop the audio automatically upon finishing.
                 
             </td>
         </tr>
@@ -245,190 +311,8 @@
 
 <div class="section-returns">
 <h5>Returns:</h5>
-
-        
-
-<dl class="param-type">
-    <dt>
-        Type:
-    </dt>
-    <dd>
-        
-<span class="param-type"><code>string</code></span>
-
-
-    </dd>
-</dl>
-
-
-    
-</div>
-
-
-
-</div>
-        
-            
-<div class="section-method">
-
-    
-
-    <h4 class="name" id=".exports.getSession"><span class="type-signature">(static) </span>exports.getSession<span class="signature">(sessionId, key)</span><span class="type-signature"> &rarr; {object|string}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Get the session linked to the user like `key-sessionId`
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_storage.ts.html">helpers/storage.ts</a>, <a href="helpers_storage.ts.html#line65">line 65</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>sessionId</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>string</code></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">
-                
-                
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>key</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>string</code></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">
-                
-                
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="section-returns">
-<h5>Returns:</h5>
-
-        
+<ul>
+        <li>
 
 <dl class="param-type">
     <dt>
@@ -437,183 +321,18 @@
     <dd>
         
 <span class="param-type"><code>object</code></span>
-|
-
-<span class="param-type"><code>string</code></span>
 
 
     </dd>
 </dl>
 
 
-    
+<div class="param-desc">
+    An object containing methods to control the audio playback and its state.
 </div>
-
-
-
-</div>
-        
-            
-<div class="section-method">
-
+</li>
     
-
-    <h4 class="name" id=".exports.setLocalStorage"><span class="type-signature">(static) </span>exports.setLocalStorage<span class="signature">(key, value)</span><span class="type-signature"> &rarr; {void}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Use local storage to save data
-</div>
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_storage.ts.html">helpers/storage.ts</a>, <a href="helpers_storage.ts.html#line16">line 16</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>key</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>string</code></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">
-                
-                
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>value</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>string</code></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">
-                
-                
-            </td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="section-returns">
-<h5>Returns:</h5>
-
-        
+        <li>
 
 <dl class="param-type">
     <dt>
@@ -621,14 +340,98 @@
     </dt>
     <dd>
         
-<span class="param-type"><code>void</code></span>
+<span class="param-type"><code>function</code></span>
 
 
     </dd>
 </dl>
 
 
+<div class="param-desc">
+    play - Plays the audio.
+</div>
+</li>
     
+        <li>
+
+<dl class="param-type">
+    <dt>
+        Type:
+    </dt>
+    <dd>
+        
+<span class="param-type"><code>function</code></span>
+
+
+    </dd>
+</dl>
+
+
+<div class="param-desc">
+    pause - Pauses the audio.
+</div>
+</li>
+    
+        <li>
+
+<dl class="param-type">
+    <dt>
+        Type:
+    </dt>
+    <dd>
+        
+<span class="param-type"><code>function</code></span>
+
+
+    </dd>
+</dl>
+
+
+<div class="param-desc">
+    toggle - Toggles between play and pause.
+</div>
+</li>
+    
+        <li>
+
+<dl class="param-type">
+    <dt>
+        Type:
+    </dt>
+    <dd>
+        
+<span class="param-type"><code>boolean</code></span>
+
+
+    </dd>
+</dl>
+
+
+<div class="param-desc">
+    playing - The current playing state of the audio.
+</div>
+</li>
+    
+        <li>
+
+<dl class="param-type">
+    <dt>
+        Type:
+    </dt>
+    <dd>
+        
+<span class="param-type"><code>function</code></span>
+
+
+    </dd>
+</dl>
+
+
+<div class="param-desc">
+    revoke - Stops the audio and resets it to the start, freeing up memory.
+</div>
+</li>
+    </ul>
 </div>
 
 
@@ -640,14 +443,15 @@
 
     
 
-    <h4 class="name" id=".exports.storeSession"><span class="type-signature">(static) </span>exports.storeSession<span class="signature">(sessionId, key, value)</span><span class="type-signature"> &rarr; {void}</span></h4>
+    <h4 class="name" id=".useClickOutside"><span class="type-signature">(static) </span>useClickOutside<span class="signature">(ref, callback)</span><span class="type-signature"> &rarr; {void}</span></h4>
 
     
 
 
 
 <div class="description">
-    Save the session linked to the user like `key-sessionId`
+    A custom React hook that triggers a callback when a user clicks outside of the referenced element.
+Useful for closing dropdowns, modals, or any other component when clicking outside.
 </div>
 
 
@@ -683,7 +487,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="helpers_storage.ts.html">helpers/storage.ts</a>, <a href="helpers_storage.ts.html#line48">line 48</a>
+        <a href="hooks_useClickOutside.tsx.html">hooks/useClickOutside.tsx</a>, <a href="hooks_useClickOutside.tsx.html#line8">line 8</a>
     </li></ul></dd>
     
 
@@ -727,13 +531,13 @@
 
         <tr>
             
-                <td class="name"><code>sessionId</code></td>
+                <td class="name"><code>ref</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><code>string</code></span>
+<span class="param-type"><code>RefObject.&lt;HTMLElement></code></span>
 
 
             
@@ -744,7 +548,7 @@
             
 
             <td class="description last">
-                
+                A reference to the target element.
                 
             </td>
         </tr>
@@ -753,13 +557,13 @@
 
         <tr>
             
-                <td class="name"><code>key</code></td>
+                <td class="name"><code>callback</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><code>string</code></span>
+<span class="param-type"><code>function</code></span>
 
 
             
@@ -770,36 +574,7 @@
             
 
             <td class="description last">
-                
-                
-            </td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>value</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><code>object</code></span>
-|
-
-<span class="param-type"><code>string</code></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">
-                
+                A function to execute when a click outside the target element occurs. Receives the MouseEvent as a parameter.
                 
             </td>
         </tr>
