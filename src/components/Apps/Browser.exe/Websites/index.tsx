@@ -1,3 +1,4 @@
+import SearchEngine from "./SearchEngine";
 import Welcome from "./Welcome";
 
 interface WebsitesProps {
@@ -6,4 +7,5 @@ interface WebsitesProps {
 
 export const websites: WebsitesProps = {
 	welcome: Welcome,
+	searchEngine: SearchEngine,
 };

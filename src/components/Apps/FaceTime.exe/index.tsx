@@ -1,4 +1,4 @@
-import { listenBeacon } from "@/helpers/beacon";
+import { listenBeacon, useBeaconListener } from "@/helpers/beacon";
 import { classNames } from "@/helpers/sanitize";
 import useAudioPlayer from "@/hooks/useAudioPlayer";
 import { useEffect, useState } from "react";
@@ -13,23 +13,20 @@ const FaceTime = () => {
 
 	const incomingCallSound = useAudioPlayer("/sounds/incoming-call.mp3", true);
 
-	useEffect(() => {
-		// setTimeout(() => {
-		// 	setCallStatus("incoming");
-		// 	incomingCallSound.play();
-		// }, 1000);
-
-		listenBeacon("call", (e) => {
+	useBeaconListener(
+		"call",
+		(e) => {
 			if (e.detail?.status === "incoming") {
+				console.log("Incoming call");
+				console.log(incomingCallSound);
 				setCallStatus("incoming");
 				incomingCallSound.play();
 			}
-		});
-
-		return () => {
+		},
+		() => {
 			incomingCallSound.revoke();
-		};
-	}, []);
+		}
+	);
 
 	return (
 		<div

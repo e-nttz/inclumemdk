@@ -3,6 +3,8 @@
  * @description A module to dispatch and listen to events.
  */
 
+import { useEffect } from "react";
+
 /**
  * @typedef {Object} AnyDetail
  * @property {any} [key] - Any additional detail for the event.
@@ -67,4 +69,28 @@ export const listenBeacon = (type: string, callback: (e: any) => void) => {
 	return () => {
 		window.removeEventListener("beacon", listener);
 	};
+};
+
+export const useBeaconListener = (
+	type: string,
+	callback: (e: any) => void,
+	onBeforeUnmount?: () => void
+) => {
+	useEffect(() => {
+		const listener = (e: any) => {
+			if (e.detail && e.detail.type === type) {
+				callback(e);
+			}
+		};
+
+		// Ajouter l'écouteur lorsque le composant est monté
+		window.addEventListener("beacon", listener);
+
+		// Retirer l'écouteur lorsque le composant est démonté
+		return () => {
+			if (onBeforeUnmount) onBeforeUnmount();
+
+			window.removeEventListener("beacon", listener);
+		};
+	}, [type, callback, onBeforeUnmount]); // Dépendances : l'écouteur sera recréé si `type` ou `callback` changent
 };

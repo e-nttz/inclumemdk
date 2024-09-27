@@ -15,7 +15,6 @@ const NewTabButton = ({ setTabs, setCurrentTab }: NewTabButtonProps) => {
 			id: Math.floor(Math.random() * 1000),
 			history: [
 				{
-					id: 1,
 					website: websites.welcome as Website,
 					url: "",
 				},

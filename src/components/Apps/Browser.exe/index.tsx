@@ -7,6 +7,7 @@ import Welcome from "./Websites/Welcome";
 import NewTabButton from "./NewTabButton";
 import NavigationBar from "./NavigationBar";
 import { websites } from "./Websites";
+import { useBeaconListener } from "@/helpers/beacon";
 
 interface AppProps extends React.FC {
 	title: string;
@@ -16,7 +17,6 @@ interface AppProps extends React.FC {
 export type Tab = {
 	id: number;
 	history: {
-		id: number;
 		website: Website;
 		url: string;
 	}[];
@@ -28,7 +28,6 @@ const Browser: AppProps = () => {
 			id: 1,
 			history: [
 				{
-					id: 1,
 					website: websites.welcome as Website,
 					url: "",
 				},
@@ -37,6 +36,20 @@ const Browser: AppProps = () => {
 	]);
 
 	const [currentTab, setCurrentTab] = useState(1);
+
+	const handleEvent = (e) => {
+		console.log(e.detail);
+		const tab = tabs.find((tab) => tab.id === currentTab);
+		tab?.history.push({
+			website: e.detail.website,
+			url: e.detail.url,
+		});
+	};
+
+	useBeaconListener("openWebsite", (e) => handleEvent(e));
+
+	// useEffect(() => {
+	// }, [tabs, currentTab]);
 
 	return (
 		<Window appName={Browser.title}>

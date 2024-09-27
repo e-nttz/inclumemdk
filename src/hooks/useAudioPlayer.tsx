@@ -38,6 +38,7 @@ const useAudioPlayer = (src: string, loop: boolean = false) => {
 	 *
 	 */
 	const play = () => {
+		console.log("Playing audio");
 		audio.play();
 		setPlaying(true);
 	};
