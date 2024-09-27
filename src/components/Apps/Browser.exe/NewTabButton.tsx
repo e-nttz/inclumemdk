@@ -2,6 +2,7 @@ import { classNames } from "@/helpers/sanitize";
 
 import IconAdd from "@/assets/icons/add.svg?react";
 import { Tab } from ".";
+import { websites } from "./Websites";
 
 interface NewTabButtonProps {
 	setTabs: (tabs: Tab[] | ((prev: Tab[]) => Tab[])) => void;
@@ -12,7 +13,13 @@ const NewTabButton = ({ setTabs, setCurrentTab }: NewTabButtonProps) => {
 	const addTabHandle = () => {
 		const newTab: Tab = {
 			id: Math.floor(Math.random() * 1000),
-			title: `Nouvel onglet`,
+			history: [
+				{
+					id: 1,
+					website: websites.welcome as Website,
+					url: "",
+				},
+			],
 		};
 
 		setTabs((prev: Tab[]) => [...prev, newTab]);
@@ -28,7 +35,7 @@ const NewTabButton = ({ setTabs, setCurrentTab }: NewTabButtonProps) => {
 			<button
 				onClick={addTabHandle}
 				className={classNames(
-					"outline-none before:absolute before:inset-0"
+					"outline-none before:absolute before:inset-0 dark:text-white"
 				)}
 			>
 				<IconAdd className="w-3 h-auto" />

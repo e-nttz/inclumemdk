@@ -28,3 +28,12 @@ interface InclumeOSContextType {
 interface InclumeOSProviderProps {
 	children: React.ReactNode;
 }
+
+interface Website extends React.FC {
+	title: string;
+	favicon?: ReactElement;
+	pages: {
+		title: string;
+		url: string;
+	}[];
+}

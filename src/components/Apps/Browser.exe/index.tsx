@@ -6,22 +6,33 @@ import SingleTab from "./Tab";
 import Welcome from "./Websites/Welcome";
 import NewTabButton from "./NewTabButton";
 import NavigationBar from "./NavigationBar";
-
-export type Tab = {
-	id: number;
-	title: string;
-};
+import { websites } from "./Websites";
 
 interface AppProps extends React.FC {
 	title: string;
 	icon: ReactElement;
 }
 
+export type Tab = {
+	id: number;
+	history: {
+		id: number;
+		website: Website;
+		url: string;
+	}[];
+};
+
 const Browser: AppProps = () => {
 	const [tabs, setTabs] = useState([
 		{
 			id: 1,
-			title: "Nouvel onglet",
+			history: [
+				{
+					id: 1,
+					website: websites.welcome as Website,
+					url: "",
+				},
+			],
 		},
 	]);
 
@@ -29,20 +40,18 @@ const Browser: AppProps = () => {
 
 	return (
 		<Window appName={Browser.title}>
-			<section className="flex flex-col flex-1 w-full overflow-auto text-black bg-white/90 backdrop-blur dark:bg-black/70">
-				<header className="bg-[#e8e8e8]">
+			<section className="flex flex-col flex-1 w-full overflow-auto text-black bg-white/90 backdrop-blur dark:bg-black/70 dark:backdrop-blur">
+				<header className="bg-[#e8e8e8] dark:bg-[#141414]">
 					<nav className="flex px-4 pt-2 space-x-2 overflow-hidden">
 						{tabs.map((tab) => (
 							<SingleTab
 								key={`browser-tab-${tab.id}`}
-								id={tab.id}
+								tab={tab}
 								tabs={tabs}
 								setTabs={setTabs}
 								currentTab={currentTab}
 								setCurrentTab={setCurrentTab}
-							>
-								{tab.title}
-							</SingleTab>
+							/>
 						))}
 						<NewTabButton
 							setTabs={setTabs}
