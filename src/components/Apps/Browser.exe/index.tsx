@@ -8,19 +8,19 @@ import NewTabButton from "./NewTabButton";
 import NavigationBar from "./NavigationBar";
 import { websites } from "./Websites";
 
-export type Tab = {
-	id: number;
-	history: {
-		id: number;
-		app: React.FC;
-		url: string;
-	}[];
-};
-
 interface AppProps extends React.FC {
 	title: string;
 	icon: ReactElement;
 }
+
+export type Tab = {
+	id: number;
+	history: {
+		id: number;
+		website: Website;
+		url: string;
+	}[];
+};
 
 const Browser: AppProps = () => {
 	const [tabs, setTabs] = useState([
@@ -29,7 +29,7 @@ const Browser: AppProps = () => {
 			history: [
 				{
 					id: 1,
-					app: websites.welcome,
+					website: websites.welcome as Website,
 					url: "",
 				},
 			],

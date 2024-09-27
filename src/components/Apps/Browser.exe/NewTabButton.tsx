@@ -2,6 +2,7 @@ import { classNames } from "@/helpers/sanitize";
 
 import IconAdd from "@/assets/icons/add.svg?react";
 import { Tab } from ".";
+import { websites } from "./Websites";
 
 interface NewTabButtonProps {
 	setTabs: (tabs: Tab[] | ((prev: Tab[]) => Tab[])) => void;
@@ -12,7 +13,13 @@ const NewTabButton = ({ setTabs, setCurrentTab }: NewTabButtonProps) => {
 	const addTabHandle = () => {
 		const newTab: Tab = {
 			id: Math.floor(Math.random() * 1000),
-			history: [],
+			history: [
+				{
+					id: 1,
+					website: websites.welcome as Website,
+					url: "",
+				},
+			],
 		};
 
 		setTabs((prev: Tab[]) => [...prev, newTab]);
