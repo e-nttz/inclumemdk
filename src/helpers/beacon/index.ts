@@ -49,7 +49,7 @@ export const beacon = (
  *
  * This method allows listening for an event of type "beacon."
  *
- * @function listenBeacon
+ * @function useBeaconListener
  * @memberof module:Beacon
  *
  * @param {string} type - The type of event to listen for
@@ -57,20 +57,6 @@ export const beacon = (
  *
  * @returns {Function} - A function to remove the event listener
  */
-export const listenBeacon = (type: string, callback: (e: any) => void) => {
-	const listener = (e: any) => {
-		if (e.detail && e.detail.type === type) {
-			callback(e);
-		}
-	};
-
-	window.addEventListener("beacon", listener);
-
-	return () => {
-		window.removeEventListener("beacon", listener);
-	};
-};
-
 export const useBeaconListener = (
 	type: string,
 	callback: (e: any) => void,
@@ -92,5 +78,5 @@ export const useBeaconListener = (
 
 			window.removeEventListener("beacon", listener);
 		};
-	}, [type, callback, onBeforeUnmount]); // Dépendances : l'écouteur sera recréé si `type` ou `callback` changent
+	}, []); // Dépendances : l'écouteur sera recréé si `type` ou `callback` changent
 };

@@ -1,4 +1,4 @@
-import { listenBeacon, useBeaconListener } from "@/helpers/beacon";
+import { useBeaconListener } from "@/helpers/beacon";
 import { classNames } from "@/helpers/sanitize";
 import useAudioPlayer from "@/hooks/useAudioPlayer";
 import { useEffect, useState } from "react";
@@ -13,20 +13,16 @@ const FaceTime = () => {
 
 	const incomingCallSound = useAudioPlayer("/sounds/incoming-call.mp3", true);
 
-	useBeaconListener(
-		"call",
-		(e) => {
-			if (e.detail?.status === "incoming") {
-				console.log("Incoming call");
-				console.log(incomingCallSound);
-				setCallStatus("incoming");
-				incomingCallSound.play();
-			}
-		},
-		() => {
-			incomingCallSound.revoke();
+	useBeaconListener("call", (e) => {
+		if (e.detail?.status === "incoming") {
+			setCallStatus("incoming");
+			incomingCallSound.play();
 		}
-	);
+	});
+
+	useEffect(() => {
+		return incomingCallSound.stop();
+	}, []);
 
 	return (
 		<div
@@ -66,6 +62,10 @@ const FaceTime = () => {
 						<button
 							type="button"
 							className="px-4 py-2 rounded-lg bg-[#02BA4D] font-bold flex flex-col gap-2 items-center justify-center w-full mt-12 hover:opacity-60 transition text-black"
+							onClick={() => {
+								setCallStatus("waiting");
+								incomingCallSound.stop();
+							}}
 						>
 							{t("Accepter l'appel")}
 						</button>
@@ -94,8 +94,8 @@ FaceTime.icon = ({ className }) => {
 				gradientTransform="matrix(1 0 0 -1 435.7924 798.4074)"
 				gradientUnits="userSpaceOnUse"
 			>
-				<stop offset="0" stop-color="#5df777" />
-				<stop offset="1" stop-color="#0abc28" />
+				<stop offset="0" stopColor="#5df777" />
+				<stop offset="1" stopColor="#0abc28" />
 			</linearGradient>
 			<path
 				fill="url(#a)"

@@ -18,37 +18,29 @@ import { useState, useEffect } from "react";
  * @returns {Function} revoke - Stops the audio and resets it to the start, freeing up memory.
  */
 const useAudioPlayer = (src: string, loop: boolean = false) => {
-	const [audio] = useState(new Audio(src));
+	const [audio] = useState(() => new Audio(src));
 	const [playing, setPlaying] = useState(false);
 
 	/**
-	 * Toggle the audio playback
+	 * Play the audio.
 	 *
-	 * @method
-	 * @memberof useAudioPlayer
-	 *
-	 */
-	const toggle = () => setPlaying(!playing);
-
-	/**
-	 * Play the audio
-	 *
-	 * @method
-	 * @memberof useAudioPlayer
-	 *
+	 * @function play
 	 */
 	const play = () => {
-		console.log("Playing audio");
-		audio.play();
-		setPlaying(true);
+		audio
+			.play()
+			.then(() => {
+				setPlaying(true);
+			})
+			.catch((error) => {
+				console.error("Error playing audio:", error);
+			});
 	};
 
 	/**
-	 * Pause the audio
+	 * Pause the audio.
 	 *
-	 * @method
-	 * @memberof useAudioPlayer
-	 *
+	 * @function pause
 	 */
 	const pause = () => {
 		audio.pause();
@@ -56,36 +48,49 @@ const useAudioPlayer = (src: string, loop: boolean = false) => {
 	};
 
 	/**
-	 * Revoke the audio
+	 * Toggle between play and pause.
 	 *
-	 * This method is used to revoke the audio, it stop and dequene the audio to
-	 * avoid memory leaks.
-	 *
-	 * @method
-	 * @memberof useAudioPlayer
-	 *
+	 * @function toggle
 	 */
-	const revoke = () => {
+	const toggle = () => {
+		if (playing) {
+			pause();
+		} else {
+			play();
+		}
+	};
+
+	/**
+	 * Stop the audio and reset it to the start, freeing up memory.
+	 *
+	 * @function stop
+	 */
+	const stop = () => {
 		audio.pause();
 		audio.currentTime = 0;
-
-		URL.revokeObjectURL(audio.src);
-
 		setPlaying(false);
 	};
 
 	useEffect(() => {
-		audio.addEventListener("ended", () => setPlaying(false));
-		return () => {
-			audio.removeEventListener("ended", () => setPlaying(false));
-		};
-	}, [audio]);
-
-	useEffect(() => {
 		audio.loop = loop;
-	}, [loop]);
 
-	return { play, pause, toggle, playing, revoke };
+		const onEnded = () => setPlaying(false);
+		const onError = (e) => console.error("Audio error:", e);
+		const onCanPlayThrough = () =>
+			console.log(`Audio can play through: ${src}`);
+
+		audio.addEventListener("ended", onEnded);
+		audio.addEventListener("error", onError);
+		audio.addEventListener("canplaythrough", onCanPlayThrough);
+
+		return () => {
+			audio.removeEventListener("ended", onEnded);
+			audio.removeEventListener("error", onError);
+			audio.removeEventListener("canplaythrough", onCanPlayThrough);
+		};
+	}, [audio, loop]);
+
+	return { play, pause, stop, toggle, playing };
 };
 
 export default useAudioPlayer;

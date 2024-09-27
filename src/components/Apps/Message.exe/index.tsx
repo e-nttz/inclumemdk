@@ -1,4 +1,4 @@
-import { ReactElement, FormEvent, useEffect, useRef, useState } from "react";
+import { ReactElement, FormEvent, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import Window from "@/components/Os/Window";
@@ -9,7 +9,7 @@ import MessageIcon from "@/assets/icons/app-message.svg?react";
 import PaperplaneIcon from "@/assets/icons/paperplane.svg?react";
 import CameraIcon from "@/assets/icons/camera.svg?react";
 import DismissIcon from "@/assets/icons/dismiss.svg?react";
-import { beacon } from "@/helpers/beacon";
+import { beacon, useBeaconListener } from "@/helpers/beacon";
 interface AppProps extends React.FC {
 	title: string;
 	icon: ReactElement;
@@ -51,37 +51,18 @@ const Message: AppProps = () => {
 		},
 	]);
 
-	useEffect(() => {
-		/**
-		 * Listen to messages sent by the system
-		 *
-		 * @param {CustomEvent} e
-		 * @returns {Promise<void>}
-		 */
-		const listener = async (e: CustomEvent) => {
-			const type = e.type;
+	useBeaconListener("message", (e) => {
+		const message = e.detail;
+		setMessages((prev) => [...prev, message]);
 
-			if (type == "beacon" && e.detail && e.detail.type == "message") {
-				setMessages((prev) => [...prev, e.detail]);
-
-				// Scroll to the bottom
-				setTimeout(() => {
-					messagesList.current?.scrollTo({
-						top: messagesList.current.scrollHeight,
-						behavior: "smooth",
-					});
-				}, 150);
-			}
-		};
-
-		// Add event listener to receive messages from the entire system
-		window.addEventListener("beacon", listener);
-
-		// Remove event listener
-		return () => {
-			window.removeEventListener("beacon", listener);
-		};
-	}, []);
+		// Scroll to the bottom
+		setTimeout(() => {
+			messagesList.current?.scrollTo({
+				top: messagesList.current.scrollHeight,
+				behavior: "smooth",
+			});
+		}, 150);
+	});
 
 	/**
 	 * Handle form submission
