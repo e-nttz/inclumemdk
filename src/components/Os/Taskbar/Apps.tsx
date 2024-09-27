@@ -65,7 +65,7 @@ const Apps = () => {
 				</figure>
 			</button>
 
-			<button
+			{/* <button
 				type="button"
 				className="relative transition duration-150 rounded group hover:bg-white/50 focus:outline-none active:bg-white/75 dark:hover:bg-black/25 dark:active:bg-black/50"
 			>
@@ -76,7 +76,7 @@ const Apps = () => {
 						alt="Explorer"
 					/>
 				</span>
-			</button>
+			</button> */}
 
 			{openedApps &&
 				openedApps.length > 0 &&

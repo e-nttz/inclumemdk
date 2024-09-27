@@ -1,4 +1,5 @@
 import Browser from "./Browser.exe";
+import Explorer from "./Explorer.exe";
 import FaceTime from "./FaceTime.exe";
 import Message from "./Message.exe";
 
@@ -9,6 +10,7 @@ interface Apps {
 export const apps: Apps = {
 	message: Message,
 	browser: Browser,
+	explorer: Explorer,
 };
 
 const RenderAllApps = () => {
@@ -21,6 +23,8 @@ const RenderAllApps = () => {
 			})}
 
 			<FaceTime />
+
+			<Explorer />
 		</>
 	);
 };
