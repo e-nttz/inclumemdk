@@ -4,15 +4,14 @@ interface ButtonWebsiteProps {
 	website: Website;
 }
 
-const openWebsite = () => {
-	console.log("openWebsite");
-	beacon("openWebsite", {
-		website: "salut",
-		url: "",
-	});
-};
-
 const ButtonWebsite = ({ website }: ButtonWebsiteProps) => {
+	const openWebsite = () => {
+		beacon("openWebsite", {
+			website,
+			url: "",
+		});
+	};
+
 	return (
 		<li className="relative space-y-2 group">
 			<figure className="[&_svg]:w-8 [&_svg]:h-8 flex items-center justify-center bg-white bg-opacity-25 rounded-xl w-14 h-14 mx-auto transition group-hover:bg-opacity-40">

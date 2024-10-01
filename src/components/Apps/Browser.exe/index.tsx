@@ -38,11 +38,18 @@ const Browser: AppProps = () => {
 	const [currentTab, setCurrentTab] = useState(1);
 
 	const handleEvent = (e) => {
-		console.log(e.detail);
 		const tab = tabs.find((tab) => tab.id === currentTab);
 		tab?.history.push({
 			website: e.detail.website,
 			url: e.detail.url,
+		});
+
+		// add tab in tabs
+		setTabs((prev: Tab[]) => {
+			const index = prev.findIndex((tab) => tab.id === currentTab);
+			const newTabs = [...prev];
+			newTabs[index] = tab;
+			return newTabs;
 		});
 	};
 

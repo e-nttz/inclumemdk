@@ -2,6 +2,7 @@ import { classNames } from "@/helpers/sanitize";
 
 import IconDismiss from "@/assets/icons/dismiss.svg?react";
 import { Tab } from ".";
+import { useEffect, useState } from "react";
 
 interface TabProps {
 	tab: Tab;
@@ -18,11 +19,11 @@ const SingleTab = ({
 	currentTab,
 	setCurrentTab,
 }: TabProps) => {
+	const [tabTitle, setTabTitle] = useState(tab.history[0].website.title);
+	const [tabFavicon, setTabFavicon] = useState(tab.history[0].website.favicon);
+
 	// find tab index in tabs array
 	const tabIndex = tabs.findIndex((item: Tab) => item.id === tab.id);
-
-	// get the most recent event in tab history
-	const currentWebsite = tab.history[tab.history.length - 1].website;
 
 	const handleTabChange = () => {
 		setCurrentTab(tab.id);
@@ -42,6 +43,11 @@ const SingleTab = ({
 		setTabs(tabs.filter((item: Tab) => item.id !== tab.id));
 	};
 
+	useEffect(() => {
+		setTabTitle(tab.history[tab.history.length - 1].website.title);
+		setTabFavicon(tab.history[tab.history.length - 1].website.favicon);
+	}, [tabs, tab]);
+
 	return (
 		<div
 			className={classNames(
@@ -59,8 +65,8 @@ const SingleTab = ({
 						: "before:w-full before:h-full before:transition before:bg-transparent before:rounded-t-md before:absolute before:inset-0 group-hover:before:bg-[linear-gradient(90deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0)_75%,rgba(240,240,240,1)_82%,rgba(240,240,240,1)_100%)] dark:group-hover:before:bg-[linear-gradient(90deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0)_75%,rgba(41,41,41,1)_82%,rgba(41,41,41,1)_100%)]"
 				)}
 			>
-				{currentWebsite.favicon}
-				{currentWebsite.title}
+				{tabFavicon}
+				{tabTitle}
 			</p>
 			<button
 				onClick={handleTabChange}
