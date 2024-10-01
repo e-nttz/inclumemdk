@@ -2,8 +2,10 @@ import IconSearchEngine from "@/assets/icons/google-favicon-example.svg?react";
 
 const SearchEngine = () => {
 	return (
-		<div>
-			<h1>Bienvenue sur Goulougoulou</h1>
+		<div className="absolute inset-0 px-8 py-8">
+			<h1 className="mb-8 text-3xl text-white">
+				Bienvenue sur Goulougoulou !
+			</h1>
 		</div>
 	);
 };

@@ -8,6 +8,7 @@ import NewTabButton from "./NewTabButton";
 import NavigationBar from "./NavigationBar";
 import { websites } from "./Websites";
 import { useBeaconListener } from "@/helpers/beacon";
+import LoadingState from "./Websites/LoadingState";
 
 interface AppProps extends React.FC {
 	title: string;
@@ -23,6 +24,7 @@ export type Tab = {
 };
 
 const Browser: AppProps = () => {
+	const [loading, setLoading] = useState(false);
 	const [tabs, setTabs] = useState([
 		{
 			id: 1,
@@ -38,6 +40,7 @@ const Browser: AppProps = () => {
 	const [currentTab, setCurrentTab] = useState(1);
 
 	const handleEvent = (e) => {
+		setLoading(true);
 		const tab = tabs.find((tab) => tab.id === currentTab);
 		tab?.history.push({
 			website: e.detail.website,
@@ -51,12 +54,12 @@ const Browser: AppProps = () => {
 			newTabs[index] = tab;
 			return newTabs;
 		});
+		setTimeout(() => {
+			setLoading(false);
+		}, 500);
 	};
 
 	useBeaconListener("openWebsite", (e) => handleEvent(e));
-
-	// useEffect(() => {
-	// }, [tabs, currentTab]);
 
 	return (
 		<Window appName={Browser.title}>
@@ -81,7 +84,7 @@ const Browser: AppProps = () => {
 					<NavigationBar />
 				</header>
 				<main className="relative flex-1 bg-[#F7F7F7]">
-					<Welcome />
+					{loading ? <LoadingState /> : <Welcome />}
 				</main>
 			</section>
 		</Window>
