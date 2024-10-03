@@ -15,7 +15,6 @@ export const websites: WebsitesProps = {
 };
 
 const RenderWebsite = ({ componentName }: RenderWebsiteProps) => {
-	console.log("ICIIIII : ", componentName);
 	return (
 		// loop through all apps and render them
 		<>
