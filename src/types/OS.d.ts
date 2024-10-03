@@ -32,6 +32,7 @@ interface InclumeOSProviderProps {
 interface Website extends React.FC {
 	title: string;
 	favicon?: ReactElement;
+	componentName: string;
 	pages: {
 		title: string;
 		url: string;

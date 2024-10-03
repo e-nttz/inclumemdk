@@ -24,7 +24,11 @@ const Welcome: Website = () => {
 
 export default Welcome;
 
+// used in RenderAllWebsites to select the right website
+Welcome.componentName = "welcome";
+// used in tab as site title
 Welcome.title = "Nouvel onglet";
+
 Welcome.favicon = <IconEmptyTab />;
 
 Welcome.pages = [

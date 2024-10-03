@@ -12,6 +12,9 @@ const SearchEngine = () => {
 
 export default SearchEngine;
 
+// used in RenderAllWebsites to select the right website
+SearchEngine.componentName = "searchEngine";
+// used in tab as site title
 SearchEngine.title = "Goulougoulou";
 SearchEngine.favicon = <IconSearchEngine />;
 

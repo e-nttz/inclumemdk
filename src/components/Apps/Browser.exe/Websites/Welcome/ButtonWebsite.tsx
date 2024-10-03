@@ -8,7 +8,7 @@ const ButtonWebsite = ({ website }: ButtonWebsiteProps) => {
 	const openWebsite = () => {
 		beacon("openWebsite", {
 			website,
-			url: "",
+			url: website.pages[0].url,
 		});
 	};
 

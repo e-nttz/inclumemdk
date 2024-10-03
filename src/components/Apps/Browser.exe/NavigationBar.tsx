@@ -1,9 +1,21 @@
 import IconArrowLeft from "@/assets/icons/arrow-left.svg?react";
 import IconArrowRight from "@/assets/icons/arrow-right.svg?react";
 import IconRefresh from "@/assets/icons/refresh.svg?react";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
+import { Tab } from ".";
 
-const NavigationBar = () => {
+interface NavigationBarProps {
+	tab: Tab;
+}
+
+const NavigationBar = ({ tab }: NavigationBarProps) => {
+	const [inputValue, setInputValue] = useState(
+		tab.history[tab.history.length - 1].url
+	);
+	const handleInputChange = (e: FormEvent) => {
+		setInputValue((e.target as HTMLInputElement).value);
+	};
+
 	return (
 		<div className="p-4 bg-[#F7F7F7] shadow flex items-center justify-between gap-6 dark:text-white dark:bg-[#292929]">
 			<div className="flex items-center gap-6">
@@ -34,6 +46,8 @@ const NavigationBar = () => {
 					type="text"
 					placeholder="Entrez une URL..."
 					className="w-full px-2 py-2 transition border rounded-md shadow-sm border-gray-50 focus-visible:outline-accent"
+					value={inputValue}
+					onChange={handleInputChange}
 				/>
 				<button
 					type="submit"
