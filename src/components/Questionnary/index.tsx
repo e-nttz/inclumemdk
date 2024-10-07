@@ -22,7 +22,7 @@ const Questionnary = () => {
 					<span className="w-full max-w-[360px] bg-accent/15 absolute inset-0 rounded-[20px]" />
 				</div>
 
-				<div className="flex flex-col justify-center flex-1 p-5">
+				<div className="flex flex-col justify-center flex-1 p-8">
 					<h1 className="mb-4 text-2xl font-bold md:text-3xl">
 						{t("content.questionnaryTitle", { name: user.firstName })}
 					</h1>

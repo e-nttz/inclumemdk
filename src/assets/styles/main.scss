@@ -7,6 +7,10 @@
 }
 
 @layer base {
+	* {
+		font-family: "Segeo UI", sans-serif;
+	}
+
 	:root {
 		--background: 0 0% 100%;
 		--foreground: 0 0% 3.9%;
@@ -60,5 +64,29 @@
 		--chart-3: 30 80% 55%;
 		--chart-4: 280 65% 60%;
 		--chart-5: 340 75% 55%;
+	}
+
+	@font-face {
+		font-family: "Segeo UI";
+		src: url("/fonts/segoeuithibd.eot");
+		src: url("/fonts/segoeuithibd.eot?#iefix") format("embedded-opentype"),
+			url("/fonts/segoeuithibd.woff2") format("woff2"),
+			url("/fonts/segoeuithibd.woff") format("woff"),
+			url("/fonts/segoeuithibd.ttf") format("truetype"),
+			url("/fonts/segoeuithibd.svg#segoe_ui_thisbold") format("svg");
+		font-weight: normal;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: "Segeo UI";
+		src: url("/fonts/segoeuithis.eot");
+		src: url("/fonts/segoeuithis.eot?#iefix") format("embedded-opentype"),
+			url("/fonts/segoeuithis.woff2") format("woff2"),
+			url("/fonts/segoeuithis.woff") format("woff"),
+			url("/fonts/segoeuithis.ttf") format("truetype"),
+			url("/fonts/segoeuithis.svg#segoe_ui_thisregular") format("svg");
+		font-weight: normal;
+		font-style: normal;
 	}
 }

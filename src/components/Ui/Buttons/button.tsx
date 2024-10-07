@@ -9,7 +9,7 @@ const Button = ({
 		<button
 			{...props}
 			className={classNames(
-				"flex items-center justify-center gap-2 px-4 py-3 font-semibold text-white transition rounded-md bg-accent hover:bg-accent-600 outline-focus",
+				"flex items-center leading-tight justify-center gap-2 px-4 py-3 font-semibold text-white transition rounded-md bg-accent hover:bg-accent-600 outline-focus",
 				props.className
 			)}
 		>
