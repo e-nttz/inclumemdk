@@ -88,8 +88,12 @@ export const storeLocalSession = (
 export const getLocalSession = (
 	sessionId: string,
 	key: string
-): object | string => {
+): object | string | false => {
 	if (typeof localStorage === "undefined") return "";
+
+	if (!localStorage.getItem(`${key}-${sessionId}`)) {
+		return false;
+	}
 
 	return JSON.parse(localStorage.getItem(`${key}-${sessionId}`) || "");
 };
