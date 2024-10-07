@@ -76,10 +76,7 @@ const useAudioPlayer = (src: string, loop: boolean = false) => {
 
 		const onEnded = () => setPlaying(false);
 		const onError = (e) => console.error("Audio error:", e);
-		const onCanPlayThrough = () =>
-			console.log(`Audio can play through: ${src}`);
-
-		audio.addEventListener("ended", onEnded);
+		const onCanPlayThrough = () => audio.addEventListener("ended", onEnded);
 		audio.addEventListener("error", onError);
 		audio.addEventListener("canplaythrough", onCanPlayThrough);
 

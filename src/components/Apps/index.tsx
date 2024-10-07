@@ -1,3 +1,4 @@
+import { ExplorerProvider } from "@/providers/explorer";
 import Browser from "./Browser.exe";
 import Explorer from "./Explorer.exe";
 import FaceTime from "./FaceTime.exe";
@@ -23,8 +24,9 @@ const RenderAllApps = () => {
 			})}
 
 			<FaceTime />
-
-			<Explorer />
+			<ExplorerProvider>
+				<Explorer />
+			</ExplorerProvider>
 		</>
 	);
 };

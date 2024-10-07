@@ -1,15 +1,25 @@
 import Window from "@/components/Os/Window";
 import Toolbar from "./Ui/Toolbar";
 import Sidebar from "./Ui/Sidebar";
+import FilesList from "./Ui/Lists/Files";
+import { useExplorer } from "@/providers/explorer";
 
 const Explorer = () => {
+	const { setPath, getStructure } = useExplorer();
+
 	return (
-		<Window appName={"Explorateur de fichier"}>
+		<Window
+			appName={"Explorateur de fichier"}
+			onClose={() => {
+				setPath(getStructure());
+			}}
+		>
 			<div className="flex flex-col flex-1 overflow-auto bg-white dark:bg-black">
 				<Toolbar />
 
 				<div className="grid grid-cols-[320px_1fr] flex-1 overflow-auto">
 					<Sidebar />
+					<FilesList />
 				</div>
 			</div>
 		</Window>

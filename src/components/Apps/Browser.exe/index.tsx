@@ -70,13 +70,15 @@ const Browser: AppProps = () => {
 			?.history.slice(-1)[0].website;
 		console.log("Current Website:", website.componentName); // Affiche l'objet complet
 
+		// Clone element to avoid changing the original object
+
 		if (website) {
 			setCurrentWebsite(website);
 		}
 	}, [tabs, currentTab]);
 
 	useEffect(() => {
-		console.log("Updated currentWebsite:", currentWebsite);
+		console.log("Updated currenddtWebsite:", currentWebsite.componentName);
 	}, [currentWebsite]);
 
 	return (

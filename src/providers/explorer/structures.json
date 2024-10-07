@@ -1,0 +1,351 @@
+{
+	"name": "Accueil",
+	"type": "folder",
+	"createdAt": "2023-10-01T12:00:00Z",
+	"updatedAt": "2023-10-02T14:30:00Z",
+	"path": "root",
+	"children": [
+		{
+			"name": "Documents",
+			"type": "folder",
+			"createdAt": "2023-10-01T12:05:00Z",
+			"updatedAt": "2023-10-02T15:00:00Z",
+			"path": "documents",
+			"children": [
+				{
+					"name": "Work",
+					"type": "folder",
+					"createdAt": "2023-10-01T12:10:00Z",
+					"updatedAt": "2023-10-02T15:30:00Z",
+					"path": "work",
+					"children": [
+						{
+							"name": "Reports",
+							"type": "folder",
+							"createdAt": "2023-10-01T12:20:00Z",
+							"updatedAt": "2023-10-02T15:45:00Z",
+							"path": "reports",
+							"children": [
+								{
+									"name": "Q1_Report",
+									"type": "file",
+									"createdAt": "2023-10-01T12:25:00Z",
+									"updatedAt": "2023-10-02T16:00:00Z",
+									"path": "q1-report.docx",
+									"extension": ".docx",
+									"slug": "q1_report.docx"
+								},
+								{
+									"name": "Q2_Report",
+									"type": "file",
+									"createdAt": "2023-10-01T12:30:00Z",
+									"updatedAt": "2023-10-02T16:15:00Z",
+									"path": "q2-report.docx",
+									"extension": ".docx",
+									"slug": "q2_report.docx"
+								}
+							]
+						},
+						{
+							"name": "Presentations",
+							"type": "folder",
+							"createdAt": "2023-10-01T12:35:00Z",
+							"updatedAt": "2023-10-02T16:30:00Z",
+							"path": "presentations",
+							"children": [
+								{
+									"name": "Sales_Pitch",
+									"type": "file",
+									"createdAt": "2023-10-01T12:40:00Z",
+									"updatedAt": "2023-10-02T16:45:00Z",
+									"path": "sales-pitch-pptx",
+									"extension": ".pptx",
+									"slug": "sales_pitch.pptx"
+								},
+								{
+									"name": "Team_Meeting",
+									"type": "file",
+									"createdAt": "2023-10-01T12:45:00Z",
+									"updatedAt": "2023-10-02T17:00:00Z",
+									"path": "team-meeting-pptx",
+									"extension": ".pptx",
+									"slug": "team_meeting.pptx"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Personal",
+					"type": "folder",
+					"createdAt": "2023-10-01T12:50:00Z",
+					"updatedAt": "2023-10-02T17:15:00Z",
+					"path": "personal",
+					"children": [
+						{
+							"name": "Bills",
+							"type": "folder",
+							"createdAt": "2023-10-01T12:55:00Z",
+							"updatedAt": "2023-10-02T17:30:00Z",
+							"path": "bills",
+							"children": [
+								{
+									"name": "Electricity_Bill_Sept",
+									"type": "file",
+									"createdAt": "2023-10-01T13:00:00Z",
+									"updatedAt": "2023-10-02T17:45:00Z",
+									"path": "electricity-bill-sept-pdf",
+									"extension": ".pdf",
+									"slug": "electricity_bill_sept.pdf"
+								},
+								{
+									"name": "Internet_Bill_Sept",
+									"type": "file",
+									"createdAt": "2023-10-01T13:05:00Z",
+									"updatedAt": "2023-10-02T18:00:00Z",
+									"path": "internet-bill-sept-pdf",
+									"extension": ".pdf",
+									"slug": "internet_bill_sept.pdf"
+								}
+							]
+						},
+						{
+							"name": "Receipts",
+							"type": "folder",
+							"createdAt": "2023-10-01T13:10:00Z",
+							"updatedAt": "2023-10-02T18:15:00Z",
+							"path": "receipts",
+							"children": [
+								{
+									"name": "Groceries_Receipt",
+									"type": "file",
+									"createdAt": "2023-10-01T13:15:00Z",
+									"updatedAt": "2023-10-02T18:30:00Z",
+									"path": "groceries-receipt-pdf",
+									"extension": ".pdf",
+									"slug": "groceries_receipt.pdf"
+								},
+								{
+									"name": "Electronics_Receipt",
+									"type": "file",
+									"createdAt": "2023-10-01T13:20:00Z",
+									"updatedAt": "2023-10-02T18:45:00Z",
+									"path": "electronics-receipt-pdf",
+									"extension": ".pdf",
+									"slug": "electronics_receipt.pdf"
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Pictures",
+			"type": "folder",
+			"createdAt": "2023-10-01T13:25:00Z",
+			"updatedAt": "2023-10-02T19:00:00Z",
+			"path": "pictures",
+			"children": [
+				{
+					"name": "Vacations",
+					"type": "folder",
+					"createdAt": "2023-10-01T13:30:00Z",
+					"updatedAt": "2023-10-02T19:15:00Z",
+					"path": "vacations",
+					"children": [
+						{
+							"name": "Beach_Trip",
+							"type": "folder",
+							"createdAt": "2023-10-01T13:35:00Z",
+							"updatedAt": "2023-10-02T19:30:00Z",
+							"path": "beach-trip",
+							"children": [
+								{
+									"name": "Sunset",
+									"type": "file",
+									"createdAt": "2023-10-01T13:40:00Z",
+									"updatedAt": "2023-10-02T19:45:00Z",
+									"path": "sunset-jpg",
+									"extension": ".jpg",
+									"slug": "sunset.jpg"
+								},
+								{
+									"name": "Waves",
+									"type": "file",
+									"createdAt": "2023-10-01T13:45:00Z",
+									"updatedAt": "2023-10-02T20:00:00Z",
+									"path": "waves-jpg",
+									"extension": ".jpg",
+									"slug": "waves.jpg"
+								}
+							]
+						},
+						{
+							"name": "Mountain_Trip",
+							"type": "folder",
+							"createdAt": "2023-10-01T13:50:00Z",
+							"updatedAt": "2023-10-02T20:15:00Z",
+							"path": "mountain-trip",
+							"children": [
+								{
+									"name": "Summit",
+									"type": "file",
+									"createdAt": "2023-10-01T13:55:00Z",
+									"updatedAt": "2023-10-02T20:30:00Z",
+									"path": "summit-jpg",
+									"extension": ".jpg",
+									"slug": "summit.jpg"
+								},
+								{
+									"name": "Trail",
+									"type": "file",
+									"createdAt": "2023-10-01T14:00:00Z",
+									"updatedAt": "2023-10-02T20:45:00Z",
+									"path": "trail-jpg",
+									"extension": ".jpg",
+									"slug": "trail.jpg"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Family",
+					"type": "folder",
+					"createdAt": "2023-10-01T14:05:00Z",
+					"updatedAt": "2023-10-02T21:00:00Z",
+					"path": "family",
+					"children": [
+						{
+							"name": "Birthday_Party",
+							"type": "file",
+							"createdAt": "2023-10-01T14:10:00Z",
+							"updatedAt": "2023-10-02T21:15:00Z",
+							"path": "birthday-party-jpg",
+							"extension": ".jpg",
+							"slug": "birthday_party.jpg"
+						},
+						{
+							"name": "Wedding",
+							"type": "file",
+							"createdAt": "2023-10-01T14:15:00Z",
+							"updatedAt": "2023-10-02T21:30:00Z",
+							"path": "wedding-jpg",
+							"extension": ".jpg",
+							"slug": "wedding.jpg"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Musiques",
+			"type": "folder",
+			"createdAt": "2023-10-01T14:20:00Z",
+			"updatedAt": "2023-10-02T21:45:00Z",
+			"path": "music",
+			"children": [
+				{
+					"name": "Song155",
+					"type": "file",
+					"createdAt": "2023-10-01T14:30:00Z",
+					"updatedAt": "2023-10-02T22:15:00Z",
+					"path": "song155-mp3",
+					"extension": ".mp3",
+					"slug": "song155.mp3"
+				},
+				{
+					"name": "Rock",
+					"type": "folder",
+					"createdAt": "2023-10-01T14:25:00Z",
+					"updatedAt": "2023-10-02T22:00:00Z",
+					"path": "rock",
+					"children": [
+						{
+							"name": "Song1",
+							"type": "file",
+							"createdAt": "2023-10-01T14:30:00Z",
+							"updatedAt": "2023-10-02T22:15:00Z",
+							"path": "song1-mp3",
+							"extension": ".mp3",
+							"slug": "song1.mp3"
+						},
+						{
+							"name": "Song2",
+							"type": "file",
+							"createdAt": "2023-10-01T14:35:00Z",
+							"updatedAt": "2023-10-02T22:30:00Z",
+							"path": "song2-mp3",
+							"extension": ".mp3",
+							"slug": "song2.mp3"
+						}
+					]
+				},
+				{
+					"name": "Song144",
+					"type": "file",
+					"createdAt": "2023-10-01T14:30:00Z",
+					"updatedAt": "2023-10-02T22:15:00Z",
+					"path": "song144-mp3",
+					"extension": ".mp3",
+					"slug": "song144.mp3"
+				},
+				{
+					"name": "Classical",
+					"type": "folder",
+					"createdAt": "2023-10-01T14:40:00Z",
+					"updatedAt": "2023-10-02T22:45:00Z",
+					"path": "classical",
+					"children": [
+						{
+							"name": "Symphony1",
+							"type": "file",
+							"createdAt": "2023-10-01T14:45:00Z",
+							"updatedAt": "2023-10-02T23:00:00Z",
+							"path": "symphony1-mp3",
+							"extension": ".mp3",
+							"slug": "symphony1.mp3"
+						},
+						{
+							"name": "Symphony2",
+							"type": "file",
+							"createdAt": "2023-10-01T14:50:00Z",
+							"updatedAt": "2023-10-02T23:15:00Z",
+							"path": "symphony2-mp3",
+							"extension": ".mp3",
+							"slug": "symphony2.mp3"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Téléchargements",
+			"type": "folder",
+			"createdAt": "2023-10-01T14:20:00Z",
+			"updatedAt": "2023-10-02T21:45:00Z",
+			"path": "download",
+			"children": [
+				{
+					"name": "Song1",
+					"type": "file",
+					"createdAt": "2023-10-01T14:30:00Z",
+					"updatedAt": "2023-10-02T22:15:00Z",
+					"path": "song1-mp3",
+					"extension": ".mp3",
+					"slug": "song1.mp3"
+				},
+				{
+					"name": "Song2",
+					"type": "file",
+					"createdAt": "2023-10-01T14:35:00Z",
+					"updatedAt": "2023-10-02T22:30:00Z",
+					"path": "song2-mp3",
+					"extension": ".mp3",
+					"slug": "song2.mp3"
+				}
+			]
+		}
+	]
+}

@@ -3,7 +3,13 @@ import ContextualBar from "./ContextualBar";
 import ControlButtons from "./ControlButtons";
 import { classNames } from "@/helpers/sanitize";
 
-const Topbar = ({ contextMenus }) => {
+interface TopbarProps {
+	contextMenus?: React.ReactNode;
+	onClose?: () => void;
+	onReduce?: () => void;
+}
+
+const Topbar = ({ contextMenus, onClose, onReduce }: TopbarProps) => {
 	const { currentApp, openedApps } = useOS();
 
 	const currentAppIcon = openedApps.find(
@@ -26,7 +32,7 @@ const Topbar = ({ contextMenus }) => {
 						<>{currentAppIcon}</>
 					</figure>
 				</div>
-				<ControlButtons />
+				<ControlButtons onClose={onClose} onReduce={onReduce} />
 			</div>
 
 			{contextMenus && <ContextualBar>{contextMenus}</ContextualBar>}

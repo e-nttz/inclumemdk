@@ -1,16 +1,25 @@
 import { useOS } from "@/providers/InclumeOS";
 
-const ControlButtons = () => {
+const ControlButtons = ({
+	onClose,
+	onReduce,
+}: {
+	onClose?: () => void;
+	onReduce?: () => void;
+}) => {
 	const { currentApp, setCurrentApp, setOpenedApps, openedApps } = useOS();
 
 	const handleReduceButton = () => {
 		setCurrentApp("");
+		if (onReduce) onReduce();
 	};
 
 	const handleCloseButton = () => {
 		const openedAppsCopy = [...openedApps];
 		setOpenedApps(openedAppsCopy.filter((app) => app.title !== currentApp));
 		setCurrentApp("");
+
+		if (onClose) onClose();
 	};
 	return (
 		<ul className="flex items-center h-full gap-2">

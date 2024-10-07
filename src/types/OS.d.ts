@@ -42,3 +42,26 @@ interface Website extends React.FC {
 type AnyDetail = {
 	[key: string]: any;
 };
+
+interface ExplorerContextType {
+	currentPath: string;
+	structures: FileNode;
+	setPath: (fileNode: FileNode) => void;
+	getFolderView: (forcedPath?: string) => FileNode[];
+	getMainFolder: () => FileNode;
+	getThree: () => FileNode[];
+	getStructure: () => FileNode;
+	rename: (fileNode: FileNode, newName: string) => void;
+	createFolder: (name: string) => void;
+}
+
+type FileNode = {
+	name: string; // Nom modifiable
+	type: "file" | "folder";
+	createdAt: string; // Date de création au format ISO
+	updatedAt: string; // Date de modification au format ISO
+	path: string; // Slug formaté basé sur le nom
+	extension?: string; // Extension de fichier pour les fichiers uniquement
+	slug?: string; // Nom complet avec extension en slug
+	children?: FileNode[]; // Optionnel pour les dossiers
+};

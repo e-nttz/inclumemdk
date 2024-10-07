@@ -7,9 +7,17 @@ interface WindowProps {
 	children: React.ReactNode;
 	contextMenus?: React.ReactNode;
 	appName: string;
+	onClose?: () => void;
+	onReduce?: () => void;
 }
 
-const Window = ({ children, contextMenus, appName }: WindowProps) => {
+const Window = ({
+	children,
+	contextMenus,
+	appName,
+	onClose,
+	onReduce,
+}: WindowProps) => {
 	const { currentApp, openedApps } = useOS();
 
 	const currentAppIndex = openedApps.findIndex((app) => app.title === appName);
@@ -30,7 +38,11 @@ const Window = ({ children, contextMenus, appName }: WindowProps) => {
 					"absolute top-0 left-0 w-full h-full flex-1 rounded-md z-[100] overflow-x-hidden overflow-y-auto flex flex-col"
 				)}
 			>
-				<Topbar contextMenus={contextMenus} />
+				<Topbar
+					contextMenus={contextMenus}
+					onClose={onClose}
+					onReduce={onReduce}
+				/>
 				<main className="flex flex-col flex-1 overflow-auto mt-00">
 					{children}
 				</main>

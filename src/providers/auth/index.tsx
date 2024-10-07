@@ -20,7 +20,7 @@ const AuthContext = createContext<AuthContextType>({
  */
 const AuthProvider = ({ children }: AuthProviderProps) => {
 	const [session, setSession] = useState<string | null>(
-		getLocalStorage("session") || null
+		getLocalStorage("session", true) || null
 	);
 
 	const [loading, setLoading] = useState<boolean>(false);
@@ -46,7 +46,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 			setSession(session);
 			setLoading(false);
 
-			setLocalStorage("session", session);
+			setLocalStorage("session", session, true);
 
 			return true;
 		}
