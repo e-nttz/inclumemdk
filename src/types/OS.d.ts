@@ -11,6 +11,7 @@ type Theme = "light" | "dark";
 
 interface InclumeOSContextType {
 	appLoading: boolean;
+	testStatus: TestStatus;
 	theme: Theme;
 	changeTheme: (theme: Theme) => void;
 	currentApp: string;
@@ -42,6 +43,8 @@ interface Website extends React.FC {
 type AnyDetail = {
 	[key: string]: any;
 };
+
+type TestStatus = "waiting" | "success" | "failed";
 
 interface ExplorerContextType {
 	currentPath: string;

@@ -13,7 +13,7 @@ const UserAvatar = ({ className }: UserAvatarProps) => {
 			)}
 		>
 			<img
-				src="/images/avatar.jpg"
+				src="/images/avatar.svg"
 				alt="User avatar"
 				className="object-cover w-full h-full"
 			/>

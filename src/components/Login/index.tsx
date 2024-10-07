@@ -27,37 +27,44 @@ const LoginScreen = () => {
 					Inclume
 				</h1>
 
-				<Input
-					label={t("Code de session")}
-					hideLabel
-					placeholder={t("Saisir le code de session")}
-					wrapperClassName="mt-8 max-w-[420px] w-full"
-					isLoading={authLoading}
-					handleSubmitButton={async (
-						e: React.MouseEvent<HTMLButtonElement>,
-						value: string
-					) => {
-						e.preventDefault();
+				<div className="w-full max-w-[420px] mt-8">
+					<Input
+						label={t("Code de session")}
+						hideLabel
+						placeholder={t("Saisir le code de session")}
+						wrapperClassName="max-w-[420px] w-full"
+						isLoading={authLoading}
+						handleSubmitButton={async (
+							e: React.MouseEvent<HTMLButtonElement>,
+							value: string
+						) => {
+							e.preventDefault();
 
-						setSessionError(null);
+							setSessionError(null);
 
-						const userSession = await login(value);
+							const userSession = await login(value);
 
-						if (typeof userSession === "string") {
-							setSessionError(userSession);
-							return;
-						}
-					}}
-				/>
+							if (typeof userSession === "string") {
+								setSessionError(userSession);
+								return;
+							}
+						}}
+					/>
 
-				{sessionError && (
-					<p className="mt-8 text-white dark:text-white">{sessionError}</p>
-				)}
+					{sessionError && (
+						<p className="relative z-10 px-3 py-2 -mt-1 text-sm text-red-500 bg-white border-t-2 border-red-500 rounded-b">
+							{sessionError}
+						</p>
+					)}
+				</div>
 			</form>
 
-			<div className="flex flex-row self-end gap-4 p-6 mt-auto justify-self-end">
-				<FullScreenToggler />
-				<ThemeToggler />
+			<div className="flex flex-row justify-between gap-4 p-6 mt-auto">
+				<img src="/images/brand.svg" alt="Logo" className="w-20 h-auto" />
+				<div className="flex flex-row gap-4">
+					<FullScreenToggler />
+					<ThemeToggler />
+				</div>
 			</div>
 		</>
 	);

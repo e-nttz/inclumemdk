@@ -4,6 +4,8 @@ import { createContext, useContext, useState } from "react";
 const AuthContext = createContext<AuthContextType>({
 	authLoading: false,
 	session: null,
+	user: null,
+	testStatus: "waiting",
 	login: async () => {
 		return false;
 	},
@@ -22,6 +24,14 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 	const [session, setSession] = useState<string | null>(
 		getLocalStorage("session", true) || null
 	);
+
+	const [user, setUser] = useState<User | null>(
+		getLocalStorage("user", true)
+			? JSON.parse(getLocalStorage("user", true))
+			: null
+	);
+
+	const [testStatus] = useState<TestStatus>("waiting");
 
 	const [loading, setLoading] = useState<boolean>(false);
 
@@ -44,9 +54,21 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
 		if (session === "mediakod") {
 			setSession(session);
+
+			setUser({
+				firstName: "Mediakod",
+			});
+
 			setLoading(false);
 
 			setLocalStorage("session", session, true);
+			setLocalStorage(
+				"user",
+				JSON.stringify({
+					firstName: "Mediakod",
+				}),
+				true
+			);
 
 			return true;
 		}
@@ -62,7 +84,14 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
 	return (
 		<AuthContext.Provider
-			value={{ authLoading: loading, session, login, logout }}
+			value={{
+				authLoading: loading,
+				testStatus,
+				session,
+				user,
+				login,
+				logout,
+			}}
 		>
 			{children}
 		</AuthContext.Provider>
