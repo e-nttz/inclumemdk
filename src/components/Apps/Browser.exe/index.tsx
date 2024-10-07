@@ -37,14 +37,34 @@ const Browser: AppProps = () => {
 	]);
 
 	const [currentTab, setCurrentTab] = useState(1);
+	const [currentHistoryIndex, setCurrentHistoryIndex] = useState(0);
 
-	const handleEvent = (e) => {
+	const handleOpenWebsite = (e) => {
 		setLoading(true);
+
 		const tab = tabs.find((tab) => tab.id === currentTab);
 		tab?.history.push({
 			website: e.detail.website,
 			url: e.detail.url,
 		});
+
+		// if currentHistoryIndex is not the last one, we remove all the history after the currentHistoryIndex
+		// if (
+		// 	e.detail.currentHistoryIndex &&
+		// 	tab?.history.length - 1 !== currentHistoryIndex
+		// ) {
+		// 	setTabs((prev: Tab[]) => {
+		// 		const index = prev.findIndex((tab) => tab.id === currentTab);
+		// 		const newTabs = [...prev];
+		// 		newTabs[index].history = newTabs[index].history.slice(
+		// 			0,
+		// 			e.detail.currentHistoryIndex
+		// 				? e.detail.currentHistoryIndex + 1
+		// 				: 0
+		// 		);
+		// 		return newTabs;
+		// 	});
+		// }
 
 		// add tab in tabs
 		setTabs((prev: Tab[]) => {
@@ -53,12 +73,41 @@ const Browser: AppProps = () => {
 			newTabs[index] = tab;
 			return newTabs;
 		});
+
+		setCurrentHistoryIndex(tab?.history.length - 1);
+
 		setTimeout(() => {
 			setLoading(false);
 		}, 500);
 	};
 
-	useBeaconListener("openWebsite", (e) => handleEvent(e));
+	const handlePreviousButton = () => {
+		const tab = tabs.find((tab) => tab.id === currentTab);
+		console.log(tab?.history.length, currentHistoryIndex);
+		if (tab?.history.length > 1) {
+			setCurrentHistoryIndex((prev) => prev - 1);
+		}
+	};
+
+	const handleNextButton = () => {
+		const tab = tabs.find((tab) => tab.id === currentTab);
+		console.log(tab?.history.length, currentHistoryIndex);
+		if (tab?.history.length > 1) {
+			setCurrentHistoryIndex((prev) => prev + 1);
+		}
+	};
+
+	const handleRefreshButton = () => {
+		setLoading(true);
+		setTimeout(() => {
+			setLoading(false);
+		}, 300);
+	};
+
+	useBeaconListener("openWebsite", (e) => handleOpenWebsite(e));
+	useBeaconListener("openPreviousWebsite", handlePreviousButton);
+	useBeaconListener("openNextWebsite", handleNextButton);
+	useBeaconListener("handleRefresh", handleRefreshButton);
 
 	return (
 		<Window appName={Browser.title}>
@@ -73,6 +122,7 @@ const Browser: AppProps = () => {
 								setTabs={setTabs}
 								currentTab={currentTab}
 								setCurrentTab={setCurrentTab}
+								currentHistoryIndex={currentHistoryIndex}
 							/>
 						))}
 						<NewTabButton
@@ -80,7 +130,10 @@ const Browser: AppProps = () => {
 							setCurrentTab={setCurrentTab}
 						/>
 					</nav>
-					<NavigationBar tab={tabs.find((tab) => tab.id === currentTab)} />
+					<NavigationBar
+						tab={tabs.find((tab) => tab.id === currentTab)}
+						currentHistoryIndex={currentHistoryIndex}
+					/>
 				</header>
 				<main className="relative flex-1 bg-[#F7F7F7]">
 					{loading ? (
@@ -89,9 +142,13 @@ const Browser: AppProps = () => {
 						<RenderWebsite
 							componentName={
 								tabs.find((tab) => tab.id === currentTab)?.history[
-									tabs.find((tab) => tab.id === currentTab)?.history
-										.length - 1
+									currentHistoryIndex
 								]?.website.componentName
+							}
+							url={
+								tabs.find((tab) => tab.id === currentTab)?.history[
+									currentHistoryIndex
+								]?.url
 							}
 						/>
 					)}
