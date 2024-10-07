@@ -10,6 +10,7 @@ interface TabProps {
 	setTabs: (tabs: Tab[]) => void;
 	currentTab: number;
 	setCurrentTab: (tab: number) => void;
+	currentHistoryIndex: number;
 }
 
 const SingleTab = ({
@@ -18,6 +19,7 @@ const SingleTab = ({
 	setTabs,
 	currentTab,
 	setCurrentTab,
+	currentHistoryIndex,
 }: TabProps) => {
 	const [tabTitle, setTabTitle] = useState(tab.history[0].website.title);
 	const [tabFavicon, setTabFavicon] = useState(tab.history[0].website.favicon);
@@ -44,9 +46,9 @@ const SingleTab = ({
 	};
 
 	useEffect(() => {
-		setTabTitle(tab.history[tab.history.length - 1].website.title);
-		setTabFavicon(tab.history[tab.history.length - 1].website.favicon);
-	}, [tabs, tab]);
+		setTabTitle(tab.history[currentHistoryIndex].website.title);
+		setTabFavicon(tab.history[currentHistoryIndex].website.favicon);
+	}, [tabs, tab, currentHistoryIndex]);
 
 	return (
 		<div
