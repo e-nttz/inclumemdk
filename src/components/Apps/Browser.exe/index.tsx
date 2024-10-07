@@ -1,5 +1,5 @@
 import Window from "@/components/Os/Window";
-import { ReactElement, useEffect, useState } from "react";
+import { ReactElement, useState } from "react";
 
 import BrowserIcon from "@/assets/icons/app-browser.svg?react";
 import SingleTab from "./Tab";
@@ -38,10 +38,6 @@ const Browser: AppProps = () => {
 
 	const [currentTab, setCurrentTab] = useState(1);
 
-	const [currentWebsite, setCurrentWebsite] = useState<Website | null>({
-		componentName: "welcome",
-	} as Website);
-
 	const handleEvent = (e) => {
 		setLoading(true);
 		const tab = tabs.find((tab) => tab.id === currentTab);
@@ -63,23 +59,6 @@ const Browser: AppProps = () => {
 	};
 
 	useBeaconListener("openWebsite", (e) => handleEvent(e));
-
-	useEffect(() => {
-		const website = tabs
-			.find((tab) => tab.id === currentTab)
-			?.history.slice(-1)[0].website;
-		console.log("Current Website:", website.componentName); // Affiche l'objet complet
-
-		// Clone element to avoid changing the original object
-
-		if (website) {
-			setCurrentWebsite(website);
-		}
-	}, [tabs, currentTab]);
-
-	useEffect(() => {
-		console.log("Updated currenddtWebsite:", currentWebsite.componentName);
-	}, [currentWebsite]);
 
 	return (
 		<Window appName={Browser.title}>
@@ -104,10 +83,17 @@ const Browser: AppProps = () => {
 					<NavigationBar tab={tabs.find((tab) => tab.id === currentTab)} />
 				</header>
 				<main className="relative flex-1 bg-[#F7F7F7]">
-					{loading || !currentWebsite ? (
+					{loading ? (
 						<LoadingState />
 					) : (
-						<RenderWebsite componentName={currentWebsite} />
+						<RenderWebsite
+							componentName={
+								tabs.find((tab) => tab.id === currentTab)?.history[
+									tabs.find((tab) => tab.id === currentTab)?.history
+										.length - 1
+								]?.website.componentName
+							}
+						/>
 					)}
 				</main>
 			</section>
