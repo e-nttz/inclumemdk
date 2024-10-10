@@ -1,5 +1,5 @@
 import { ReactElement, FormEvent, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslate } from "@tolgee/react";
 
 import Window from "@/components/Os/Window";
 import ContextualBar from "@/components/Os/Window/ContextualBar";
@@ -22,7 +22,7 @@ interface Message {
 }
 
 const Message: AppProps = () => {
-	const { t } = useTranslation();
+	const { t } = useTranslate();
 	const messagesList = useRef<HTMLUListElement>(null);
 
 	const [selectedFiles, setSelectedFiles] = useState<string | null>(null);
@@ -135,7 +135,7 @@ const Message: AppProps = () => {
 				<>
 					<ContextualBar.Menu name="Fichiers">
 						<ContextualBar.Item onClick={() => handleFileAttachment()}>
-							{t("Joindre un fichier")}
+							{t("join_file", "Joindre un fichier")}
 						</ContextualBar.Item>
 					</ContextualBar.Menu>
 				</>
@@ -244,7 +244,7 @@ const Message: AppProps = () => {
 								}}
 							>
 								<span className="sr-only">
-									{t("Insérez un fichier")}
+									{t("insert_file", "Insérez un fichier")}
 								</span>
 
 								<CameraIcon className="w-6 h-auto" />
@@ -252,7 +252,7 @@ const Message: AppProps = () => {
 						</span>
 
 						<button className="peer-[:not(:placeholder-shown)]:text-accent dark:peer-[:not(:placeholder-shown)]:text-accent-dark text-gray-200 transition flex-shrink-0">
-							<span className="sr-only">{t("Envoyer")}</span>
+							<span className="sr-only">{t("send", "Envoyer")}</span>
 
 							<PaperplaneIcon className="w-6 h-auto" />
 						</button>

@@ -1,14 +1,14 @@
 import UserAvatar from "../Ui/Avatars/User";
 import ThemeToggler from "../Ui/Toggle/Theme";
 import Input from "../Ui/Inputs/Input";
-import { useTranslation } from "react-i18next";
+import { useTranslate } from "@tolgee/react";
 import { useAuth } from "@/providers/auth";
 import { useState } from "react";
 import { classNames } from "@/helpers/sanitize";
 import FullScreenToggler from "../Ui/Toggle/FullScreen";
 
 const LoginScreen = () => {
-	const { t } = useTranslation();
+	const { t } = useTranslate();
 
 	const { authLoading, login } = useAuth();
 
@@ -29,9 +29,9 @@ const LoginScreen = () => {
 
 				<div className="w-full max-w-[420px] mt-8">
 					<Input
-						label={t("Code de session")}
+						label={t("session_code", "Code de session")}
 						hideLabel
-						placeholder={t("Saisir le code de session")}
+						placeholder={t("paste_code", "Saisir le code de session")}
 						wrapperClassName="max-w-[420px] w-full"
 						isLoading={authLoading}
 						handleSubmitButton={async (

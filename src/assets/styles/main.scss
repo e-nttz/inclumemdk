@@ -89,4 +89,22 @@
 		font-weight: normal;
 		font-style: normal;
 	}
+
+	@font-face {
+		font-family: "Mochiy";
+		src: url("/fonts/mochiypopone-regular.eot");
+		src: url("/fonts/mochiypopone-regular.eot?#iefix")
+				format("embedded-opentype"),
+			url("/fonts/mochiypopone-regular.woff2") format("woff2"),
+			url("/fonts/mochiypopone-regular.woff") format("woff"),
+			url("/fonts/mochiypopone-regular.ttf") format("truetype"),
+			url("/fonts/mochiypopone-regular.svg#mochiy_pop_oneregular")
+				format("svg");
+		font-weight: normal;
+		font-style: normal;
+	}
+
+	.font-secondary {
+		font-family: "Mochiy", sans-serif;
+	}
 }

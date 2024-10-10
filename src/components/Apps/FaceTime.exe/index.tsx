@@ -2,10 +2,10 @@ import { useBeaconListener } from "@/helpers/beacon";
 import { classNames } from "@/helpers/sanitize";
 import useAudioPlayer from "@/hooks/useAudioPlayer";
 import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslate } from "@tolgee/react";
 
 const FaceTime = () => {
-	const { t } = useTranslation();
+	const { t } = useTranslate();
 
 	const [callStatus, setCallStatus] = useState<
 		"waiting" | "incoming" | "active"
@@ -43,7 +43,7 @@ const FaceTime = () => {
 					<div className="pointer-events-auto">
 						<p className="flex items-center gap-2 mb-8 text-xs font-bold">
 							<FaceTime.icon className="flex-shrink-0 w-5 h-auto" />
-							<span>{t("Appel entrant")}</span>
+							<span>{t("incoming_call", "Appel entrant")}</span>
 						</p>
 
 						<header className="mx-auto mb-4 text-center">
@@ -67,7 +67,7 @@ const FaceTime = () => {
 								incomingCallSound.stop();
 							}}
 						>
-							{t("Accepter l'appel")}
+							{t("accept_call", "Accepter l'appel")}
 						</button>
 					</div>
 				)}

@@ -1,8 +1,8 @@
 import Spinner from "@/assets/icons/spinner.svg?react";
-import { useTranslation } from "react-i18next";
+import { useTranslate } from "@tolgee/react";
 
 const BootScreen = () => {
-	const { t } = useTranslation();
+	const { t } = useTranslate();
 
 	return (
 		<div className="flex flex-col items-center justify-center min-h-screen space-y-20 text-white bg-gray">
@@ -34,7 +34,7 @@ const BootScreen = () => {
 
 			<div className="flex flex-row items-center gap-2 font-medium">
 				<Spinner className="w-12 h-auto ease-in-out animate-spin" />
-				<span className="sr-only">{t("Chargement ...")}</span>
+				<span className="sr-only">{t("loading", "Chargement ...")}</span>
 			</div>
 		</div>
 	);

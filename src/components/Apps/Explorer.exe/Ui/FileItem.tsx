@@ -1,5 +1,5 @@
 import { ContextMenu, ContextMenuTrigger } from "@radix-ui/react-context-menu";
-import { useTranslation } from "react-i18next";
+import { useTranslate } from "@tolgee/react";
 import OSContextualMenu from "@/components/Ui/Menus/ContextualMenu";
 
 import FileIcon from "@/assets/icons/colors/file.svg?react";
@@ -20,7 +20,7 @@ interface FileItemWrapperProps extends FileItemProps {
 }
 
 const FileItem = ({ file, complete = false }: FileItemProps) => {
-	const { t } = useTranslation();
+	const { t } = useTranslate();
 	const { setPath, getMainFolder, rename } = useExplorer();
 
 	const renameRef = useRef<HTMLInputElement>(null);
@@ -86,7 +86,7 @@ const FileItem = ({ file, complete = false }: FileItemProps) => {
 						</form>
 					) : (
 						<span className="line-clamp-1">
-							{t(file.name)}
+							{file.name}
 							{file.type === "file" && file.extension}
 						</span>
 					)}
@@ -94,7 +94,7 @@ const FileItem = ({ file, complete = false }: FileItemProps) => {
 
 				{complete && file.type === "file" && (
 					<div>
-						<p className="text-sm text-gray-300">Date</p>
+						<p className="text-sm text-gray-300">{t("date", "Date")}</p>
 					</div>
 				)}
 			</button>

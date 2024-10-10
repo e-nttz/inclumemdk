@@ -1,5 +1,5 @@
 import { classNames } from "@/helpers/sanitize";
-import { useTranslation } from "react-i18next";
+import { useTranslate } from "@tolgee/react";
 
 import ArrowRight from "@/assets/icons/arrow-right.svg?react";
 import Spinner from "@/assets/icons/spinner.svg?react";
@@ -24,7 +24,7 @@ const Input = ({
 	isLoading = false,
 	...props
 }: InputProps) => {
-	const { t } = useTranslation();
+	const { t } = useTranslate();
 
 	const [value, setValue] = useState<string>((props.value as string) || "");
 
@@ -59,7 +59,7 @@ const Input = ({
 						onClick={(e) => handleSubmitButton(e, value)}
 						disabled={isLoading}
 					>
-						<span className="sr-only">{t("Envoyer")}</span>
+						<span className="sr-only">{t("send", "Envoyer")}</span>
 						{isLoading ? (
 							<Spinner className="w-6 h-auto text-gray dark:text-white animate-spin" />
 						) : (

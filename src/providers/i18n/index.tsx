@@ -1,29 +1,17 @@
-import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
+import { Tolgee, DevTools, FormatSimple } from "@tolgee/i18next";
 
-import FR from "@/locales/fr.json";
-import EN from "@/locales/en.json";
-
-const defaultLocale = "fr";
-
-const resources = {
-	fr: {
-		translation: FR,
-	},
-	en: {
-		translation: EN,
-	},
-};
-
-const i18nInstance = i18n
-	.use(initReactI18next) // passes i18n down to react-i18next
+const tolgee = Tolgee()
+	.use(DevTools())
+	.use(FormatSimple())
 	.init({
-		resources,
-		lng: defaultLocale,
-		fallbackLng: defaultLocale, // use en if detected lng is not available
-		interpolation: {
-			escapeValue: false, // react already safes from xss
+		language: "fr",
+		apiUrl: import.meta.env.VITE_APP_TOLGEE_API_URL,
+		apiKey: import.meta.env.VITE_APP_TOLGEE_API_KEY,
+		staticData: {
+			fr: {
+				key: "value",
+			},
 		},
 	});
 
-export default i18nInstance;
+export default tolgee;

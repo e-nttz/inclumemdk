@@ -9,7 +9,7 @@ import {
 } from "@/components/Ui/context-menu";
 import { beacon } from "@/helpers/beacon";
 import { useOS } from "@/providers/InclumeOS";
-import { useTranslation } from "react-i18next";
+import { useTranslate } from "@tolgee/react";
 
 interface OSContextualMenuProps {
 	actions?: {
@@ -44,7 +44,7 @@ interface OSContextualMenuProps {
 
 const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 	const { changeTheme, theme, focusedElement } = useOS();
-	const { t } = useTranslation();
+	const { t } = useTranslate();
 
 	return (
 		<ContextMenuContent className="w-64 z-[15555000]" sticky={"always"}>
@@ -114,7 +114,7 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 					navigator.clipboard.writeText(selection.toString());
 				}}
 			>
-				{t("Copy")}
+				{t("copy", "Copier")}
 				<ContextMenuShortcut>⌘C</ContextMenuShortcut>
 			</ContextMenuItem>
 			<ContextMenuItem
@@ -197,17 +197,17 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 					});
 				}}
 			>
-				{t("Paste")}
+				{t("paste", "Coller")}
 				<ContextMenuShortcut>⌘V</ContextMenuShortcut>
 			</ContextMenuItem>
 			<ContextMenuItem inset>
-				{t("Pause")}
+				{t("pause", "Pause")}
 				<ContextMenuShortcut>&#8679;P</ContextMenuShortcut>
 			</ContextMenuItem>
 			<ContextMenuSeparator />
 			<ContextMenuSub>
 				<ContextMenuSubTrigger inset>
-					{t("Paramètres")}
+					{t("settings", "Paramètres")}
 				</ContextMenuSubTrigger>
 				<ContextMenuSubContent className="w-48">
 					<ContextMenuItem
@@ -216,14 +216,14 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 						}}
 					>
 						{theme === "light"
-							? t("Passez en mode sombre")
-							: t("Passez en mode clair")}
+							? t("dark_mode", "Passez en mode sombre")
+							: t("light_mode", "Passez en mode clair")}
 					</ContextMenuItem>
 				</ContextMenuSubContent>
 			</ContextMenuSub>
 			<ContextMenuSub>
 				<ContextMenuSubTrigger inset>
-					{t("Outils de développement")}
+					{t("development_tools", "Outils de développement")}
 				</ContextMenuSubTrigger>
 				<ContextMenuSubContent className="w-48">
 					<ContextMenuItem
@@ -236,7 +236,7 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 							});
 						}}
 					>
-						{t("Envoyer un message")}
+						{t("send_message", "Envoyer un message")}
 					</ContextMenuItem>
 					<ContextMenuItem
 						onClick={() => {
@@ -246,7 +246,7 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 							});
 						}}
 					>
-						{t("Démarrer un appel")}
+						{t("start_call", "Démarrer un appel")}
 					</ContextMenuItem>
 				</ContextMenuSubContent>
 			</ContextMenuSub>

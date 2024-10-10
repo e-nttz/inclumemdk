@@ -1,13 +1,13 @@
-import { useTranslation } from "react-i18next";
 import Desktop from "./Desktop";
 import Taskbar from "./Taskbar";
 
+import { useTranslate } from "@tolgee/react";
 import IconWarningColor from "@/assets/icons/colors/warning.svg?react";
 import { ContextMenu, ContextMenuTrigger } from "../Ui/context-menu";
 import OSContextualMenu from "../Ui/Menus/ContextualMenu";
 
 const InclumeOs = () => {
-	const { t } = useTranslation();
+	const { t } = useTranslate();
 
 	return (
 		<>
@@ -20,6 +20,7 @@ const InclumeOs = () => {
 						<IconWarningColor className="flex-shrink-0 w-6 h-auto" />
 						<p>
 							{t(
+								"fullscreen_notice",
 								"Pour une meilleure immersion, l'application devrait être affichée en pleine écran."
 							)}
 						</p>
