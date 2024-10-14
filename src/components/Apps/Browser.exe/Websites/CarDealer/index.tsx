@@ -160,6 +160,8 @@ export default CarDealer;
 CarDealer.componentName = "carDealer";
 // used in tab as site title
 CarDealer.title = "Concesionnaire automobile";
+// used in searchEngine
+CarDealer.excerpt = "Trouvez votre voiture idéale";
 
 CarDealer.favicon = <IconSearchEngine />;
 
