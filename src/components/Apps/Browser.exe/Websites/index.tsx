@@ -1,3 +1,4 @@
+import CarDealer from "./CarDealer";
 import SearchEngine from "./SearchEngine";
 import Welcome from "./Welcome";
 
@@ -17,6 +18,7 @@ interface RenderWebsiteProps {
 export const websites: WebsitesProps = {
 	welcome: Welcome,
 	searchEngine: SearchEngine,
+	carDealer: CarDealer,
 };
 
 const RenderWebsite = ({ componentName, url }: RenderWebsiteProps) => {
