@@ -27,7 +27,7 @@ const RenderWebsite = ({ componentName, url }: RenderWebsiteProps) => {
 				const Website = websites[key];
 				// return website only if the componentName matches
 				if (key === componentName) {
-					return <Website key={`all-websites-${key}`} url={url} />;
+					return <Website key={`all-websites-${key}-${url}`} url={url} />;
 				}
 			})}
 		</>

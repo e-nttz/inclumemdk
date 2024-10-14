@@ -1,5 +1,5 @@
 import Window from "@/components/Os/Window";
-import { ReactElement, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 
 import BrowserIcon from "@/assets/icons/app-browser.svg?react";
 import SingleTab from "./Tab";
@@ -39,6 +39,13 @@ const Browser: AppProps = () => {
 	const [currentTab, setCurrentTab] = useState(1);
 	const [currentHistoryIndex, setCurrentHistoryIndex] = useState(0);
 
+	const [currentHistoryTab, setCurrentHistoryTab] = useState([
+		{
+			tabId: 1,
+			historyIndex: 0,
+		},
+	]);
+
 	const handleOpenWebsite = (e) => {
 		setLoading(true);
 
@@ -47,24 +54,6 @@ const Browser: AppProps = () => {
 			website: e.detail.website,
 			url: e.detail.url,
 		});
-
-		// if currentHistoryIndex is not the last one, we remove all the history after the currentHistoryIndex
-		// if (
-		// 	e.detail.currentHistoryIndex &&
-		// 	tab?.history.length - 1 !== currentHistoryIndex
-		// ) {
-		// 	setTabs((prev: Tab[]) => {
-		// 		const index = prev.findIndex((tab) => tab.id === currentTab);
-		// 		const newTabs = [...prev];
-		// 		newTabs[index].history = newTabs[index].history.slice(
-		// 			0,
-		// 			e.detail.currentHistoryIndex
-		// 				? e.detail.currentHistoryIndex + 1
-		// 				: 0
-		// 		);
-		// 		return newTabs;
-		// 	});
-		// }
 
 		// add tab in tabs
 		setTabs((prev: Tab[]) => {
@@ -76,6 +65,15 @@ const Browser: AppProps = () => {
 
 		setCurrentHistoryIndex(tab?.history.length - 1);
 
+		setCurrentHistoryTab((prev) => [
+			// find if the tab is already in the history
+			...prev.filter((tab) => tab.tabId !== currentTab),
+			{
+				tabId: currentTab,
+				historyIndex: tab?.history.length - 1,
+			},
+		]);
+
 		setTimeout(() => {
 			setLoading(false);
 		}, 500);
@@ -83,17 +81,38 @@ const Browser: AppProps = () => {
 
 	const handlePreviousButton = () => {
 		const tab = tabs.find((tab) => tab.id === currentTab);
-		console.log(tab?.history.length, currentHistoryIndex);
 		if (tab?.history.length > 1) {
-			setCurrentHistoryIndex((prev) => prev - 1);
+			//make a copy of the current history index
+			const tempValue = currentHistoryIndex;
+
+			console.log("tempValue", tempValue);
+
+			setCurrentHistoryIndex(tempValue);
+
+			setCurrentHistoryTab((prev) => [
+				// find if the tab is already in the history
+				...prev.filter((tab) => tab.tabId !== currentTab),
+				{
+					tabId: currentTab,
+					historyIndex: tempValue,
+				},
+			]);
 		}
 	};
 
 	const handleNextButton = () => {
 		const tab = tabs.find((tab) => tab.id === currentTab);
-		console.log(tab?.history.length, currentHistoryIndex);
 		if (tab?.history.length > 1) {
 			setCurrentHistoryIndex((prev) => prev + 1);
+
+			setCurrentHistoryTab((prev) => [
+				// find if the tab is already in the history
+				...prev.filter((tab) => tab.tabId !== currentTab),
+				{
+					tabId: currentTab,
+					historyIndex: currentHistoryIndex + 1,
+				},
+			]);
 		}
 	};
 
@@ -108,6 +127,15 @@ const Browser: AppProps = () => {
 	useBeaconListener("openPreviousWebsite", handlePreviousButton);
 	useBeaconListener("openNextWebsite", handleNextButton);
 	useBeaconListener("handleRefresh", handleRefreshButton);
+
+	useEffect(() => {
+		const tab = currentHistoryTab.find((tab) => tab.tabId === currentTab);
+		console.log("item tab", tab);
+		if (tab) {
+			console.log("TAB", tab.historyIndex);
+			setCurrentHistoryIndex(tab.historyIndex);
+		}
+	}, [currentTab, currentHistoryTab]);
 
 	return (
 		<Window appName={Browser.title}>
@@ -142,12 +170,16 @@ const Browser: AppProps = () => {
 						<RenderWebsite
 							componentName={
 								tabs.find((tab) => tab.id === currentTab)?.history[
-									currentHistoryIndex
+									currentHistoryTab.find(
+										(tab) => tab.tabId === currentTab
+									)?.historyIndex
 								]?.website.componentName
 							}
 							url={
 								tabs.find((tab) => tab.id === currentTab)?.history[
-									currentHistoryIndex
+									currentHistoryTab.find(
+										(tab) => tab.tabId === currentTab
+									)?.historyIndex
 								]?.url
 							}
 						/>
