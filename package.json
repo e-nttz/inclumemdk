@@ -10,7 +10,7 @@
 		"preview": "vite preview",
 		"test": "tsc --project tsconfig.app.json --noEmit && eslint .",
 		"docs": "rimraf ./docs && npx jsdoc -c jsdoc.json",
-		"sync": "dotenv -e .env -- tolgee sync --api-key $VITE_APP_TOLGEE_API_KEY"
+		"sync": "dotenv -e .env -- tolgee sync --api-key tgpak_gm2v6nlmonxww23vojrhgzzzmjytkn3uovvdi2twgrrgc3y"
 	},
 	"dependencies": {
 		"@headlessui/react": "^2.1.8",

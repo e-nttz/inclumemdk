@@ -1,6 +1,8 @@
 import {
 	ContextMenuContent,
 	ContextMenuItem,
+	ContextMenuRadioGroup,
+	ContextMenuRadioItem,
 	ContextMenuSeparator,
 	ContextMenuShortcut,
 	ContextMenuSub,
@@ -9,7 +11,7 @@ import {
 } from "@/components/Ui/context-menu";
 import { beacon } from "@/helpers/beacon";
 import { useOS } from "@/providers/InclumeOS";
-import { useTranslate } from "@tolgee/react";
+import { useTolgee, useTranslate } from "@tolgee/react";
 
 interface OSContextualMenuProps {
 	actions?: {
@@ -45,6 +47,8 @@ interface OSContextualMenuProps {
 const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 	const { changeTheme, theme, focusedElement } = useOS();
 	const { t } = useTranslate();
+
+	const tolgee = useTolgee(["language"]);
 
 	return (
 		<ContextMenuContent className="w-64 z-[15555000]" sticky={"always"}>
@@ -248,6 +252,33 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 					>
 						{t("start_call", "Démarrer un appel")}
 					</ContextMenuItem>
+				</ContextMenuSubContent>
+			</ContextMenuSub>
+			<ContextMenuSub>
+				<ContextMenuSubTrigger inset>
+					{t("language", "Language")}
+
+					{/* <ContextMenuShortcut>FR</ContextMenuShortcut> */}
+				</ContextMenuSubTrigger>
+				<ContextMenuSubContent className="w-48">
+					<ContextMenuRadioGroup value={tolgee.getLanguage()}>
+						<ContextMenuRadioItem
+							value="fr"
+							onClick={() => {
+								tolgee.changeLanguage("fr");
+							}}
+						>
+							Français
+						</ContextMenuRadioItem>
+						<ContextMenuRadioItem
+							value="en"
+							onClick={() => {
+								tolgee.changeLanguage("en");
+							}}
+						>
+							English
+						</ContextMenuRadioItem>
+					</ContextMenuRadioGroup>
 				</ContextMenuSubContent>
 			</ContextMenuSub>
 		</ContextMenuContent>

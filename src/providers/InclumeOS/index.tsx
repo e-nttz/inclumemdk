@@ -6,7 +6,7 @@ const defaultTheme = "light";
 
 const InclumeOSContext = createContext<InclumeOSContextType>({
 	appLoading: true,
-	testStatus: "waiting",
+	testStatus: "success",
 	theme: defaultTheme,
 	changeTheme: () => {},
 	currentApp: "",
@@ -41,7 +41,7 @@ const InclumeOSProvider = ({ children }: InclumeOSProviderProps) => {
 		})();
 	}, [session]);
 
-	const [testStatus] = useState<TestStatus>("waiting");
+	const [testStatus] = useState<TestStatus>("success");
 
 	/**
 	 * The theme state

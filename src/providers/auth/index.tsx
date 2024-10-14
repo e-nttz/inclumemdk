@@ -31,7 +31,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 			: null
 	);
 
-	const [testStatus] = useState<TestStatus>("waiting");
+	const [testStatus] = useState<TestStatus>("success");
 
 	const [loading, setLoading] = useState<boolean>(false);
 
