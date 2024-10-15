@@ -3,7 +3,7 @@ import Browser from "./Browser.exe";
 import Explorer from "./Explorer.exe";
 import FaceTime from "./FaceTime.exe";
 import Message from "./Message.exe";
-import Stylesheets from "./Stylesheets.exe";
+import Spreadsheets from "./Spreadsheets.exe";
 
 interface Apps {
 	[key: string]: React.FC;
@@ -13,7 +13,7 @@ export const apps: Apps = {
 	message: Message,
 	browser: Browser,
 	explorer: Explorer,
-	stylesheets: Stylesheets,
+	stylesheets: Spreadsheets,
 };
 
 const RenderAllApps = () => {
