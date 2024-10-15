@@ -1,3 +1,4 @@
+import CarDealer from "./CarDealer";
 import SearchEngine from "./SearchEngine";
 import Welcome from "./Welcome";
 
@@ -17,6 +18,7 @@ interface RenderWebsiteProps {
 export const websites: WebsitesProps = {
 	welcome: Welcome,
 	searchEngine: SearchEngine,
+	carDealer: CarDealer,
 };
 
 const RenderWebsite = ({ componentName, url }: RenderWebsiteProps) => {
@@ -27,7 +29,7 @@ const RenderWebsite = ({ componentName, url }: RenderWebsiteProps) => {
 				const Website = websites[key];
 				// return website only if the componentName matches
 				if (key === componentName) {
-					return <Website key={`all-websites-${key}`} url={url} />;
+					return <Website key={`all-websites-${key}-${url}`} url={url} />;
 				}
 			})}
 		</>
