@@ -6,7 +6,6 @@ const defaultTheme = "light";
 
 const InclumeOSContext = createContext<InclumeOSContextType>({
 	appLoading: true,
-	testStatus: "success",
 	theme: defaultTheme,
 	changeTheme: () => {},
 	currentApp: "",
@@ -24,24 +23,15 @@ const InclumeOSContext = createContext<InclumeOSContextType>({
 const InclumeOSProvider = ({ children }: InclumeOSProviderProps) => {
 	const [appLoading, setAppLoading] = useState<boolean>(true);
 
-	const { session, authLoading } = useAuth();
+	const { sessionLoading } = useAuth();
 
 	useEffect(() => {
 		(async () => {
-			if (session) {
-				setAppLoading(false);
-			}
-
-			if (authLoading) return;
-
-			// Make a fake loader
-			await new Promise((resolve) => setTimeout(resolve, 2000));
+			if (sessionLoading) return;
 
 			setAppLoading(false);
 		})();
-	}, [session]);
-
-	const [testStatus] = useState<TestStatus>("success");
+	}, [sessionLoading]);
 
 	/**
 	 * The theme state
@@ -122,7 +112,6 @@ const InclumeOSProvider = ({ children }: InclumeOSProviderProps) => {
 		<InclumeOSContext.Provider
 			value={{
 				appLoading,
-				testStatus,
 				theme,
 				changeTheme,
 				currentApp,

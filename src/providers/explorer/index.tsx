@@ -1,10 +1,11 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useCallback, useContext, useState } from "react";
 
 import defaultStructure from "./structures.json";
 import { useAuth } from "../auth";
 import { getLocalSession, storeLocalSession } from "@/helpers/storage";
-import { addFolderToFolder } from "@/helpers/file";
+import { addFileToFolder, addFolderToFolder } from "@/helpers/file";
 import { slugify } from "@/helpers/sanitize";
+import Explorer from "@/components/Apps/Explorer.exe";
 
 export const ExplorerContext = createContext<ExplorerContextType>({
 	currentPath: "/root",
@@ -16,6 +17,9 @@ export const ExplorerContext = createContext<ExplorerContextType>({
 	getStructure: () => ({} as FileNode),
 	rename: () => {},
 	createFolder: () => {},
+	handleInfoWindow: () => ({} as FileNode),
+	createFile: () => {},
+	closeInfoWindow: () => {},
 });
 
 export const ExplorerProvider = ({ children }) => {
@@ -223,12 +227,79 @@ export const ExplorerProvider = ({ children }) => {
 	};
 
 	/**
+	 * Create file
+	 *
+	 * @param {string} name
+	 * @param {string} content
+	 *
+	 * @returns {void}
+	 */
+	const createFile = useCallback(
+		(
+			name: string,
+			fileType: string,
+			content: string,
+			currentFolderPath = currentPath
+		) => {
+			const randId = Math.random().toString(36).substring(7);
+
+			const newFile: FileNode = {
+				id: randId,
+				name,
+				path: slugify(name),
+				slug: slugify(name) + "." + fileType,
+				type: "file",
+				extension: "." + fileType,
+				createdAt: new Date().toISOString(),
+				updatedAt: new Date().toISOString(),
+			};
+
+			const path = currentFolderPath.split("/").filter((p) => p !== "");
+
+			addFileToFolder(structures, path[path.length - 1], newFile);
+
+			// Save the new structure to localStorage
+			storeLocalSession(session, "explorer", structures);
+
+			setStructures({ ...structures });
+		},
+		[currentPath, structures]
+	);
+
+	/**
 	 * Get the root folder
 	 *
 	 * @returns FileNode
 	 */
 	const getStructure = () => {
 		return structures;
+	};
+
+	const [onSave, setOnSave] = useState(undefined);
+	const [onSelect, setOnSelect] = useState(undefined);
+
+	/**
+	 * Create a function to handle the info window.
+	 * This window can be used to open explorer in-app to save or open a file
+	 *
+	 * @param {function} onSelect - The function to call when the user insert a file
+	 * @param {function} onSave - The function to call when the user save a file
+	 *
+	 * @returns {FileNode} - The file node to display in the explorer
+	 */
+	const handleInfoWindow = (
+		onSelect: () => void,
+		onSave: (filename: string) => void
+	) => {
+		setOnSave(() => onSave);
+		setOnSelect(() => onSelect);
+
+		return getMainFolder();
+	};
+
+	const closeInfoWindow = () => {
+		setOnSave(undefined);
+		setOnSelect(undefined);
 	};
 
 	return (
@@ -243,9 +314,24 @@ export const ExplorerProvider = ({ children }) => {
 				getStructure,
 				rename,
 				createFolder,
+				createFile,
+				handleInfoWindow,
+				closeInfoWindow,
 			}}
 		>
 			{children}
+
+			{(onSave || onSelect) && (
+				<Explorer
+					forceRender
+					onSave={() => onSave(currentPath)}
+					onSelect={onSelect}
+					onCancel={() => {
+						setOnSave(undefined);
+						setOnSelect(undefined);
+					}}
+				/>
+			)}
 		</ExplorerContext.Provider>
 	);
 };

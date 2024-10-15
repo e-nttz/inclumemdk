@@ -7,8 +7,6 @@ import { useExplorer } from "@/providers/explorer";
 const Toolbar = () => {
 	const { getThree, getStructure, setPath, createFolder } = useExplorer();
 
-	console.log("Three", getThree());
-
 	const three = getThree();
 
 	return (

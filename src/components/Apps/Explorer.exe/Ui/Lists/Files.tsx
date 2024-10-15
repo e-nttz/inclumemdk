@@ -9,7 +9,7 @@ const FilesList = () => {
 			{getFolderView(
 				currentPath.replace("/root", "/").replace("//", "/")
 			)?.map((file) => (
-				<FileItem key={file.path} file={file} complete />
+				<FileItem key={file.id || file.path} file={file} complete />
 			))}
 		</div>
 	);

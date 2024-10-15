@@ -6,6 +6,7 @@ import { Transition } from "@headlessui/react";
 import { useEffect, useState } from "react";
 import BootScreen from "./Boot";
 import Questionnary from "./Questionnary";
+import { ExplorerProvider } from "@/providers/explorer";
 
 export const OS = () => {
 	const [isAuth, setIsAuth] = useState<boolean>(false);
@@ -49,7 +50,9 @@ export const OS = () => {
 			{isAuth && testStatus === "success" && (
 				<Transition show={true} appear={true}>
 					<div className="flex flex-col flex-1 data-[leave]:duration-300 data-[leave]:data-[closed]:opacity-0 transition ease-in-out data-[enter]:opacity-100 duration-300">
-						<InclumeOs />
+						<ExplorerProvider>
+							<InclumeOs />
+						</ExplorerProvider>
 					</div>
 				</Transition>
 			)}

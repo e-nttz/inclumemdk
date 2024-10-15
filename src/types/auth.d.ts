@@ -1,5 +1,6 @@
 interface AuthContextType {
 	authLoading: boolean;
+	sessionLoading: boolean;
 	session: string | null;
 	user: User | null;
 	testStatus: TestStatus;

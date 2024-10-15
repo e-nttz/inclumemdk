@@ -1,8 +1,12 @@
 import { getLocalStorage, setLocalStorage } from "@/helpers/storage";
-import { createContext, useContext, useState } from "react";
+
+import { getTestSession } from "@/lib/client/session";
+import { useTranslate } from "@tolgee/react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const AuthContext = createContext<AuthContextType>({
 	authLoading: false,
+	sessionLoading: true,
 	session: null,
 	user: null,
 	testStatus: "waiting",
@@ -21,9 +25,9 @@ const AuthContext = createContext<AuthContextType>({
  * @return {*}
  */
 const AuthProvider = ({ children }: AuthProviderProps) => {
-	const [session, setSession] = useState<string | null>(
-		getLocalStorage("session", true) || null
-	);
+	const { t } = useTranslate();
+
+	const [session, setSession] = useState<string | null>(null);
 
 	const [user, setUser] = useState<User | null>(
 		getLocalStorage("user", true)
@@ -34,6 +38,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 	const [testStatus] = useState<TestStatus>("success");
 
 	const [loading, setLoading] = useState<boolean>(false);
+	const [sessionLoading, setSessionLoading] = useState<boolean>(true);
 
 	/**
 	 * Login the user
@@ -49,14 +54,16 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 	const login = async (session: string) => {
 		setLoading(true);
 
-		// Await 2s
-		await new Promise((resolve) => setTimeout(resolve, 150));
+		const testSession = await getTestSession(session);
 
-		if (session === "mediakod") {
+		console.log(testSession);
+
+		if (!testSession?.error) {
 			setSession(session);
 
 			setUser({
-				firstName: "Mediakod",
+				...testSession.testSession,
+				firstName: "Test user",
 			});
 
 			setLoading(false);
@@ -65,7 +72,8 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 			setLocalStorage(
 				"user",
 				JSON.stringify({
-					firstName: "Mediakod",
+					...testSession.testSession,
+					firstName: "Test user",
 				}),
 				true
 			);
@@ -75,8 +83,36 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
 		setLoading(false);
 
-		return "La session n'a pas été trouvée.";
+		return t(testSession.translation.key, testSession.translation.message);
 	};
+
+	useEffect(() => {
+		(async () => {
+			const session = getLocalStorage("session", true);
+
+			if (session) {
+				// Test if session is valid
+				const testSession = await getTestSession(session);
+
+				if (!testSession?.error) {
+					setSession(session);
+
+					setUser({
+						...testSession.testSession,
+						firstName: "Test user",
+					});
+				} else {
+					// Clean the session
+					setLocalStorage("session", "", true);
+					setLocalStorage("user", "", true);
+
+					setSessionLoading(false);
+				}
+			}
+
+			setSessionLoading(false);
+		})();
+	}, []);
 
 	const logout = () => {
 		setSession(null);
@@ -86,9 +122,10 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 		<AuthContext.Provider
 			value={{
 				authLoading: loading,
-				testStatus,
+				sessionLoading,
 				session,
 				user,
+				testStatus,
 				login,
 				logout,
 			}}

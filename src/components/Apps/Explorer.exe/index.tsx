@@ -3,9 +3,14 @@ import Toolbar from "./Ui/Toolbar";
 import Sidebar from "./Ui/Sidebar";
 import FilesList from "./Ui/Lists/Files";
 import { useExplorer } from "@/providers/explorer";
+import Button from "@/components/Ui/Buttons/button";
+import { useTranslate } from "@tolgee/react";
 
-const Explorer = () => {
+const Explorer = ({ forceRender = false, ...props }) => {
 	const { setPath, getStructure } = useExplorer();
+	const { t } = useTranslate();
+
+	const { onSave, onSelect, onCancel } = props;
 
 	return (
 		<Window
@@ -13,6 +18,8 @@ const Explorer = () => {
 			onClose={() => {
 				setPath(getStructure());
 			}}
+			forceRender={forceRender}
+			hideTopbar={onSave || onSelect || onCancel}
 		>
 			<div className="flex flex-col flex-1 overflow-auto bg-white dark:bg-black">
 				<Toolbar />
@@ -21,6 +28,19 @@ const Explorer = () => {
 					<Sidebar />
 					<FilesList />
 				</div>
+
+				{(onSave || onSelect) && (
+					<div className="flex items-center justify-end gap-2 px-3 py-3 bg-[#F7F7F7] dark:bg-gray-900">
+						<Button onClick={onCancel} size="sm" theme="secondary">
+							{t("cancel", "Annuler")}
+						</Button>
+						{onSave && (
+							<Button onClick={onSave} size="sm">
+								{t("save", "Enregistrer")}
+							</Button>
+						)}
+					</div>
+				)}
 			</div>
 		</Window>
 	);

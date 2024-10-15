@@ -10,6 +10,7 @@ import PaperplaneIcon from "@/assets/icons/paperplane.svg?react";
 import CameraIcon from "@/assets/icons/camera.svg?react";
 import DismissIcon from "@/assets/icons/dismiss.svg?react";
 import { beacon, useBeaconListener } from "@/helpers/beacon";
+import Image from "@/components/Ui/Images/image";
 interface AppProps extends React.FC {
 	title: string;
 	icon: ReactElement;
@@ -145,7 +146,7 @@ const Message: AppProps = () => {
 				<header className="px-6 py-4 bg-white dark:bg-black">
 					<div className="flex flex-row items-center gap-2">
 						<figure className="w-12 overflow-hidden rounded-full aspect-square">
-							<img
+							<Image
 								src="/images/avatar-message.jpg"
 								alt="Avatar"
 								className="object-cover w-full h-full"

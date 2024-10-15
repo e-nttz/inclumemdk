@@ -9,6 +9,8 @@ interface WindowProps {
 	appName: string;
 	onClose?: () => void;
 	onReduce?: () => void;
+	forceRender?: boolean;
+	hideTopbar?: boolean;
 }
 
 const Window = ({
@@ -17,14 +19,18 @@ const Window = ({
 	appName,
 	onClose,
 	onReduce,
+	forceRender = false,
+	hideTopbar = false,
 }: WindowProps) => {
 	const { currentApp, openedApps } = useOS();
 
-	const currentAppIndex = openedApps.findIndex((app) => app.title === appName);
+	const currentAppIndex = forceRender
+		? 1
+		: openedApps.findIndex((app) => app.title === appName);
 
 	return currentAppIndex >= 0 ? (
 		<Transition
-			show={currentApp === appName}
+			show={currentApp === appName || forceRender}
 			enter="transition ease-out duration-300"
 			enterFrom="opacity-0 scale-0 translate-y-full"
 			enterTo="opacity-100 scale-100 translate-y-0"
@@ -35,17 +41,30 @@ const Window = ({
 		>
 			<div
 				className={classNames(
-					"absolute top-0 left-0 w-full h-full flex-1 rounded-md z-[100] overflow-x-hidden overflow-y-auto flex flex-col"
+					"absolute inset-0 flex flex-col flex-1",
+					hideTopbar &&
+						"bg-white/50 dark:bg-black/40 z-[1000] backdrop-blur-sm"
 				)}
 			>
-				<Topbar
-					contextMenus={contextMenus}
-					onClose={onClose}
-					onReduce={onReduce}
-				/>
-				<main className="flex flex-col flex-1 overflow-auto mt-00">
-					{children}
-				</main>
+				<div
+					className={classNames(
+						"absolute flex-1 rounded-md z-[100] overflow-x-hidden overflow-y-auto flex flex-col",
+						hideTopbar
+							? "inset-x-16 inset-y-16 max-h-[620px] shadow-lg border border-gray-100 dark:border-gray-700"
+							: "inset-0"
+					)}
+				>
+					{!hideTopbar && (
+						<Topbar
+							contextMenus={contextMenus}
+							onClose={onClose}
+							onReduce={onReduce}
+						/>
+					)}
+					<main className="flex flex-col flex-1 overflow-auto mt-00">
+						{children}
+					</main>
+				</div>
 			</div>
 		</Transition>
 	) : null;

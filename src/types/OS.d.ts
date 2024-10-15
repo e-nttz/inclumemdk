@@ -11,7 +11,6 @@ type Theme = "light" | "dark";
 
 interface InclumeOSContextType {
 	appLoading: boolean;
-	testStatus: TestStatus;
 	theme: Theme;
 	changeTheme: (theme: Theme) => void;
 	currentApp: string;
@@ -56,9 +55,21 @@ interface ExplorerContextType {
 	getStructure: () => FileNode;
 	rename: (fileNode: FileNode, newName: string) => void;
 	createFolder: (name: string) => void;
+	createFile: (
+		name: string,
+		fileType: string,
+		content: string,
+		currentFolderPath: string
+	) => void;
+	handleInfoWindow: (
+		onSelect?: () => void,
+		onSave?: (filename: string) => void
+	) => FileNode;
+	closeInfoWindow: () => void;
 }
 
 type FileNode = {
+	id?: string; // Identifiant unique
 	name: string; // Nom modifiable
 	type: "file" | "folder";
 	createdAt: string; // Date de création au format ISO
