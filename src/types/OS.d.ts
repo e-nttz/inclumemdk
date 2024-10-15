@@ -53,6 +53,7 @@ interface ExplorerContextType {
 	getMainFolder: () => FileNode;
 	getThree: () => FileNode[];
 	getStructure: () => FileNode;
+	setSelectedFile: (file: FileNode) => void;
 	rename: (fileNode: FileNode, newName: string) => void;
 	createFolder: (name: string) => void;
 	createFile: (

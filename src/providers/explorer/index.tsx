@@ -15,6 +15,7 @@ export const ExplorerContext = createContext<ExplorerContextType>({
 	getMainFolder: () => ({} as FileNode),
 	getThree: () => [],
 	getStructure: () => ({} as FileNode),
+	setSelectedFile: () => {},
 	rename: () => {},
 	createFolder: () => {},
 	handleInfoWindow: () => ({} as FileNode),
@@ -26,6 +27,13 @@ export const ExplorerProvider = ({ children }) => {
 	const { session } = useAuth();
 
 	const [currentPath, setCurrentPath] = useState("/root");
+	const [selectedFile, _setSelectedFile] = useState<FileNode | null>(null);
+
+	console.log("ExplorerProvider", selectedFile);
+
+	const setSelectedFile = (file: FileNode) => {
+		_setSelectedFile(file);
+	};
 
 	const [structures, setStructures] = useState<FileNode>(
 		(getLocalSession(session, "explorer") as FileNode) ||
@@ -312,6 +320,7 @@ export const ExplorerProvider = ({ children }) => {
 				getMainFolder,
 				getThree,
 				getStructure,
+				setSelectedFile,
 				rename,
 				createFolder,
 				createFile,

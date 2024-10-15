@@ -21,7 +21,7 @@ interface FileItemWrapperProps extends FileItemProps {
 
 const FileItem = ({ file, complete = false }: FileItemProps) => {
 	const { t } = useTranslate();
-	const { setPath, getMainFolder, rename } = useExplorer();
+	const { setPath, getMainFolder, rename, setSelectedFile } = useExplorer();
 
 	const renameRef = useRef<HTMLInputElement>(null);
 	const [showRename, setShowRename] = useState<boolean>(false);
@@ -51,6 +51,12 @@ const FileItem = ({ file, complete = false }: FileItemProps) => {
 				onDoubleClick={() => {
 					if (file.type === "folder" && !showRename) {
 						setPath(file);
+						setSelectedFile(null);
+					}
+				}}
+				onClick={() => {
+					if (file.type === "file" && !showRename) {
+						setSelectedFile(file);
 					}
 				}}
 				className={classNames(
