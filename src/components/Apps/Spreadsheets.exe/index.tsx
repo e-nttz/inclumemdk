@@ -3,9 +3,28 @@ import Window from "@/components/Os/Window";
 import ContextualBar from "@/components/Os/Window/ContextualBar";
 import { classNames } from "@/helpers/sanitize";
 import { t } from "i18next";
-import { memo } from "react";
+import { useState } from "react";
+import Input from "./Input";
+import Button from "./Button";
+
+export interface CellProps {
+	position: string;
+	data: {
+		value: string;
+		formula?: string;
+		weight: "normal" | "bold";
+		style: "normal" | "italic";
+		underline: boolean;
+		color: string;
+		backgroundColor: string;
+		size: "small" | "normal" | "big";
+	};
+}
 
 const Spreadsheets = () => {
+	const [currentCell, setCurrentCell] = useState<string>("");
+	const [cells, setCells] = useState<CellProps[]>([]);
+
 	return (
 		<Window
 			appName={Spreadsheets.title}
@@ -21,15 +40,14 @@ const Spreadsheets = () => {
 		>
 			<section className="flex flex-col flex-1 w-full overflow-auto text-black bg-white backdrop-blur dark:bg-black/70">
 				<div className="grid grid-cols-[50px_repeat(26,96px)]">
-					<div className="w-full h-8 text-sm text-center border-b border-r bg-gray-50 bg-opacity-30 dark:bg-gray-800 border-gray-50" />
+					<div className="w-full h-8 text-sm text-center border-b bg-gray-50 bg-opacity-30 dark:bg-gray-800 border-gray-50" />
 					{
 						// first row buttons
 						Array.from({ length: 26 }).map((_, index) => (
 							<Button
 								key={`buttons-row-${index}`}
 								className={classNames(
-									"w-full h-8 text-sm text-center border-b border-r bg-gray-50 bg-opacity-30 dark:bg-gray-800 border-gray-50",
-									index === 25 && "border-r-0"
+									"w-full h-8 text-sm text-center border-b border-l bg-gray-50 bg-opacity-30 dark:bg-gray-800 border-gray-50"
 								)}
 							>
 								{String.fromCharCode(65 + index)}
@@ -41,7 +59,7 @@ const Spreadsheets = () => {
 						// first column buttons
 						Array.from({ length: 99 }).map((_, index) => (
 							<Button
-								className="w-full h-8 col-start-1 text-sm text-center border-b border-r bg-gray-50 bg-opacity-30 dark:bg-gray-800 border-gray-50 last:border-b-0"
+								className="w-full col-start-1 text-sm text-center border-b border-l min-h-8 bg-gray-50 bg-opacity-30 dark:bg-gray-800 border-gray-50 last:border-b-0"
 								key={`buttons-col-${index}`}
 							>
 								{index + 1}
@@ -57,6 +75,10 @@ const Spreadsheets = () => {
 									key={`inputs-spreadsheets-${indexRow}-${indexCol}`}
 									indexRow={indexRow}
 									indexCol={indexCol}
+									currentCell={currentCell}
+									setCurrentCell={setCurrentCell}
+									cells={cells}
+									setCells={setCells}
 								/>
 							))
 						)
@@ -71,34 +93,3 @@ export default Spreadsheets;
 
 Spreadsheets.title = "Tableur";
 Spreadsheets.icon = <IconStylesheets />;
-
-// Composant Button mémorisé
-const Button = memo(
-	({
-		children,
-		className,
-	}: {
-		children: React.ReactNode;
-		className: string;
-	}) => {
-		return <button className={className}>{children}</button>;
-	}
-);
-
-// Composant Input mémorisé
-const Input = memo(
-	({ indexRow, indexCol }: { indexRow: number; indexCol: number }) => {
-		return (
-			<input
-				type="text"
-				className={classNames(
-					`w-full h-8 text-sm text-left border-b border-r bg-white dark:bg-gray-800 border-gray-50 last:border-b-0 px-1 outline-none`
-				)}
-				style={{
-					gridColumn: `${indexRow + 2} / ${indexRow + 3}`,
-					gridRow: `${indexCol + 2} / ${indexCol + 3}`,
-				}}
-			/>
-		);
-	}
-);
