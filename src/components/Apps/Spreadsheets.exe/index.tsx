@@ -50,24 +50,36 @@ const Spreadsheets = () => {
 	useKeyboardEvent("ArrowUp", () => {
 		const [col, row] = currentCell.split(":");
 		const newRow = parseInt(row) - 1;
+		if (newRow < 1) {
+			return;
+		}
 		setCurrentCell(`${col}:${newRow}`);
 	});
 
 	useKeyboardEvent("ArrowDown", () => {
 		const [col, row] = currentCell.split(":");
 		const newRow = parseInt(row) + 1;
+		if (newRow > 99) {
+			return;
+		}
 		setCurrentCell(`${col}:${newRow}`);
 	});
 
 	useKeyboardEvent("ArrowLeft", () => {
 		const [col, row] = currentCell.split(":");
 		const newCol = String.fromCharCode(col.charCodeAt(0) - 1);
+		if (newCol === "@") {
+			return;
+		}
 		setCurrentCell(`${newCol}:${row}`);
 	});
 
 	useKeyboardEvent("ArrowRight", () => {
 		const [col, row] = currentCell.split(":");
 		const newCol = String.fromCharCode(col.charCodeAt(0) + 1);
+		if (newCol === "[") {
+			return;
+		}
 		setCurrentCell(`${newCol}:${row}`);
 	});
 
