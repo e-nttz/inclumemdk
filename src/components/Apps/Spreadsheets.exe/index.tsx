@@ -1,4 +1,5 @@
 import IconStylesheets from "@/assets/icons/app-spreadsheets.svg?react";
+import IconImage from "@/assets/icons/image.svg?react";
 import Window from "@/components/Os/Window";
 import ContextualBar from "@/components/Os/Window/ContextualBar";
 import { classNames } from "@/helpers/sanitize";
@@ -44,6 +45,30 @@ const Spreadsheets = () => {
 				break;
 		}
 		newCells = newCells.map((c) => (c.position === cell.position ? cell : c));
+		setCells(newCells);
+	};
+
+	const addImage = () => {
+		alert("Not implemented yet. A fake image is added instead.");
+		const newCells = [...cells];
+		let cell = cells.find((cell) => cell.position === currentCell);
+		console.log(cell);
+		if (!currentCell || currentCell === "") {
+			return;
+		}
+		if (!cell) {
+			cell = {
+				position: currentCell,
+				data: {
+					value: "",
+					bold: false,
+					italic: false,
+					underline: false,
+				},
+			};
+		}
+		cell.data.value = "/images/restaurant.jpg";
+		newCells.push(cell);
 		setCells(newCells);
 	};
 
@@ -151,6 +176,17 @@ const Spreadsheets = () => {
 							U
 						</span>
 						<span className="sr-only">Underline</span>
+					</button>
+					<button
+						className={classNames(
+							"flex items-center justify-center gap-1 p-1 transition rounded-sm hover:bg-gray-50 hover:bg-opacity-20"
+						)}
+						onClick={addImage}
+					>
+						<IconImage className="w-4 h-4" />
+						<span aria-hidden="true" className="block text-sm">
+							Insérer une image
+						</span>
 					</button>
 				</div>
 				<div className="grid grid-cols-[50px_repeat(26,minmax(96px,_200px))]">
