@@ -1,4 +1,3 @@
-import { NotificationProvider } from "@/providers/notifications";
 import GridIcons from "./GridIcons";
 import NotificationsSidebar from "./NotificationsSidebar";
 import StartMenu from "./StartMenu";
