@@ -3,10 +3,10 @@ import Actions from "./Actions";
 import Notifications from "./Notifications";
 import { useRef } from "react";
 import { useClickOutside } from "@/hooks/useClickOutside";
-import { useOS } from "@/providers/InclumeOS";
+import { useNotification } from "@/providers/notifications";
 
 const NotificationsSidebar = () => {
-	const { notificationsOpen, setNotificationsOpen } = useOS();
+	const { sidebarVisibile, hideSidebar } = useNotification();
 
 	const nodeRef = useRef<HTMLDivElement>(null);
 
@@ -16,12 +16,12 @@ const NotificationsSidebar = () => {
 			return;
 		}
 
-		setNotificationsOpen(false);
+		hideSidebar();
 	});
 
 	return (
 		<Transition
-			show={notificationsOpen}
+			show={sidebarVisibile}
 			enter="transition ease-out duration-300"
 			enterFrom="opacity-0 translate-x-full"
 			enterTo="opacity-100 translate-x-0"

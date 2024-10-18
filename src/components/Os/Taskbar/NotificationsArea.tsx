@@ -1,8 +1,8 @@
-import { useOS } from "@/providers/InclumeOS";
+import { useNotification } from "@/providers/notifications";
 import { useEffect, useState } from "react";
 
 const NotificationsArea = () => {
-	const { setNotificationsOpen } = useOS();
+	const { sidebarVisibile, showSidebar, hideSidebar } = useNotification();
 	const [currentTime, setCurrentTime] = useState(new Date());
 
 	// update clock every 5 seconds
@@ -94,7 +94,7 @@ const NotificationsArea = () => {
 			<button
 				type="button"
 				className="flex items-center justify-center w-8 h-8 transition duration-150 rounded hover:bg-white/50 focus:outline-none active:scale-90 active:bg-white dark:hover:bg-black/25 dark:active:bg-black/50"
-				onClick={() => setNotificationsOpen((prevState) => !prevState)}
+				onClick={() => (sidebarVisibile ? hideSidebar() : showSidebar())}
 				id="notifications-button"
 			>
 				<svg className="block w-5 h-5" fill="none" viewBox="0 0 24 24">

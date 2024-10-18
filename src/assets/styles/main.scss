@@ -9,6 +9,9 @@
 @layer base {
 	* {
 		font-family: "Segeo UI", sans-serif;
+		// anti-aliasing
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
 	}
 
 	:root {

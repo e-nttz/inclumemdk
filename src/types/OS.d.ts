@@ -20,8 +20,6 @@ interface InclumeOSContextType {
 	launchApp: (app: App) => void;
 	startMenuOpen: boolean;
 	setStartMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
-	notificationsOpen: boolean;
-	setNotificationsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 	focusedElement: HTMLElement | null;
 }
 

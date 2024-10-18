@@ -11,6 +11,7 @@ import {
 } from "@/components/Ui/context-menu";
 import { beacon } from "@/helpers/beacon";
 import { useOS } from "@/providers/InclumeOS";
+import { useNotification } from "@/providers/notifications";
 import { useTolgee, useTranslate } from "@tolgee/react";
 
 interface OSContextualMenuProps {
@@ -49,6 +50,7 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 	const { t } = useTranslate();
 
 	const tolgee = useTolgee(["language"]);
+	const { addNotification } = useNotification();
 
 	return (
 		<ContextMenuContent className="w-64 z-[15555000]" sticky={"always"}>
@@ -251,6 +253,18 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 						}}
 					>
 						{t("start_call", "Démarrer un appel")}
+					</ContextMenuItem>
+					<ContextMenuItem
+						onClick={() => {
+							// Dispatch false message using "beacomMessage" event
+							addNotification({
+								title: "Notification",
+								message:
+									"<strong>Bonjour !</strong> Adipisicing pariatur minim enim magna fugiat aute aliquip sint minim ullamco. Eu amet duis laborum anim enim sunt irure ullamco incididunt pariatur consectetur sit id et cillum.\n\nSit pariatur tempor laboris minim nisi amet consectetur dolore excepteur occaecat ea excepteur excepteur. Proident Lorem dolore irure nostrud anim dolore. Ea ea ex incididunt. Et cupidatat sunt velit tempor dolor anim officia sit culpa ad magna.",
+							});
+						}}
+					>
+						Envoyer une notification
 					</ContextMenuItem>
 				</ContextMenuSubContent>
 			</ContextMenuSub>

@@ -15,8 +15,6 @@ const InclumeOSContext = createContext<InclumeOSContextType>({
 	launchApp: () => {},
 	startMenuOpen: false,
 	setStartMenuOpen: () => {},
-	notificationsOpen: false,
-	setNotificationsOpen: () => {},
 	focusedElement: null,
 });
 
@@ -70,12 +68,6 @@ const InclumeOSProvider = ({ children }: InclumeOSProviderProps) => {
 		_setStartMenuOpen(open);
 	};
 
-	const [notificationsOpen, _setNotificationsOpen] = useState<boolean>(false);
-
-	const setNotificationsOpen = (open: boolean) => {
-		_setNotificationsOpen(open);
-	};
-
 	const [focusedElement, setFocusedElement] = useState<HTMLElement | null>(
 		null
 	);
@@ -121,8 +113,6 @@ const InclumeOSProvider = ({ children }: InclumeOSProviderProps) => {
 				launchApp,
 				startMenuOpen,
 				setStartMenuOpen,
-				notificationsOpen,
-				setNotificationsOpen,
 				focusedElement,
 			}}
 		>
