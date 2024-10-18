@@ -6,6 +6,7 @@ import { t } from "i18next";
 import { useState } from "react";
 import Input from "./Input";
 import Button from "./Button";
+import { useKeyboardEvent } from "@/hooks/useKeyboardEvent";
 
 export interface CellProps {
 	position: string;
@@ -45,6 +46,30 @@ const Spreadsheets = () => {
 		newCells = newCells.map((c) => (c.position === cell.position ? cell : c));
 		setCells(newCells);
 	};
+
+	useKeyboardEvent("ArrowUp", () => {
+		const [col, row] = currentCell.split(":");
+		const newRow = parseInt(row) - 1;
+		setCurrentCell(`${col}:${newRow}`);
+	});
+
+	useKeyboardEvent("ArrowDown", () => {
+		const [col, row] = currentCell.split(":");
+		const newRow = parseInt(row) + 1;
+		setCurrentCell(`${col}:${newRow}`);
+	});
+
+	useKeyboardEvent("ArrowLeft", () => {
+		const [col, row] = currentCell.split(":");
+		const newCol = String.fromCharCode(col.charCodeAt(0) - 1);
+		setCurrentCell(`${newCol}:${row}`);
+	});
+
+	useKeyboardEvent("ArrowRight", () => {
+		const [col, row] = currentCell.split(":");
+		const newCol = String.fromCharCode(col.charCodeAt(0) + 1);
+		setCurrentCell(`${newCol}:${row}`);
+	});
 
 	return (
 		<Window

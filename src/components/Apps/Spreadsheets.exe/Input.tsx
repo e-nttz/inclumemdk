@@ -69,7 +69,9 @@ const Input = memo(
 				onKeyUp={(e) => {
 					if (e.key === "Enter") {
 						setEditionMode(false);
-						setCurrentCell("");
+						setCurrentCell(
+							`${String.fromCharCode(65 + indexRow)}:${indexCol + 2}`
+						);
 					}
 				}}
 				value={
@@ -105,7 +107,7 @@ const Input = memo(
 		) : (
 			<button
 				className={classNames(
-					`relative w-full min-h-8 text-sm cursor-pointer text-left border border-b border-l bg-white dark:bg-gray-800 border-gray-50 last:border-b-0 px-1 outline-none focus-visible:border-green-600`,
+					`relative w-full min-h-8 text-sm cursor-pointer text-left border border-b border-l bg-white dark:bg-gray-800 border-gray-50 last:border-b-0 px-1 outline-none`,
 					currentCell ===
 						`${String.fromCharCode(65 + indexRow)}:${indexCol + 1}`
 						? "!border-2 border-t-green-600 border-r-green-600 border-green-600 z-50"
