@@ -6,7 +6,7 @@ import IconSettings from "@/assets/icons/settings.svg?react";
 import IconPause from "@/assets/icons/pause.svg?react";
 
 const Actions = () => {
-	const { theme, changeTheme } = useOS();
+	const { theme, changeTheme, setPauseMode } = useOS();
 
 	const IconDarkMode = theme === "dark" ? IconSunOff : IconSun;
 
@@ -41,6 +41,7 @@ const Actions = () => {
 				<button
 					type="button"
 					className="p-2 text-left bg-white rounded hover:bg-white/50 focus:outline-none active:bg-white dark:bg-black/30 dark:hover:bg-black/50 dark:active:bg-black/30"
+					onClick={() => setPauseMode(true)}
 				>
 					<IconPause className="block w-6 h-6 mb-5" />
 					<span>Pause</span>
