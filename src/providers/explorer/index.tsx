@@ -246,7 +246,7 @@ export const ExplorerProvider = ({ children }) => {
 		(
 			name: string,
 			fileType: string,
-			content: string,
+			// content: string,
 			currentFolderPath = currentPath
 		) => {
 			const randId = Math.random().toString(36).substring(7);

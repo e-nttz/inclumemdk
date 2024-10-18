@@ -31,20 +31,58 @@ const Input = memo(
 			}
 		}, [editionMode]);
 
+		const buttonValueWithImage = (value: string) => {
+			return value && value.includes("/images/") ? (
+				<img src={value} alt="" className="w-full h-full" />
+			) : (
+				value
+			);
+		};
+
 		return editionMode ? (
 			<input
 				type="text"
 				className={classNames(
-					`relative w-full min-h-8 text-sm cursor-pointer text-left !border-2 border-r-transparent border-t-transparent border-b border-l bg-white dark:bg-gray-800 border-gray-50 last:border-b-0 px-1 outline-none focus-visible:border-green-600`
+					`relative w-full min-h-8 text-sm cursor-pointer text-left border border-r-transparent border-t-transparent border-b border-l bg-white dark:bg-gray-800 border-gray-50 last:border-b-0 px-1 outline-none focus-visible:border-green-600`,
+					currentCell ===
+						`${String.fromCharCode(65 + indexRow)}:${indexCol + 1}`
+						? "!border-2 border-green-600 z-50"
+						: "z-0",
+					cells?.find(
+						(cell) =>
+							cell.position ===
+							`${String.fromCharCode(65 + indexRow)}:${indexCol + 1}`
+					)?.data.bold
+						? "font-bold"
+						: "",
+					cells?.find(
+						(cell) =>
+							cell.position ===
+							`${String.fromCharCode(65 + indexRow)}:${indexCol + 1}`
+					)?.data.italic
+						? "italic"
+						: "",
+					cells?.find(
+						(cell) =>
+							cell.position ===
+							`${String.fromCharCode(65 + indexRow)}:${indexCol + 1}`
+					)?.data.underline
+						? "underline"
+						: ""
 				)}
 				style={{
 					gridColumn: `${indexRow + 2} / ${indexRow + 3}`,
 					gridRow: `${indexCol + 2} / ${indexCol + 3}`,
 				}}
-				onBlur={() => {
-					setEditionMode(false);
-					setCurrentCell("");
+				onKeyUp={(e) => {
+					if (e.key === "Enter") {
+						setEditionMode(false);
+						setCurrentCell(
+							`${String.fromCharCode(65 + indexRow)}:${indexCol + 2}`
+						);
+					}
 				}}
+				onBlur={() => setEditionMode(false)}
 				value={
 					cells?.find(
 						(cell) =>
@@ -63,12 +101,9 @@ const Input = memo(
 							position: currentCell,
 							data: {
 								value: "",
-								weight: "normal",
-								style: "normal",
+								bold: false,
+								italic: false,
 								underline: false,
-								color: "black",
-								backgroundColor: "white",
-								size: "normal",
 							},
 						};
 						newCells.push(currCell);
@@ -81,7 +116,7 @@ const Input = memo(
 		) : (
 			<button
 				className={classNames(
-					`relative w-full min-h-8 text-sm cursor-pointer text-left border border-b border-l bg-white dark:bg-gray-800 border-gray-50 last:border-b-0 px-1 outline-none focus-visible:border-green-600`,
+					`relative w-full min-h-8 text-sm cursor-pointer text-left border border-b border-l bg-white dark:bg-gray-800 border-gray-50 last:border-b-0 outline-none`,
 					currentCell ===
 						`${String.fromCharCode(65 + indexRow)}:${indexCol + 1}`
 						? "!border-2 border-t-green-600 border-r-green-600 border-green-600 z-50"
@@ -100,15 +135,72 @@ const Input = memo(
 						`${String.fromCharCode(65 + indexRow)}:${indexCol + 1}`
 					)
 				}
-				onDoubleClick={() => setEditionMode(true)}
-			>
-				{
-					cells?.find(
+				onContextMenu={() =>
+					setCurrentCell(
+						`${String.fromCharCode(65 + indexRow)}:${indexCol + 1}`
+					)
+				}
+				onDoubleClick={() => {
+					const cell = cells?.find(
 						(cell) =>
 							cell.position ===
 							`${String.fromCharCode(65 + indexRow)}:${indexCol + 1}`
-					)?.data.value
-				}
+					);
+					if (!cell?.data?.value?.includes("/images/")) {
+						setEditionMode(true);
+					}
+				}}
+				onKeyDown={(e) => {
+					if (e.key === "Backspace") {
+						const newCells = [...cells];
+						const currCell = newCells.find(
+							(cell) => cell.position === currentCell
+						);
+						if (currCell && currCell.data.value.includes("/images/")) {
+							// remove currCell from newCells
+							const index = newCells.indexOf(currCell);
+							if (index > -1) {
+								newCells.splice(index, 1);
+								setCells(newCells);
+							}
+						}
+					}
+				}}
+			>
+				<span
+					className={classNames(
+						cells?.find(
+							(cell) =>
+								cell.position ===
+								`${String.fromCharCode(65 + indexRow)}:${indexCol + 1}`
+						)?.data.bold
+							? "font-bold"
+							: "",
+						cells?.find(
+							(cell) =>
+								cell.position ===
+								`${String.fromCharCode(65 + indexRow)}:${indexCol + 1}`
+						)?.data.italic
+							? "italic"
+							: "",
+						cells?.find(
+							(cell) =>
+								cell.position ===
+								`${String.fromCharCode(65 + indexRow)}:${indexCol + 1}`
+						)?.data.underline
+							? "underline"
+							: "",
+						"whitespace-break-spaces"
+					)}
+				>
+					{buttonValueWithImage(
+						cells?.find(
+							(cell) =>
+								cell.position ===
+								`${String.fromCharCode(65 + indexRow)}:${indexCol + 1}`
+						)?.data.value
+					)}
+				</span>
 			</button>
 		);
 	}
