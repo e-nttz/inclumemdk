@@ -7,7 +7,7 @@ const ScreenPaused = () => {
 	const { setPauseMode } = useOS();
 
 	const [buttonClicked, setButtonClicked] = useState(false);
-	const [countdownInterval, setCountdownInterval] = useState<any>(null);
+	const [countdownInterval, setCountdownInterval] = useState<number>(null);
 	const [countdown, setCountdown] = useState(5);
 
 	const handleClick = () => {
