@@ -46,7 +46,7 @@ interface OSContextualMenuProps {
 // };
 
 const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
-	const { changeTheme, theme, focusedElement } = useOS();
+	const { changeTheme, theme, focusedElement, setPauseMode } = useOS();
 	const { t } = useTranslate();
 
 	const tolgee = useTolgee(["language"]);
@@ -206,7 +206,7 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 				{t("paste", "Coller")}
 				<ContextMenuShortcut>⌘V</ContextMenuShortcut>
 			</ContextMenuItem>
-			<ContextMenuItem inset>
+			<ContextMenuItem inset onClick={() => setPauseMode(true)}>
 				{t("pause", "Pause")}
 				<ContextMenuShortcut>&#8679;P</ContextMenuShortcut>
 			</ContextMenuItem>

@@ -21,6 +21,8 @@ interface InclumeOSContextType {
 	startMenuOpen: boolean;
 	setStartMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 	focusedElement: HTMLElement | null;
+	pauseMode: boolean;
+	setPauseMode: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface InclumeOSProviderProps {
