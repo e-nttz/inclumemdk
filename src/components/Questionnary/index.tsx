@@ -12,7 +12,7 @@ import ThemeToggler from "../Ui/Toggle/Theme";
 const Questionnary = () => {
 	const { t } = useTranslate();
 
-	const { user } = useAuth();
+	const { user, setTestStatus } = useAuth();
 
 	const welcomeRef = useRef<HTMLDivElement>(null);
 
@@ -81,6 +81,16 @@ const Questionnary = () => {
 							{t("start", "C'est parti")}
 							<IconArrowRight className="w-6 h-auto" />
 						</Button>
+
+						<button
+							type="button"
+							className="mt-4"
+							onClick={() => {
+								setTestStatus("success");
+							}}
+						>
+							Ignorez le test
+						</button>
 					</div>
 				</div>
 			</div>

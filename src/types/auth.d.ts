@@ -4,6 +4,7 @@ interface AuthContextType {
 	session: string | null;
 	user: User | null;
 	testStatus: TestStatus;
+	setTestStatus: (status: TestStatus) => void;
 	login: (session: string) => Promise<boolean | string>;
 	logout: () => void;
 }

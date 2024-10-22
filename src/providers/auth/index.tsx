@@ -10,6 +10,7 @@ const AuthContext = createContext<AuthContextType>({
 	session: null,
 	user: null,
 	testStatus: "waiting",
+	setTestStatus: () => {},
 	login: async () => {
 		return false;
 	},
@@ -35,7 +36,11 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 			: null
 	);
 
-	const [testStatus] = useState<TestStatus>("success");
+	const [testStatus, _setTestStatus] = useState<TestStatus>("waiting");
+
+	const setTestStatus = (status: TestStatus) => {
+		_setTestStatus(status);
+	};
 
 	const [loading, setLoading] = useState<boolean>(false);
 	const [sessionLoading, setSessionLoading] = useState<boolean>(true);
@@ -126,6 +131,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 				session,
 				user,
 				testStatus,
+				setTestStatus,
 				login,
 				logout,
 			}}
