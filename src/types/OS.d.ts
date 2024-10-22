@@ -21,8 +21,6 @@ interface InclumeOSContextType {
 	startMenuOpen: boolean;
 	setStartMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 	focusedElement: HTMLElement | null;
-	pauseMode: boolean;
-	setPauseMode: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface InclumeOSProviderProps {
@@ -79,4 +77,39 @@ type FileNode = {
 	extension?: string; // Extension de fichier pour les fichiers uniquement
 	slug?: string; // Nom complet avec extension en slug
 	children?: FileNode[]; // Optionnel pour les dossiers
+};
+
+interface StepsListenerContextType {
+	pauseMode: boolean;
+	setPauseMode: React.Dispatch<React.SetStateAction<boolean>>;
+	timer: number;
+	setTimer: React.Dispatch<React.SetStateAction<number>>;
+	clearTimer: () => void;
+}
+
+type Session = {
+	currentStep: number;
+	timer: number;
+	cluesShowed: number;
+};
+
+type TestStepTemplate = {
+	id: string;
+	createdAd: string;
+	updatedAt: string;
+	number: number;
+	subNumber: string | null;
+	name: string;
+	isLastQuestion: boolean;
+	stepType: string;
+	nextQuestionIfSuccessed: number | null;
+	nextQuestionIfFailed: number | null;
+	skills: number[];
+};
+
+type Clue = {
+	time_launched: number;
+	title: string;
+	message: string;
+	image: string;
 };

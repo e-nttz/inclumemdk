@@ -16,8 +16,6 @@ const InclumeOSContext = createContext<InclumeOSContextType>({
 	startMenuOpen: false,
 	setStartMenuOpen: () => {},
 	focusedElement: null,
-	pauseMode: false,
-	setPauseMode: () => {},
 });
 
 const InclumeOSProvider = ({ children }: InclumeOSProviderProps) => {
@@ -60,11 +58,6 @@ const InclumeOSProvider = ({ children }: InclumeOSProviderProps) => {
 
 		setCurrentApp(app.title);
 	};
-
-	/**
-	 * Pause mode
-	 */
-	const [pauseMode, setPauseMode] = useState<boolean>(false);
 
 	/**
 	 * UI State handler
@@ -121,8 +114,6 @@ const InclumeOSProvider = ({ children }: InclumeOSProviderProps) => {
 				startMenuOpen,
 				setStartMenuOpen,
 				focusedElement,
-				pauseMode,
-				setPauseMode,
 			}}
 		>
 			{children}

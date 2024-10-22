@@ -4,9 +4,11 @@ import IconSun from "@/assets/icons/sun-on.svg?react";
 import IconSunOff from "@/assets/icons/sun-off.svg?react";
 import IconSettings from "@/assets/icons/settings.svg?react";
 import IconPause from "@/assets/icons/pause.svg?react";
+import { useStepsListener } from "@/providers/stepsListener";
 
 const Actions = () => {
-	const { theme, changeTheme, setPauseMode } = useOS();
+	const { theme, changeTheme } = useOS();
+	const { setPauseMode } = useStepsListener();
 
 	const IconDarkMode = theme === "dark" ? IconSunOff : IconSun;
 
