@@ -12,6 +12,7 @@ import {
 import { beacon } from "@/helpers/beacon";
 import { useOS } from "@/providers/InclumeOS";
 import { useNotification } from "@/providers/notifications";
+import { useStepsListener } from "@/providers/stepsListener";
 import { useTolgee, useTranslate } from "@tolgee/react";
 
 interface OSContextualMenuProps {
@@ -46,11 +47,12 @@ interface OSContextualMenuProps {
 // };
 
 const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
-	const { changeTheme, theme, focusedElement, setPauseMode } = useOS();
+	const { changeTheme, theme, focusedElement } = useOS();
 	const { t } = useTranslate();
 
 	const tolgee = useTolgee(["language"]);
 	const { addNotification } = useNotification();
+	const { setPauseMode, clearTimer } = useStepsListener();
 
 	return (
 		<ContextMenuContent className="w-64 z-[15555000]" sticky={"always"}>
@@ -265,6 +267,9 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 						}}
 					>
 						Envoyer une notification
+					</ContextMenuItem>
+					<ContextMenuItem onClick={() => clearTimer()}>
+						Réinitialiser le timer
 					</ContextMenuItem>
 				</ContextMenuSubContent>
 			</ContextMenuSub>

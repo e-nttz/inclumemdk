@@ -5,6 +5,8 @@ import OS from "./components";
 import AuthProvider from "./providers/auth";
 import { TolgeeProvider } from "@tolgee/react";
 import BootScreen from "./components/Boot";
+import { StepsListenerProvider } from "./providers/stepsListener";
+import { NotificationProvider } from "./providers/notifications";
 
 const App = () => {
 	return (
@@ -14,7 +16,11 @@ const App = () => {
 		>
 			<AuthProvider>
 				<InclumeOSProvider>
-					<OS />
+					<NotificationProvider>
+						<StepsListenerProvider>
+							<OS />
+						</StepsListenerProvider>
+					</NotificationProvider>
 				</InclumeOSProvider>
 			</AuthProvider>
 		</TolgeeProvider>

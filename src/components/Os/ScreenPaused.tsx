@@ -1,10 +1,10 @@
-import { useOS } from "@/providers/InclumeOS";
 import Button from "../Ui/Buttons/button";
 import IconPlay from "@/assets/icons/play.svg?react";
 import { useEffect, useState } from "react";
+import { useStepsListener } from "@/providers/stepsListener";
 
 const ScreenPaused = () => {
-	const { setPauseMode } = useOS();
+	const { setPauseMode } = useStepsListener();
 
 	const [buttonClicked, setButtonClicked] = useState(false);
 	const [countdownInterval, setCountdownInterval] = useState<number>(null);
