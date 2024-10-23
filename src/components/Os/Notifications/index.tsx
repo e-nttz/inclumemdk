@@ -1,32 +1,22 @@
 import { useNotification } from "@/providers/notifications";
 import { Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/solid";
-import { useTranslate } from "@tolgee/react";
 
 import React from "react";
 
-const Notification = ({
-	id,
-	title,
-	message,
-	temporary = false,
-}: NotificationInterface) => {
+const Notification = ({ message, temporary = true }: NotificationInterface) => {
 	const [show, setShow] = React.useState<boolean>(true);
 	const NotificationRef = React.useRef<HTMLDivElement | null>(null);
 	const NotificationRefTimer = React.useRef<HTMLDivElement | null>(null);
 
 	const NotificationDuration = 5000;
 
-	const { notificationDispatch } = useNotification();
+	const { showSidebar } = useNotification();
 
 	const handleLeave = (): void => {
 		if (NotificationRef?.current) {
 			NotificationRef.current.classList.add("h-0");
 		}
-
-		setTimeout(() => {
-			notificationDispatch({ type: "REMOVE", payload: { id } });
-		}, 300);
 	};
 
 	let timer: any = false;
@@ -61,14 +51,14 @@ const Notification = ({
 			leaveFrom="translate-y-0 opacity-100 sm:translate-x-0"
 			leaveTo="translate-y-2 opacity-0 sm:translate-y-0 sm:translate-x-4"
 			afterLeave={handleLeave}
-			unmount={false}
+			unmount={true}
 		>
 			<div
 				className="w-full max-w-sm overflow-hidden transition-all duration-300 ease-in border rounded shadow-lg pointer-events-auto dark:border-gray-600/-20 border-gray-300/20 bg-white/75 backdrop-blur-lg backdrop-filter dark:bg-gray-800/75 dark:backdrop-blur-lg dark:backdrop-filter"
 				ref={NotificationRef}
 			>
 				<div className="relative p-4">
-					<div className="flex items-center justify-between mb-4">
+					<div className="flex items-center justify-between mb-2">
 						<div className="flex items-center gap-2">
 							<img
 								src="/images/picto.svg"
@@ -80,7 +70,7 @@ const Notification = ({
 
 						<div className="flex flex-shrink-0">
 							<button
-								className="inline-flex"
+								className="relative z-20 inline-flex"
 								onClick={() => {
 									setShow(false);
 								}}
@@ -92,11 +82,7 @@ const Notification = ({
 					</div>
 
 					<div className="flex items-start">
-						<div className=" w-0 flex-1 pt-0.5">
-							<p className="text-sm font-bold text-gray-900 dark:text-white">
-								{title}
-							</p>
-
+						<div className="flex-1 w-0 ">
 							{message && (
 								<p
 									className="mt-1 text-sm dark:text-white line-clamp-3"
@@ -109,23 +95,31 @@ const Notification = ({
 					</div>
 
 					<span
-						className="absolute inset-x-0 bottom-0 block w-full h-1 origin-left transform opacity-0 bg-accent dark:bg-accent-dark"
+						className="absolute inset-x-0 bottom-0 z-20 block w-full h-1 origin-left transform opacity-0 bg-accent dark:bg-accent-dark"
 						style={{
 							transitionProperty: "all",
 							transitionDuration: NotificationDuration + "ms",
 							transitionTimingFunction: "linear",
 						}}
 						ref={NotificationRefTimer}
-					></span>
+					/>
+
+					<button
+						onClick={() => {
+							console.log("Hello");
+							showSidebar();
+						}}
+						className="absolute inset-0 bg-transparent appearance-none avoid-click-outside outline-focus"
+					>
+						<span className="sr-only">Afficher les notifications</span>
+					</button>
 				</div>
 			</div>
 		</Transition>
 	);
 };
 
-const NotificationCenter = ({ notifications, handleClearAll }: any) => {
-	const { t } = useTranslate();
-
+const NotificationCenter = ({ notifications }: any) => {
 	return (
 		<div
 			aria-live="assertive"
@@ -133,7 +127,7 @@ const NotificationCenter = ({ notifications, handleClearAll }: any) => {
 			style={{ zIndex: 9000 }}
 		>
 			<div className="flex flex-col items-center w-full h-full space-y-4 sm:items-end sm:justify-end">
-				{notifications.length > 1 && (
+				{/* {notifications.length > 1 && (
 					<button
 						onClick={() => handleClearAll()}
 						className="-mb-2 px-1.5 font-bold opacity-70 hover:opacity-100 py-1 text-xs text-black bg-white rounded-2xl pointer-events-auto transition ease-in"
@@ -141,7 +135,7 @@ const NotificationCenter = ({ notifications, handleClearAll }: any) => {
 					>
 						{t("clear_all", "Tout effacer")}
 					</button>
-				)}
+				)} */}
 
 				{notifications.map((t: AppNotification) => {
 					return (

@@ -12,7 +12,10 @@ const NotificationsSidebar = () => {
 
 	useClickOutside(nodeRef, (e: MouseEvent) => {
 		// Check if e.target has the id of start-menu, or if it's a child of start-menu
-		if ((e.target as HTMLElement).closest("#notifications-button")) {
+		if (
+			(e.target as HTMLElement).closest("#notifications-button") ||
+			(e.target as HTMLElement).closest(".avoid-click-outside")
+		) {
 			return;
 		}
 

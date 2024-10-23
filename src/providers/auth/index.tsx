@@ -9,7 +9,7 @@ const AuthContext = createContext<AuthContextType>({
 	sessionLoading: true,
 	session: null,
 	user: null,
-	testStatus: "waiting",
+	testStatus: "success",
 	setTestStatus: () => {},
 	login: async () => {
 		return false;
@@ -60,8 +60,6 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 		setLoading(true);
 
 		const testSession = await getTestSession(session);
-
-		console.log(testSession);
 
 		if (!testSession?.error) {
 			setSession(session);
