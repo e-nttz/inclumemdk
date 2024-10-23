@@ -1,8 +1,18 @@
 import { database } from "@/lib/client";
 import { createContext, useContext, useEffect, useState } from "react";
 
-import dataClues from "./clues.json";
+import dataSteps from "../../data/steps.json";
+
 import { useNotification } from "../notifications";
+
+interface Step {
+	step_id: number;
+	items: {
+		beacon_name: string;
+		value: string;
+		clues: Clue[];
+	}[];
+}
 
 export const StepsListenerContext = createContext<StepsListenerContextType>({
 	pauseMode: false,
@@ -30,9 +40,10 @@ export const StepsListenerProvider = ({ children }) => {
 	const [timer, setTimer] = useState<number>(0);
 
 	/**
-	 * Clues
+	 * Steps
 	 */
-	const [clues] = useState<{ step_id: number; items: Clue[] }[]>(dataClues);
+	const [steps] = useState<Step[]>(dataSteps);
+	const [currentStepIndex] = useState<number>(0);
 
 	// get session storage
 	const sessionId = window.sessionStorage.getItem("session");
@@ -58,16 +69,18 @@ export const StepsListenerProvider = ({ children }) => {
 
 	useEffect(() => {
 		if (!pauseMode) {
-			// in clues find the clues that are in clues.step_id === currentSession.currentStep
-			const currentClues = clues.find(
-				(clue) => clue.step_id === currentSession?.currentStep
+			// find the step that is in steps.id === currentSession.currentStep
+			const currentStep = steps.find(
+				(step) => step.step_id === currentSession?.currentStep
 			);
+			// in clues find the clues that are in clues.step_id === currentSession.currentStep
+			const currentClues = currentStep?.items[currentStepIndex].clues;
 			let timerDuplicate = timer;
 			const interval = setInterval(() => {
 				timerDuplicate++;
 				setTimer(timerDuplicate);
 				// in currentClue.items find the clue that is in currentClue.items.time_launched === timerDuplicate
-				const currentClue = currentClues?.items.find(
+				const currentClue = currentClues?.find(
 					(clue) => clue.time_launched === timerDuplicate
 				);
 				if (currentClue) {
@@ -96,7 +109,7 @@ export const StepsListenerProvider = ({ children }) => {
 
 			return () => clearInterval(interval);
 		}
-	}, [currentSession, pauseMode]);
+	}, [currentSession, pauseMode, currentStepIndex]);
 
 	useEffect(() => {
 		const fetchSessions = async () => {
@@ -119,6 +132,7 @@ export const StepsListenerProvider = ({ children }) => {
 		setTimer(0);
 		const currentSessionDuplicate = { ...currentSession };
 		currentSessionDuplicate.timer = 0;
+		currentSessionDuplicate.cluesShowed = 0;
 		setCurrentSession(currentSessionDuplicate);
 		localStorage.setItem(sessionId, JSON.stringify(currentSessionDuplicate));
 	};

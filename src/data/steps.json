@@ -1,0 +1,19 @@
+[
+	{
+		"step_id": 1,
+		"items": [
+			{
+				"beacon_name": "openApp",
+				"value": "Message",
+				"clues": [
+					{
+						"time_launched": 10,
+						"title": "Voulez-vous un indice ?",
+						"message": "L'indice est de commencer par lire l'indice.",
+						"image": ""
+					}
+				]
+			}
+		]
+	}
+]
