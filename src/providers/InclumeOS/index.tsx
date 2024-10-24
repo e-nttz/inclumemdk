@@ -1,6 +1,7 @@
 import { getLocalStorage, setLocalStorage } from "@/helpers/storage";
 import { createContext, useContext, useEffect, useState } from "react";
 import { useAuth } from "../auth";
+import { beacon } from "@/helpers/beacon";
 
 const defaultTheme = "light";
 
@@ -55,6 +56,10 @@ const InclumeOSProvider = ({ children }: InclumeOSProviderProps) => {
 		if (!openedApps.find((a) => a.title === app.title)) {
 			setOpenedApps([...openedApps, app]);
 		}
+
+		beacon("triggerStep", {
+			value: "open" + app.title,
+		});
 
 		setCurrentApp(app.title);
 	};

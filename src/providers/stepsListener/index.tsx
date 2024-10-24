@@ -4,11 +4,11 @@ import { createContext, useContext, useEffect, useState } from "react";
 import dataSteps from "../../data/steps.json";
 
 import { useNotification } from "../notifications";
+import { useBeaconListener } from "@/helpers/beacon";
 
 interface Step {
 	step_id: number;
 	items: {
-		beacon_name: string;
 		value: string;
 		clues: Clue[];
 	}[];
@@ -24,62 +24,49 @@ export const StepsListenerContext = createContext<StepsListenerContextType>({
 
 export const StepsListenerProvider = ({ children }) => {
 	const { addNotification } = useNotification();
-	/**
-	 * Test Step Template
-	 */
+
 	const [, setTestStepTemplate] = useState<TestStepTemplate | null>(null);
-
-	/**
-	 * Pause mode
-	 */
 	const [pauseMode, setPauseMode] = useState<boolean>(false);
-
-	/**
-	 * Timer in seconds
-	 */
 	const [timer, setTimer] = useState<number>(0);
-
-	/**
-	 * Steps
-	 */
 	const [steps] = useState<Step[]>(dataSteps);
-	const [currentStepIndex] = useState<number>(0);
+	const [currentStepIndex, setCurrentStepIndex] = useState<number>(0);
 
-	// get session storage
+	// Get session storage
 	const sessionId = window.sessionStorage.getItem("session");
-
 	const [currentSession, setCurrentSession] = useState<Session | null>(null);
 
+	// Effect to load or create the session
 	useEffect(() => {
 		if (sessionId) {
-			if (localStorage.getItem(sessionId)) {
-				setCurrentSession(JSON.parse(localStorage.getItem(sessionId)));
-				setTimer(JSON.parse(localStorage.getItem(sessionId))?.timer || 0);
+			const sessionData = localStorage.getItem(sessionId);
+			if (sessionData) {
+				setCurrentSession(JSON.parse(sessionData));
+				setTimer(JSON.parse(sessionData)?.timer || 0);
 			} else {
-				const currentSession = {
-					currentStep: 1,
+				const newSession = {
+					currentStep: 0,
+					currentStepIndex: 0,
 					timer: 0,
 					cluesShowed: 0,
+					currentScore: 0,
 				};
-				setCurrentSession(currentSession);
-				localStorage.setItem(sessionId, JSON.stringify(currentSession));
+				setCurrentSession(newSession);
+				localStorage.setItem(sessionId, JSON.stringify(newSession));
 			}
 		}
 	}, [sessionId]);
 
+	// Effect to show the clues
 	useEffect(() => {
-		if (!pauseMode) {
-			// find the step that is in steps.id === currentSession.currentStep
+		if (!pauseMode && currentSession) {
 			const currentStep = steps.find(
-				(step) => step.step_id === currentSession?.currentStep
+				(step) => step.step_id === currentSession?.currentStep + 1
 			);
-			// in clues find the clues that are in clues.step_id === currentSession.currentStep
-			const currentClues = currentStep?.items[currentStepIndex].clues;
+			const currentClues = currentStep?.items[currentStepIndex]?.clues;
 			let timerDuplicate = timer;
 			const interval = setInterval(() => {
 				timerDuplicate++;
 				setTimer(timerDuplicate);
-				// in currentClue.items find the clue that is in currentClue.items.time_launched === timerDuplicate
 				const currentClue = currentClues?.find(
 					(clue) => clue.time_launched === timerDuplicate
 				);
@@ -111,12 +98,11 @@ export const StepsListenerProvider = ({ children }) => {
 		}
 	}, [currentSession, pauseMode, currentStepIndex]);
 
+	// Effect to fetch the test step template
 	useEffect(() => {
 		const fetchSessions = async () => {
 			const client = database();
-
 			const testStepTemplate = await client.get("/teststeptemplate/test");
-
 			return testStepTemplate;
 		};
 
@@ -136,6 +122,35 @@ export const StepsListenerProvider = ({ children }) => {
 		setCurrentSession(currentSessionDuplicate);
 		localStorage.setItem(sessionId, JSON.stringify(currentSessionDuplicate));
 	};
+
+	useBeaconListener("triggerStep", (e) => {
+		const session = JSON.parse(localStorage.getItem(sessionId));
+
+		if (
+			e.detail?.value ===
+			dataSteps[session.currentStep]?.items[currentStepIndex]?.value
+		) {
+			const currentSessionDuplicate = session;
+			currentSessionDuplicate.timer = 0;
+			currentSessionDuplicate.score++;
+			localStorage.setItem(
+				sessionId,
+				JSON.stringify(currentSessionDuplicate)
+			);
+			if (currentStepIndex < dataSteps[session.currentStep].items.length) {
+				setCurrentStepIndex((prev) => prev + 1);
+				currentSessionDuplicate.currentStepIndex++;
+			} else {
+				setCurrentStepIndex(0);
+				currentSessionDuplicate.currentStepIndex = 0;
+				currentSessionDuplicate.currentStep++;
+			}
+			if (session.currentStep === dataSteps.length) {
+				// here we send a post request to the backend to save the session and the score
+			}
+			setCurrentSession(currentSessionDuplicate);
+		}
+	});
 
 	return (
 		<StepsListenerContext.Provider

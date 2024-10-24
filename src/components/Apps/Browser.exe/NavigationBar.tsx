@@ -55,6 +55,9 @@ const NavigationBar = ({ tab, currentHistoryIndex }: NavigationBarProps) => {
 						website,
 						url: inputValue,
 					});
+					beacon("triggerStep", {
+						value: "openGougoule",
+					});
 				}
 			});
 		});

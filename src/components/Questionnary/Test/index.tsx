@@ -99,7 +99,7 @@ const Test = ({ show, visible }: TestProps) => {
 							xmlns="http://www.w3.org/2000/svg"
 							className="absolute left-0 top-1"
 						>
-							<g clip-path="url(#clip0_2050_1514)">
+							<g clipPath="url(#clip0_2050_1514)">
 								<path
 									d="M23.63 17.13C23.41 17.72 23.29 18.35 23.29 19.02C23.29 21.02 24.38 22.77 26 23.7C25.14 24.21 24.14 24.51 23.07 24.51C21.21 24.51 19.56 23.62 18.52 22.24L23.63 17.13Z"
 									fill="#EB5D1D"
