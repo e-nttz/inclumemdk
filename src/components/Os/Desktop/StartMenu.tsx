@@ -1,3 +1,4 @@
+import { apps } from "@/components/Apps";
 import { classNames } from "@/helpers/sanitize";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { useOS } from "@/providers/InclumeOS";
@@ -5,7 +6,7 @@ import { Transition } from "@headlessui/react";
 import { useRef } from "react";
 
 const StartMenu = () => {
-	const { startMenuOpen, setStartMenuOpen } = useOS();
+	const { startMenuOpen, setStartMenuOpen, launchApp } = useOS();
 
 	const nodeRef = useRef<HTMLDivElement>(null);
 
@@ -32,13 +33,13 @@ const StartMenu = () => {
 			<div
 				id="start-menu"
 				className={classNames(
-					"absolute w-3/5 mx-auto overflow-hidden bg-blue-100 shadow-lg bottom-5 left-1/2 -ml-96 rounded-xl backdrop-blur-lg backdrop-filter dark:bg-gray-800/90 xl:w-2/5 z-[9998]"
+					"absolute w-[800px] mx-auto overflow-hidden bg-blue-100 shadow-lg bottom-5 left-1/2 -ml-96 rounded-xl backdrop-blur-lg backdrop-filter dark:bg-gray-800/90 z-[9998]"
 				)}
 				ref={nodeRef}
 			>
 				<div className="px-12 py-10 space-y-6 grow">
 					<div className="space-y-4">
-						<div className="flex items-center justify-between">
+						<div className="flex items-center justify-between px-2">
 							<h2 className="text-lg font-semibold">Épinglé</h2>
 							<a
 								className="inline-flex items-center gap-1 px-2 py-1 text-[15px] font-medium text-left bg-white rounded hover:bg-white/50 focus:outline-none active:bg-white dark:bg-black/30 dark:hover:bg-black/50 dark:active:bg-black/30"
@@ -60,118 +61,29 @@ const StartMenu = () => {
 								</svg>
 							</a>
 						</div>
-						<div className="grid grid-cols-6 gap-1 text-center">
-							<a
-								className="block p-3 text-sm font-medium transition rounded hover:bg-blue-200 focus:outline-none active:bg-transparent dark:hover:bg-black/20 dark:active:bg-black/30"
-								href="#"
-							>
-								<img
-									className="w-16 mx-auto mb-2"
-									src="./images/icons/folder-downloads.png"
-									alt="Folder Downloads"
-								/>
-								<span>Downloads</span>
-							</a>
-							<a
-								className="block p-3 text-sm font-medium transition rounded hover:bg-blue-200 focus:outline-none active:bg-transparent dark:hover:bg-black/20 dark:active:bg-black/30"
-								href="#"
-							>
-								<img
-									className="w-16 mx-auto mb-2"
-									src="./images/icons/folder-videos.png"
-									alt="Folder Videos"
-								/>
-								<span>Videos</span>
-							</a>
-							<a
-								className="block p-3 text-sm font-medium transition rounded hover:bg-blue-200 focus:outline-none active:bg-transparent dark:hover:bg-black/20 dark:active:bg-black/30"
-								href="#"
-							>
-								<img
-									className="w-16 mx-auto mb-2"
-									src="./images/icons/folder-games.png"
-									alt="Folder Games"
-								/>
-								<span>Games</span>
-							</a>
-							<a
-								className="block p-3 text-sm font-medium transition rounded hover:bg-blue-200 focus:outline-none active:bg-transparent dark:hover:bg-black/20 dark:active:bg-black/30"
-								href="#"
-							>
-								<img
-									className="w-16 mx-auto mb-2"
-									src="./images/icons/folder-links.png"
-									alt="Folder Favorites"
-								/>
-								<span>Favorites</span>
-							</a>
-							<a
-								className="block p-3 text-sm font-medium transition rounded hover:bg-blue-200 focus:outline-none active:bg-transparent dark:hover:bg-black/20 dark:active:bg-black/30"
-								href="#"
-							>
-								<img
-									className="w-16 mx-auto mb-2"
-									src="./images/icons/folder-user.png"
-									alt="Folder Folder"
-								/>
-								<span>User Folder</span>
-							</a>
-							<a
-								className="block p-3 text-sm font-medium transition rounded hover:bg-blue-200 focus:outline-none active:bg-transparent dark:hover:bg-black/20 dark:active:bg-black/30"
-								href="#"
-							>
-								<img
-									className="w-16 mx-auto mb-2"
-									src="./images/icons/folder-zip.png"
-									alt="Folder Archives"
-								/>
-								<span>Archives</span>
-							</a>
-							<a
-								className="block p-3 text-sm font-medium transition rounded hover:bg-blue-200 focus:outline-none active:bg-transparent dark:hover:bg-black/20 dark:active:bg-black/30"
-								href="#"
-							>
-								<img
-									className="w-16 mx-auto mb-2"
-									src="./images/icons/video.png"
-									alt="Movies"
-								/>
-								<span>Movies</span>
-							</a>
-							<a
-								className="block p-3 text-sm font-medium transition rounded hover:bg-blue-200 focus:outline-none active:bg-transparent dark:hover:bg-black/20 dark:active:bg-black/30"
-								href="#"
-							>
-								<img
-									className="w-16 mx-auto mb-2"
-									src="./images/icons/phone.png"
-									alt="Mobile"
-								/>
-								<span>Mobile</span>
-							</a>
-							<a
-								className="block p-3 text-sm font-medium transition rounded hover:bg-blue-200 focus:outline-none active:bg-transparent dark:hover:bg-black/20 dark:active:bg-black/30"
-								href="#"
-							>
-								<img
-									className="w-16 mx-auto mb-2"
-									src="./images/icons/options.png"
-									alt="Settings"
-								/>
-								<span>Settings</span>
-							</a>
-							<a
-								className="block p-3 text-sm font-medium transition rounded hover:bg-blue-200 focus:outline-none active:bg-transparent dark:hover:bg-black/20 dark:active:bg-black/30"
-								href="#"
-							>
-								<img
-									className="w-16 mx-auto mb-2"
-									src="./images/icons/bin.png"
-									alt="Bin"
-								/>
-								<span>Bin</span>
-							</a>
-						</div>
+						<ul className="flex flex-wrap items-start justify-start max-h-full gap-16 !mt-9">
+							{Object.entries(apps).map(([, value]: any) => (
+								<li key={`start-menu-${value.title}`}>
+									<button
+										className="w-[70px] flex flex-col items-center justify-start transition duration-150 rounded group hover:bg-white/30 focus:bg-white/30 active:bg-white/75 dark:hover:bg-white/25 dark:active:bg-white/50"
+										onClick={() => {
+											launchApp({
+												title: value.title,
+												icon: value.icon,
+											});
+											setStartMenuOpen(false);
+										}}
+									>
+										<figure className="w-[52px] h-[52px] mb-2 [&>svg]:mx-auto [&>svg]:w-full [&>svg]:h-full">
+											{value.icon}
+										</figure>
+										<span className="text-sm font-medium">
+											{value.title}
+										</span>
+									</button>
+								</li>
+							))}
+						</ul>
 					</div>
 				</div>
 				<div className="flex items-center justify-between flex-none px-12 py-4 border-t border-t-black border-opacity-[0.08] dark:bg-gray-800/90">
