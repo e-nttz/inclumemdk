@@ -139,9 +139,9 @@ const Browser: AppProps = () => {
 
 	return (
 		<Window appName={Browser.title}>
-			<section className="flex flex-col flex-1 w-full overflow-auto text-black bg-white/90 backdrop-blur dark:bg-black/70 dark:backdrop-blur">
-				<header className="bg-[#e8e8e8] dark:bg-[#141414]">
-					<nav className="flex px-4 pt-2 space-x-2 overflow-hidden">
+			<section className="flex flex-col flex-1 w-full overflow-auto text-black bg-[#E0EBF6] dark:bg-black/70 dark:backdrop-blur">
+				<header className="bg-[#E0EBF6] dark:bg-[#141414]">
+					<nav className="flex px-1 py-1 space-x-2">
 						{tabs.map((tab) => (
 							<SingleTab
 								key={`browser-tab-${tab.id}`}
@@ -158,32 +158,36 @@ const Browser: AppProps = () => {
 							setCurrentTab={setCurrentTab}
 						/>
 					</nav>
-					<NavigationBar
-						tab={tabs.find((tab) => tab.id === currentTab)}
-						currentHistoryIndex={currentHistoryIndex}
-					/>
-				</header>
-				<main className="relative flex-1 bg-[#F7F7F7]">
-					{loading ? (
-						<LoadingState />
-					) : (
-						<RenderWebsite
-							componentName={
-								tabs.find((tab) => tab.id === currentTab)?.history[
-									currentHistoryTab.find(
-										(tab) => tab.tabId === currentTab
-									)?.historyIndex
-								]?.website.componentName
-							}
-							url={
-								tabs.find((tab) => tab.id === currentTab)?.history[
-									currentHistoryTab.find(
-										(tab) => tab.tabId === currentTab
-									)?.historyIndex
-								]?.url
-							}
+					<div className="px-1 pb-1">
+						<NavigationBar
+							tab={tabs.find((tab) => tab.id === currentTab)}
+							currentHistoryIndex={currentHistoryIndex}
 						/>
-					)}
+					</div>
+				</header>
+				<main className="flex flex-1 px-1 pb-1">
+					<div className="relative flex-1 overflow-hidden bg-white rounded-lg">
+						{loading ? (
+							<LoadingState />
+						) : (
+							<RenderWebsite
+								componentName={
+									tabs.find((tab) => tab.id === currentTab)?.history[
+										currentHistoryTab.find(
+											(tab) => tab.tabId === currentTab
+										)?.historyIndex
+									]?.website.componentName
+								}
+								url={
+									tabs.find((tab) => tab.id === currentTab)?.history[
+										currentHistoryTab.find(
+											(tab) => tab.tabId === currentTab
+										)?.historyIndex
+									]?.url
+								}
+							/>
+						)}
+					</div>
 				</main>
 			</section>
 		</Window>

@@ -53,10 +53,10 @@ const SingleTab = ({
 	return (
 		<div
 			className={classNames(
-				"relative w-64 text-left py-2 px-4 rounded-t-md transition flex items-center justify-between group shadow",
+				"relative w-64 text-left py-2 px-4 rounded-lg transition flex items-center justify-between group",
 				currentTab === tab.id
-					? "bg-[#F7F7F7] dark:bg-[#292929]"
-					: "bg-[#E8E8E8] hover:bg-[#F7F7F7] hover:bg-opacity-70 dark:bg-[#141414] dark:hover:bg-[#292929] dark:hover:bg-opacity-70"
+					? "bg-white dark:bg-[#292929]"
+					: "bg-[#E8E8E8] hover:bg-white hover:bg-opacity-70 dark:bg-[#141414] dark:hover:bg-[#292929] dark:hover:bg-opacity-70"
 			)}
 		>
 			<p
