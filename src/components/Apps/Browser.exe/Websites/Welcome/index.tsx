@@ -1,4 +1,4 @@
-import IconEmptyTab from "@/assets/icons/empty-tab.svg?react";
+import IconBrowser from "@/assets/icons/app-browser.svg?react";
 import SearchEngine from "../SearchEngine";
 import ButtonWebsite from "./ButtonWebsite";
 
@@ -29,7 +29,7 @@ Welcome.componentName = "welcome";
 // used in tab as site title
 Welcome.title = "Nouvel onglet";
 
-Welcome.favicon = <IconEmptyTab />;
+Welcome.favicon = <IconBrowser />;
 
 Welcome.pages = [
 	{

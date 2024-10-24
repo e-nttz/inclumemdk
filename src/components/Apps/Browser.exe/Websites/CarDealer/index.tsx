@@ -1,4 +1,4 @@
-import IconSearchEngine from "@/assets/icons/google-favicon-example.svg?react";
+import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
 
 const CarDealer = () => {
 	return (

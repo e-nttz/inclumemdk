@@ -111,5 +111,5 @@ type Clue = {
 	time_launched: number;
 	title: string;
 	message: string;
-	image: string;
+	media: string;
 };

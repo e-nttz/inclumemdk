@@ -1,4 +1,4 @@
-import IconSearchEngine from "@/assets/icons/google-favicon-example.svg?react";
+import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
 import Results from "./Results";
 import Homepage from "./Homepage";
 import { useState } from "react";
@@ -22,19 +22,19 @@ export default SearchEngine;
 // used in RenderAllWebsites to select the right website
 SearchEngine.componentName = "searchEngine";
 // used in tab as site title
-SearchEngine.title = "Goulougoulou";
+SearchEngine.title = "Gougoule";
 
 SearchEngine.favicon = <IconSearchEngine />;
 
 SearchEngine.pages = [
 	{
-		title: "Goulougoulou",
-		url: "https://goulougoulou.com",
+		title: "Gougoule",
+		url: "https://gougoule.com",
 		component: Homepage,
 	},
 	{
-		title: "Goulougoulou",
-		url: "https://goulougoulou.com/?search=$1",
+		title: "Gougoule",
+		url: "https://gougoule.com/?search=$1",
 		component: Results,
 	},
 ];

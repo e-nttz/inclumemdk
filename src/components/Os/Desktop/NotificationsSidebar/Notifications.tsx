@@ -156,7 +156,7 @@ const Notifications = () => {
 										<path
 											d="M205 30.003H157V39L205 30.003Z"
 											fill="#E3EBF1"
-											fill-opacity="0.9"
+											fillOpacity="0.9"
 										/>
 										<g clipPath="url(#clip0_184_6862)">
 											<path
