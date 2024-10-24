@@ -7,9 +7,22 @@ import { websites } from "./Websites";
 interface NewTabButtonProps {
 	setTabs: (tabs: Tab[] | ((prev: Tab[]) => Tab[])) => void;
 	setCurrentTab: (tab: number) => void;
+	setCurrentHistoryTab: (
+		tab:
+			| { tabId: number; historyIndex: number }[]
+			| ((
+					prev: { tabId: number; historyIndex: number }[]
+			  ) => { tabId: number; historyIndex: number }[])
+	) => void;
+	setCurrentHistoryIndex?: (index: number) => void;
 }
 
-const NewTabButton = ({ setTabs, setCurrentTab }: NewTabButtonProps) => {
+const NewTabButton = ({
+	setTabs,
+	setCurrentTab,
+	setCurrentHistoryTab,
+	setCurrentHistoryIndex,
+}: NewTabButtonProps) => {
 	const addTabHandle = () => {
 		const newTab: Tab = {
 			id: Math.floor(Math.random() * 1000),
@@ -23,6 +36,18 @@ const NewTabButton = ({ setTabs, setCurrentTab }: NewTabButtonProps) => {
 
 		setTabs((prev: Tab[]) => [...prev, newTab]);
 		setCurrentTab(newTab.id);
+		setCurrentHistoryTab(
+			(prev: { tabId: number; historyIndex: number }[]) => {
+				return [
+					...prev,
+					{
+						tabId: newTab.id,
+						historyIndex: 0,
+					},
+				];
+			}
+		);
+		setCurrentHistoryIndex(0);
 	};
 
 	return (

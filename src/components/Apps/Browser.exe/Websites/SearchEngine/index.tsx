@@ -1,14 +1,19 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
 import Results from "./Results";
 import Homepage from "./Homepage";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface SearchEngineProps {
 	url: string;
 }
 
 const SearchEngine = ({ url }: SearchEngineProps) => {
-	const [statedUrl] = useState(url);
+	const [statedUrl, setStatedUrl] = useState(url);
+
+	useEffect(() => {
+		setStatedUrl(url);
+	}, [url]);
+
 	// return the right component based on the url
 	if (url.includes("?search=")) {
 		return <Results url={statedUrl} />;
