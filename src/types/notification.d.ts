@@ -3,6 +3,7 @@ interface AppNotification {
 	title: string;
 	message: string;
 	temporary?: boolean;
+	muted?: boolean;
 	visualHint?: {
 		video?: string;
 		image?: string;

@@ -9,13 +9,9 @@ const Notifications = () => {
 	const { notifications, sidebarVisibile } = useNotification();
 
 	useEffect(() => {
-		console.log("sidebarVisibile", sidebarVisibile);
-
 		// Each time the sidebar come visible, scroll to the bottom of notification-scrollable
 		if (sidebarVisibile) {
 			const scrollable = document.getElementById("notification-scrollable");
-
-			console.log("scrollable", scrollable);
 
 			setTimeout(() => {
 				if (scrollable) {
@@ -60,8 +56,6 @@ const Notifications = () => {
 							// Get the youtube watch id
 							videoId = notification?.visualHint?.video.split("v=")[1];
 						}
-
-						console.log(videoId);
 
 						return (
 							<li
@@ -164,7 +158,7 @@ const Notifications = () => {
 											fill="#E3EBF1"
 											fill-opacity="0.9"
 										/>
-										<g clip-path="url(#clip0_184_6862)">
+										<g clipPath="url(#clip0_184_6862)">
 											<path
 												d="M252.085 99.9332C251.841 99.9332 251.588 99.8912 251.336 99.7988C250.215 99.3873 249.634 98.1443 250.047 97.0273C251.546 92.9457 252.835 89.5611 252.835 89.5611C253.256 88.4441 254.511 87.8898 255.631 88.3097C256.751 88.7297 257.316 89.981 256.886 91.098C256.886 91.098 255.606 94.4658 254.115 98.5223C253.795 99.3957 252.961 99.9416 252.085 99.9416V99.9332Z"
 												fill="#15365E"

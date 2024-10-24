@@ -41,6 +41,7 @@ export const NotificationProvider = ({ children }) => {
 				id: 1,
 				title: "Welcome to Inclume OS",
 				message: "This is a notification",
+				muted: true,
 				action: {
 					label: "View",
 					onClick: () => {
@@ -52,6 +53,7 @@ export const NotificationProvider = ({ children }) => {
 				id: 33333,
 				title: "Welcome to Inclume OS",
 				message: "This is a notification with image",
+				muted: true,
 				visualHint: {
 					image: "https://external-preview.redd.it/8-reasons-to-avoid-the-latest-windows-11-update-hint-theyre-v0-5r9jKiru_PTykEpqMk_nUtYBZ0TJGepL3huWTi8qgvE.jpg?auto=webp&s=1cdb83b896a4456b59c7f73cea255f1748f7d9cd",
 				},
@@ -66,6 +68,7 @@ export const NotificationProvider = ({ children }) => {
 				id: 3033,
 				title: "Welcome to Inclume OS",
 				message: "This is a notification with image",
+				muted: true,
 				visualHint: {
 					image: "https://external-preview.redd.it/8-reasons-to-avoid-the-latest-windows-11-update-hint-theyre-v0-5r9jKiru_PTykEpqMk_nUtYBZ0TJGepL3huWTi8qgvE.jpg?auto=webp&s=1cdb83b896a4456b59c7f73cea255f1748f7d9cd",
 				},
@@ -80,6 +83,7 @@ export const NotificationProvider = ({ children }) => {
 				id: 3313,
 				title: "Welcome to Inclume OS",
 				message: "This is a notification with image",
+				muted: true,
 				visualHint: {
 					image: "https://external-preview.redd.it/8-reasons-to-avoid-the-latest-windows-11-update-hint-theyre-v0-5r9jKiru_PTykEpqMk_nUtYBZ0TJGepL3huWTi8qgvE.jpg?auto=webp&s=1cdb83b896a4456b59c7f73cea255f1748f7d9cd",
 				},
@@ -94,6 +98,7 @@ export const NotificationProvider = ({ children }) => {
 				id: 3233,
 				title: "Welcome to Inclume OS",
 				message: "This is a notification with image",
+				muted: true,
 				visualHint: {
 					image: "https://external-preview.redd.it/8-reasons-to-avoid-the-latest-windows-11-update-hint-theyre-v0-5r9jKiru_PTykEpqMk_nUtYBZ0TJGepL3huWTi8qgvE.jpg?auto=webp&s=1cdb83b896a4456b59c7f73cea255f1748f7d9cd",
 				},
@@ -108,6 +113,7 @@ export const NotificationProvider = ({ children }) => {
 				id: 2,
 				title: "Welcome to Inclume OS",
 				message: "This is an helpful notification with video",
+				muted: true,
 				visualHint: {
 					video: "https://www.youtube.com/watch?v=_85L5NWT87M",
 				},

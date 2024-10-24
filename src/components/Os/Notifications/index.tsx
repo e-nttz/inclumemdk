@@ -106,8 +106,10 @@ const Notification = ({ message, temporary = true }: NotificationInterface) => {
 
 					<button
 						onClick={() => {
-							console.log("Hello");
 							showSidebar();
+							// Clear timer
+							clearTimeout(timer);
+							setShow(false);
 						}}
 						className="absolute inset-0 bg-transparent appearance-none avoid-click-outside outline-focus"
 					>
@@ -138,6 +140,8 @@ const NotificationCenter = ({ notifications }: any) => {
 				)} */}
 
 				{notifications.map((t: AppNotification) => {
+					if (t.muted) return null;
+
 					return (
 						<Notification
 							id={t.id}

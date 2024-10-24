@@ -85,8 +85,6 @@ const Browser: AppProps = () => {
 			//make a copy of the current history index
 			const tempValue = currentHistoryIndex;
 
-			console.log("tempValue", tempValue);
-
 			setCurrentHistoryIndex(tempValue);
 
 			setCurrentHistoryTab((prev) => [
@@ -130,9 +128,8 @@ const Browser: AppProps = () => {
 
 	useEffect(() => {
 		const tab = currentHistoryTab.find((tab) => tab.tabId === currentTab);
-		console.log("item tab", tab);
+
 		if (tab) {
-			console.log("TAB", tab.historyIndex);
 			setCurrentHistoryIndex(tab.historyIndex);
 		}
 	}, [currentTab, currentHistoryTab]);

@@ -77,27 +77,3 @@ export const database = () => {
 
 	return { get, post };
 };
-
-// export const useData = <T,>(url: string) => {
-// 	const [data, setData] = useState<T | null>(null);
-
-// 	const client = useMiddleware();
-
-// 	useEffect(() => {
-// 		let ignore = false;
-
-// 		const fetchData = async () => {
-// 			const response: T = await client.get(url);
-
-// 			if (!ignore) setData(response);
-// 		};
-
-// 		fetchData();
-
-// 		return () => {
-// 			ignore = true;
-// 		};
-// 	}, [url]);
-
-// 	return data;
-// };

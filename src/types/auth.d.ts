@@ -14,5 +14,13 @@ interface AuthProviderProps {
 }
 
 interface User {
-	firstName: string;
+	candidate: {
+		first_name: string;
+		last_name: string;
+	};
+	code: string;
+	created_at: string;
+	updated_at: string;
+	id: number;
+	is_finished: boolean;
 }
