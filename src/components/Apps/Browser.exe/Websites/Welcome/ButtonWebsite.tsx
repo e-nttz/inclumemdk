@@ -13,11 +13,11 @@ const ButtonWebsite = ({ website }: ButtonWebsiteProps) => {
 	};
 
 	return (
-		<li className="relative space-y-2 group">
+		<li className="relative space-y-2 group bg-white bg-opacity-60 backdrop-blur-[70] rounded-[20px] p-[30px]">
 			<figure className="[&_svg]:w-8 [&_svg]:h-8 flex items-center justify-center bg-white bg-opacity-25 rounded-xl w-14 h-14 mx-auto transition group-hover:bg-opacity-40">
 				{website.favicon}
 			</figure>
-			<span className="text-[12px] text-center text-white block font-medium max-w-full truncate">
+			<span className="block max-w-full font-medium truncate">
 				{website.title}
 			</span>
 			<button

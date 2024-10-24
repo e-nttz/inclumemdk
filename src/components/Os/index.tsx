@@ -10,21 +10,21 @@ import { useStepsListener } from "@/providers/stepsListener";
 
 const InclumeOs = () => {
 	const { t } = useTranslate();
-	const { pauseMode, timer } = useStepsListener();
+	const { pauseMode } = useStepsListener();
 
 	return (
 		<>
 			<ContextMenu>
 				<ContextMenuTrigger className="flex flex-col flex-1">
 					{pauseMode && <ScreenPaused />}
-					<p className="absolute font-bold top-4 right-4">
+					{/* <p className="absolute font-bold top-4 right-4">
 						{
 							// convert seconds to minutes and seconds
 							`${Math.floor(timer / 60)}:${timer % 60 < 10 ? "0" : ""}${
 								timer % 60
 							}`
 						}
-					</p>
+					</p> */}
 					<div
 						id="fullscreen-notice"
 						className="absolute top-6 px-4 py-3 right-6 z-[100000] rounded border border-gray-100 bg-white/80 dark:border-gray dark:bg-gray/50 backdrop-blur gap-4 max-w-[320px] items-start text-sm hidden"

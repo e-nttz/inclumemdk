@@ -114,6 +114,7 @@ export const StepsListenerProvider = ({ children }) => {
 		fetchData();
 	}, []);
 
+	// TEST FUNCTION FOR DEVELOPMENT
 	const clearTimer = () => {
 		setTimer(0);
 		const currentSessionDuplicate = { ...currentSession };
