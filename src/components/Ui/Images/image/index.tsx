@@ -16,7 +16,7 @@ const Image = ({ ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => {
 				<OSContextualMenu
 					actions={[
 						{
-							label: t("save_image", "Enregister l'image"),
+							label: t("save_image", "Enregistrer l'image"),
 							action: () => {
 								handleInfoWindow(undefined, (currentPath) => {
 									const fileName = prompt(

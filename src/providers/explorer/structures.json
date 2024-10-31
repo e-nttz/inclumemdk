@@ -168,7 +168,8 @@
 									"updatedAt": "2023-10-02T19:45:00Z",
 									"path": "sunset-jpg",
 									"extension": ".jpg",
-									"slug": "sunset.jpg"
+									"slug": "sunset.jpg",
+									"url": "/images/photos/beach.jpg"
 								},
 								{
 									"name": "Waves",
@@ -177,7 +178,8 @@
 									"updatedAt": "2023-10-02T20:00:00Z",
 									"path": "waves-jpg",
 									"extension": ".jpg",
-									"slug": "waves.jpg"
+									"slug": "waves.jpg",
+									"url": "/images/photos/beach-2.jpg"
 								}
 							]
 						},
@@ -195,7 +197,8 @@
 									"updatedAt": "2023-10-02T20:30:00Z",
 									"path": "summit-jpg",
 									"extension": ".jpg",
-									"slug": "summit.jpg"
+									"slug": "summit.jpg",
+									"url": "/images/photos/mountain.jpg"
 								},
 								{
 									"name": "Trail",
@@ -204,7 +207,8 @@
 									"updatedAt": "2023-10-02T20:45:00Z",
 									"path": "trail-jpg",
 									"extension": ".jpg",
-									"slug": "trail.jpg"
+									"slug": "trail.jpg",
+									"url": "/images/photos/mountain-2.jpg"
 								}
 							]
 						}
@@ -224,7 +228,8 @@
 							"updatedAt": "2023-10-02T21:15:00Z",
 							"path": "birthday-party-jpg",
 							"extension": ".jpg",
-							"slug": "birthday_party.jpg"
+							"slug": "birthday_party.jpg",
+							"url": "/images/photos/birthday.jpg"
 						},
 						{
 							"name": "Wedding",
@@ -233,7 +238,8 @@
 							"updatedAt": "2023-10-02T21:30:00Z",
 							"path": "wedding-jpg",
 							"extension": ".jpg",
-							"slug": "wedding.jpg"
+							"slug": "wedding.jpg",
+							"url": "/images/photos/family.jpg"
 						}
 					]
 				}
