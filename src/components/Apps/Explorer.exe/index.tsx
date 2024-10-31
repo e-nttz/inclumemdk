@@ -5,12 +5,17 @@ import FilesList from "./Ui/Lists/Files";
 import { useExplorer } from "@/providers/explorer";
 import Button from "@/components/Ui/Buttons/button";
 import { useTranslate } from "@tolgee/react";
+import { useEffect } from "react";
 
 const Explorer = ({ forceRender = false, ...props }) => {
-	const { setPath, getStructure } = useExplorer();
+	const { setPath, getStructure, selectedFile } = useExplorer();
 	const { t } = useTranslate();
 
 	const { onSave, onSelect, onCancel } = props;
+
+	useEffect(() => {
+		console.log("Selected file is : ", selectedFile);
+	}, [selectedFile]);
 
 	return (
 		<Window
@@ -34,9 +39,22 @@ const Explorer = ({ forceRender = false, ...props }) => {
 						<Button onClick={onCancel} size="sm" theme="secondary">
 							{t("cancel", "Annuler")}
 						</Button>
+
 						{onSave && (
 							<Button onClick={onSave} size="sm">
 								{t("save", "Enregistrer")}
+							</Button>
+						)}
+
+						{onSelect && (
+							<Button
+								onClick={onSelect}
+								size="sm"
+								theme={selectedFile ? "primary" : "secondary"}
+								className={!selectedFile && "opacity-75"}
+								disabled={!selectedFile}
+							>
+								{t("confirm", "Confirmer")}
 							</Button>
 						)}
 					</div>

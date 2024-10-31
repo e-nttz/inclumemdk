@@ -21,10 +21,7 @@
 				"text": "",
 				"image": "/images/questionnary/question-1-1.png"
 			}
-		],
-		"conditionnal": {
-			"fail": 3
-		}
+		]
 	},
 	{
 		"id": 2,

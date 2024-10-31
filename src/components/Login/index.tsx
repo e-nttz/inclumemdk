@@ -3,7 +3,7 @@ import ThemeToggler from "../Ui/Toggle/Theme";
 import Input from "../Ui/Inputs/Input";
 import { useTranslate } from "@tolgee/react";
 import { useAuth } from "@/providers/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { classNames } from "@/helpers/sanitize";
 import FullScreenToggler from "../Ui/Toggle/FullScreen";
 
@@ -13,6 +13,12 @@ const LoginScreen = () => {
 	const { authLoading, login } = useAuth();
 
 	const [sessionError, setSessionError] = useState<string | null>(null);
+
+	useEffect(() => {
+		// Clear all localStorage and sessionStorage
+		localStorage.clear();
+		sessionStorage.clear();
+	}, []);
 
 	return (
 		<>

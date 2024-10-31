@@ -10,6 +10,7 @@ import CameraIcon from "@/assets/icons/camera.svg?react";
 import DismissIcon from "@/assets/icons/dismiss.svg?react";
 import { beacon, useBeaconListener } from "@/helpers/beacon";
 import Image from "@/components/Ui/Images/image";
+import { useExplorer } from "@/providers/explorer";
 interface AppProps extends React.FC {
 	title: string;
 	icon: ReactElement;
@@ -23,6 +24,8 @@ interface Message {
 
 const Message: AppProps = () => {
 	const { t } = useTranslate();
+	const { handleInfoWindow, closeInfoWindow } = useExplorer();
+
 	const messagesList = useRef<HTMLUListElement>(null);
 
 	const [selectedFiles, setSelectedFiles] = useState<string | null>(null);
@@ -235,12 +238,16 @@ const Message: AppProps = () => {
 							<button
 								type="button"
 								className="absolute text-gray-300 -translate-y-1/2 right-4 top-1/2 hover:text-accent dark:hover:text-accent-dark"
-								onClick={() => {
-									alert(
-										"Not implemented yet. A fake image is sent instead."
-									);
+								onClick={async () => {
+									handleInfoWindow((selected: FileNode) => {
+										console.log("Info window opened", selected);
 
-									setSelectedFiles("/images/restaurant.jpg");
+										if (selected?.url) {
+											setSelectedFiles(selected.url);
+										}
+
+										closeInfoWindow();
+									}, undefined);
 								}}
 							>
 								<span className="sr-only">

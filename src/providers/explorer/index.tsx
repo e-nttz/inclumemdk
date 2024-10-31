@@ -15,6 +15,7 @@ export const ExplorerContext = createContext<ExplorerContextType>({
 	getMainFolder: () => ({} as FileNode),
 	getThree: () => [],
 	getStructure: () => ({} as FileNode),
+	selectedFile: null,
 	setSelectedFile: () => {},
 	rename: () => {},
 	createFolder: () => {},
@@ -246,7 +247,7 @@ export const ExplorerProvider = ({ children }) => {
 		(
 			name: string,
 			fileType: string,
-			// content: string,
+			content: string,
 			currentFolderPath = currentPath
 		) => {
 			const randId = Math.random().toString(36).substring(7);
@@ -296,11 +297,11 @@ export const ExplorerProvider = ({ children }) => {
 	 * @returns {FileNode} - The file node to display in the explorer
 	 */
 	const handleInfoWindow = (
-		onSelect: () => void,
-		onSave: (filename: string) => void
+		onSelect: (selectedFile: FileNode) => void = undefined,
+		onSave: (filename: string) => void = undefined
 	) => {
-		setOnSave(() => onSave);
-		setOnSelect(() => onSelect);
+		setOnSave(onSave ? () => onSave : undefined);
+		setOnSelect(onSelect ? () => onSelect : undefined);
 
 		return getMainFolder();
 	};
@@ -320,6 +321,7 @@ export const ExplorerProvider = ({ children }) => {
 				getMainFolder,
 				getThree,
 				getStructure,
+				selectedFile,
 				setSelectedFile,
 				rename,
 				createFolder,
@@ -334,7 +336,7 @@ export const ExplorerProvider = ({ children }) => {
 				<Explorer
 					forceRender
 					onSave={() => onSave(currentPath)}
-					onSelect={onSelect}
+					onSelect={() => onSelect(selectedFile)}
 					onCancel={() => {
 						setOnSave(undefined);
 						setOnSelect(undefined);

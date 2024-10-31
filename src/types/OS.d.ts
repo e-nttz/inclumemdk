@@ -51,6 +51,7 @@ interface ExplorerContextType {
 	getMainFolder: () => FileNode;
 	getThree: () => FileNode[];
 	getStructure: () => FileNode;
+	selectedFile: FileNode | null;
 	setSelectedFile: (file: FileNode) => void;
 	rename: (fileNode: FileNode, newName: string) => void;
 	createFolder: (name: string) => void;
@@ -61,7 +62,7 @@ interface ExplorerContextType {
 		currentFolderPath: string
 	) => void;
 	handleInfoWindow: (
-		onSelect?: () => void,
+		onSelect?: (selectedFile: FileNode) => void,
 		onSave?: (filename: string) => void
 	) => FileNode;
 	closeInfoWindow: () => void;
@@ -77,6 +78,7 @@ type FileNode = {
 	extension?: string; // Extension de fichier pour les fichiers uniquement
 	slug?: string; // Nom complet avec extension en slug
 	children?: FileNode[]; // Optionnel pour les dossiers
+	url?: string | null; // URL pour les fichiers images uniquement
 };
 
 interface StepsListenerContextType {
