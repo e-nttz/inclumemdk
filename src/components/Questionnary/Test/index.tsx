@@ -17,6 +17,7 @@ const Test = ({
 	const [currentQuestionId, setCurrentQuestionId] = useState<number>(null);
 	const [question, setQuestion] = useState<LinkedQuestion>(null);
 	const [results, setResults] = useState<{ [key: number]: boolean }>({});
+	const [answers, setAnswers] = useState<{ [key: number]: any }>({});
 
 	const [questionCounter] = useState<number>(1);
 	const { t } = useTranslate();
@@ -40,18 +41,35 @@ const Test = ({
 		}
 	}, [questions]);
 
+	const handleComplete = async () => {
+		// Test is completed, calculate score
+		const score = Object.values(results).filter((r) => r).length;
+
+		setScore(score);
+
+		// Merge results and answers
+		onComplete(
+			Object.entries(results).map(([key, value]) => {
+				// Get answer from answers object
+				const answer = answers[key];
+
+				return {
+					is_correct: value,
+					question_id: key,
+					selectedValues: answer,
+				};
+			})
+		);
+
+		return;
+	};
+
 	useEffect(() => {
 		if (currentQuestionId) {
 			const currentQuestion = getCurrentQuestion();
 
 			if (!currentQuestion) {
-				// Test is completed, calculate score
-				const score = Object.values(results).filter((r) => r).length;
-
-				setScore(score);
-
-				onComplete();
-				return;
+				handleComplete();
 			}
 
 			setQuestion(currentQuestion);
@@ -70,12 +88,35 @@ const Test = ({
 			[currentQuestionId]: isCorrect,
 		});
 
+		setAnswers({
+			...answers,
+			[currentQuestionId]: selectedValues,
+		});
+
 		setSelectedValues([]);
 
 		// Check if current question has a "conditionnal" object that show if the user has to go to a specific question
 		const nextQuestionId = isCorrect
 			? question.next_question_if_successed
 			: question.next_question_if_failed;
+
+		// If there's no "nextQuestionId", try to get it from all questions from next object
+		if (!nextQuestionId) {
+			const currentIndex = questions.findIndex(
+				(q) => q.id === currentQuestionId
+			);
+
+			const nextQuestion = questions?.[currentIndex + 1];
+
+			if (nextQuestion) {
+				setCurrentQuestionId(nextQuestion.id);
+				return;
+			}
+		}
+
+		if (!nextQuestionId) {
+			handleComplete();
+		}
 
 		setCurrentQuestionId(nextQuestionId);
 	};

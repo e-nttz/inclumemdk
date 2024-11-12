@@ -3,16 +3,16 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 import dataSteps from "../../data/steps.json";
 
-import { useNotification } from "../notifications";
+// import { useNotification } from "../notifications";
 import { useBeaconListener } from "@/helpers/beacon";
 
-interface Step {
-	step_id: number;
-	items: {
-		value: string;
-		clues: Clue[];
-	}[];
-}
+// interface Step {
+// 	step_id: number;
+// 	items: {
+// 		value: string;
+// 		clues: Clue[];
+// 	}[];
+// }
 
 export const StepsListenerContext = createContext<StepsListenerContextType>({
 	pauseMode: false,
@@ -23,12 +23,10 @@ export const StepsListenerContext = createContext<StepsListenerContextType>({
 });
 
 export const StepsListenerProvider = ({ children }) => {
-	const { addNotification } = useNotification();
-
 	const [, setTestStepTemplate] = useState<TestStepTemplate | null>(null);
 	const [pauseMode, setPauseMode] = useState<boolean>(false);
 	const [timer, setTimer] = useState<number>(0);
-	const [steps] = useState<Step[]>(dataSteps);
+	// const [steps] = useState<Step[]>(dataSteps);
 	const [currentStepIndex, setCurrentStepIndex] = useState<number>(0);
 
 	// Get session storage

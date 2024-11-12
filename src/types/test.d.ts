@@ -3,7 +3,7 @@ interface TestProps {
 	visible: boolean;
 	questions: LinkedQuestion[];
 	firstQuestionId?: number;
-	onComplete: () => void;
+	onComplete: (results: any) => void;
 	setScore: (score: number) => void;
 }
 

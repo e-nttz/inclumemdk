@@ -23,8 +23,6 @@ const Image = ({ ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => {
 										t("enter_filename", "Entrez le nom du fichier")
 									);
 
-									console.log("currentPath = ", currentPath);
-
 									createFile(fileName, "png", "test", currentPath);
 
 									closeInfoWindow();

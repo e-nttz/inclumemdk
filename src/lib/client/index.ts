@@ -42,8 +42,6 @@ export const database = () => {
 					console.error("An error has been thrown: ", error);
 				});
 
-			console.log(response);
-
 			return response;
 		} catch (error) {
 			console.error(error);
