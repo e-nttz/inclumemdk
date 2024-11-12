@@ -28,3 +28,11 @@ export const getQuestions = async (): Promise<LinkedQuestion[]> => {
 
 	return questions;
 };
+
+export const getLastStep = async (sessionId: string): Promise<any> => {
+	const db = database();
+
+	const response = await db.get(`/testsession/${sessionId}/teststep/last`);
+
+	return response;
+};

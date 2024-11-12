@@ -1,5 +1,5 @@
 import { ContextMenu, ContextMenuTrigger } from "@radix-ui/react-context-menu";
-import { useTranslate } from "@tolgee/react";
+
 import OSContextualMenu from "@/components/Ui/Menus/ContextualMenu";
 
 import FileIcon from "@/assets/icons/colors/file.svg?react";
@@ -20,7 +20,6 @@ interface FileItemWrapperProps extends FileItemProps {
 }
 
 const FileItem = ({ file, complete = false }: FileItemProps) => {
-	const { t } = useTranslate();
 	const { setPath, getMainFolder, rename, setSelectedFile } = useExplorer();
 
 	const renameRef = useRef<HTMLInputElement>(null);
@@ -40,6 +39,11 @@ const FileItem = ({ file, complete = false }: FileItemProps) => {
 			: file.type === "folder"
 			? FolderIcon
 			: FileIcon;
+
+	// Random createdAt time for file and folder from 1 month to 2 week ago
+	const createdAt = new Date(
+		Date.now() - Math.floor(Math.random() * 1209600000 + 2592000000)
+	);
 
 	return (
 		<FileItemWrapper
@@ -98,9 +102,20 @@ const FileItem = ({ file, complete = false }: FileItemProps) => {
 					)}
 				</div>
 
-				{complete && file.type === "file" && (
-					<div>
-						<p className="text-sm text-gray-300">{t("date", "Date")}</p>
+				{complete && (
+					<div className="w-1/4">
+						<p className="text-sm text-gray-300">
+							{/* Type de fichier */}
+							{file.type === "file" ? "Fichier" : "Dossier"}
+						</p>
+					</div>
+				)}
+
+				{complete && (
+					<div className="w-1/4">
+						<p className="text-sm text-gray-300">
+							{createdAt.toLocaleDateString("fr-FR")}
+						</p>
 					</div>
 				)}
 			</button>

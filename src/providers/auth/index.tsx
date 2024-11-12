@@ -1,4 +1,5 @@
 import { getLocalStorage, setLocalStorage } from "@/helpers/storage";
+import { getLastStep } from "@/lib/client/quiz";
 
 import { getTestSession } from "@/lib/client/session";
 import { useTranslate } from "@tolgee/react";
@@ -66,10 +67,14 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
 			setUser({
 				...testSession.testSession,
-				firstName: "Test user",
 			});
 
-			setLoading(false);
+			// Getch last step
+			const lastStep = await getLastStep(session);
+
+			if (lastStep?.id) {
+				setTestStatus("success");
+			}
 
 			setLocalStorage("session", session, true);
 			setLocalStorage(
@@ -80,6 +85,10 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 				}),
 				true
 			);
+
+			setTimeout(() => {
+				setLoading(false);
+			}, 500);
 
 			return true;
 		}
@@ -100,6 +109,13 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 				if (!testSession?.error) {
 					setSession(session);
 
+					// Getch last step
+					const lastStep = await getLastStep(session);
+
+					if (lastStep?.id) {
+						setTestStatus("success");
+					}
+
 					setUser({
 						...testSession.testSession,
 						firstName: "Test user",
@@ -119,6 +135,9 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
 
 	const logout = () => {
 		setSession(null);
+
+		setLocalStorage("session", "", true);
+		setLocalStorage("user", "", true);
 	};
 
 	return (

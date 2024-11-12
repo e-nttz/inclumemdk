@@ -1,12 +1,14 @@
 import { apps } from "@/components/Apps";
 import { classNames } from "@/helpers/sanitize";
 import { useClickOutside } from "@/hooks/useClickOutside";
+import { useAuth } from "@/providers/auth";
 import { useOS } from "@/providers/InclumeOS";
 import { Transition } from "@headlessui/react";
 import { useRef } from "react";
 
 const StartMenu = () => {
 	const { startMenuOpen, setStartMenuOpen, launchApp } = useOS();
+	const { logout } = useAuth();
 
 	const nodeRef = useRef<HTMLDivElement>(null);
 
@@ -165,36 +167,28 @@ const StartMenu = () => {
 					<button
 						type="button"
 						className="p-3 -mr-3 transition rounded hover:bg-blue-200 focus:outline-none active:bg-transparent dark:hover:bg-black/20 dark:active:bg-black/30"
+						onClick={() => {
+							const confirmation = confirm(
+								"Voulez-vous vraiment éteindre votre ordinateur ? Toutes modifications non sauvegardées seront perdues."
+							);
+
+							if (confirmation) {
+								logout();
+								setTimeout(() => {
+									window.location.reload();
+								}, 300);
+							}
+						}}
 					>
-						<svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-							<path
-								stroke="currentColor"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								strokeWidth="1.5"
-								d="M18.2813 12.0313L11.9687 5.7187C11.4896 5.23964 10.6829 5.36557 10.3726 5.96785L6.75 13L11 17.25L18.0321 13.6274C18.6344 13.3171 18.7604 12.5104 18.2813 12.0313Z"
-							></path>
-							<path
-								stroke="currentColor"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								strokeWidth="1.5"
-								d="M4.75 19.25L8.5 15.5"
-							></path>
-							<path
-								stroke="currentColor"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								strokeWidth="1.5"
-								d="M13.75 7.25L16.25 4.75"
-							></path>
-							<path
-								stroke="currentColor"
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								strokeWidth="1.5"
-								d="M16.75 10.25L19.25 7.75"
-							></path>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							className="w-5 h-auto"
+							fill="#000"
+							version="1.1"
+							viewBox="0 0 325.214 325.214"
+						>
+							<path d="M288.777 93.565c-15.313-23.641-36.837-42.476-62.243-54.472-1.616-.763-3.109-1.134-4.564-1.134-1.969 0-8.392.833-8.392 11.541v17.75c0 8.998 5.479 13.113 7.159 14.16 32.613 20.33 52.083 55.317 52.083 93.59 0 60.772-49.442 110.214-110.214 110.214S52.393 235.772 52.393 175c0-38.872 19.942-74.144 53.346-94.353 4.475-2.707 6.839-7.426 6.839-13.647V49c0-7.959-5.077-10.783-9.424-10.783-1.714 0-3.542.422-5.144 1.188-25.229 12.066-46.59 30.9-61.773 54.467C20.638 118.084 12.393 146.137 12.393 175c0 82.828 67.386 150.214 150.214 150.214S312.821 257.828 312.821 175c0-28.992-8.314-57.152-24.044-81.435z" />
+							<path d="M152.579 117h21c5.514 0 10-4.486 10-10V10c0-5.514-4.486-10-10-10h-21c-5.514 0-10 4.486-10 10v97c0 5.514 4.485 10 10 10z" />
 						</svg>
 					</button>
 				</div>

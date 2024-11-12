@@ -59,42 +59,41 @@ export const StepsListenerProvider = ({ children }) => {
 	// Effect to show the clues
 	useEffect(() => {
 		if (!pauseMode && currentSession) {
-			const currentStep = steps.find(
-				(step) => step.step_id === currentSession?.currentStep + 1
-			);
-			const currentClues = currentStep?.items[currentStepIndex]?.clues;
-			let timerDuplicate = timer;
-			const interval = setInterval(() => {
-				timerDuplicate++;
-				setTimer(timerDuplicate);
-				const currentClue = currentClues?.find(
-					(clue) => clue.time_launched === timerDuplicate
-				);
-				if (currentClue) {
-					addNotification({
-						title: currentClue.title,
-						message: currentClue.message,
-					});
-					const currentSessionDuplicate = { ...currentSession };
-					currentSessionDuplicate.cluesShowed++;
-					localStorage.setItem(
-						sessionId,
-						JSON.stringify(currentSessionDuplicate)
-					);
-					setCurrentSession(currentSessionDuplicate);
-				}
-				if (timerDuplicate % 10 === 0) {
-					const currentSessionDuplicate = { ...currentSession };
-					currentSessionDuplicate.timer = timerDuplicate;
-					setCurrentSession(currentSessionDuplicate);
-					localStorage.setItem(
-						sessionId,
-						JSON.stringify(currentSessionDuplicate)
-					);
-				}
-			}, 1000);
-
-			return () => clearInterval(interval);
+			// const currentStep = steps.find(
+			// 	(step) => step.step_id === currentSession?.currentStep + 1
+			// );
+			// const currentClues = currentStep?.items[currentStepIndex]?.clues;
+			// let timerDuplicate = timer;
+			// const interval = setInterval(() => {
+			// 	timerDuplicate++;
+			// 	setTimer(timerDuplicate);
+			// 	const currentClue = currentClues?.find(
+			// 		(clue) => clue.time_launched === timerDuplicate
+			// 	);
+			// 	if (currentClue) {
+			// 		addNotification({
+			// 			title: currentClue.title,
+			// 			message: currentClue.message,
+			// 		});
+			// 		const currentSessionDuplicate = { ...currentSession };
+			// 		currentSessionDuplicate.cluesShowed++;
+			// 		localStorage.setItem(
+			// 			sessionId,
+			// 			JSON.stringify(currentSessionDuplicate)
+			// 		);
+			// 		setCurrentSession(currentSessionDuplicate);
+			// 	}
+			// 	if (timerDuplicate % 10 === 0) {
+			// 		const currentSessionDuplicate = { ...currentSession };
+			// 		currentSessionDuplicate.timer = timerDuplicate;
+			// 		setCurrentSession(currentSessionDuplicate);
+			// 		localStorage.setItem(
+			// 			sessionId,
+			// 			JSON.stringify(currentSessionDuplicate)
+			// 		);
+			// 	}
+			// }, 1000);
+			// return () => clearInterval(interval);
 		}
 	}, [currentSession, pauseMode, currentStepIndex]);
 
