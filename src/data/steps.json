@@ -9,7 +9,9 @@
 						"time_launched": 10,
 						"title": "Ouvrez le navigateur",
 						"message": "Double-cliquez sur l'icone Navigateur pour l'ouvrir et continuer dans les étapes.",
-						"media": ""
+						"visualHint": {
+							"image": ""
+						}
 					}
 				]
 			},
@@ -20,13 +22,15 @@
 						"time_launched": 25,
 						"title": "Votre navigateur est ouvert et vous ne savez pas où aller ?",
 						"message": "Il vous suffit de cliquer sur le lien \"Gougoule\".",
-						"media": ""
+						"visualHint": {
+							"video": ""
+						}
 					},
 					{
 						"time_launched": 50,
 						"title": "Autre méthode",
 						"message": "Si vous ne trouvez pas le lien, vous pouvez aussi taper \"https://gougoule.com\" dans la barre d'adresse.",
-						"media": ""
+						"visualHint": {}
 					}
 				]
 			}
