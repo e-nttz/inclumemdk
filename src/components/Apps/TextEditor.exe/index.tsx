@@ -1,16 +1,66 @@
-import { ReactElement } from "react";
+import { ReactElement, useRef, useState } from "react";
 
 import Window from "@/components/Os/Window";
+import Editor, {
+	BtnBold,
+	BtnItalic,
+	EditorProvider,
+	Toolbar,
+} from "react-simple-wysiwyg";
 
 interface AppProps extends React.FC {
 	title: string;
 	icon: ReactElement;
 }
 
-const TextEditor: AppProps = () => {
+interface TextEditorProps {
+	content?: string;
+}
+
+const TextEditor: AppProps<TextEditorProps> = ({ content = "" }) => {
+	const [value, setValue] = useState(content);
+	const editorRef = useRef(null);
+
+	function onChange(e) {
+		setValue(e.target.value);
+		console.log(e.target.value);
+	}
+
+	const addImage = () => {
+		const selection = window.getSelection();
+		const img = document.createElement("img");
+		img.src =
+			"https://images.unsplash.com/photo-1721332150382-d4114ee27eff?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+		img.className = "h-auto max-w-full";
+		if (selection.rangeCount > 0) {
+			const range = selection.getRangeAt(0);
+			range.insertNode(img);
+			range.collapse(false); // Placer le curseur après l'image
+			setValue(editorRef.current.innerHTML); // Met à jour l'état avec le contenu modifié
+		} else {
+			setValue(value + img.outerHTML);
+		}
+	};
+
 	return (
 		<Window appName={TextEditor.title}>
-			<section className="flex flex-col flex-1 w-full overflow-auto text-black bg-white/90 backdrop-blur dark:bg-black/70"></section>
+			<EditorProvider>
+				<section className="flex flex-col flex-1 w-full overflow-auto text-black bg-[#F5F5F5] backdrop-blur dark:bg-black/70">
+					<Toolbar>
+						<BtnBold />
+						<BtnItalic />
+						<button onClick={addImage}>Ajouter une image</button>
+					</Toolbar>
+					<div className="w-full max-w-5xl mx-auto mt-8 bg-white">
+						<Editor
+							value={value}
+							onChange={onChange}
+							containerProps={{ style: { resize: "vertical" } }}
+							ref={editorRef}
+						/>
+					</div>
+				</section>
+			</EditorProvider>
 		</Window>
 	);
 };
@@ -20,27 +70,36 @@ export default TextEditor;
 TextEditor.title = "Editeur de texte";
 TextEditor.icon = (
 	<svg
-		width="52"
-		height="52"
-		viewBox="0 0 52 52"
-		fill="none"
 		xmlns="http://www.w3.org/2000/svg"
+		id="PLANCHE_02_-_icones_sans_noms"
+		data-name="PLANCHE 02 - icones sans noms"
+		viewBox="0 0 75.18 75.13"
 	>
-		<path
-			d="M52 11.0382V40.9543C52 47.0414 47.0486 51.9928 40.9615 51.9928H11.0385C4.95139 51.9998 0 47.0484 0 40.9613V11.0382C0 4.95115 4.95139 -0.000244141 11.0385 -0.000244141H40.9546C47.0417 -0.000244141 51.9931 4.95115 51.9931 11.0452L52 11.0382Z"
-			fill="#41B521"
-		/>
-		<path
-			d="M52.0014 26.3287V40.9612C52.0014 47.0483 47.05 51.9997 40.9629 51.9997H23.0894L9.15625 38.0666L34.5503 8.88452L52.0014 26.3287Z"
-			fill="#4E8526"
-		/>
-		<path
-			d="M45.1162 45.8917C44.9777 46.3349 44.6037 46.418 44.1813 46.4457C41.5429 46.6189 39.1745 45.9333 37.097 44.3405C34.971 45.3516 32.5957 45.9194 30.0889 45.9194C24.168 45.9194 18.9811 42.7616 16.1211 38.0457C18.351 38.9459 20.7124 39.4099 23.1431 39.4099C33.5168 39.4099 41.9514 30.9683 41.9514 20.5946C41.9514 19.8052 41.903 19.0296 41.806 18.2678C44.6453 21.204 46.3973 25.1928 46.3973 29.6041C46.3973 34.0153 44.7699 37.7271 42.1107 40.6287C42.1107 40.6841 42.1246 40.7534 42.1384 40.8226C42.547 42.4708 43.378 43.8489 44.6868 44.9361C44.9984 45.1854 45.2547 45.4624 45.1162 45.8917Z"
-			fill="white"
-		/>
-		<path
-			d="M39.8763 20.5948C39.8763 29.8259 32.3695 37.3326 23.1454 37.3326C20.7493 37.3326 18.4364 36.834 16.255 35.8507L15.7079 35.5944L15.2163 35.9545C15.1747 35.9822 15.1401 36.0099 15.0985 36.0376C13.3257 37.3188 11.4283 37.9974 9.35076 38.0944C8.85908 38.1151 8.60285 37.5265 8.93526 37.1595C9.98786 35.9822 10.7358 34.5834 11.1513 32.9768L11.1859 32.3051L10.902 32.0073C7.21092 28.0462 5.62509 22.5408 6.77465 17.07C8.33278 9.66715 14.8562 4.19638 22.4114 3.87091C30.4028 3.53158 37.2378 8.8223 39.2599 16.1144C39.6616 17.5409 39.8763 19.0436 39.8763 20.5948Z"
-			fill="white"
-		/>
+		<g
+			id="Word_traitement_de_texte_-_copie"
+			data-name="Word (traitement de texte) - copie"
+		>
+			<path
+				d="M75.13 15.97v43.2c0 8.79-7.15 15.94-15.94 15.94h-43.2C7.2 75.11.05 67.96.05 59.17v-43.2C.05 7.17 7.2.02 15.99.02h43.2c8.79 0 15.94 7.15 15.94 15.95"
+				className="cls-3"
+			></path>
+			<path
+				fill="#25497a"
+				strokeWidth="0"
+				d="M75.13 37.89v21.28c0 8.79-7.15 15.94-15.94 15.94h-27.9L18.8 62.62l19.47-52.08 9.22.07z"
+			></path>
+			<path
+				d="M57.63 25.75v33.42c0 2.96-2.4 5.35-5.35 5.35H22.9a5.36 5.36 0 0 1-5.36-5.36v-43.2c0-2.96 2.4-5.35 5.35-5.35h19.53c.94 0 1.7.76 1.7 1.7v4.76a6.98 6.98 0 0 0 6.98 6.98h4.82c.94 0 1.7.76 1.7 1.7Z"
+				className="cls-2"
+			></path>
+			<path
+				d="M49.95 31.81h-23.8c-1.21 0-2.18-.98-2.18-2.18s.98-2.18 2.18-2.18h23.8c1.21 0 2.18.98 2.18 2.18s-.98 2.18-2.18 2.18m0 8.85h-23.8c-1.21 0-2.18-.98-2.18-2.18s.98-2.18 2.18-2.18h23.8c1.21 0 2.18.98 2.18 2.18s-.98 2.18-2.18 2.18m0 8.85h-23.8c-1.21 0-2.18-.98-2.18-2.18s.98-2.18 2.18-2.18h23.8c1.21 0 2.18.98 2.18 2.18s-.98 2.18-2.18 2.18m-11.9 8.53h-11.9c-1.21 0-2.18-.98-2.18-2.18s.98-2.18 2.18-2.18h11.9c1.21 0 2.18.98 2.18 2.18s-.98 2.18-2.18 2.18"
+				className="cls-3"
+			></path>
+			<path
+				d="M56.95 21.37h-5.98c-2.34 0-4.23-1.89-4.23-4.23V11.3c0-.61.73-.91 1.16-.49l9.53 9.39c.44.43.13 1.17-.48 1.17"
+				className="cls-2"
+			></path>
+		</g>
 	</svg>
 );
