@@ -5,17 +5,12 @@ import FilesList from "./Ui/Lists/Files";
 import { useExplorer } from "@/providers/explorer";
 import Button from "@/components/Ui/Buttons/button";
 import { useTranslate } from "@tolgee/react";
-import { useEffect } from "react";
 
 const Explorer = ({ forceRender = false, ...props }) => {
 	const { setPath, getStructure, selectedFile } = useExplorer();
 	const { t } = useTranslate();
 
 	const { onSave, onSelect, onCancel } = props;
-
-	useEffect(() => {
-		console.log("Selected file is : ", selectedFile);
-	}, [selectedFile]);
 
 	return (
 		<Window

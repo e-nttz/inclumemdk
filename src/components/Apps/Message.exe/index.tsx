@@ -240,8 +240,6 @@ const Message: AppProps = () => {
 								className="absolute text-gray-300 -translate-y-1/2 right-4 top-1/2 hover:text-accent dark:hover:text-accent-dark"
 								onClick={async () => {
 									handleInfoWindow((selected: FileNode) => {
-										console.log("Info window opened", selected);
-
 										if (selected?.url) {
 											setSelectedFiles(selected.url);
 										}

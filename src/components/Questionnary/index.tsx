@@ -8,12 +8,12 @@ import { classNames } from "@/helpers/sanitize";
 import Test from "./Test";
 import FullScreenToggler from "../Ui/Toggle/FullScreen";
 import ThemeToggler from "../Ui/Toggle/Theme";
-import { getQuestions } from "@/lib/client/quiz";
+import { getQuestions, saveStep } from "@/lib/client/quiz";
 
 const Questionnary = () => {
 	const { t } = useTranslate();
 
-	const { user, setTestStatus } = useAuth();
+	const { user, setTestStatus, session } = useAuth();
 
 	const welcomeRef = useRef<HTMLDivElement>(null);
 
@@ -23,6 +23,7 @@ const Questionnary = () => {
 	const [startTest, setStartTest] = useState<boolean>(false);
 	const [testCompleted, setTestCompleted] = useState<boolean>(false);
 	const [score, setScore] = useState<number>(0);
+	const [scoreLoading, setScoreLoading] = useState<boolean>(true);
 
 	const [questions, setQuestions] = useState([]);
 
@@ -35,8 +36,21 @@ const Questionnary = () => {
 		})();
 	}, []);
 
-	const onComplete = () => {
+	const onComplete = async (results) => {
 		setTestCompleted(true);
+
+		// For each result, save it to the API
+		for (const result of results) {
+			await saveStep(session, {
+				test_step_template_id: result.question_id,
+				is_successful: result.is_correct,
+				extra_data: {
+					selectedValues: result.selectedValues,
+				},
+			});
+		}
+
+		setScoreLoading(false);
 	};
 
 	return (
@@ -47,65 +61,79 @@ const Questionnary = () => {
 						"p-2.5 rounded-[30px] mx-auto transition bg-[#F9F9F9]/90 backdrop-blur-lg w-full max-w-[560px] flex flex-col self-center mt-auto mb-auto border border-gray-100/40  shadow-[0px_40px_80px_0px_#0000002E,0px_4px_26px_0px_#00000024] dark:bg-black/75"
 					)}
 				>
-					<div className="relative flex flex-col items-center w-full before:absolute before:inset-x-0 before:bottom-0 before:top-1/2 before:bg-white dark:before:bg-black before:rounded-t-[20px]">
-						<figure className="h-[220px] mx-auto overflow-visible mt-4">
-							<img
-								src={
-									score >= REQUIRED_SCORE
-										? "/images/mascotte/success.png"
-										: "/images/mascotte/avatar.png"
-								}
-								className={
-									score >= REQUIRED_SCORE
-										? "translate-x-[28px]"
-										: "translate-x-px"
-								}
-								alt="Success"
-							/>
-						</figure>
-					</div>
-
-					<div className="bg-white dark:bg-black rounded-b-[20px] p-6">
-						<h2 className="font-bold text-center text-[32px] leading-tight">
-							{score >= REQUIRED_SCORE
-								? t(
-										"questionnary_success_title",
-										"Bravo ! Tu as réussi cette première étape avec succès !"
-								  )
-								: t(
-										"questionnary_failure_title",
-										"Merci d’avoir répondu à ce questionnaire !"
-								  )}
-						</h2>
-
-						<p className="mt-6 text-lg text-center text-gray-600 whitespace-pre-wrap dark:text-gray-200">
-							{score >= REQUIRED_SCORE
-								? t(
-										"questionnary_success_message",
-										"Nous allons pouvoir passer à l’étape suivante en nous immergeant pleinement dans le monde numérique.\nTu es prêt ?"
-								  )
-								: t(
-										"questionnary_failure_message",
-										"Préviens ton agent/accompagnateur que tu as fini le questionnaire ! A bientôt."
-								  )}
-						</p>
-
-						<div className="flex items-center justify-center mt-8 mb-2 text-center">
-							{score >= REQUIRED_SCORE ? (
-								<Button onClick={() => setTestStatus("success")}>
-									{t(
-										"questionnary_success_cta",
-										"Aller sur le bureau"
-									)}
-									<IconArrowRight className="w-6 h-auto" />
-								</Button>
-							) : (
-								<Button onClick={() => setTestStatus("failed")}>
-									{t("questionnary_failure_cta", "Fermer ma session")}
-								</Button>
+					{scoreLoading ? (
+						<div className="py-4 font-bold text-center">
+							{t(
+								"score_loading",
+								"Votre score est en cours de calcul, un instant ..."
 							)}
 						</div>
-					</div>
+					) : (
+						<>
+							<div className="relative flex flex-col items-center w-full before:absolute before:inset-x-0 before:bottom-0 before:top-1/2 before:bg-white dark:before:bg-black before:rounded-t-[20px]">
+								<figure className="h-[220px] mx-auto overflow-visible mt-4">
+									<img
+										src={
+											score >= REQUIRED_SCORE
+												? "/images/mascotte/success.png"
+												: "/images/mascotte/avatar.png"
+										}
+										className={
+											score >= REQUIRED_SCORE
+												? "translate-x-[28px]"
+												: "translate-x-px"
+										}
+										alt="Success"
+									/>
+								</figure>
+							</div>
+
+							<div className="bg-white dark:bg-black rounded-b-[20px] p-6">
+								<h2 className="font-bold text-center text-[32px] leading-tight">
+									{score >= REQUIRED_SCORE
+										? t(
+												"questionnary_success_title",
+												"Bravo ! Tu as réussi cette première étape avec succès !"
+										  )
+										: t(
+												"questionnary_failure_title",
+												"Merci d’avoir répondu à ce questionnaire !"
+										  )}
+								</h2>
+
+								<p className="mt-6 text-lg text-center text-gray-600 whitespace-pre-wrap dark:text-gray-200">
+									{score >= REQUIRED_SCORE
+										? t(
+												"questionnary_success_message",
+												"Nous allons pouvoir passer à l’étape suivante en nous immergeant pleinement dans le monde numérique.\nTu es prêt ?"
+										  )
+										: t(
+												"questionnary_failure_message",
+												"Préviens ton agent/accompagnateur que tu as fini le questionnaire ! A bientôt."
+										  )}
+								</p>
+
+								<div className="flex items-center justify-center mt-8 mb-2 text-center">
+									{score >= REQUIRED_SCORE ? (
+										<Button onClick={() => setTestStatus("success")}>
+											{t(
+												"questionnary_success_cta",
+												"Aller sur le bureau"
+											)}
+											<IconArrowRight className="w-6 h-auto" />
+										</Button>
+									) : (
+										<Button onClick={() => setTestStatus("failed")}>
+											{t(
+												"questionnary_failure_cta",
+												"Fermer ma session"
+											)}
+										</Button>
+									)}
+								</div>
+							</div>
+						</>
+					)}
 				</div>
 			) : (
 				<>

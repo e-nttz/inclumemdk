@@ -29,8 +29,6 @@ export function addFileToFolder(
 	// Find the folder inside tree deeply
 	let currentFolder: FileNode | null = null;
 
-	console.log("Current folder from before : ", folderPath);
-
 	// Loop trought the tree and children until find the folder
 	const findFolder = (node: FileNode): boolean => {
 		if (node.type === "folder" && node.path === folderPath) {
@@ -49,8 +47,6 @@ export function addFileToFolder(
 	};
 
 	findFolder(tree);
-
-	console.log("Current folder from fn : ", currentFolder);
 
 	// Insert the file inside the folder
 	if (currentFolder) {

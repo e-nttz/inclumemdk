@@ -250,6 +250,8 @@ export const ExplorerProvider = ({ children }) => {
 			content: string,
 			currentFolderPath = currentPath
 		) => {
+			console.log(content);
+
 			const randId = Math.random().toString(36).substring(7);
 
 			const newFile: FileNode = {
