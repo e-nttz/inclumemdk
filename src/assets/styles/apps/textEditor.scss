@@ -3,6 +3,10 @@
 		@apply hidden;
 	}
 	.rsw-ce {
-		@apply rounded-none;
+		@apply rounded-none p-8;
 	}
+}
+
+.rsw-toolbar {
+	@apply sticky top-0 left-0 border-b-0 py-2 max-w-5xl mx-auto w-full flex items-center gap-2;
 }

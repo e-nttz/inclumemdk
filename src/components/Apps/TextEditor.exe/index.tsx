@@ -4,9 +4,13 @@ import Window from "@/components/Os/Window";
 import Editor, {
 	BtnBold,
 	BtnItalic,
+	createButton,
 	EditorProvider,
 	Toolbar,
 } from "react-simple-wysiwyg";
+
+import TextEditorIcon from "@/assets/icons/app-textEditor.svg?react";
+import IconImage from "@/assets/icons/image.svg?react";
 
 interface AppProps extends React.FC {
 	title: string;
@@ -42,21 +46,37 @@ const TextEditor: AppProps<TextEditorProps> = ({ content = "" }) => {
 		}
 	};
 
+	const BtnBoldCustom = createButton("Bold", "B", "bold");
+	const BtnItalicCustom = createButton("Italic", "I", "italic");
+	const BtnUnderlineCustom = createButton("Underline", "U", "underline");
+
 	return (
 		<Window appName={TextEditor.title}>
 			<EditorProvider>
-				<section className="flex flex-col flex-1 w-full overflow-auto text-black bg-[#F5F5F5] backdrop-blur dark:bg-black/70">
+				<section className="relative flex flex-col flex-1 w-full overflow-auto text-black bg-[#F5F5F5] backdrop-blur dark:bg-black/70">
 					<Toolbar>
-						<BtnBold />
-						<BtnItalic />
-						<button onClick={addImage}>Ajouter une image</button>
+						<BtnBoldCustom className="flex items-center justify-center p-1 font-bold transition rounded-sm hover:bg-gray-50 hover:bg-opacity-40" />
+						<BtnItalicCustom className="flex items-center justify-center p-1 italic transition rounded-sm hover:bg-gray-50 hover:bg-opacity-40" />
+						<BtnUnderlineCustom className="flex items-center justify-center p-1 underline transition rounded-sm hover:bg-gray-50 hover:bg-opacity-40" />
+						<button
+							className="flex items-center justify-center gap-1 p-1 transition rounded-sm hover:bg-gray-50 hover:bg-opacity-20"
+							onClick={addImage}
+						>
+							<IconImage className="w-4 h-4" />
+							<span aria-hidden="true" className="block text-sm">
+								Insérer une image
+							</span>
+						</button>
 					</Toolbar>
-					<div className="w-full max-w-5xl mx-auto mt-8 bg-white">
+					<div className="w-full aspect-[9/16] max-w-5xl mx-auto mb-8 overflow-visible bg-white">
 						<Editor
 							value={value}
 							onChange={onChange}
-							containerProps={{ style: { resize: "vertical" } }}
+							containerProps={{
+								style: { height: "100%", borderRadius: "0" },
+							}}
 							ref={editorRef}
+							autoFocus
 						/>
 					</div>
 				</section>
@@ -68,38 +88,4 @@ const TextEditor: AppProps<TextEditorProps> = ({ content = "" }) => {
 export default TextEditor;
 
 TextEditor.title = "Editeur de texte";
-TextEditor.icon = (
-	<svg
-		xmlns="http://www.w3.org/2000/svg"
-		id="PLANCHE_02_-_icones_sans_noms"
-		data-name="PLANCHE 02 - icones sans noms"
-		viewBox="0 0 75.18 75.13"
-	>
-		<g
-			id="Word_traitement_de_texte_-_copie"
-			data-name="Word (traitement de texte) - copie"
-		>
-			<path
-				d="M75.13 15.97v43.2c0 8.79-7.15 15.94-15.94 15.94h-43.2C7.2 75.11.05 67.96.05 59.17v-43.2C.05 7.17 7.2.02 15.99.02h43.2c8.79 0 15.94 7.15 15.94 15.95"
-				className="cls-3"
-			></path>
-			<path
-				fill="#25497a"
-				strokeWidth="0"
-				d="M75.13 37.89v21.28c0 8.79-7.15 15.94-15.94 15.94h-27.9L18.8 62.62l19.47-52.08 9.22.07z"
-			></path>
-			<path
-				d="M57.63 25.75v33.42c0 2.96-2.4 5.35-5.35 5.35H22.9a5.36 5.36 0 0 1-5.36-5.36v-43.2c0-2.96 2.4-5.35 5.35-5.35h19.53c.94 0 1.7.76 1.7 1.7v4.76a6.98 6.98 0 0 0 6.98 6.98h4.82c.94 0 1.7.76 1.7 1.7Z"
-				className="cls-2"
-			></path>
-			<path
-				d="M49.95 31.81h-23.8c-1.21 0-2.18-.98-2.18-2.18s.98-2.18 2.18-2.18h23.8c1.21 0 2.18.98 2.18 2.18s-.98 2.18-2.18 2.18m0 8.85h-23.8c-1.21 0-2.18-.98-2.18-2.18s.98-2.18 2.18-2.18h23.8c1.21 0 2.18.98 2.18 2.18s-.98 2.18-2.18 2.18m0 8.85h-23.8c-1.21 0-2.18-.98-2.18-2.18s.98-2.18 2.18-2.18h23.8c1.21 0 2.18.98 2.18 2.18s-.98 2.18-2.18 2.18m-11.9 8.53h-11.9c-1.21 0-2.18-.98-2.18-2.18s.98-2.18 2.18-2.18h11.9c1.21 0 2.18.98 2.18 2.18s-.98 2.18-2.18 2.18"
-				className="cls-3"
-			></path>
-			<path
-				d="M56.95 21.37h-5.98c-2.34 0-4.23-1.89-4.23-4.23V11.3c0-.61.73-.91 1.16-.49l9.53 9.39c.44.43.13 1.17-.48 1.17"
-				className="cls-2"
-			></path>
-		</g>
-	</svg>
-);
+TextEditor.icon = <TextEditorIcon />;
