@@ -1,4 +1,4 @@
-import { ReactElement, useRef, useState } from "react";
+import { ReactElement, useEffect, useRef, useState } from "react";
 
 import Window from "@/components/Os/Window";
 import Editor, {
@@ -7,10 +7,12 @@ import Editor, {
 	EditorProvider,
 	Toolbar,
 } from "react-simple-wysiwyg";
+import { useOS } from "@/providers/InclumeOS";
 
-interface AppProps extends React.FC {
+interface AppProps<T> extends React.FC<T> {
 	title: string;
 	icon: ReactElement;
+	unmount?: boolean;
 }
 
 interface TextEditorProps {
@@ -18,7 +20,16 @@ interface TextEditorProps {
 }
 
 const TextEditor: AppProps<TextEditorProps> = ({ content = "" }) => {
-	const [value, setValue] = useState(content);
+	const { openedApps } = useOS();
+
+	const appData: any = Object.entries(openedApps).find(
+		// find openedApps by title
+		(x) => x[1].title === TextEditor.title
+	);
+
+	console.log(appData?.[1]?.defaultContent);
+
+	const [value, setValue] = useState(appData?.[1]?.defaultContent || content);
 	const editorRef = useRef(null);
 
 	function onChange(e) {
@@ -67,6 +78,7 @@ const TextEditor: AppProps<TextEditorProps> = ({ content = "" }) => {
 
 export default TextEditor;
 
+TextEditor.unmount = true;
 TextEditor.title = "Editeur de texte";
 TextEditor.icon = (
 	<svg

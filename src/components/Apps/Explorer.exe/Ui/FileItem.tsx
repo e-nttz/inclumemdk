@@ -8,6 +8,8 @@ import HouseIcon from "@/assets/icons/colors/house.svg?react";
 import { useExplorer } from "@/providers/explorer";
 import { classNames } from "@/helpers/sanitize";
 import { useEffect, useRef, useState } from "react";
+import { useOS } from "@/providers/InclumeOS";
+import TextEditor from "../../TextEditor.exe";
 
 interface FileItemProps {
 	file: FileNode;
@@ -19,8 +21,33 @@ interface FileItemWrapperProps extends FileItemProps {
 	setShowRename: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
+const getAppToOpen = async (file: FileNode): Promise<App | null> => {
+	// TODO : Get content of file if file.url (come from API)
+	const app = {
+		".docs,.docx,.doc": TextEditor,
+	};
+
+	const extension = file.extension;
+
+	// Check if the file extension is in one of key (split by comma)
+	const appToOpen = Object.keys(app).find((key) =>
+		key.split(",").includes(extension)
+	);
+
+	if (appToOpen) {
+		return {
+			title: app[appToOpen]?.title,
+			icon: app[appToOpen]?.icon,
+			defaultContent: file.content?.data || "",
+		};
+	}
+
+	return null;
+};
+
 const FileItem = ({ file, complete = false }: FileItemProps) => {
 	const { setPath, getMainFolder, rename, setSelectedFile } = useExplorer();
+	const { launchApp } = useOS();
 
 	const renameRef = useRef<HTMLInputElement>(null);
 	const [showRename, setShowRename] = useState<boolean>(false);
@@ -52,10 +79,16 @@ const FileItem = ({ file, complete = false }: FileItemProps) => {
 			setShowRename={setShowRename}
 		>
 			<button
-				onDoubleClick={() => {
+				onDoubleClick={async () => {
 					if (file.type === "folder" && !showRename) {
 						setPath(file);
 						setSelectedFile(null);
+					} else if (file.type === "file" && !showRename) {
+						const appToOpen = await getAppToOpen(file);
+
+						if (appToOpen) {
+							launchApp(appToOpen);
+						}
 					}
 				}}
 				onClick={() => {
@@ -129,6 +162,7 @@ const FileItemWrapper = ({
 	complete = false,
 	setShowRename,
 }: FileItemWrapperProps) => {
+	const { launchApp } = useOS();
 	const { setPath } = useExplorer();
 
 	if (!complete) {
@@ -147,6 +181,13 @@ const FileItemWrapper = ({
 							action: () => {
 								if (file.type === "folder") {
 									setPath(file);
+								} else {
+									console.log("Open" + file.slug);
+
+									// launchApp({
+									// 	title: file.name,
+									// 	icon: FileIcon,
+									// })
 								}
 							},
 						},

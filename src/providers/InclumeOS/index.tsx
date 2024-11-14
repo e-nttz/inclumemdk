@@ -55,6 +55,20 @@ const InclumeOSProvider = ({ children }: InclumeOSProviderProps) => {
 	const launchApp = (app: App) => {
 		if (!openedApps.find((a) => a.title === app.title)) {
 			setOpenedApps([...openedApps, app]);
+		} else {
+			// Add app.defaultContent to the openedApps
+			setOpenedApps(
+				openedApps.map((a) => {
+					if (a.title === app.title) {
+						return {
+							...a,
+							defaultContent: app.defaultContent,
+						};
+					}
+
+					return a;
+				})
+			);
 		}
 
 		beacon("triggerStep", {
