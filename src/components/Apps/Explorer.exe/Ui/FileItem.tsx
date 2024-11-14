@@ -144,7 +144,11 @@ const FileItemWrapper = ({
 					actions={[
 						{
 							label: "Ouvrir",
-							action: () => setPath(file),
+							action: () => {
+								if (file.type === "folder") {
+									setPath(file);
+								}
+							},
 						},
 						{
 							label: "Renommer",

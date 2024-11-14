@@ -137,6 +137,18 @@
 							]
 						}
 					]
+				},
+				{
+					"name": "my-poesie",
+					"type": "file",
+					"createdAt": "2023-10-01T13:45:00Z",
+					"updatedAt": "2023-10-02T20:00:00Z",
+					"path": "my-poesie-docx",
+					"extension": ".docx",
+					"slug": "my-poesie.docx",
+					"content": {
+						"data": "<div>Hello World!</div><div>Si tu me vois, c'est que cela fonctionne !</div>"
+					}
 				}
 			]
 		},

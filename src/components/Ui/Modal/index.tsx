@@ -25,7 +25,10 @@ export function useModal(): UseModalResult {
 				)}
 			>
 				<button
-					className="absolute h-8 px-2 transition rounded-md pointer-events-auto top-4 right-4 hover:bg-black hover:bg-opacity-20 focus-visible:bg-black focus-visible:bg-opacity-20 focus-visible:outline-none dark:hover:bg-white dark:hover:bg-opacity-10"
+					className={cn(
+						"absolute h-8 px-2 transition rounded-md top-4 right-4 hover:bg-black hover:bg-opacity-20 focus-visible:bg-black focus-visible:bg-opacity-20 focus-visible:outline-none dark:hover:bg-white dark:hover:bg-opacity-10",
+						isOpen && "pointer-events-auto"
+					)}
 					onClick={() => closeModal()}
 				>
 					<svg

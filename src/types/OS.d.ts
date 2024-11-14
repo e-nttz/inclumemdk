@@ -1,6 +1,7 @@
 interface App {
 	title: string;
 	icon?: ReactElement;
+	defaultContent?: any;
 }
 
 interface AppProps {
@@ -79,6 +80,10 @@ type FileNode = {
 	slug?: string; // Nom complet avec extension en slug
 	children?: FileNode[]; // Optionnel pour les dossiers
 	url?: string | null; // URL pour les fichiers images uniquement
+	content?: {
+		data?: string;
+		url?: string;
+	};
 };
 
 interface StepsListenerContextType {

@@ -1,6 +1,6 @@
 import { useExplorer } from "@/providers/explorer";
 import FileItem from "../FileItem";
-import FolderIcon from "@/assets/icons/colors/folder.svg?react";
+import Icon from "../Icon";
 
 const FilesList = () => {
 	const { currentPath, getFolderView, getMainFolder } = useExplorer();
@@ -9,8 +9,8 @@ const FilesList = () => {
 		<div className="flex-1 px-2 py-3 overflow-auto">
 			{currentPath !== "/root" && (
 				<div className="p-4">
-					<h1 className="pb-4 text-2xl font-bold border-b border-gray-50/50">
-						<FolderIcon />
+					<h1 className="flex items-center gap-2 pb-4 text-2xl font-bold border-b border-gray-50/50">
+						<Icon type="folder" className="flex-shrink-0" />
 						{currentPath === "/root"
 							? "Mes fichiers"
 							: getMainFolder()?.name}
