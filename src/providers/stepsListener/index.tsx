@@ -57,6 +57,7 @@ export const StepsListenerProvider = ({ children }) => {
 	// Effect to show the clues
 	useEffect(() => {
 		if (!pauseMode && currentSession) {
+			// TODO : fix the timer (memory leak)
 			// const currentStep = steps.find(
 			// 	(step) => step.step_id === currentSession?.currentStep + 1
 			// );
