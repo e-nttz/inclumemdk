@@ -7,7 +7,7 @@ const Welcome: Website = () => {
 		<div className="absolute inset-0 px-8 py-8">
 			<div className="relative z-10 flex items-center w-full h-full max-w-6xl mx-auto">
 				<div className="w-full">
-					<h1 className="text-2xl font-bold text-black mb-9">Favoris</h1>
+					<h1 className="mb-12 text-2xl font-bold text-black">Favoris</h1>
 					<ul className="grid grid-cols-4 gap-x-5 gap-y-6">
 						<ButtonWebsite website={SearchEngine} />
 					</ul>

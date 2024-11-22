@@ -27,7 +27,7 @@ export default SearchEngine;
 // used in RenderAllWebsites to select the right website
 SearchEngine.componentName = "searchEngine";
 // used in tab as site title
-SearchEngine.title = "Gougoule";
+SearchEngine.title = "Moteur de recherche";
 
 SearchEngine.favicon = <IconSearchEngine />;
 
