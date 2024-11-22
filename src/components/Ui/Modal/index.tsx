@@ -57,7 +57,7 @@ export function useModal(): UseModalResult {
 					{children}
 				</div>
 			</div>,
-			document.querySelector("#inclume-os")
+			document.querySelector("#inclume-os") ?? document.body
 		);
 	};
 

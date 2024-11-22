@@ -247,7 +247,10 @@ export const ExplorerProvider = ({ children }) => {
 		(
 			name: string,
 			fileType: string,
-			content: string,
+			content: {
+				data?: any;
+				url?: string;
+			},
 			currentFolderPath = currentPath
 		) => {
 			console.log(content);

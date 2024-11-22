@@ -59,7 +59,7 @@ interface ExplorerContextType {
 	createFile: (
 		name: string,
 		fileType: string,
-		content: string,
+		content: any,
 		currentFolderPath: string
 	) => void;
 	handleInfoWindow: (
@@ -83,6 +83,7 @@ type FileNode = {
 	content?: {
 		data?: string;
 		url?: string;
+		localFile?: string;
 	};
 };
 
