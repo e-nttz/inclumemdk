@@ -9,6 +9,9 @@ import Editor, {
 import { useOS } from "@/providers/InclumeOS";
 import TextEditorIcon from "@/assets/icons/app-textEditor.svg?react";
 import IconImage from "@/assets/icons/image.svg?react";
+import ContextualBar from "@/components/Os/Window/ContextualBar";
+import { useTranslate } from "@tolgee/react";
+import { useExplorer } from "@/providers/explorer";
 
 interface AppProps<T> extends React.FC<T> {
 	title: string;
@@ -22,6 +25,9 @@ interface TextEditorProps {
 
 const TextEditor: AppProps<TextEditorProps> = ({ content = "" }) => {
 	const { openedApps } = useOS();
+
+	const { t } = useTranslate();
+	const { createFile, handleInfoWindow, closeInfoWindow } = useExplorer();
 
 	const appData: any = Object.entries(openedApps).find(
 		// find openedApps by title
@@ -59,7 +65,37 @@ const TextEditor: AppProps<TextEditorProps> = ({ content = "" }) => {
 	const BtnUnderlineCustom = createButton("Underline", "U", "underline");
 
 	return (
-		<Window appName={TextEditor.title}>
+		<Window
+			appName={TextEditor.title}
+			contextMenus={
+				<>
+					<ContextualBar.Menu name="Fichier">
+						<ContextualBar.Item
+							onClick={() => {
+								handleInfoWindow(undefined, (currentPath) => {
+									const fileName = prompt(
+										t("enter_filename", "Entrez le nom du fichier")
+									);
+
+									createFile(
+										fileName,
+										"docx",
+										{
+											data: value,
+										},
+										currentPath
+									);
+
+									closeInfoWindow();
+								});
+							}}
+						>
+							{t("save_file", "Enregistrer le fichier")}
+						</ContextualBar.Item>
+					</ContextualBar.Menu>
+				</>
+			}
+		>
 			<EditorProvider>
 				<section className="relative flex flex-col flex-1 w-full overflow-auto text-black bg-[#F5F5F5] backdrop-blur dark:bg-black/70">
 					<Toolbar>

@@ -250,11 +250,10 @@ export const ExplorerProvider = ({ children }) => {
 			content: {
 				data?: any;
 				url?: string;
+				localFile?: string;
 			},
 			currentFolderPath = currentPath
 		) => {
-			console.log(content);
-
 			const randId = Math.random().toString(36).substring(7);
 
 			const newFile: FileNode = {
@@ -266,6 +265,7 @@ export const ExplorerProvider = ({ children }) => {
 				extension: "." + fileType,
 				createdAt: new Date().toISOString(),
 				updatedAt: new Date().toISOString(),
+				content,
 			};
 
 			const path = currentFolderPath.split("/").filter((p) => p !== "");
