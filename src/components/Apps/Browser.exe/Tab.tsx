@@ -61,7 +61,7 @@ const SingleTab = ({
 		>
 			<p
 				className={classNames(
-					"line-clamp-1 text-clip dark:text-white flex items-center gap-2 [&_svg]:w-5 [&_svg]:h-5",
+					"line-clamp-1 text-clip break-words dark:text-white [&_svg]:w-5 [&_svg]:h-5 [&_svg]:inline-block [&_svg]:mr-2",
 					currentTab === tab.id
 						? "cursor-default before:w-full before:h-full before:transition before:duration-1000 before:rounded-t-md before:absolute before:inset-0 before:bg-[linear-gradient(90deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0)_75%,rgb(247, 247, 247)_82%,rgba(247,247,247,1)_100%)] dark:before:bg-[linear-gradient(90deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0)_75%,rgb(41, 41, 41)_82%,rgba(41,41,41,1)_100%)]"
 						: "before:w-full before:h-full before:transition before:bg-transparent before:rounded-t-md before:absolute before:inset-0 group-hover:before:bg-[linear-gradient(90deg,rgba(255,255,255,0)_0%,rgba(255,255,255,0)_75%,rgba(240,240,240,1)_82%,rgba(240,240,240,1)_100%)] dark:group-hover:before:bg-[linear-gradient(90deg,rgba(0,0,0,0)_0%,rgba(0,0,0,0)_75%,rgba(41,41,41,1)_82%,rgba(41,41,41,1)_100%)]"
