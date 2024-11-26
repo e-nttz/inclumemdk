@@ -1,0 +1,32 @@
+{
+	"compilerOptions": {
+		"target": "ES2020",
+		"declaration": true,
+		"useDefineForClassFields": true,
+		"lib": ["ES2020", "DOM", "DOM.Iterable", "dom", "ES2021.String"],
+		"module": "ESNext",
+		"skipLibCheck": true,
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./src/*"],
+			"@/types": ["src/types"]
+		},
+		"typeRoots": ["./node_modules/@types", "./src/types"],
+
+		/* Bundler mode */
+		"moduleResolution": "bundler",
+		"allowImportingTsExtensions": true,
+		"isolatedModules": true,
+		"moduleDetection": "force",
+		"noEmit": true,
+		"jsx": "react-jsx",
+
+		/* Linting */
+		"strict": false,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true
+	},
+	"include": ["src", "./src/**/*.d.ts"],
+	"exclude": ["node_modules"]
+}

@@ -1,0 +1,61 @@
+name: Test and Notify
+
+on:
+   push:
+      branches:
+         - main
+   pull_request:
+      branches:
+         - main
+
+jobs:
+   deploy:
+      runs-on: ubuntu-latest
+
+      steps:
+         - name: Checkout code
+           uses: actions/checkout@v4
+
+         - name: Check VERCEL_ENDPOINT secret
+           id: check-vercel-endpoint
+           run: |
+              if [ -z "${{ secrets.VERCEL_WEBHOOK }}" ]; then
+                echo "VERCEL_ENDPOINT secret is not set. Exiting..."
+                exit 1
+              fi
+
+         - name: Set up Node.js
+           uses: actions/setup-node@v4.0.3
+           with:
+              node-version: 20.x
+
+         - name: Install dependencies
+           uses: borales/actions-yarn@v5.0.0
+           with:
+              cmd: install
+
+         - name: Run tests
+           id: run-tests
+           uses: borales/actions-yarn@v5.0.0
+           with:
+              cmd: test
+
+         - name: Send trigger to Vercel
+           if: success()
+           uses: JamesIves/fetch-api-data-action@v2
+           with:
+              endpoint: ${{ secrets.VERCEL_WEBHOOK }}
+              configuration: '{ "method": "GET"}'
+
+         # Add another if success trigger
+         - name: Send trigger to Netlify to build docs
+           if: success()
+           uses: JamesIves/fetch-api-data-action@v2
+           with:
+              endpoint: "https://api.netlify.com/build_hooks/66f662ae67e03ee328511675"
+              configuration: '{ "method": "GET"}'
+
+         - name: Send failure notification to Slack
+           if: failure()
+           run: |
+              curl -X POST -H "Content-Type: application/json" -d '{"text": "Github actions error.", "blocks": [{"type":"section","fields": [{"type": "mrkdwn","text": "*❌ Error on Github actions - ${{ github.repository }}*\n `${{ github.event.head_commit.message }}` pushed by ${{ github.event.head_commit.author.name }} has returned error during test."}]}]}' ${{ secrets.SLACK_WEBHOOK }}

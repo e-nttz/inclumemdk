@@ -1,0 +1,37 @@
+{
+	"tags": {
+		"allowUnknownTags": true,
+		"dictionaries": ["jsdoc"]
+	},
+	"plugins": [
+		"node_modules/better-docs/typescript",
+		"node_modules/better-docs/category"
+	],
+	"source": {
+		"include": ["./src/"],
+		"includePattern": ".(jsx|js|ts|tsx|d.ts)$",
+		"exclude": ["node_modules", "docs"],
+		"excludePattern": "(node_modules/|docs)"
+	},
+	"sourceType": "module",
+	"opts": {
+		"encoding": "utf8",
+		"readme": "./README.md",
+		"destination": "docs/",
+		"recurse": true,
+		"verbose": true,
+		"template": "./node_modules/minami"
+	},
+	"templates": {
+		"cleverLinks": true,
+		"monospaceLinks": true,
+		"search": true,
+		"better-docs": {
+			"name": "Code Documentation",
+			"title": "",
+			"css": "style.css",
+			"trackingCode": "tracking-code-which-will-go-to-the-HEAD",
+			"hideGenerator": false
+		}
+	}
+}

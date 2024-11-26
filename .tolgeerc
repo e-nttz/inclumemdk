@@ -1,0 +1,21 @@
+{
+	"$schema": "https://tolgee.io/cli-schema.json",
+	"apiUrl": "https://tolgee.dev2.woogma.com/",
+	"projectId": 35,
+	"format": "JSON_TOLGEE",
+	"patterns": [
+		"./src/**/*.ts?(x)"
+	],
+	"push": {
+		"files": [
+			{
+				"path": "./public/i18n/en.json",
+				"language": "en"
+			}
+		],
+		"forceMode": "KEEP"
+	},
+	"pull": {
+		"path": "./public/i18n"
+	}
+}

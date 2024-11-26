@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>components/Apps/Message.exe/index.tsx - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Modules</li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-Beacon.html">Beacon</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Beacon.html#.beacon">beacon</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Beacon.html#.listenBeacon">listenBeacon</a></span></li><li class="nav-heading"><span class="nav-item-type type-module">M</span><span class="nav-item-name"><a href="module-Storage.html">Storage</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Storage.html#.exports.getLocalStorage">exports.getLocalStorage</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Storage.html#.exports.getSession">exports.getSession</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Storage.html#.exports.setLocalStorage">exports.setLocalStorage</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="module-Storage.html#.exports.storeSession">exports.storeSession</a></span></li><li class="nav-heading">Namespaces</li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Hooks.html">Hooks</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Hooks.html#.useAudioPlayer">useAudioPlayer</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Hooks.html#.useClickOutside">useClickOutside</a></span></li><li class="nav-heading">Interfaces</li><li class="nav-heading"><span class="nav-item-type type-interface">I</span><span class="nav-item-name"><a href="AuthProvider.html">AuthProvider</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="AuthProvider.html#.login">login</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#classNames">classNames</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="global.html#cn">cn</a></span></li>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">components/Apps/Message.exe/index.tsx</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { ReactElement, FormEvent, useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
+
+import Window from "@/components/Os/Window";
+import ContextualBar from "@/components/Os/Window/ContextualBar";
+import BubbleChat from "./bubble";
+
+import MessageIcon from "@/assets/icons/app-message.svg?react";
+import PaperplaneIcon from "@/assets/icons/paperplane.svg?react";
+import CameraIcon from "@/assets/icons/camera.svg?react";
+import DismissIcon from "@/assets/icons/dismiss.svg?react";
+import { beacon } from "@/helpers/beacon";
+interface AppProps extends React.FC {
+	title: string;
+	icon: ReactElement;
+}
+
+interface Message {
+	id: number;
+	sender: number;
+	content: string | ReactElement;
+}
+
+const Message: AppProps = () => {
+	const { t } = useTranslation();
+	const messagesList = useRef&lt;HTMLUListElement>(null);
+
+	const [selectedFiles, setSelectedFiles] = useState&lt;string | null>(null);
+
+	const [messages, setMessages] = useState&lt;Message[]>([
+		{
+			id: 1,
+			sender: 4,
+			content: "Hello, world!",
+		},
+		{
+			id: 2,
+			sender: 4,
+			content: "Want to chat?",
+		},
+		{
+			id: 3,
+			sender: 1,
+			content: "Sure!",
+		},
+		{
+			id: 5,
+			sender: 4,
+			content:
+				"Labore ipsum nostrud duis mollit velit. Anim ut eu elit aute occaecat aliqua cupidatat incididunt ut dolore consequat veniam eu. Consequat Lorem dolor tempor mollit pariatur. Exercitation labore Lorem reprehenderit qui nulla. Esse fugiat eiusmod est fugiat esse adipisicing exercitation nostrud cillum culpa anim id consectetur amet. Anim sint amet aliqua aute pariatur ea commodo enim eiusmod consequat magna nostrud deserunt excepteur irure. Exercitation aliquip mollit mollit dolore eu est in tempor. Duis consectetur ut in do exercitation incididunt aute proident culpa amet sint minim et nulla amet.",
+		},
+	]);
+
+	useEffect(() => {
+		/**
+		 * Listen to messages sent by the system
+		 *
+		 * @param {CustomEvent} e
+		 * @returns {Promise&lt;void>}
+		 */
+		const listener = async (e: CustomEvent) => {
+			const type = e.type;
+
+			if (type == "beacon" &amp;&amp; e.detail &amp;&amp; e.detail.type == "message") {
+				setMessages((prev) => [...prev, e.detail]);
+
+				// Scroll to the bottom
+				setTimeout(() => {
+					messagesList.current?.scrollTo({
+						top: messagesList.current.scrollHeight,
+						behavior: "smooth",
+					});
+				}, 150);
+			}
+		};
+
+		// Add event listener to receive messages from the entire system
+		window.addEventListener("beacon", listener);
+
+		// Remove event listener
+		return () => {
+			window.removeEventListener("beacon", listener);
+		};
+	}, []);
+
+	/**
+	 * Handle form submission
+	 *
+	 * @param {FormEvent} e
+	 *
+	 * @returns {void}
+	 */
+	const handleSubmit = (e: FormEvent) => {
+		// Add message to the list
+		e.preventDefault();
+
+		const form = e.target as HTMLFormElement;
+		const message = form.message.value;
+
+		// If there's an image, send it
+		if (selectedFiles) {
+			beacon("message", {
+				id: Math.random(),
+				sender: 1,
+				content: (
+					&lt;img
+						src={selectedFiles}
+						alt="Pasted image"
+						className="h-auto max-w-full"
+					/>
+				),
+			});
+
+			// Clear input
+			setSelectedFiles(null);
+		}
+
+		if (message.trim() !== "") {
+			beacon("message", {
+				id: Math.random(),
+				sender: 1,
+				content: message,
+			});
+
+			// Clear input
+			form.reset();
+		}
+
+		// Scroll to the bottom
+		// We set timeout to wait for the DOM to update
+		setTimeout(() => {
+			messagesList.current?.scrollTo({
+				top: messagesList.current.scrollHeight,
+				behavior: "smooth",
+			});
+		}, 150);
+	};
+
+	/**
+	 * Handle file attachment
+	 *
+	 * @returns {void}
+	 *
+	 */
+	const handleFileAttachment = () => {
+		alert("Not implemented yet. A fake image is sent instead.");
+		setSelectedFiles("/images/restaurant.jpg");
+	};
+
+	return (
+		&lt;Window
+			appName={Message.title}
+			contextMenus={
+				&lt;>
+					&lt;ContextualBar.Menu name="Fichiers">
+						&lt;ContextualBar.Item onClick={() => handleFileAttachment()}>
+							{t("Joindre un fichier")}
+						&lt;/ContextualBar.Item>
+					&lt;/ContextualBar.Menu>
+				&lt;/>
+			}
+		>
+			&lt;section className="flex flex-col flex-1 w-full overflow-auto text-black bg-white/90 backdrop-blur dark:bg-black/70">
+				&lt;header className="px-6 py-4 bg-white dark:bg-black">
+					&lt;div className="flex flex-row items-center gap-2">
+						&lt;figure className="w-12 overflow-hidden rounded-full aspect-square">
+							&lt;img
+								src="/images/avatar-message.jpg"
+								alt="Avatar"
+								className="object-cover w-full h-full"
+							/>
+						&lt;/figure>
+
+						&lt;p className="font-bold dark:text-white">John Doe&lt;/p>
+					&lt;/div>
+				&lt;/header>
+
+				&lt;ul
+					className="flex flex-col flex-1 gap-4 px-4 py-4 overflow-auto"
+					ref={messagesList}
+				>
+					{messages.map((message) => (
+						&lt;li
+							key={message.id}
+							className="flex flex-row items-center space-x-2"
+						>
+							&lt;BubbleChat
+								message={message}
+								isMine={message.sender === 1}
+							/>
+						&lt;/li>
+					))}
+				&lt;/ul>
+
+				&lt;form
+					className="gap-4 px-6 py-4 space-y-4 bg-white dark:bg-black dark:text-white"
+					onSubmit={handleSubmit}
+				>
+					{selectedFiles &amp;&amp; (
+						&lt;div className="relative w-20 h-auto overflow-hidden border-2 rounded-lg border-accent dark:border-accent-dark">
+							&lt;img
+								src={selectedFiles}
+								alt="Avatar"
+								className="w-full h-auto"
+							/>
+
+							&lt;button
+								type="button"
+								className="absolute inset-0 flex items-center justify-center transition opacity-0 hover:opacity-100 focus-visible:opacity-100 bg-white/50 backdrop-blur-sm dark:text-black"
+								onClick={() => setSelectedFiles(null)}
+							>
+								&lt;DismissIcon className="w-6 h-auto" />
+							&lt;/button>
+						&lt;/div>
+					)}
+
+					&lt;div className="flex flex-row items-center gap-4">
+						&lt;span className="relative flex-1 peer">
+							&lt;input
+								type="text"
+								name="message"
+								placeholder="Type a message..."
+								autoComplete="off"
+								className="flex-1 w-full p-2 pr-12 border-2 border-solid rounded-lg bg-gray-50/50 border-gray-50/50 dark:hover:border-accent-dark dark:focus:border-accent-dark dark:bg-gray-900 dark:border-gray-900 hover:border-accent focus:border-accent focus:outline-none focus:shadow-none peer"
+								// Listen when a paste event is made on input
+								onPaste={async (e) => {
+									const text = await navigator.clipboard.readText();
+
+									const filePattern =
+										/^\/images\/.*\.(png|jpg|jpeg|gif|webp|svg|pdf)$/;
+									if (filePattern.test(text)) {
+										e.preventDefault();
+										// Send new message with image
+
+										beacon("message", {
+											id: Math.random(),
+											sender: 1,
+											content: (
+												&lt;img
+													src={text}
+													alt="Pasted image"
+													className="h-auto max-w-full"
+												/>
+											),
+										});
+
+										// Clear input
+										(e.target as HTMLInputElement).value = "";
+
+										return;
+									}
+								}}
+							/>
+							&lt;button
+								type="button"
+								className="absolute text-gray-300 -translate-y-1/2 right-4 top-1/2 hover:text-accent dark:hover:text-accent-dark"
+								onClick={() => {
+									alert(
+										"Not implemented yet. A fake image is sent instead."
+									);
+
+									setSelectedFiles("/images/restaurant.jpg");
+								}}
+							>
+								&lt;span className="sr-only">
+									{t("Insérez un fichier")}
+								&lt;/span>
+
+								&lt;CameraIcon className="w-6 h-auto" />
+							&lt;/button>
+						&lt;/span>
+
+						&lt;button className="peer-[:not(:placeholder-shown)]:text-accent dark:peer-[:not(:placeholder-shown)]:text-accent-dark text-gray-200 transition flex-shrink-0">
+							&lt;span className="sr-only">{t("Envoyer")}&lt;/span>
+
+							&lt;PaperplaneIcon className="w-6 h-auto" />
+						&lt;/button>
+					&lt;/div>
+				&lt;/form>
+			&lt;/section>
+		&lt;/Window>
+	);
+};
+
+export default Message;
+
+Message.title = "Message";
+Message.icon = &lt;MessageIcon />;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 4.0.3</a> on Fri Sep 27 2024 09:58:02 GMT+0200 (Central European Summer Time) using the Minami theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
