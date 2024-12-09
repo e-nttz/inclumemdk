@@ -5,6 +5,7 @@ import FaceTime from "./FaceTime.exe";
 import Message from "./Message.exe";
 import Spreadsheets from "./Spreadsheets.exe";
 import TextEditor from "./TextEditor.exe";
+import Mail from "./Mail.exe";
 
 interface Apps {
 	[key: string]: React.FC;
@@ -16,6 +17,7 @@ export const apps: Apps = {
 	explorer: Explorer,
 	stylesheets: Spreadsheets,
 	textEditor: TextEditor,
+	mail: Mail,
 };
 
 const RenderAllApps = () => {
