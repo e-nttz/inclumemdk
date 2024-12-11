@@ -13,6 +13,7 @@ import Trash from "@/assets/icons/mail_trash.svg";
 import MailContent from "./MailContent";
 import NewMessage from "@/assets/icons/mail_newmessage.svg";
 import { getMailsFromLocalStorage, saveMailsToLocalStorage, resetLocalStorage } from "@/utils/localeStorage";
+import { useAuth } from "@/providers/auth";
 
 interface AppProps<T> extends React.FC<T> {
   title: string;
@@ -25,6 +26,8 @@ interface MailProps {
 }
 
 const Mail: AppProps<MailProps> = () => {
+  const { user, setTestStatus, session } = useAuth();
+
   const { openedApps } = useOS();
   const appData: any = Object.entries(openedApps).find(
     (x) => x[1].title === Mail.title
@@ -56,11 +59,10 @@ const Mail: AppProps<MailProps> = () => {
     files: null,
   });
 
-  const userEmail = "moi@example.com";
-  const localStorageKey = `userMails_${userEmail}`;
+  const localStorageKey = `userSession_${session}`;
 
   const handleResetLocalStorage = () => {
-    resetLocalStorage(userEmail);
+    resetLocalStorage(session);
     setMails([]);
   };
 
