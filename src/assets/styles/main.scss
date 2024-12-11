@@ -143,3 +143,10 @@
 }
 
 @import "./apps/textEditor.scss";
+
+@layer utilities {
+    .active > img{
+      @apply filter brightness-0 saturate-100;
+      filter: invert(19%) sepia(87%) saturate(2886%) hue-rotate(196deg) brightness(94%) contrast(104%);
+    }
+  }

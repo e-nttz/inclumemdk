@@ -1,42 +1,58 @@
-import { useState } from "react";
-
 interface MessageProps {
     title?: string;
     from?: string;
+    emailFrom?: string;
+    to?: string;
+    emailTo?: string;
     preview?: string;
     content?: string;
     hour?: string;
     active?: boolean;
-    onClick?: () => void;
+    onClick?: (
+        content: string,
+        from: string,
+        emailFrom: string,
+        to: string,
+        emailTo: string,
+        title: string,
+        hour: string,
+        isActive: boolean
+    ) => void;
 }
 
-const Message = ({ title, preview, content, hour, from, active = false, onClick }: MessageProps) => {
-    const [isActive, setIsActive] = useState(active);
-
+const Message = ({
+    title,
+    preview,
+    content,
+    hour,
+    from = "",
+    to,
+    emailFrom,
+    emailTo,
+    active = false,
+    onClick,
+}: MessageProps) => {
     const handleClick = () => {
-        setIsActive((prev) => !prev);
         if (onClick) {
-            onClick();
+            onClick(content || "", from || "", emailFrom || "", to || "", emailTo || "", title || "", hour || "", !active);
         }
     };
 
     return (
         <div
-            className={`message flex items-center pt-[15px] border-b border-gray-50 pl-6 pr-[30px] cursor-pointer ${
-                isActive ? "bg-[#F2F2F2] border-l-4 border-l-[#005fb8]" : ""
+            className={`message w-full flex items-center pt-[15px] border-b border-gray-50 pl-6 pr-[30px] cursor-pointer ${
+                active ? "bg-[#F2F2F2] border-l-4 border-l-[#005fb8]" : ""
             }`}
             onClick={handleClick}
         >
-            <img
-                className="rounded-[50%] mr-[20px] w-[40px] h-[40px]"
-                src="https://img.freepik.com/psd-gratuit/illustration-3d-avatar-ligne_23-2151303048.jpg?"
-                alt="Avatar"
-            />
-            <div className="content">
+            <div className="mr-[20px] min-w-[40px] min-h-[40px] rounded-[50%] bg-[#005fb8] flex justify-center items-center text-[white] text-2xl">
+                {from.charAt(0)}
+            </div>
+            <div className="content w-full">
                 <div className="flex justify-between mb-[10px]">
                     <h3
                         className={`font-semibold text-xl ${
-                            isActive ? "text-[#005fb8]" : ""
+                            active ? "text-[#005fb8]" : ""
                         }`}
                     >
                         {from}
