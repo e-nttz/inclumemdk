@@ -103,6 +103,13 @@ ParkingChurchill.title = "Parking Churchill | Visit Oostende";
 // used in searchEngine
 ParkingChurchill.excerpt = "Parking à Ostende, ouvert 24h/24 et 7j/7 avec 400 places.";
 
+// Mots clés
+ParkingChurchill.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 ParkingChurchill.favicon = <IconSearchEngine />;
 
 ParkingChurchill.pages = [

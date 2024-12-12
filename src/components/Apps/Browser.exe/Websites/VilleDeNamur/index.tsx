@@ -77,6 +77,13 @@ VilleDeNamur.title = "Ville de Namur | Découvrez notre patrimoine et nos évén
 // used in searchEngine
 VilleDeNamur.excerpt = "La saison touristique commence à Namur ! Explorez la ville et ses activités.";
 
+// Mots clés
+VilleDeNamur.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 // Site favicon icon
 VilleDeNamur.favicon = <IconSearchEngine />;
 

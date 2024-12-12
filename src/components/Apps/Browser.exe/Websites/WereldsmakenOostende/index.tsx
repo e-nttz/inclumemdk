@@ -104,6 +104,13 @@ WereldsmakenOostende.title = "Café-Restaurant « Wereldsmaken »";
 // used in searchEngine
 WereldsmakenOostende.excerpt = "Duik in een culinaire wereldreis bij ons café-restaurant.";
 
+// Mots clés
+WereldsmakenOostende.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 // Site favicon icon
 WereldsmakenOostende.favicon = <IconSearchEngine />;
 

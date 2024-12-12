@@ -100,6 +100,13 @@ OstendeInsider.title = "OstendeInsider";
 // used in searchEngine
 OstendeInsider.excerpt = "Découvrez les trésors cachés d'Ostende.";
 
+// Mots clés
+OstendeInsider.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 OstendeInsider.favicon = <IconSearchEngine />;
 
 OstendeInsider.pages = [

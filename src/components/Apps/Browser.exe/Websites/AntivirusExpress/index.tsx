@@ -161,6 +161,13 @@ AntivirusExpress.title = "Les meilleurs offres sur les logiciels antivirus | Ant
 // used in searchEngine
 AntivirusExpress.excerpt = "Antivirus Express vous aide à trouver les meilleurs offres sur une gamme de logiciels antivirus.";
 
+// Mots clés
+AntivirusExpress.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 AntivirusExpress.favicon = <IconSearchEngine />;
 
 AntivirusExpress.pages = [

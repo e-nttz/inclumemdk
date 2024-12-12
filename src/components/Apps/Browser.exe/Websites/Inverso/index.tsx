@@ -105,6 +105,13 @@ Inverso.title = "Inverso | Traduction en ligne gratuite";
 // used in searchEngine
 Inverso.excerpt = "Traduction instantanée de vos textes dans plusieurs langues avec Inverso.";
 
+// Mots clés
+Inverso.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 Inverso.favicon = <IconSearchEngine />;
 
 Inverso.pages = [

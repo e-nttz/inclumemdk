@@ -94,6 +94,13 @@ RestaurantVueSurMer.title = "Restaurant Vue sur Mer à Ostende";
 // used in searchEngine
 RestaurantVueSurMer.excerpt = "Profitez d'une expérience culinaire en bord de mer dans notre restaurant à Ostende.";
 
+// Mots clés
+RestaurantVueSurMer.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 // Site favicon icon
 RestaurantVueSurMer.favicon = <IconSearchEngine />;
 

@@ -118,6 +118,13 @@ TeenTrends.title = "Teen Trends | Activités et tendances pour les ados";
 // used in searchEngine
 TeenTrends.excerpt = "Découvrez les activités et défis les plus populaires pour les adolescents sur Teen Trends.";
 
+// Mots clés
+TeenTrends.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 TeenTrends.favicon = <IconSearchEngine />;
 
 TeenTrends.pages = [

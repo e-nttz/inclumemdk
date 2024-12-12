@@ -161,6 +161,13 @@ AntivirusDeals.title = "Trouvez les meilleurs offres d’antivirus | AntivirusDe
 // used in searchEngine
 AntivirusDeals.excerpt = "AntivirusDeals vous aide à trouver les meilleures offres sur une gamme de logiciels antivirus.";
 
+// Mots clés
+AntivirusDeals.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 AntivirusDeals.favicon = <IconSearchEngine />;
 
 AntivirusDeals.pages = [

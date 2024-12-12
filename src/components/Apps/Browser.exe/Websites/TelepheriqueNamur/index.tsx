@@ -88,6 +88,13 @@ TelepheriqueNamur.title = "Téléphérique de la Citadelle de Namur";
 // used in searchEngine
 TelepheriqueNamur.excerpt = "Découvrez Namur d'un angle unique avec le téléphérique.";
 
+// Mots clés
+TelepheriqueNamur.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 // Site favicon icon
 TelepheriqueNamur.favicon = <IconSearchEngine />;
 

@@ -80,6 +80,13 @@ ParkingMariaHendrikapark.title = "Parking périphérique Maria Hendrikapark | Vi
 // used in searchEngine
 ParkingMariaHendrikapark.excerpt = "Parking gratuit à Ostende, ouvert 24h/24 et 7j/7.";
 
+// Mots clés
+ParkingMariaHendrikapark.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 ParkingMariaHendrikapark.favicon = <IconSearchEngine />;
 
 ParkingMariaHendrikapark.pages = [

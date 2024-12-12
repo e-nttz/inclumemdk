@@ -87,6 +87,13 @@ RestaurantLaSiestaOostende.title = "La Siesta | Oostende";
 // used in searchEngine
 RestaurantLaSiestaOostende.excerpt = "Geniet van authentieke Mexicaanse smaken in Oostende.";
 
+// Mots clés
+RestaurantLaSiestaOostende.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 // Site favicon icon
 RestaurantLaSiestaOostende.favicon = <IconSearchEngine />;
 

@@ -84,6 +84,13 @@ LaSiestaHotel.title = "La Siesta Hotel";
 // used in searchEngine
 LaSiestaHotel.excerpt = "Réservez votre séjour à l'hôtel \"La Siesta\" pour une expérience de détente ultime.";
 
+// Mots clés
+LaSiestaHotel.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 // Site favicon icon
 LaSiestaHotel.favicon = <IconSearchEngine />;
 

@@ -98,6 +98,13 @@ FamilierestaurantOostende.title = "Familierestaurant in Oostende";
 // used in searchEngine
 FamilierestaurantOostende.excerpt = "Geniet van traditionele gerechten in een gezellige sfeer.";
 
+// Mots clés
+FamilierestaurantOostende.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 // Site favicon icon
 FamilierestaurantOostende.favicon = <IconSearchEngine />;
 

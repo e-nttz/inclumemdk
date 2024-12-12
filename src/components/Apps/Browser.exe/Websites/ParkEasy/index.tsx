@@ -119,6 +119,13 @@ ParkEasy.title = "Trouvez le stationnement idéal où que vous alliez | ParkEasy
 // used in searchEngine
 ParkEasy.excerpt = "Utilisez ParkEasy pour réserver votre stationnement facilement.";
 
+// Mots clés
+ParkEasy.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 ParkEasy.favicon = <IconSearchEngine />;
 
 ParkEasy.pages = [

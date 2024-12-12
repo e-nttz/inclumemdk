@@ -112,6 +112,13 @@ NamurPage.title = "Namur | Découvrez la Capitale Wallonne";
 // used in searchEngine
 NamurPage.excerpt = "Namur, capitale historique et culturelle de la Wallonie.";
 
+// Mots clés
+NamurPage.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 NamurPage.favicon = <IconSearchEngine />;
 
 NamurPage.pages = [

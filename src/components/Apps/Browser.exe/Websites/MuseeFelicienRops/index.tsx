@@ -87,6 +87,13 @@ MuseeFelicienRops.title = "Musée Félicien Rops de Namur";
 // used in searchEngine
 MuseeFelicienRops.excerpt = "Découvrez l'œuvre et la vie de Félicien Rops dans un cadre historique.";
 
+// Mots clés
+MuseeFelicienRops.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 // Site favicon icon
 MuseeFelicienRops.favicon = <IconSearchEngine />;
 

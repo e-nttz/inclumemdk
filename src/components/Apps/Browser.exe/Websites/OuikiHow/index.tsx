@@ -102,6 +102,13 @@ OuikiHow.title = "Comment installer un antivirus ? | OuikiHow";
 // used in searchEngine
 OuikiHow.excerpt = "Découvrez comment installer un antivirus avec notre guide détaillé.";
 
+// Mots clés
+OuikiHow.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 OuikiHow.favicon = <IconSearchEngine />;
 
 OuikiHow.pages = [

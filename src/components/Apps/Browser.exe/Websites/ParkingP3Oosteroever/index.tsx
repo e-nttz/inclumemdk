@@ -90,6 +90,13 @@ ParkingP3Oosteroever.title = "Parking P3 Oosteroever";
 // used in searchEngine
 ParkingP3Oosteroever.excerpt = "Parking gratuit à Ostende, ouvert 24h/24 et 7j/7.";
 
+// Mots clés
+ParkingP3Oosteroever.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 ParkingP3Oosteroever.favicon = <IconSearchEngine />;
 
 ParkingP3Oosteroever.pages = [

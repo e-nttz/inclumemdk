@@ -70,6 +70,13 @@ TukTukNamur.title = "Visites guidées insolites à Namur | Tuk-Tuk";
 // used in searchEngine
 TukTukNamur.excerpt = "Découvrez Namur d'une manière originale avec nos visites en tuk-tuk.";
 
+// Mots clés
+TukTukNamur.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 // Site favicon icon
 TukTukNamur.favicon = <IconSearchEngine />;
 

@@ -102,6 +102,13 @@ SkyParkingOostende.title = "Sky Parking Oostende | Visit Oostende";
 // used in searchEngine
 SkyParkingOostende.excerpt = "Parking à Ostende, ouvert 24h/24 et 7j/7.";
 
+// Mots clés
+SkyParkingOostende.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 SkyParkingOostende.favicon = <IconSearchEngine />;
 
 SkyParkingOostende.pages = [
