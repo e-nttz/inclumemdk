@@ -143,3 +143,14 @@
 }
 
 @import "./apps/textEditor.scss";
+
+@layer utilities {
+    .active > img{
+      @apply filter brightness-0 saturate-100;
+      filter: invert(19%) sepia(87%) saturate(2886%) hue-rotate(196deg) brightness(94%) contrast(104%);
+    }
+  }
+
+.bgGoulougoulou{
+	background-image: radial-gradient(at 50% 0%, rgba(90, 157, 255, 0) 42%, rgba(90, 157, 255, 0.67) 200%); 
+}

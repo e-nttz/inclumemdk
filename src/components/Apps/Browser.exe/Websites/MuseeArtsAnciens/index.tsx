@@ -62,6 +62,13 @@ MuseeArtsAnciens.title = "Musée des Arts Anciens du Namurois";
 // used in searchEngine
 MuseeArtsAnciens.excerpt = "Découvrez le riche patrimoine culturel de Namur au Musée des Arts Anciens.";
 
+// Mots clés
+MuseeArtsAnciens.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 // Site favicon icon
 MuseeArtsAnciens.favicon = <IconSearchEngine />;
 

@@ -91,6 +91,13 @@ ExploreOstende.title = "Explore Ostende";
 // used in searchEngine
 ExploreOstende.excerpt = "ExploreOstende est votre guide complet pour une visite inoubliable de la magnifique ville balnéaire d'Ostende en Belgique.";
 
+// Mots clés
+ExploreOstende.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 ExploreOstende.favicon = <IconSearchEngine />;
 
 ExploreOstende.pages = [

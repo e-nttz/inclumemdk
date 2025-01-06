@@ -123,6 +123,13 @@ AntivirusFacile.title = "Tutoriels pas à pas pour une installation réussie de 
 // used in searchEngine
 AntivirusFacile.excerpt = "Découvrez des guides détaillés pour une installation réussie de votre logiciel antivirus.";
 
+// Mots clés
+AntivirusFacile.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 AntivirusFacile.favicon = <IconSearchEngine />;
 
 AntivirusFacile.pages = [

@@ -84,6 +84,13 @@ RestaurantLaSiesta.title = "Restaurant La Siesta à Anvers";
 // used in searchEngine
 RestaurantLaSiesta.excerpt = "Découvrez les saveurs espagnoles et latino-américaines à Anvers.";
 
+// Mots clés
+RestaurantLaSiesta.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 // Site favicon icon
 RestaurantLaSiesta.favicon = <IconSearchEngine />;
 

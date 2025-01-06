@@ -30,7 +30,6 @@ const TextEditor: AppProps<TextEditorProps> = ({ content = "" }) => {
 	const { createFile, handleInfoWindow, closeInfoWindow } = useExplorer();
 
 	const appData: any = Object.entries(openedApps).find(
-		// find openedApps by title
 		(x) => x[1].title === TextEditor.title
 	);
 
@@ -53,8 +52,8 @@ const TextEditor: AppProps<TextEditorProps> = ({ content = "" }) => {
 		if (selection.rangeCount > 0) {
 			const range = selection.getRangeAt(0);
 			range.insertNode(img);
-			range.collapse(false); // Placer le curseur après l'image
-			setValue(editorRef.current.innerHTML); // Met à jour l'état avec le contenu modifié
+			range.collapse(false);
+			setValue(editorRef.current.innerHTML);
 		} else {
 			setValue(value + img.outerHTML);
 		}

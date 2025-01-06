@@ -91,6 +91,13 @@ ParkingsOostende.title = "Où garer ma voiture à Ostende ? | Visit Oostende";
 // used in searchEngine
 ParkingsOostende.excerpt = "Stationnement sur le domaine public en tant que visiteur : Zone orange, verte, jaune.";
 
+// Mots clés
+ParkingsOostende.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 ParkingsOostende.favicon = <IconSearchEngine />;
 
 ParkingsOostende.pages = [

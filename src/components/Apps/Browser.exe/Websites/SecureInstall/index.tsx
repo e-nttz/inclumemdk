@@ -78,6 +78,13 @@ SecureInstall.title = "Conseils pratiques pour une installation sécurisée de v
 // used in searchEngine
 SecureInstall.excerpt = "Obtenez des conseils pratiques pour installer votre antivirus en toute sécurité.";
 
+// Mots clés
+SecureInstall.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 SecureInstall.favicon = <IconSearchEngine />;
 
 SecureInstall.pages = [

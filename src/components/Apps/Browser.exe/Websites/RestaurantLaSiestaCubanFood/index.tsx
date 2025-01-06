@@ -88,6 +88,13 @@ RestaurantLaSiestaCubanFood.title = "La Siesta Cuban Food à Bruxelles";
 // used in searchEngine
 RestaurantLaSiestaCubanFood.excerpt = "Venez découvrir l'authenticité de la cuisine cubaine à Bruxelles.";
 
+// Mots clés
+RestaurantLaSiestaCubanFood.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 // Site favicon icon
 RestaurantLaSiestaCubanFood.favicon = <IconSearchEngine />;
 

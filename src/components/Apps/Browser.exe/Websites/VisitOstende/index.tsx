@@ -87,6 +87,13 @@ VisitOstende.title = "Visit Ostende";
 // used in searchEngine
 VisitOstende.excerpt = "Les incontournables à visiter à Ostende : la maison de James Ensor, Mercator, le Domaine provincial Atlantikwall Raversyde, le Fort Napoléon, …";
 
+// Mots clés
+VisitOstende.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 VisitOstende.favicon = <IconSearchEngine />;
 
 VisitOstende.pages = [

@@ -158,6 +158,13 @@ VirusGuardian.title = "Tutoriels pour optimiser votre protection antivirus | Vir
 // used in searchEngine
 VirusGuardian.excerpt = "Virus Guardian offre une collection de tutoriels complets pour vous guider dans l’installation, la configuration et l’utilisation efficace des logiciels antivirus.";
 
+// Mots clés
+VirusGuardian.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 VirusGuardian.favicon = <IconSearchEngine />;
 
 VirusGuardian.pages = [

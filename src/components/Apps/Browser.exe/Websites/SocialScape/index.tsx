@@ -116,6 +116,13 @@ SocialScape.title = "SocialScape | Activités et rencontres sociales";
 // used in searchEngine
 SocialScape.excerpt = "Découvrez des activités sociales avec SocialScape pour élargir votre cercle d'amis.";
 
+// Mots clés
+SocialScape.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 SocialScape.favicon = <IconSearchEngine />;
 
 SocialScape.pages = [

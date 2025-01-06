@@ -107,6 +107,13 @@ GoulougoulouTranslate.title = "Goulougoulou Traduction | Traduction gratuite ins
 // used in searchEngine
 GoulougoulouTranslate.excerpt = "Traduisez des mots, phrases et pages Web gratuitement avec Goulougoulou.";
 
+// Mots clés
+GoulougoulouTranslate.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 GoulougoulouTranslate.favicon = <IconSearchEngine />;
 
 GoulougoulouTranslate.pages = [

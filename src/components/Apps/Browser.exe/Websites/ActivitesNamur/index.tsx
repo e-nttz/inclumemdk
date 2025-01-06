@@ -120,6 +120,13 @@ ActivitesNamur.title = "5 Activités Incontournables à Namur";
 // used in searchEngine
 ActivitesNamur.excerpt = "Découvrez les meilleures activités à Namur, à ne manquer sous aucun prétexte.";
 
+// Mots clés
+ActivitesNamur.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 // Site favicon icon
 ActivitesNamur.favicon = <IconSearchEngine />;
 

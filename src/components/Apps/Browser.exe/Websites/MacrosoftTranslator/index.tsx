@@ -111,6 +111,13 @@ MacrosoftTranslator.title = "Macrosoft Translator | Brisez les barrières lingui
 // used in searchEngine
 MacrosoftTranslator.excerpt = "Briser les frontières linguistiques depuis chez vous.";
 
+// Mots clés
+MacrosoftTranslator.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 MacrosoftTranslator.favicon = <IconSearchEngine />;
 
 MacrosoftTranslator.pages = [

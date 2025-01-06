@@ -98,6 +98,13 @@ RestaurantDeLaMer.title = "Restaurant de la Mer à Ostende";
 // used in searchEngine
 RestaurantDeLaMer.excerpt = "Découvrez notre restaurant de fruits de mer à Ostende.";
 
+// Mots clés
+RestaurantDeLaMer.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 // Site favicon icon
 RestaurantDeLaMer.favicon = <IconSearchEngine />;
 

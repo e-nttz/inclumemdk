@@ -81,6 +81,13 @@ ParcoursStreetArt.title = "Parcours Street Art dans Namur";
 // used in searchEngine
 ParcoursStreetArt.excerpt = "Explorez l'art urbain dans la capitale wallonne.";
 
+// Mots clés
+ParcoursStreetArt.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 // Site favicon icon
 ParcoursStreetArt.favicon = <IconSearchEngine />;
 

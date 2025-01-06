@@ -138,6 +138,13 @@ SecureTech.title = "Guides pratiques pour protéger votre ordinateur | Secure Te
 // used in searchEngine
 SecureTech.excerpt = "Secure Tech propose des tutoriels antivirus détaillés pour vous aider à sécuriser votre ordinateur contre les menaces en ligne.";
 
+// Mots clés
+SecureTech.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 SecureTech.favicon = <IconSearchEngine />;
 
 SecureTech.pages = [

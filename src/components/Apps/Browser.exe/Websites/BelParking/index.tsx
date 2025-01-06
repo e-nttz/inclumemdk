@@ -60,6 +60,13 @@ Belparking.title = "Tous les parkings de Belgique | Belparking";
 // used in searchEngine
 Belparking.excerpt = "Découvrez la carte des parkings de Belgique avec Belparking.";
 
+// Mots clés
+Belparking.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 Belparking.favicon = <IconSearchEngine />;
 
 Belparking.pages = [

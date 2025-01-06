@@ -157,6 +157,13 @@ AntivirusAdvisor.title = "Comparez et choisissez le meilleur antivirus | Antivir
 // used in searchEngine
 AntivirusAdvisor.excerpt = "AntivirusAdvisor offre des comparaisons détaillées et des avis impartiaux sur une variété de logiciels antivirus.";
 
+// Mots clés
+AntivirusAdvisor.motsCles = [
+	"mot_cle_1",
+	"antivirus",
+	"mot_cle_3"
+];
+
 AntivirusAdvisor.favicon = <IconSearchEngine />;
 
 AntivirusAdvisor.pages = [

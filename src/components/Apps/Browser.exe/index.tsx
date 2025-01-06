@@ -23,6 +23,7 @@ export type Tab = {
 };
 
 const Browser: AppProps = () => {
+	const [prevNav, setPrevNav] = useState(false)
 	const [loading, setLoading] = useState(false);
 	const [tabs, setTabs] = useState([
 		{
@@ -45,35 +46,55 @@ const Browser: AppProps = () => {
 			historyIndex: 0,
 		},
 	]);
-
-	const handleOpenWebsite = (e) => {
+	const handleOpenWebsite = (e, prevNav) => {
 		setLoading(true);
-
 		const tab = tabs.find((tab) => tab.id === currentTab);
-		tab?.history.push({
-			website: e.detail.website,
-			url: e.detail.url,
-		});
-
+		if(!prevNav){
+			tab?.history.push({
+				website: e.detail.website,
+				url: e.detail.url,
+			});
+			setTabs((prev: Tab[]) => {
+				const index = prev.findIndex((tab) => tab.id === currentTab);
+				const newTabs = [...prev];
+				newTabs[index] = tab;
+				return newTabs;
+			});
+	
+			setCurrentHistoryIndex(tab?.history.length - 1);
+	
+			setCurrentHistoryTab((prev) => [
+				// find if the tab is already in the history
+				...prev.filter((tab) => tab.tabId !== currentTab),
+				{
+					tabId: currentTab,
+					historyIndex: tab?.history.length - 1,
+				},
+			]);
+		}
+		else{
+			setTabs((prev: Tab[]) => {
+				const index = prev.findIndex((tab) => tab.id === currentTab);
+				const newTabs = [...prev];
+				newTabs[index] = tab;
+				return newTabs;
+			});
+	
+			setCurrentHistoryIndex(tab?.history.length - 1);
+	
+			setCurrentHistoryTab((prev) => [
+				// find if the tab is already in the history
+				...prev.filter((tab) => tab.tabId !== currentTab),
+				{
+					tabId: currentTab,
+					historyIndex: tab?.history.length - 2,
+				},
+			]);
+		}
 		// add tab in tabs
-		setTabs((prev: Tab[]) => {
-			const index = prev.findIndex((tab) => tab.id === currentTab);
-			const newTabs = [...prev];
-			newTabs[index] = tab;
-			return newTabs;
-		});
 
-		setCurrentHistoryIndex(tab?.history.length - 1);
 
-		setCurrentHistoryTab((prev) => [
-			// find if the tab is already in the history
-			...prev.filter((tab) => tab.tabId !== currentTab),
-			{
-				tabId: currentTab,
-				historyIndex: tab?.history.length - 1,
-			},
-		]);
-
+		console.log(tab?.history)
 		setTimeout(() => {
 			setLoading(false);
 		}, 500);
@@ -82,19 +103,13 @@ const Browser: AppProps = () => {
 	const handlePreviousButton = () => {
 		const tab = tabs.find((tab) => tab.id === currentTab);
 		if (tab?.history.length > 1) {
-			//make a copy of the current history index
-			const tempValue = currentHistoryIndex;
-
-			setCurrentHistoryIndex(tempValue);
-
-			setCurrentHistoryTab((prev) => [
-				// find if the tab is already in the history
-				...prev.filter((tab) => tab.tabId !== currentTab),
-				{
-					tabId: currentTab,
-					historyIndex: tempValue,
-				},
-			]);
+			const previousWebsite = {
+				detail: {
+				  website: tab && tab.history.length > 1 ? tab.history[tab.history.length - 2].website : undefined,
+				  url: tab && tab.history.length > 1 ? tab.history[tab.history.length - 2].url : undefined
+				}
+			};
+			handleOpenWebsite(previousWebsite, true)
 		}
 	};
 
@@ -121,7 +136,7 @@ const Browser: AppProps = () => {
 		}, 300);
 	};
 
-	useBeaconListener("openWebsite", (e) => handleOpenWebsite(e));
+	useBeaconListener("openWebsite", (e) => handleOpenWebsite(e, prevNav));
 	useBeaconListener("openPreviousWebsite", handlePreviousButton);
 	useBeaconListener("openNextWebsite", handleNextButton);
 	useBeaconListener("handleRefresh", handleRefreshButton);

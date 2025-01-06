@@ -102,6 +102,13 @@ DipLTraduction.title = "DipL Traduction | Traduction instantanée de textes et d
 // used in searchEngine
 DipLTraduction.excerpt = "Traduction instantanée de textes et documents complets avec DipL Traduction.";
 
+// Mots clés
+DipLTraduction.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 DipLTraduction.favicon = <IconSearchEngine />;
 
 DipLTraduction.pages = [

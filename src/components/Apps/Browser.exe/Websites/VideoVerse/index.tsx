@@ -144,6 +144,13 @@ VideoVerse.title = "[VIDEO] TUTO Comment installer un ANTIVIRUS | VideoVerse";
 // used in searchEngine
 VideoVerse.excerpt = "Suivez notre guide vidéo pour une installation réussie de votre antivirus.";
 
+// Mots clés
+VideoVerse.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 VideoVerse.favicon = <IconSearchEngine />;
 
 VideoVerse.pages = [

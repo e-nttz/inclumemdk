@@ -87,6 +87,13 @@ VenteCanapesLaSiesta.title = "Vente en ligne de Canapés « La Siesta »";
 // used in searchEngine
 VenteCanapesLaSiesta.excerpt = "Parcourez notre sélection de canapés « La Siesta » en ligne pour trouver le meuble idéal pour votre espace de vie.";
 
+// Mots clés
+VenteCanapesLaSiesta.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 // Site favicon icon
 VenteCanapesLaSiesta.favicon = <IconSearchEngine />;
 

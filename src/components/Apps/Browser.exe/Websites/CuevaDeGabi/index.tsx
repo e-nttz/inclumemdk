@@ -87,6 +87,13 @@ CuevaDeGabi.title = "Cueva de Gabi à Ixelles";
 // used in searchEngine
 CuevaDeGabi.excerpt = "Découvrez le meilleur de la cuisine latino-américaine à Ixelles.";
 
+// Mots clés
+CuevaDeGabi.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 // Site favicon icon
 CuevaDeGabi.favicon = <IconSearchEngine />;
 

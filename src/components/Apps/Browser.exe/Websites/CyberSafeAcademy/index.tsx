@@ -155,6 +155,13 @@ CyberSafeAcademy.title = "CyberSafe Academy | Cours en ligne gratuits sur l’ut
 // used in searchEngine
 CyberSafeAcademy.excerpt = "CyberSafe Academy propose des cours en ligne gratuits pour vous apprendre à utiliser efficacement les logiciels antivirus.";
 
+// Mots clés
+CyberSafeAcademy.motsCles = [
+	"mot_cle_1",
+	"mot_cle_2",
+	"mot_cle_3"
+];
+
 CyberSafeAcademy.favicon = <IconSearchEngine />;
 
 CyberSafeAcademy.pages = [
