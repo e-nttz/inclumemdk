@@ -11,6 +11,17 @@ import DismissIcon from "@/assets/icons/dismiss.svg?react";
 import { beacon, useBeaconListener } from "@/helpers/beacon";
 import Image from "@/components/Ui/Images/image";
 import { useExplorer } from "@/providers/explorer";
+
+// Icons
+import HangUp from "@/assets/icons/hang_up.svg"
+import SoundOff from "@/assets/icons/sound_off.svg"
+import SoundOn from "@/assets/icons/sound_on.svg"
+import WebcamOff from "@/assets/icons/webcam_off.svg"
+import WebcamOn from "@/assets/icons/webcam_on.svg"
+import MicOff from "@/assets/icons/mic_off.svg"
+import MicOn from "@/assets/icons/mic_on.svg"
+import WebcamImage from "@/assets/icons/webcam.jpg"
+
 interface AppProps extends React.FC {
 	title: string;
 	icon: ReactElement;
@@ -27,8 +38,14 @@ const Message: AppProps = () => {
 	const { handleInfoWindow, closeInfoWindow } = useExplorer();
 
 	const messagesList = useRef<HTMLUListElement>(null);
+	const videoRef = useRef<HTMLVideoElement>(null);
 
 	const [selectedFiles, setSelectedFiles] = useState<string | null>(null);
+
+	const [isWebcamOn, setWebcamOn] = useState(false);
+	const [isMicOn, setMicOn] = useState(true);
+	const [isSoundOn, setSoundOn] = useState(true);
+	const [isCall, setCall] = useState(true);
 
 	const [messages, setMessages] = useState<Message[]>([
 		{
@@ -134,136 +151,185 @@ const Message: AppProps = () => {
 	return (
 		<Window
 			appName={Message.title}
-			contextMenus={
-				<>
-					<ContextualBar.Menu name="Fichiers">
-						<ContextualBar.Item onClick={() => handleFileAttachment()}>
-							{t("join_file", "Joindre un fichier")}
-						</ContextualBar.Item>
-					</ContextualBar.Menu>
-				</>
-			}
+			contextMenus={!isCall ? (
+				<ContextualBar.Menu name="Fichiers">
+					<ContextualBar.Item onClick={() => handleFileAttachment()}>
+						{t("join_file", "Joindre un fichier")}
+					</ContextualBar.Item>
+				</ContextualBar.Menu>
+			) : null}
 		>
-			<section className="flex flex-col flex-1 w-full overflow-auto text-black bg-white/90 backdrop-blur dark:bg-black/70">
-				<header className="px-6 py-4 bg-white dark:bg-black">
-					<div className="flex flex-row items-center gap-2">
-						<figure className="w-12 overflow-hidden rounded-full aspect-square">
-							<Image
-								src="/images/avatar-message.jpg"
-								alt="Avatar"
-								className="object-cover w-full h-full"
-							/>
-						</figure>
+			{!isCall && (
+				<section className="flex flex-col flex-1 w-full overflow-auto text-black bg-white/90 backdrop-blur dark:bg-black/70">
+					<header className="px-6 py-4 bg-white dark:bg-black">
+						<div className="flex flex-row items-center gap-2">
+							<figure className="w-12 overflow-hidden rounded-full aspect-square">
+								<Image
+									src="/images/avatar-message.jpg"
+									alt="Avatar"
+									className="object-cover w-full h-full"
+								/>
+							</figure>
 
-						<p className="font-bold dark:text-white">John Doe</p>
-					</div>
-				</header>
+							<p className="font-bold dark:text-white">John Doe</p>
+						</div>
+					</header>
 
-				<ul
-					className="flex flex-col flex-1 gap-4 px-4 py-4 overflow-auto"
-					ref={messagesList}
-				>
-					{messages.map((message) => (
-						<li
-							key={message.id}
-							className="flex flex-row items-center space-x-2"
-						>
-							<BubbleChat
-								message={message}
-								isMine={message.sender === 1}
-							/>
-						</li>
-					))}
-				</ul>
-
-				<form
-					className="gap-4 px-6 py-4 space-y-4 bg-white dark:bg-black dark:text-white"
-					onSubmit={handleSubmit}
-				>
-					{selectedFiles && (
-						<div className="relative w-20 h-auto overflow-hidden border-2 rounded-lg border-accent dark:border-accent-dark">
-							<img
-								src={selectedFiles}
-								alt="Avatar"
-								className="w-full h-auto"
-							/>
-
-							<button
-								type="button"
-								className="absolute inset-0 flex items-center justify-center transition opacity-0 hover:opacity-100 focus-visible:opacity-100 bg-white/50 backdrop-blur-sm dark:text-black"
-								onClick={() => setSelectedFiles(null)}
+					<ul
+						className="flex flex-col flex-1 gap-4 px-4 py-4 overflow-auto"
+						ref={messagesList}
+					>
+						{messages.map((message) => (
+							<li
+								key={message.id}
+								className="flex flex-row items-center space-x-2"
 							>
-								<DismissIcon className="w-6 h-auto" />
+								<BubbleChat
+									message={message}
+									isMine={message.sender === 1}
+								/>
+							</li>
+						))}
+					</ul>
+
+					<form
+						className="gap-4 px-6 py-4 space-y-4 bg-white dark:bg-black dark:text-white"
+						onSubmit={handleSubmit}
+					>
+						{selectedFiles && (
+							<div className="relative w-20 h-auto overflow-hidden border-2 rounded-lg border-accent dark:border-accent-dark">
+								<img
+									src={selectedFiles}
+									alt="Avatar"
+									className="w-full h-auto"
+								/>
+
+								<button
+									type="button"
+									className="absolute inset-0 flex items-center justify-center transition opacity-0 hover:opacity-100 focus-visible:opacity-100 bg-white/50 backdrop-blur-sm dark:text-black"
+									onClick={() => setSelectedFiles(null)}
+								>
+									<DismissIcon className="w-6 h-auto" />
+								</button>
+							</div>
+						)}
+
+						<div className="flex flex-row items-center gap-4">
+							<span className="relative flex-1 peer">
+								<input
+									type="text"
+									name="message"
+									placeholder="Type a message..."
+									autoComplete="off"
+									className="flex-1 w-full p-2 pr-12 border-2 border-solid rounded-lg bg-gray-50/50 border-gray-50/50 dark:hover:border-accent-dark dark:focus:border-accent-dark dark:bg-gray-900 dark:border-gray-900 hover:border-accent focus:border-accent focus:outline-none focus:shadow-none peer"
+									// Listen when a paste event is made on input
+									onPaste={async (e) => {
+										const text = await navigator.clipboard.readText();
+
+										const filePattern =
+											/^\/images\/.*\.(png|jpg|jpeg|gif|webp|svg|pdf)$/;
+										if (filePattern.test(text)) {
+											e.preventDefault();
+											// Send new message with image
+
+											beacon("message", {
+												id: Math.random(),
+												sender: 1,
+												content: (
+													<img
+														src={text}
+														alt="Pasted image"
+														className="h-auto max-w-full"
+													/>
+												),
+											});
+
+											// Clear input
+											(e.target as HTMLInputElement).value = "";
+
+											return;
+										}
+									}}
+								/>
+								<button
+									type="button"
+									className="absolute text-gray-300 -translate-y-1/2 right-4 top-1/2 hover:text-accent dark:hover:text-accent-dark"
+									onClick={async () => {
+										handleInfoWindow((selected: FileNode) => {
+											if (selected?.url) {
+												setSelectedFiles(selected.url);
+											}
+
+											closeInfoWindow();
+										}, undefined);
+									}}
+								>
+									<span className="sr-only">
+										{t("insert_file", "Insérez un fichier")}
+									</span>
+
+									<CameraIcon className="w-6 h-auto" />
+								</button>
+							</span>
+
+							<button className="peer-[:not(:placeholder-shown)]:text-accent dark:peer-[:not(:placeholder-shown)]:text-accent-dark text-gray-200 transition flex-shrink-0">
+								<span className="sr-only">{t("send", "Envoyer")}</span>
+
+								<PaperplaneIcon className="w-6 h-auto" />
 							</button>
 						</div>
-					)}
+					</form>
+				</section>
+			)}
 
-					<div className="flex flex-row items-center gap-4">
-						<span className="relative flex-1 peer">
-							<input
-								type="text"
-								name="message"
-								placeholder="Type a message..."
-								autoComplete="off"
-								className="flex-1 w-full p-2 pr-12 border-2 border-solid rounded-lg bg-gray-50/50 border-gray-50/50 dark:hover:border-accent-dark dark:focus:border-accent-dark dark:bg-gray-900 dark:border-gray-900 hover:border-accent focus:border-accent focus:outline-none focus:shadow-none peer"
-								// Listen when a paste event is made on input
-								onPaste={async (e) => {
-									const text = await navigator.clipboard.readText();
+			{isCall && (
+				<section className="bg-black w-full h-full flex justify-center">
+					{/* Référence pour la vidéo */}
+					<video autoPlay loop ref={videoRef} muted={!isSoundOn}>
+						<source src="https://cdn.pixabay.com/video/2020/01/05/30902-383991325_large.mp4" />
+					</video>
+					<div className="options flex justify-between absolute bottom-4 w-60">
+						<div
+							className="camera rounded-[50%] w-12 h-12 flex items-center justify-center cursor-pointer bg-black/40 backdrop-blur"
+							onClick={() => setWebcamOn(!isWebcamOn)}
+						>
+							<img src={isWebcamOn ? WebcamOn : WebcamOff} alt="Webcam" className="h-6" />
+						</div>
 
-									const filePattern =
-										/^\/images\/.*\.(png|jpg|jpeg|gif|webp|svg|pdf)$/;
-									if (filePattern.test(text)) {
-										e.preventDefault();
-										// Send new message with image
+						<div
+							className="micro rounded-[50%] w-12 h-12 flex items-center justify-center cursor-pointer bg-black/40 backdrop-blur"
+							onClick={() => setMicOn(!isMicOn)}
+						>
+							<img src={isMicOn ? MicOn : MicOff} alt="Microphone" className="h-6" />
+						</div>
 
-										beacon("message", {
-											id: Math.random(),
-											sender: 1,
-											content: (
-												<img
-													src={text}
-													alt="Pasted image"
-													className="h-auto max-w-full"
-												/>
-											),
-										});
+						{/* Bouton pour couper/activer le son */}
+						<div
+							className="hautparleur rounded-[50%] w-12 h-12 flex items-center justify-center cursor-pointer bg-black/40 backdrop-blur"
+							onClick={() => {
+								setSoundOn(!isSoundOn); // Alterne l'état local
+								if (videoRef.current) {
+									videoRef.current.muted = isSoundOn; // Mettre à jour la propriété muted
+								}
+							}}
+						>
+							<img src={isSoundOn ? SoundOn : SoundOff} alt="Haut-parleur" className="h-6" />
+						</div>
 
-										// Clear input
-										(e.target as HTMLInputElement).value = "";
-
-										return;
-									}
-								}}
-							/>
-							<button
-								type="button"
-								className="absolute text-gray-300 -translate-y-1/2 right-4 top-1/2 hover:text-accent dark:hover:text-accent-dark"
-								onClick={async () => {
-									handleInfoWindow((selected: FileNode) => {
-										if (selected?.url) {
-											setSelectedFiles(selected.url);
-										}
-
-										closeInfoWindow();
-									}, undefined);
-								}}
-							>
-								<span className="sr-only">
-									{t("insert_file", "Insérez un fichier")}
-								</span>
-
-								<CameraIcon className="w-6 h-auto" />
-							</button>
-						</span>
-
-						<button className="peer-[:not(:placeholder-shown)]:text-accent dark:peer-[:not(:placeholder-shown)]:text-accent-dark text-gray-200 transition flex-shrink-0">
-							<span className="sr-only">{t("send", "Envoyer")}</span>
-
-							<PaperplaneIcon className="w-6 h-auto" />
-						</button>
+						<div
+							className="raccrocher bg-[#FB4343] rounded-[50%] w-12 h-12 flex items-center justify-center cursor-pointer"
+							onClick={() => setCall(false)}
+						>
+							<img src={HangUp} alt="" className="h-6" />
+						</div>
 					</div>
-				</form>
-			</section>
+					{isWebcamOn && (
+						<div className="webcam absolute w-64 absolute bottom-3 right-3">
+							<img src={WebcamImage} alt="Personnage Webcam" className=""/>
+						</div>
+					)}
+				</section>
+			)}
 		</Window>
 	);
 };

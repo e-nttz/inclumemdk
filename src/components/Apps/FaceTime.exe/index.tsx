@@ -3,8 +3,12 @@ import { classNames } from "@/helpers/sanitize";
 import useAudioPlayer from "@/hooks/useAudioPlayer";
 import { useEffect, useState } from "react";
 import { useTranslate } from "@tolgee/react";
+import { useOS } from "@/providers/InclumeOS";
+import { apps } from "@/components/Apps";
+
 
 const FaceTime = () => {
+	const { launchApp } = useOS();
 	const { t } = useTranslate();
 
 	const [callStatus, setCallStatus] = useState<
@@ -65,6 +69,10 @@ const FaceTime = () => {
 							onClick={() => {
 								setCallStatus("waiting");
 								incomingCallSound.stop();
+								launchApp({
+									title: apps.message.title,
+									icon: apps.message.icon,
+								});
 							}}
 						>
 							{t("accept_call", "Accepter l'appel")}
