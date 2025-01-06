@@ -72,9 +72,70 @@ TukTukNamur.excerpt = "Découvrez Namur d'une manière originale avec nos visite
 
 // Mots clés
 TukTukNamur.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+	"tuk",
+	"tuk-tuk",
+	"tuktuk", // Variante d'orthographe
+	"visite",
+	"visites",
+	"tour",
+	"tours",
+	"balade",
+	"balades",
+	"excursion",
+	"excursions",
+	"Namur",
+	"nammur", // Variante d'orthographe
+	"découverte",
+	"découvertes",
+	"decouverte", // Variante d'orthographe
+	"original",
+	"originale",
+	"unique",
+	"expérience",
+	"expériences",
+	"experience", // Variante d'orthographe
+	"transport",
+	"transports",
+	"mobilité",
+	"mobilite", // Variante d'orthographe
+	"loisir",
+	"loisirs",
+	"tourisme",
+	"touristique",
+	"touristiques",
+	"touriste",
+	"touristes",
+	"culture",
+	"culturelle",
+	"historique",
+	"attraction",
+	"attractions",
+	"panorama",
+	"panoramas",
+	"famille",
+	"amis",
+	"convivial",
+	"conviviale",
+	"détente",
+	"relaxation",
+	"écologique",
+	"ecologique", // Variante d'orthographe
+	"originalité",
+	"originalite", // Variante d'orthographe
+	"citadelle",
+	"ville",
+	"centre-ville",
+	"nature",
+	"rues",
+	"ruelle",
+	"ruelles",
+	"monument",
+	"monuments",
+	"patrimoine",
+	"histoire",
+	"authentique",
+	"authenticité",
+	"authenticite" // Variante d'orthographe
 ];
 
 // Site favicon icon

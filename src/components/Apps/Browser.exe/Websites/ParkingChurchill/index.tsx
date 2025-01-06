@@ -105,9 +105,67 @@ ParkingChurchill.excerpt = "Parking à Ostende, ouvert 24h/24 et 7j/7 avec 400 p
 
 // Mots clés
 ParkingChurchill.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+    "parking",
+    "stationnement",
+    "ostende",
+    "ostend", // Variante sans e final
+    "place",
+    "places",
+    "emplacement",
+    "emplacements",
+    "voiture",
+    "voitures",
+    "véhicule",
+    "vehicule", // Variante sans accent
+    "auto",
+    "ouvert",
+    "ouverture",
+    "24h",
+    "7j",
+    "h24",
+    "jours",
+    "joursouvert",
+    "sécurité",
+    "securite", // Variante sans accent
+    "surveillance",
+    "public",
+    "privé",
+    "prive", // Variante sans accent
+    "centre",
+    "ville",
+    "proche",
+    "confort",
+    "accessibilité",
+    "accessibilite", // Variante sans accent
+    "rapide",
+    "facile",
+    "solution",
+    "solutions",
+    "service",
+    "services",
+    "localisation",
+    "localiser",
+    "recherche",
+    "trouver",
+    "tarif",
+    "tarifs",
+    "abonnement",
+    "abonnements",
+    "espace",
+    "espaces",
+    "zone",
+    "zones",
+    "garage",
+    "sur",
+    "soussol",
+    "extérieur",
+    "exterieur", // Variante sans accent
+    "confortable",
+    "disponible",
+    "disponibilité",
+    "disponibilite", // Variante sans accent
+    "sécurisé",
+    "securise", // Variante sans accent
 ];
 
 ParkingChurchill.favicon = <IconSearchEngine />;

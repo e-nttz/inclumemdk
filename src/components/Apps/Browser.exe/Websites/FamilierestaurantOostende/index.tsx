@@ -100,9 +100,56 @@ FamilierestaurantOostende.excerpt = "Geniet van traditionele gerechten in een ge
 
 // Mots clés
 FamilierestaurantOostende.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+    "traditionnel",
+    "traditionelle", // Variante de mauvaise orthographe
+    "tradition",
+    "plats",
+    "plat",
+    "recette",
+    "recettes",
+    "repas",
+    "dîner",
+    "dejeuner", // Variante sans accent
+    "dîner",
+    "déjeuner",
+    "gastronomie",
+    "gastrnomie", // Variante de mauvaise orthographe
+    "cuisine",
+    "cusine", // Variante de mauvaise orthographe
+    "spécialité",
+    "specialité", // Variante sans accent
+    "spécialités",
+    "specialités", // Variante sans accent
+    "authentique",
+    "authenticité",
+    "convivial",
+    "conviviale",
+    "convivialité",
+    "chaleureux",
+    "chaleureuse",
+    "accueil",
+    "ambiance",
+    "salle",
+    "restaurant",
+    "resto",
+    "restaurent", // Variante de mauvaise orthographe
+    "famille",
+    "familial",
+    "familiale",
+    "goût",
+    "gout", // Variante sans accent
+    "saveur",
+    "saveurs",
+    "découverte",
+    "decouverte", // Variante sans accent
+    "partage",
+    "moment",
+    "festif",
+    "détente",
+    "detente", // Variante sans accent
+    "rencontre",
+    "rendezvous", // Variante sans espace
+    "authenticité"
 ];
 
 // Site favicon icon

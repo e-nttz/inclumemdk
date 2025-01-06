@@ -146,9 +146,53 @@ VideoVerse.excerpt = "Suivez notre guide vidéo pour une installation réussie d
 
 // Mots clés
 VideoVerse.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+	"guide",
+	"guides",
+	"tutoriel",
+	"tutoriels",
+	"vidéo",
+	"videos",
+	"video", // Variante d'orthographe
+	"installation",
+	"installer",
+	"antivirus",
+	"anti-virus", // Variante orthographique
+	"protection",
+	"sécurité",
+	"securite", // Variante d'orthographe
+	"logiciel",
+	"logiciels",
+	"outil",
+	"outils",
+	"cybersécurité",
+	"cybersecurite", // Variante d'orthographe
+	"ordinateur",
+	"ordinateurs",
+	"pc",
+	"mac",
+	"configurer",
+	"configuration",
+	"paramètres",
+	"parametres", // Variante d'orthographe
+	"télécharger",
+	"telecharger", // Variante d'orthographe
+	"activation",
+	"activer",
+	"internet",
+	"problème",
+	"problèmes",
+	"problemes", // Variante d'orthographe
+	"résolution",
+	"resolutions", // Variante d'orthographe
+	"facile",
+	"rapide",
+	"efficace",
+	"assistance",
+	"support",
+	"aide",
+	"protéger",
+	"sécuriser",
+	"paramétrage"
 ];
 
 VideoVerse.favicon = <IconSearchEngine />;

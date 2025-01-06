@@ -104,9 +104,63 @@ SkyParkingOostende.excerpt = "Parking à Ostende, ouvert 24h/24 et 7j/7.";
 
 // Mots clés
 SkyParkingOostende.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+	"parking",
+	"parkings",
+	"parquing", // Variante d'orthographe
+	"stationnement",
+	"stationer", // Variante d'orthographe
+	"voiture",
+	"voitures",
+	"véhicule",
+	"véhicules",
+	"vehicule", // Variante d'orthographe
+	"garage",
+	"garages",
+	"place",
+	"places",
+	"stationner",
+	"stasionner", // Variante d'orthographe
+	"Ostende",
+	"Ostend", // Variante d'orthographe
+	"24h",
+	"24h/24",
+	"7j/7",
+	"ouvert",
+	"ouverte",
+	"ouverture",
+	"non-stop",
+	"continu",
+	"service",
+	"services",
+	"proximité",
+	"centre",
+	"mer",
+	"plage",
+	"littoral",
+	"accès",
+	"access",
+	"acces", // Variante d'orthographe
+	"sécurisé",
+	"sécurisée",
+	"sécurite", // Variante d'orthographe
+	"surveillance",
+	"surveillé",
+	"surveillée",
+	"horaire",
+	"horaires",
+	"jour",
+	"nuit",
+	"tarif",
+	"tarifs",
+	"payant",
+	"gratuit",
+	"réservation",
+	"réservations",
+	"resérvation", // Variante d'orthographe
+	"facilité",
+	"facilités",
+	"confort",
+	"confortable"
 ];
 
 SkyParkingOostende.favicon = <IconSearchEngine />;

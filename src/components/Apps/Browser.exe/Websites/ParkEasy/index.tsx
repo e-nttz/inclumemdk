@@ -121,9 +121,73 @@ ParkEasy.excerpt = "Utilisez ParkEasy pour réserver votre stationnement facilem
 
 // Mots clés
 ParkEasy.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+    "parking",
+    "stationnement",
+    "réserver",
+    "reserver", // Variante sans accent
+    "réservation",
+    "reservation", // Variante sans accent
+    "facile",
+    "facilité",
+    "faciliter",
+    "pratique",
+    "stationner",
+    "voiture",
+    "véhicule",
+    "vehicule", // Variante sans accent
+    "auto",
+    "emplacement",
+    "place",
+    "garer",
+    "garage",
+    "parc",
+    "parcs",
+    "park",
+    "zone",
+    "zones",
+    "espace",
+    "espaces",
+    "mobilité",
+    "mobilite", // Variante sans accent
+    "confort",
+    "sécurité",
+    "securite", // Variante sans accent
+    "navigation",
+    "trajet",
+    "trajets",
+    "destinations",
+    "destination",
+    "application",
+    "appli",
+    "applis",
+    "service",
+    "services",
+    "localisation",
+    "localiser",
+    "position",
+    "positions",
+    "recherche",
+    "trouver",
+    "trouve",
+    "économie",
+    "economie", // Variante sans accent
+    "temps",
+    "efficacité",
+    "efficacite", // Variante sans accent
+    "simple",
+    "rapide",
+    "solution",
+    "solutions",
+    "tarif",
+    "tarifs",
+    "abonnement",
+    "abonnements",
+    "public",
+    "privé",
+    "prive", // Variante sans accent
+    "voitures",
+    "bénéfice",
+    "benefice" // Variante sans accent
 ];
 
 ParkEasy.favicon = <IconSearchEngine />;

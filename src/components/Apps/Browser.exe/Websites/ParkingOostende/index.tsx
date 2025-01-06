@@ -93,9 +93,65 @@ ParkingsOostende.excerpt = "Stationnement sur le domaine public en tant que visi
 
 // Mots clés
 ParkingsOostende.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+    "parking",
+    "stationnement",
+    "public",
+    "visiteur",
+    "visitant",
+    "zone",
+    "zones",
+    "orange",
+    "verte",
+    "jaune",
+    "dommaine", // Variante avec double "m" pour "domaine"
+    "domaine",
+    "publique",
+    "publicque", // Variante avec deux "q"
+    "voiture",
+    "véhicule",
+    "vehicule", // Variante sans accent
+    "emplacement",
+    "emplacements",
+    "place",
+    "places",
+    "ostende",
+    "ostend", // Variante sans e final
+    "auto",
+    "payant",
+    "paiement",
+    "tarif",
+    "tarifs",
+    "abonnement",
+    "abonnements",
+    "surveillance",
+    "proche",
+    "confort",
+    "pratique",
+    "trajet",
+    "trajets",
+    "déplacement",
+    "deplacement", // Variante sans accent
+    "mobilité",
+    "mobilite", // Variante sans accent
+    "accessibilité",
+    "accessibilite", // Variante sans accent
+    "facile",
+    "rapide",
+    "solution",
+    "solutions",
+    "service",
+    "services",
+    "localisation",
+    "localiser",
+    "recherche",
+    "trouver",
+    "navigation",
+    "espace",
+    "espaces",
+    "proximité",
+    "proximitée", // Variante avec accent erroné
+    "rue",
+    "routes"
 ];
 
 ParkingsOostende.favicon = <IconSearchEngine />;

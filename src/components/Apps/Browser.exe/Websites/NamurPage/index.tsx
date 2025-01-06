@@ -114,9 +114,54 @@ NamurPage.excerpt = "Namur, capitale historique et culturelle de la Wallonie.";
 
 // Mots clés
 NamurPage.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+    "Namur",
+    "capitale",
+    "ville",
+    "histoire",
+    "historique",
+    "culture",
+    "culturelle",
+    "wallonie",
+    "tourisme",
+    "touriste",
+    "monument",
+    "monuments",
+    "patrimoine",
+    "visite",
+    "visiter",
+    "escapade",
+    "vacances",
+    "art",
+    "arts",
+    "architecture",
+    "moyenage",
+    "moyenageux",
+    "medieval",
+    "ruelle",
+    "ruelles",
+    "musée",
+    "musee", // Variante sans accent
+    "exposition",
+    "expositions",
+    "place",
+    "places",
+    "quartier",
+    "quartiers",
+    "rue",
+    "rues",
+    "tour",
+    "tours",
+    "site",
+    "beffroi",
+    "château",
+    "chateaux", // Variante sans accent
+    "nature",
+    "riviere",
+    "rivières", // Variante avec accent
+    "flore",
+    "faune",
+    "paysage",
+    "paysages"
 ];
 
 NamurPage.favicon = <IconSearchEngine />;

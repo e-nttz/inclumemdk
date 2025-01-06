@@ -106,9 +106,73 @@ WereldsmakenOostende.excerpt = "Duik in een culinaire wereldreis bij ons café-r
 
 // Mots clés
 WereldsmakenOostende.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+	"café",
+	"cafe", // Variante d'orthographe
+	"restaurant",
+	"restaurants",
+	"cuisine",
+	"cuisines",
+	"culinaire",
+	"culinaires",
+	"gastronomie",
+	"gastronomique",
+	"voyage",
+	"voyages",
+	"monde",
+	"saveur",
+	"saveurs",
+	"gout", // Variante d'orthographe
+	"goût",
+	"international",
+	"internationaux",
+	"exotique",
+	"exotiques",
+	"menu",
+	"cartes",
+	"plats",
+	"plat",
+	"spécialité",
+	"specialite", // Variante d'orthographe
+	"spécialités",
+	"specialites", // Variante d'orthographe
+	"culture",
+	"cultures",
+	"découverte",
+	"decouverte", // Variante d'orthographe
+	"aventure",
+	"aventures",
+	"recette",
+	"recettes",
+	"épices",
+	"epices", // Variante d'orthographe
+	"arômes",
+	"aromes", // Variante d'orthographe
+	"cocktail",
+	"cocktails",
+	"boisson",
+	"boissons",
+	"ambiance",
+	"expérience",
+	"experience", // Variante d'orthographe
+	"dégustation",
+	"degustation", // Variante d'orthographe
+	"repas",
+	"table",
+	"tables",
+	"convivialité",
+	"convivialite", // Variante d'orthographe
+	"accueil",
+	"service",
+	"serveur",
+	"serveuse",
+	"chef",
+	"chefs",
+	"terrasse",
+	"reservation",
+	"réservation", // Variante orthographique
+	"Oostende",
+	"Ostende", // Variante linguistique
+	"mer"
 ];
 
 // Site favicon icon

@@ -104,9 +104,60 @@ OuikiHow.excerpt = "Découvrez comment installer un antivirus avec notre guide d
 
 // Mots clés
 OuikiHow.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+    "installer",
+    "installation",
+    "antivirus",
+    "guide",
+    "guides",
+    "détaillé",
+    "detaillé", // Variante sans accent
+    "détaillés",
+    "detaillés", // Variante sans accent
+    "détail",
+    "detail", // Variante sans accent
+    "logiciel",
+    "logiciels",
+    "sécurité",
+    "securite", // Variante sans accent
+    "protection",
+    "ordinateur",
+    "ordinateurs",
+    "pc",
+    "mac",
+    "tutoriel",
+    "tutoriels",
+    "assistance",
+    "aide",
+    "configuration",
+    "configurer",
+    "paramètres",
+    "parametres", // Variante sans accent
+    "réglages",
+    "reglages", // Variante sans accent
+    "virus",
+    "malware",
+    "cybersecurité",
+    "cybersecurite", // Variante sans accent
+    "cybersécurité",
+    "protéger",
+    "proteger", // Variante sans accent
+    "en ligne",
+    "sansvirus",
+    "nettoyage",
+    "miseajour",
+    "utilitaire",
+    "sécurisation",
+    "explication",
+    "procédure",
+    "procedure", // Variante sans accent
+    "support",
+    "erreur",
+    "probleme",
+    "problème",
+    "windows",
+    "macos",
+    "ios",
+    "android"
 ];
 
 OuikiHow.favicon = <IconSearchEngine />;

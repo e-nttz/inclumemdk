@@ -89,9 +89,50 @@ MuseeFelicienRops.excerpt = "Découvrez l'œuvre et la vie de Félicien Rops dan
 
 // Mots clés
 MuseeFelicienRops.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+    "œuvre",
+    "oeuvre", // Variante sans accent
+    "art",
+    "arts",
+    "peinture",
+    "peintures",
+    "dessin",
+    "dessins",
+    "sculpture",
+    "sculptures",
+    "création",
+    "creation", // Variante sans accent
+    "créatif",
+    "artiste",
+    "artistes",
+    "félicien",
+    "rops",
+    "vie",
+    "biographie",
+    "histoire",
+    "historique",
+    "cadre",
+    "musée",
+    "musee", // Variante sans accent
+    "exposition",
+    "expositions",
+    "classique",
+    "romantique",
+    "symbolisme",
+    "mouvement",
+    "culture",
+    "patrimoine",
+    "monument",
+    "monuments",
+    "visite",
+    "visiter",
+    "tourisme",
+    "site",
+    "collection",
+    "collections",
+    "peintre",
+    "peintres",
+    "portrait",
+    "portraits",
 ];
 
 // Site favicon icon

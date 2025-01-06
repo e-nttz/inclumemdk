@@ -86,9 +86,50 @@ LaSiestaHotel.excerpt = "Réservez votre séjour à l'hôtel \"La Siesta\" pour 
 
 // Mots clés
 LaSiestaHotel.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+    "réservation",
+    "reserver", // Variante de mauvaise orthographe
+    "séjour",
+    "sejour", // Variante sans accent
+    "hôtel",
+    "hotel", // Variante sans accent
+    "détente",
+    "relaxation",
+    "repos",
+    "expérience",
+    "experience", // Variante sans accent
+    "confort",
+    "luxueux",
+    "luxe",
+    "chambre",
+    "chambres",
+    "tarif",
+    "prix",
+    "vacances",
+    "escapade",
+    "weekend",
+    "nuitée",
+    "vue", 
+    "piscine",
+    "spa",
+    "bien-être",
+    "bienetre", // Variante sans accent
+    "service",
+    "services",
+    "accueil",
+    "confortable",
+    "relaxant",
+    "reposant",
+    "luxueux",
+    "chambre",
+    "detente", // Variante sans accent
+    "vacances",
+    "detente",
+    "bienetre", // Variante sans accent
+    "hotel", // Variante sans accent
+    "chambre",
+    "reservation", // Variante de mauvaise orthographe
+    "luxe",
+    "escapade"
 ];
 
 // Site favicon icon

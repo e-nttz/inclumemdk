@@ -102,9 +102,64 @@ OstendeInsider.excerpt = "Découvrez les trésors cachés d'Ostende.";
 
 // Mots clés
 OstendeInsider.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+    "Ostende",
+    "ostende", // Variante sans majuscule
+    "trésor",
+    "tresor", // Variante sans accent
+    "trésors",
+    "tresors", // Variante sans accent
+    "caché",
+    "cache", // Variante sans accent
+    "cachés",
+    "caches", // Variante sans accent
+    "découverte",
+    "decouverte", // Variante sans accent
+    "découvrir",
+    "decouvrir", // Variante sans accent
+    "explorer",
+    "exploration",
+    "mer",
+    "côte",
+    "cote", // Variante sans accent
+    "plage",
+    "plages",
+    "balnéaire",
+    "balneaire", // Variante sans accent
+    "histoire",
+    "historique",
+    "ville",
+    "quartier",
+    "quartiers",
+    "site",
+    "sites",
+    "monument",
+    "monuments",
+    "culture",
+    "culturelle",
+    "patrimoine",
+    "nature",
+    "marin",
+    "maritime",
+    "port",
+    "ports",
+    "visite",
+    "visiter",
+    "tourisme",
+    "touriste",
+    "promenade",
+    "promenades",
+    "panorama",
+    "panoramas",
+    "bellevue",
+    "beffroi",
+    "phare",
+    "phares",
+    "moyenage",
+    "moyenageux",
+    "musee", // Variante sans accent
+    "musée",
+    "exposition",
+    "expositions"
 ];
 
 OstendeInsider.favicon = <IconSearchEngine />;

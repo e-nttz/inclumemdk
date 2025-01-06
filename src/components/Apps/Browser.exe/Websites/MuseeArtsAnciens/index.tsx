@@ -64,9 +64,43 @@ MuseeArtsAnciens.excerpt = "Découvrez le riche patrimoine culturel de Namur au 
 
 // Mots clés
 MuseeArtsAnciens.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+    "musée",
+    "musee", // Variante sans accent
+    "art",
+    "arts",
+    "ancien",
+    "anciens",
+    "culture",
+    "patrimoine",
+    "histoire",
+    "historique",
+    "richesse",
+    "namur",
+    "ville",
+    "visite",
+    "visiter",
+    "exposition",
+    "expositions",
+    "peinture",
+    "sculpture",
+    "moyenage",
+    "moyenageux",
+    "medieval",
+    "architecture",
+    "monuments",
+    "objet",
+    "objets",
+    "collections",
+    "œuvre", // Variante avec l'accent
+    "oeuvre", // Variante sans accent
+    "événements", // Variante avec accent
+    "evenements", // Variante sans accent
+    "événement", // Variante avec accent
+    "evenement", // Variante sans accent
+    "tourisme",
+    "artdeco",
+    "peintures",
+    "sculptures"
 ];
 
 // Site favicon icon

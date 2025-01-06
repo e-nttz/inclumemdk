@@ -100,9 +100,34 @@ RestaurantDeLaMer.excerpt = "Découvrez notre restaurant de fruits de mer à Ost
 
 // Mots clés
 RestaurantDeLaMer.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+    "restaurant",
+    "restorant",
+    "fruits",
+    "fuits",
+    "mer",
+    "mare",
+    "poisson",
+    "posson",
+    "crustacé",
+    "crustasse",
+    "crevette",
+    "crevett",
+    "huitre",
+    "huître",
+    "homard",
+    "homar",
+    "moules",
+    "moulle",
+    "coquillage",
+    "coquillagee",
+    "Ostende",
+    "hostende",
+    "dégustation",
+    "degustation",
+    "plateau",
+    "frais",
+    "fraîs",
+    "local"
 ];
 
 // Site favicon icon

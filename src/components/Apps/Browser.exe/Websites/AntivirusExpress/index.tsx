@@ -163,9 +163,74 @@ AntivirusExpress.excerpt = "Antivirus Express vous aide à trouver les meilleurs
 
 // Mots clés
 AntivirusExpress.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+	"antivirus",
+	"anti-virus", // Variante orthographique
+	"express",
+	"offres",
+	"promo",
+	"promos",
+	"promotion",
+	"promotions",
+	"réduction",
+	"reduction", // Variante orthographique
+	"plan",
+	"plans",
+	"économie",
+	"economie", // Variante orthographique
+	"discount",
+	"rabais",
+	"logiciel",
+	"logiciels",
+	"économique",
+	"meilleure",
+	"meilleures",
+	"solution",
+	"solutions",
+	"protection",
+	"sécurité",
+	"securite", // Variante orthographique
+	"cybersécurité",
+	"cybersecurite", // Variante orthographique
+	"ordinateur",
+	"ordinateurs",
+	"pc",
+	"mac",
+	"windows",
+	"linux",
+	"ligne",
+	"meilleur",
+	"comparatif",
+	"évaluation",
+	"achat",
+	"acheter",
+	"licence",
+	"clé",
+	"mise",
+	"jour",
+	"abonnement",
+	"annuel",
+	"mensuel",
+	"sécuriser",
+	"securiser", // Variante orthographique
+	"menaces",
+	"internet",
+	"cyberprotection",
+	"prix",
+	"réduit",
+	"reduit", // Variante orthographique
+	"économies",
+	"codes",
+	"promotionnel",
+	"offre",
+	"offres",
+	"essai",
+	"gratuit",
+	"solution",
+	"solutions",
+	"rapide",
+	"installation",
+	"protection",
+	"immédiate"
 ];
 
 AntivirusExpress.favicon = <IconSearchEngine />;

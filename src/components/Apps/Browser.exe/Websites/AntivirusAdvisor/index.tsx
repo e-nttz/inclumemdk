@@ -159,9 +159,71 @@ AntivirusAdvisor.excerpt = "AntivirusAdvisor offre des comparaisons détaillées
 
 // Mots clés
 AntivirusAdvisor.motsCles = [
-	"mot_cle_1",
 	"antivirus",
-	"mot_cle_3"
+	"anti-virus", // Variante orthographique
+	"advisor",
+	"comparaison",
+	"comparaisons",
+	"comparatif",
+	"comparatifs",
+	"évaluation",
+	"evaluation", // Variante orthographique
+	"avis",
+	"opinion",
+	"opinions",
+	"test",
+	"tests",
+	"impartial",
+	"impartiale",
+	"impartiaux",
+	"logiciel",
+	"logiciels",
+	"protection",
+	"cybersécurité",
+	"cybersecurite", // Variante orthographique
+	"sécurité",
+	"securite", // Variante orthographique
+	"ordinateur",
+	"ordinateurs",
+	"pc",
+	"mac",
+	"windows",
+	"linux",
+	"sécuriser",
+	"securiser", // Variante orthographique
+	"choix",
+	"guide",
+	"guides",
+	"installation",
+	"configurer",
+	"configuration",
+	"paramètres",
+	"parametres", // Variante orthographique
+	"utilisateur",
+	"utilisateurs",
+	"menace",
+	"menaces",
+	"virus",
+	"malware",
+	"ransomware",
+	"spyware",
+	"pare-feu",
+	"firewall",
+	"solution",
+	"solutions",
+	"outil",
+	"outils",
+	"protéger",
+	"pratique",
+	"assistance",
+	"support",
+	"mise à jour",
+	"mise a jour", // Variante orthographique
+	"activation",
+	"activer",
+	"cyberprotection",
+	"cybermenace",
+	"cybermenaces"
 ];
 
 AntivirusAdvisor.favicon = <IconSearchEngine />;

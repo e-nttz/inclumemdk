@@ -118,9 +118,68 @@ SocialScape.excerpt = "Découvrez des activités sociales avec SocialScape pour 
 
 // Mots clés
 SocialScape.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+	"social",
+	"sociaux",
+	"sozial", // Variante d'orthographe
+	"amis",
+	"amie",
+	"amies",
+	"cercle",
+	"cercles",
+	"ami",
+	"amitie", // Variante d'orthographe
+	"rencontre",
+	"rencontres",
+	"renconttre", // Variante d'orthographe
+	"relation",
+	"relations",
+	"réseau",
+	"réseaux",
+	"reseau", // Variante d'orthographe
+	"activité",
+	"activités",
+	"action",
+	"actions",
+	"communauté",
+	"communautés",
+	"communaute", // Variante d'orthographe
+	"interaction",
+	"interactions",
+	"partage",
+	"partager",
+	"événement",
+	"événements",
+	"evenement", // Variante d'orthographe
+	"loisirs",
+	"loisir",
+	"hobby",
+	"hobbies",
+	"divertissement",
+	"divertissements",
+	"distraction",
+	"distractions",
+	"socialiser",
+	"socialisation",
+	"connecter",
+	"connexion",
+	"connecter",
+	"networking",
+	"réunion",
+	"réunions",
+	"groupe",
+	"groupes",
+	"activité",
+	"activités",
+	"amusement",
+	"amuser",
+	"découverte",
+	"découvertes",
+	"plaisir",
+	"plaisirs",
+	"proximité",
+	"entraide",
+	"échange",
+	"échanges"
 ];
 
 SocialScape.favicon = <IconSearchEngine />;

@@ -90,9 +90,71 @@ TelepheriqueNamur.excerpt = "Découvrez Namur d'un angle unique avec le téléph
 
 // Mots clés
 TelepheriqueNamur.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+	"téléphérique",
+	"telepherique", // Variante d'orthographe
+	"cablecar", // Variante en anglais
+	"vue",
+	"vues",
+	"panorama",
+	"panoramas",
+	"paysage",
+	"paysages",
+	"Namur",
+	"nammur", // Variante d'orthographe
+	"ville",
+	"villes",
+	"découverte",
+	"découvertes",
+	"decouverte", // Variante d'orthographe
+	"hauteur",
+	"hauteurs",
+	"altitude",
+	"tourisme",
+	"touriste",
+	"touristiques",
+	"touristique",
+	"loisir",
+	"loisirs",
+	"activités",
+	"activité",
+	"excursion",
+	"excursions",
+	"balade",
+	"balades",
+	"transport",
+	"transports",
+	"câble",
+	"câbles",
+	"sejour", // Variante d'orthographe
+	"visite",
+	"visites",
+	"attraction",
+	"attractions",
+	"fun",
+	"aventure",
+	"aventures",
+	"famille",
+	"amis",
+	"familliale", // Variante d'orthographe
+	"unique",
+	"expérience",
+	"expériences",
+	"experience", // Variante d'orthographe
+	"relaxation",
+	"relax",
+	"pleine",
+	"nature",
+	"historique",
+	"monument",
+	"monuments",
+	"forteresse",
+	"fortifications",
+	"citadelle",
+	"histoire",
+	"culture",
+	"culturel",
+	"culturelle",
+	"mobilité"
 ];
 
 // Site favicon icon

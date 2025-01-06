@@ -90,9 +90,65 @@ RestaurantLaSiestaCubanFood.excerpt = "Venez découvrir l'authenticité de la cu
 
 // Mots clés
 RestaurantLaSiestaCubanFood.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+	"cuisine",
+	"cuisines",
+	"cuizine", // Variante d'orthographe
+	"cubaine",
+	"cubain",
+	"cubaines",
+	"cubaïn", // Variante d'orthographe
+	"cuba",
+	"gastronomie",
+	"gastronomique",
+	"restaurent", // Variante d'orthographe
+	"restaurant",
+	"restaurants",
+	"restauration",
+	"Bruxelles",
+	"Bruxelle", // Variante d'orthographe
+	"Bruxellois",
+	"Bruxelloise",
+	"Bruxelloises",
+	"plats",
+	"plat",
+	"repas",
+	"repaz", // Variante d'orthographe
+	"recettes",
+	"recette",
+	"authentique",
+	"authenticité",
+	"authentiques",
+	"saveurs",
+	"saveur",
+	"traditionnel",
+	"traditionnelle",
+	"traditionnels",
+	"tradition",
+	"ambiances",
+	"ambiance",
+	"gouts",
+	"goût",
+	"goûts",
+	"spécialités",
+	"spécialité",
+	"exotique",
+	"exotiques",
+	"exotism",
+	"exotisme",
+	"tropical",
+	"tropicals", // Variante au pluriel
+	"tropique",
+	"tropiques",
+	"festif",
+	"festifs",
+	"fête",
+	"fêtes",
+	"délices",
+	"délice",
+	"délicieux",
+	"délicieuse",
+	"culture",
+	"cultures"
 ];
 
 // Site favicon icon

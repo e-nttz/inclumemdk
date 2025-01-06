@@ -96,9 +96,70 @@ RestaurantVueSurMer.excerpt = "Profitez d'une expérience culinaire en bord de m
 
 // Mots clés
 RestaurantVueSurMer.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+	"restaurant",
+	"restaurent", // Variante d'orthographe
+	"restaurants",
+	"cuisine",
+	"cuisines",
+	"cuizine", // Variante d'orthographe
+	"gastronomie",
+	"gastronomique",
+	"mer",
+	"océan",
+	"maritime",
+	"bord",
+	"plage",
+	"plajes", // Variante d'orthographe
+	"littoral",
+	"côtier",
+	"côtiers",
+	"côtière",
+	"vue",
+	"panorama",
+	"panoramas",
+	"Ostende",
+	"Ostend", // Variante d'orthographe
+	"bordure",
+	"saveur",
+	"saveurs",
+	"savoeur", // Variante d'orthographe
+	"authentique",
+	"authenticité",
+	"authentiques",
+	"expérience",
+	"expériences",
+	"ambiance",
+	"ambiances",
+	"repas",
+	"repaz", // Variante d'orthographe
+	"plats",
+	"plat",
+	"poisson",
+	"poissons",
+	"fruits",
+	"fruit",
+	"fruitdemer", // Variante d'écriture
+	"crustacés",
+	"coquillages",
+	"tradition",
+	"traditionnel",
+	"traditionnelle",
+	"traditionnels",
+	"délice",
+	"délices",
+	"délicieux",
+	"délicieuse",
+	"exotique",
+	"exotiques",
+	"marin",
+	"marine",
+	"marins",
+	"spécialités",
+	"spécialité",
+	"fête",
+	"fêtes",
+	"festif",
+	"festifs"
 ];
 
 // Site favicon icon

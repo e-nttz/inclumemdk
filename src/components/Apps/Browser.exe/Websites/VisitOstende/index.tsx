@@ -89,9 +89,82 @@ VisitOstende.excerpt = "Les incontournables à visiter à Ostende : la maison de
 
 // Mots clés
 VisitOstende.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+	"Ostende",
+	"ostend", // Variante d'orthographe
+	"visite",
+	"visites",
+	"tourisme",
+	"touristique",
+	"attraction",
+	"attractions",
+	"incontournable",
+	"incontournables",
+	"musée",
+	"musee", // Variante d'orthographe
+	"Mercator",
+	"voilier",
+	"bateau",
+	"maritime",
+	"Raversyde",
+	"Atlantikwall",
+	"patrimoine",
+	"histoire",
+	"historique",
+	"fort",
+	"Napoleon",
+	"fortifications",
+	"architecture",
+	"bunker",
+	"bunkers",
+	"culture",
+	"culturelle",
+	"excursion",
+	"excursions",
+	"balade",
+	"balades",
+	"loisir",
+	"loisirs",
+	"rivière",
+	"rivières",
+	"mer",
+	"plage",
+	"plages",
+	"côte",
+	"cotes", // Variante d'orthographe
+	"balnéaire",
+	"balneaire", // Variante d'orthographe
+	"séjour",
+	"sejour", // Variante d'orthographe
+	"week-end",
+	"weekend", // Variante d'orthographe
+	"destination",
+	"destinations",
+	"Belgique",
+	"Belgium", // Variante linguistique
+	"événement",
+	"evenement", // Variante d'orthographe
+	"festival",
+	"festivals",
+	"sortie",
+	"sorties",
+	"panorama",
+	"panoramas",
+	"photographie",
+	"photo",
+	"photos",
+	"nature",
+	"promenade",
+	"promenades",
+	"activité",
+	"activités",
+	"familial",
+	"famille",
+	"enfants",
+	"exploration",
+	"découverte",
+	"decouverte", // Variante d'orthographe
+	"guide",
+	"guides"
 ];
 
 VisitOstende.favicon = <IconSearchEngine />;

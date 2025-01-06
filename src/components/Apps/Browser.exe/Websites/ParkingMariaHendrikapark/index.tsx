@@ -82,9 +82,63 @@ ParkingMariaHendrikapark.excerpt = "Parking gratuit à Ostende, ouvert 24h/24 et
 
 // Mots clés
 ParkingMariaHendrikapark.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+    "parking",
+    "stationnement",
+    "gratuit",
+    "libre",
+    "ostende",
+    "ostend", // Variante sans e final
+    "ouvert",
+    "ouverture",
+    "24h",
+    "h24",
+    "7j",
+    "jours",
+    "véhicule",
+    "vehicule", // Variante sans accent
+    "voiture",
+    "voitures",
+    "auto",
+    "emplacement",
+    "emplacements",
+    "place",
+    "places",
+    "confort",
+    "accessibilité",
+    "accessibilite", // Variante sans accent
+    "pratique",
+    "proche",
+    "service",
+    "services",
+    "localisation",
+    "localiser",
+    "zone",
+    "zones",
+    "espace",
+    "espaces",
+    "surveillance",
+    "sécurité",
+    "securite", // Variante sans accent
+    "public",
+    "rapide",
+    "facile",
+    "solution",
+    "solutions",
+    "tarif",
+    "tarifs",
+    "extérieur",
+    "exterieur", // Variante sans accent
+    "disponible",
+    "disponibilité",
+    "disponibilite", // Variante sans accent
+    "sécurisé",
+    "securise", // Variante sans accent
+    "centre",
+    "ville",
+    "trajet",
+    "trajets",
+    "gratuité",
+    "gratuite" // Variante féminine
 ];
 
 ParkingMariaHendrikapark.favicon = <IconSearchEngine />;

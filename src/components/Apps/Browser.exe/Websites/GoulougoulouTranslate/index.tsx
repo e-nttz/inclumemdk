@@ -109,9 +109,49 @@ GoulougoulouTranslate.excerpt = "Traduisez des mots, phrases et pages Web gratui
 
 // Mots clés
 GoulougoulouTranslate.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+    "traduction",
+    "tradution", // Variante de mauvaise orthographe
+    "traduire",
+    "traducteur",
+    "traducteurs",
+    "texte",
+    "textes",
+    "texe", // Variante de mauvaise orthographe
+    "phrase",
+    "phrases",
+    "page",
+    "pages",
+    "web",
+    "internet",
+    "site",
+    "sites",
+    "gratuit",
+    "gratuite",
+    "libre",
+    "sanspaiement", // Variante sans espace
+    "service",
+    "services",
+    "outil",
+    "outils",
+    "logiciel",
+    "logiciels",
+    "automatique",
+    "automatisation",
+    "rapide",
+    "efficace",
+    "fiable",
+    "multilingue",
+    "multilanguage", // Variante anglaise
+    "langue",
+    "langues",
+    "idiome", // Synonyme
+    "contenu",
+    "contenus",
+    "conversion",
+    "convertir",
+    "interprétation",
+    "interpretation", // Variante sans accent
+    "communication",
 ];
 
 GoulougoulouTranslate.favicon = <IconSearchEngine />;

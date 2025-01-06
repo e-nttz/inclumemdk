@@ -140,9 +140,65 @@ SecureTech.excerpt = "Secure Tech propose des tutoriels antivirus détaillés po
 
 // Mots clés
 SecureTech.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+	"antivirus",
+	"anti-virus",
+	"antyvirus", // Variante d'orthographe
+	"sécurité",
+	"sécurite", // Variante d'orthographe
+	"cybersécurité",
+	"cybersecurite", // Variante d'orthographe
+	"tutoriel",
+	"tutoriels",
+	"tutorie", // Variante d'orthographe
+	"guide",
+	"guides",
+	"aide",
+	"assistance",
+	"support",
+	"ordinateur",
+	"ordinateurs",
+	"ordinateurz", // Variante d'orthographe
+	"PC",
+	"pécé", // Variante phonétique
+	"protection",
+	"protéger",
+	"protege", // Variante d'orthographe
+	"virus",
+	"malware",
+	"malwares",
+	"spyware",
+	"spywares",
+	"trojan",
+	"trojans",
+	"menaces",
+	"menace",
+	"en",
+	"ligne",
+	"menaceenligne", // Variante d'écriture
+	"hacker",
+	"hackers",
+	"hakeur", // Variante phonétique
+	"hacking",
+	"piratage",
+	"installation",
+	"instalation", // Variante d'orthographe
+	"sécuriser",
+	"sécurisée",
+	"logiciel",
+	"logiciels",
+	"logitiel", // Variante d'orthographe
+	"firewall",
+	"parefeu",
+	"pare-feu",
+	"cyberattaque",
+	"cyberattaques",
+	"paramétrage",
+	"paramettrage", // Variante d'orthographe
+	"configuration",
+	"mises",
+	"à",
+	"jour",
+	"miseajour" // Variante d'écriture
 ];
 
 SecureTech.favicon = <IconSearchEngine />;

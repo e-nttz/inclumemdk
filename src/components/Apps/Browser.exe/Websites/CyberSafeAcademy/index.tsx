@@ -157,9 +157,58 @@ CyberSafeAcademy.excerpt = "CyberSafe Academy propose des cours en ligne gratuit
 
 // Mots clés
 CyberSafeAcademy.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+    "cyber",
+    "cybre", // Variante de mauvaise orthographe
+    "safe",
+    "sfe", // Variante de mauvaise orthographe
+    "academy",
+    "académie",
+    "academie", // Variante sans accent
+    "cours",
+    "cour", // Variante de mauvaise orthographe
+    "en",
+    "ligne",
+    "gratuit",
+    "gratuite",
+    "sécurité",
+    "securite", // Variante sans accent
+    "informatique",
+    "informatik", // Variante de mauvaise orthographe
+    "apprentissage",
+    "aprentissage", // Variante de mauvaise orthographe
+    "logiciel",
+    "logiciels",
+    "logicel", // Variante de mauvaise orthographe
+    "antivirus",
+    "anti-virus", // Variante
+    "protection",
+    "cybersécurité",
+    "cybersecurite", // Variante sans accent
+    "internet",
+    "enligne", // Variante
+    "formation",
+    "formations",
+    "coursenligne", // Variante
+    "technologie",
+    "tech",
+    "technologique",
+    "apprendre",
+    "utiliser",
+    "efficace",
+    "efficacité",
+    "effectif", // Synonyme
+    "protéger",
+    "protection",
+    "données",
+    "donnees", // Variante sans accent
+    "personnelles",
+    "personelle", // Variante de mauvaise orthographe
+    "cyberattaque",
+    "cyberattaques",
+    "virus",
+    "hacker",
+    "pirate",
+    "piratage"
 ];
 
 CyberSafeAcademy.favicon = <IconSearchEngine />;

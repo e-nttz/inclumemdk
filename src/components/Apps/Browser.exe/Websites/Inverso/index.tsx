@@ -107,9 +107,41 @@ Inverso.excerpt = "Traduction instantanée de vos textes dans plusieurs langues 
 
 // Mots clés
 Inverso.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+    "traduction",
+    "tradution", // Variante de mauvaise orthographe
+    "traduire",
+    "traducteur",
+    "traducteurs",
+    "texte",
+    "textes",
+    "texe", // Variante de mauvaise orthographe
+    "instantané",
+    "instantanee", // Variante sans accent
+    "immédiat",
+    "immediat", // Variante sans accent
+    "rapide",
+    "vitesse",
+    "langue",
+    "langues",
+    "idiome", // Synonyme
+    "multilingue",
+    "multilanguage", // Variante anglaise
+    "automatique",
+    "automatisation",
+    "efficace",
+    "précis",
+    "precis", // Variante sans accent
+    "fiable",
+    "service",
+    "services",
+    "outil",
+    "outils",
+    "logiciel",
+    "logiciels",
+    "contenu",
+    "contenus",
+    "langages",
+    "communication"
 ];
 
 Inverso.favicon = <IconSearchEngine />;

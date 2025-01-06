@@ -163,9 +163,38 @@ AntivirusDeals.excerpt = "AntivirusDeals vous aide à trouver les meilleures off
 
 // Mots clés
 AntivirusDeals.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+	"antivirus",
+	"anti-virus", // Variante orthographique
+	"deals",
+	"offres",
+	"promo",
+	"promos",
+	"promotion",
+	"promotions",
+	"réduction",
+	"reduction", // Variante orthographique
+	"économie",
+	"economie", // Variante orthographique
+	"discount",
+	"rabais",
+	"logiciel",
+	"logiciels",
+	"protection",
+	"sécurité",
+	"securite", // Variante orthographique
+	"cybersécurité",
+	"cybersecurite", // Variante orthographique
+	"ordinateur",
+	"ordinateurs",
+	"pc",
+	"mac",
+	"windows",
+	"linux",
+	"sécuriser",
+	"securiser", // Variante orthographique
+	"cyberprotection",
+	"gratuit",
+
 ];
 
 AntivirusDeals.favicon = <IconSearchEngine />;

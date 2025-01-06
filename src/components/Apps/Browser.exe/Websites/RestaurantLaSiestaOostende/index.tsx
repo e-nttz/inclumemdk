@@ -89,9 +89,64 @@ RestaurantLaSiestaOostende.excerpt = "Geniet van authentieke Mexicaanse smaken i
 
 // Mots clés
 RestaurantLaSiestaOostende.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+	"cuisine",
+	"cuisines",
+	"cuizine", // Variante d'orthographe
+	"mexicaine",
+	"mexicain",
+	"mexicains",
+	"mexicaines",
+	"Mexique",
+	"mexike", // Variante d'orthographe
+	"saveurs",
+	"saveur",
+	"savoeur", // Variante d'orthographe
+	"authentique",
+	"authentiques",
+	"authenticité",
+	"plats",
+	"plat",
+	"repas",
+	"repaz", // Variante d'orthographe
+	"recettes",
+	"recette",
+	"tacos",
+	"burritos",
+	"enchiladas",
+	"quesadillas",
+	"gastronomie",
+	"gastronomique",
+	"exotique",
+	"exotiques",
+	"exotism",
+	"exotisme",
+	"Ostende",
+	"Ostend", // Variante d'orthographe
+	"ambiance",
+	"ambiances",
+	"festif",
+	"festifs",
+	"tradition",
+	"traditionnel",
+	"traditionnels",
+	"traditionnelle",
+	"délice",
+	"délices",
+	"délicieux",
+	"délicieuse",
+	"culture",
+	"cultures",
+	"tropical",
+	"tropicals", // Variante au pluriel
+	"tropique",
+	"tropiques",
+	"spécialités",
+	"spécialité",
+	"goût",
+	"goûts",
+	"gouts", // Variante d'orthographe
+	"fête",
+	"fêtes"
 ];
 
 // Site favicon icon

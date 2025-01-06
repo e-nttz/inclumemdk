@@ -89,9 +89,52 @@ CuevaDeGabi.excerpt = "Découvrez le meilleur de la cuisine latino-américaine �
 
 // Mots clés
 CuevaDeGabi.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+    "cuisine",
+    "cusine", // Variante courante de mauvaise orthographe
+    "latino",
+    "latina",
+    "gastronomie",
+    "gastrnomie", // Variante courante de mauvaise orthographe
+    "amérique",
+    "amerique", // Variante sans accent
+    "latine",
+    "restaurant",
+    "resto",
+    "restaurent", // Variante courante de mauvaise orthographe
+    "Ixelles",
+    "xl", // Variante locale pour Ixelles
+    "Bruxelles",
+    "Brussel", // Variante en néerlandais
+    "tacos",
+    "tacosx", // Variante de mauvaise orthographe
+    "empanadas",
+    "empanada",
+    "arepas",
+    "arepaz", // Variante de mauvaise orthographe
+    "ceviche",
+    "seviche", // Variante phonétique
+    "mexicaine",
+    "mexicain",
+    "mexico",
+    "brésilienne",
+    "brésil",
+    "brazil", // Variante anglaise
+    "péruvienne",
+    "perou",
+    "colombienne",
+    "colombie",
+    "sud",
+    "américain",
+    "americaine", // Variante sans accent
+    "latin",
+    "food", // Variante anglaise
+    "plats",
+    "typique",
+    "traditionnel",
+    "dîner",
+    "repas",
+    "gourmand",
+    "authentique"
 ];
 
 // Site favicon icon

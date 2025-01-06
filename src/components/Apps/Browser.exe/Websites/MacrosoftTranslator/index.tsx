@@ -113,9 +113,45 @@ MacrosoftTranslator.excerpt = "Briser les frontières linguistiques depuis chez 
 
 // Mots clés
 MacrosoftTranslator.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+    "traduction",
+    "tradution", // Variante de mauvaise orthographe
+    "traduire",
+    "traducteur",
+    "traducteurs",
+    "langue",
+    "langues",
+    "idiome", // Synonyme
+    "frontière",
+    "frontieres", // Variante sans accent
+    "linguistique",
+    "linguistiques",
+    "communication",
+    "barrière",
+    "barrieres", // Variante sans accent
+    "maison",
+    "domicile",
+    "distance",
+    "enligne", // Variante
+    "en ligne", // Variante avec espace
+    "service",
+    "services",
+    "outil",
+    "outils",
+    "internet",
+    "connexion",
+    "efficacité",
+    "efficace",
+    "rapide",
+    "simple",
+    "facile",
+    "multilingue",
+    "multilanguage", // Variante anglaise
+    "automatique",
+    "automatisation",
+    "liberté",
+    "liberte", // Variante sans accent
+    "compréhension",
+    "comprehension", // Variante sans accent
 ];
 
 MacrosoftTranslator.favicon = <IconSearchEngine />;

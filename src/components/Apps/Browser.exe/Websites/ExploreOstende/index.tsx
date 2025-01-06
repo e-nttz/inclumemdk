@@ -93,9 +93,64 @@ ExploreOstende.excerpt = "ExploreOstende est votre guide complet pour une visite
 
 // Mots clés
 ExploreOstende.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+    "explore",
+    "explorer",
+    "explor",
+    "ostende",
+    "ostend", // Variante anglaise
+    "oostende", // Variante néerlandaise
+    "guide",
+    "guides",
+    "gide", // Variante de mauvaise orthographe
+    "visite",
+    "visites",
+    "visiter",
+    "vsite", // Variante de mauvaise orthographe
+    "inoubliable",
+    "inoubliabl", // Variante de mauvaise orthographe
+    "balnéaire",
+    "balneaire", // Variante sans accent
+    "ville",
+    "cité",
+    "magnifique",
+    "splendide", // Synonyme
+    "belle",
+    "plage",
+    "plages",
+    "mer",
+    "littoral",
+    "côte",
+    "cote", // Variante sans accent
+    "belgique",
+    "belgie", // Variante néerlandaise
+    "belgium", // Variante anglaise
+    "tourisme",
+    "tourist",
+    "touristique",
+    "découverte",
+    "decouverte", // Variante sans accent
+    "loisir",
+    "loisirs",
+    "vacances",
+    "séjour",
+    "sejour", // Variante sans accent
+    "excursion",
+    "excursions",
+    "culture",
+    "patrimoine",
+    "monuments",
+    "activité",
+    "activités",
+    "activite", // Variante sans accent
+    "événement",
+    "evenement", // Variante sans accent
+    "événements",
+    "evenements", // Variante sans accent
+    "restaurants",
+    "gastronomie",
+    "sorties",
+    "balade",
+    "balades"
 ];
 
 ExploreOstende.favicon = <IconSearchEngine />;

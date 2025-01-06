@@ -80,9 +80,66 @@ SecureInstall.excerpt = "Obtenez des conseils pratiques pour installer votre ant
 
 // Mots clés
 SecureInstall.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+	"antivirus",
+	"antyvirus", // Variante d'orthographe
+	"anti-virus",
+	"protection",
+	"protektion", // Variante d'orthographe
+	"sécurité",
+	"sécurite", // Variante d'orthographe
+	"cybersécurité",
+	"cybersecurite", // Variante d'orthographe
+	"installation",
+	"instalation", // Variante d'orthographe
+	"installer",
+	"instaler", // Variante d'orthographe
+	"conseils",
+	"conseille", // Variante d'orthographe
+	"pratiques",
+	"pratique",
+	"configuration",
+	"paramétrage",
+	"paramettrage", // Variante d'orthographe
+	"ordinateur",
+	"ordinateurs",
+	"ordinateurz", // Variante d'orthographe
+	"PC",
+	"pécé", // Variante phonétique
+	"logiciel",
+	"logiciels",
+	"logitiel", // Variante d'orthographe
+	"protection",
+	"protéger",
+	"protégé", // Variante d'orthographe
+	"virus",
+	"malware",
+	"malwares",
+	"spyware",
+	"spywares",
+	"trojan",
+	"trojans",
+	"piratage",
+	"hacking",
+	"hacker",
+	"hakeur", // Variante phonétique
+	"sécuriser",
+	"sécurisée",
+	"firewall",
+	"parefeu",
+	"pare-feu",
+	"cyberattaque",
+	"cyberattaques",
+	"tutoriel",
+	"tutorie", // Variante d'orthographe
+	"guide",
+	"guides",
+	"aide",
+	"support",
+	"assistance",
+	"mise",
+	"à",
+	"jour",
+	"miseajour" // Variante d'écriture
 ];
 
 SecureInstall.favicon = <IconSearchEngine />;

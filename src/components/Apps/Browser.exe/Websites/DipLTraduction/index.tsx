@@ -104,9 +104,55 @@ DipLTraduction.excerpt = "Traduction instantanée de textes et documents complet
 
 // Mots clés
 DipLTraduction.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+    "traduction",
+    "tradution", // Variante de mauvaise orthographe
+    "texte",
+    "textes",
+    "texe", // Variante de mauvaise orthographe
+    "document",
+    "documents",
+    "documant", // Variante de mauvaise orthographe
+    "instantané",
+    "instantanee", // Variante sans accent
+    "immédiat",
+    "immediat", // Variante sans accent
+    "rapide",
+    "vitesse",
+    "dipl",
+    "dipL",
+    "traduire",
+    "traducteur",
+    "traducteurs",
+    "convertir",
+    "conversion",
+    "interprétation",
+    "interpretation", // Variante sans accent
+    "automatique",
+    "automatisation",
+    "logiciel",
+    "logiciels",
+    "online", // Variante anglaise
+    "enligne", // Variante
+    "service",
+    "services",
+    "multilingue",
+    "multilanguage", // Variante anglaise
+    "langue",
+    "langues",
+    "idiome", // Synonyme
+    "complet",
+    "intégral",
+    "integral", // Variante sans accent
+    "fichier",
+    "fichiers",
+    "écrit",
+    "écrits",
+    "ercrits", // Variante de mauvaise orthographe
+    "documentaire",
+    "contenu",
+    "contenus",
+    "transfert",
+    "communication"
 ];
 
 DipLTraduction.favicon = <IconSearchEngine />;

@@ -125,9 +125,69 @@ AntivirusFacile.excerpt = "Découvrez des guides détaillés pour une installati
 
 // Mots clés
 AntivirusFacile.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+	"antivirus",
+	"anti-virus", // Variante orthographique
+	"installation",
+	"installer",
+	"guide",
+	"guides",
+	"tutoriel",
+	"tutoriels",
+	"instructions",
+	"instruction",
+	"manuel",
+	"manuels",
+	"étapes",
+	"etapes", // Variante orthographique
+	"procédure",
+	"procedure", // Variante orthographique
+	"configuration",
+	"configurer",
+	"mise",
+	"jour",
+	"protection",
+	"sécurité",
+	"securite", // Variante orthographique
+	"logiciel",
+	"logiciels",
+	"ordinateur",
+	"ordinateurs",
+	"pc",
+	"mac",
+	"cybersécurité",
+	"cybersecurite", // Variante orthographique
+	"internet",
+	"menaces",
+	"virus",
+	"cyberprotection",
+	"protéger",
+	"proteger", // Variante orthographique
+	"systèmes",
+	"systemes", // Variante orthographique
+	"opérationnels",
+	"operationnels", // Variante orthographique
+	"rapide",
+	"simple",
+	"facile",
+	"efficace",
+	"sécuriser",
+	"securiser", // Variante orthographique
+	"support",
+	"assistance",
+	"problèmes",
+	"problemes", // Variante orthographique
+	"solutions",
+	"erreurs",
+	"résolution",
+	"resolution", // Variante orthographique
+	"téléchargement",
+	"telechargement", // Variante orthographique
+	"licence",
+	"clé",
+	"activation",
+	"optimisation",
+	"évaluation",
+	"evaluation" // Variante orthographique
 ];
 
 AntivirusFacile.favicon = <IconSearchEngine />;

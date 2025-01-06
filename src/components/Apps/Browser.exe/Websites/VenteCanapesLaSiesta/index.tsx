@@ -89,9 +89,77 @@ VenteCanapesLaSiesta.excerpt = "Parcourez notre sélection de canapés « La Sie
 
 // Mots clés
 VenteCanapesLaSiesta.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+	"canapé",
+	"canapés",
+	"canape", // Variante d'orthographe
+	"sofa",
+	"sofas",
+	"divan",
+	"divans",
+	"meuble",
+	"meubles",
+	"mobilier",
+	"mobiliaire", // Variante d'orthographe
+	"salon",
+	"salons",
+	"espace",
+	"espaces",
+	"confort",
+	"confortable",
+	"design",
+	"style",
+	"styles",
+	"moderne",
+	"classique",
+	"élégant",
+	"élégance",
+	"elegance", // Variante d'orthographe
+	"qualité",
+	"qualite", // Variante d'orthographe
+	"tendance",
+	"tendances",
+	"sélection",
+	"selection", // Variante d'orthographe
+	"en ligne",
+	"ligne",
+	"achat",
+	"achats",
+	"acheter",
+	"commande",
+	"commandes",
+	"prix",
+	"abordable",
+	"discount",
+	"promo",
+	"promos",
+	"promotion",
+	"promotions",
+	"livraison",
+	"gratuite",
+	"espace de vie",
+	"maison",
+	"appartement",
+	"chambre",
+	"séjour",
+	"decoration",
+	"décoration",
+	"deco", // Variante abrégée
+	"intérieur",
+	"interieur", // Variante d'orthographe
+	"tissu",
+	"cuir",
+	"velours",
+	"modularité",
+	"modularite", // Variante d'orthographe
+	"angle",
+	"convertible",
+	"reclinable",
+	"taille",
+	"formes",
+	"personnalisable",
+	"options",
+	"chaise longue",
+	"fauteuil"
 ];
 
 // Site favicon icon

@@ -86,9 +86,45 @@ RestaurantLaSiesta.excerpt = "Découvrez les saveurs espagnoles et latino-améri
 
 // Mots clés
 RestaurantLaSiesta.motsCles = [
-	"mot_cle_1",
-	"mot_cle_2",
-	"mot_cle_3"
+	"restaurant",
+    "restorant",
+    "mexicain",
+    "mexican",
+    "resto",
+    "cuisine",
+    "cuisin",
+    "gastronomie",
+    "gastonomie",
+    "saveurs",
+    "savors",
+    "authentique",
+    "authentik",
+    "traditionnel",
+    "traditionel",
+    "tacos",
+    "taco",
+    "burrito",
+    "burito",
+    "fajitas",
+    "fajita",
+    "guacamole",
+    "guacamol",
+    "nachos",
+    "nacho",
+    "Ostende",
+    "Oostende",
+    "côte",
+    "cote",
+    "mer",
+    "plage",
+    "dîner",
+    "diner",
+    "déjeuner",
+    "dejener",
+    "souper",
+    "supper",
+    "repas",
+    "repa"
 ];
 
 // Site favicon icon
