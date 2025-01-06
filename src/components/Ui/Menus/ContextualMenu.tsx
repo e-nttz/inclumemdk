@@ -14,6 +14,8 @@ import { useOS } from "@/providers/InclumeOS";
 import { useNotification } from "@/providers/notifications";
 import { useStepsListener } from "@/providers/stepsListener";
 import { useTolgee, useTranslate } from "@tolgee/react";
+import { useExplorer } from "@/providers/explorer";
+
 
 interface OSContextualMenuProps {
 	actions?: {
@@ -53,6 +55,8 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 	const tolgee = useTolgee(["language"]);
 	const { addNotification } = useNotification();
 	const { setPauseMode, clearTimer } = useStepsListener();
+
+	const { createFile, handleInfoWindow, closeInfoWindow } = useExplorer();
 
 	return (
 		<ContextMenuContent className="w-64 z-[15555000]" sticky={"always"}>
@@ -207,6 +211,27 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 			>
 				{t("paste", "Coller")}
 				<ContextMenuShortcut>⌘V</ContextMenuShortcut>
+			</ContextMenuItem>
+			<ContextMenuItem inset onClick={() => {
+				if (focusedElement.tagName === "IMG") {
+					handleInfoWindow(undefined, (currentPath) => {
+						const fileName = prompt(
+							t("enter_filename", "Entrez le nom du fichier")
+						);
+						createFile(
+							fileName,
+							"png",
+							{
+								url: focusedElement.attributes["src"]["value"],
+							},
+							currentPath
+						);
+
+						closeInfoWindow();
+					});
+				}
+			}}>
+				{t("download picture", "Télécharger l'image")}
 			</ContextMenuItem>
 			<ContextMenuItem inset onClick={() => setPauseMode(true)}>
 				{t("pause", "Pause")}
