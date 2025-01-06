@@ -8,6 +8,8 @@ import { useState } from "react";
 import Input from "./Input";
 import Button from "./Button";
 import { useKeyboardEvent } from "@/hooks/useKeyboardEvent";
+import { useExplorer } from "@/providers/explorer";
+import { useTranslate } from "@tolgee/react";
 
 export interface CellProps {
 	position: string;
@@ -21,8 +23,10 @@ export interface CellProps {
 }
 
 const Spreadsheets = () => {
+	const { createFile, handleInfoWindow, closeInfoWindow } = useExplorer();
 	const [currentCell, setCurrentCell] = useState<string>("");
 	const [cells, setCells] = useState<CellProps[]>([]);
+	const { t } = useTranslate();
 
 	const handleToolButtonClick = (tool: string) => {
 		let newCells = [...cells];
@@ -114,8 +118,25 @@ const Spreadsheets = () => {
 			contextMenus={
 				<>
 					<ContextualBar.Menu name="Fichier">
-						<ContextualBar.Item onClick={() => console.log("clicked !")}>
-							{t("Joindre un fichier")}
+						<ContextualBar.Item
+							onClick={() => {
+								handleInfoWindow(undefined, (currentPath) => {
+									const fileName = prompt(
+										t("enter_filename", "Entrez le nom du fichier")
+									);
+									createFile(
+										fileName,
+										"xlsx",
+										{
+											data: "",
+										},
+										currentPath
+									);
+									closeInfoWindow();
+								});
+							}}
+						>
+							{t("save_file", "Enregistrer le fichier")}
 						</ContextualBar.Item>
 					</ContextualBar.Menu>
 				</>
