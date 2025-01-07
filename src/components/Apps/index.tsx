@@ -38,9 +38,9 @@ const RenderAllApps = () => {
 				// If app isn't open and unmount is true, don't render
 				if (!openedApp && App.unmount) return null;
 
-				return <App key={`all-apps-${key}`} />;
+				return <App key={`all-apps-${key}`} props={openedApp}/>;
 			})}
-
+			
 			<FaceTime />
 			<Explorer />
 		</>

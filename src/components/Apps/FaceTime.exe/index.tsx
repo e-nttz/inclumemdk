@@ -72,6 +72,7 @@ const FaceTime = () => {
 								launchApp({
 									title: apps.message.title,
 									icon: apps.message.icon,
+									defaultContent:true,
 								});
 							}}
 						>

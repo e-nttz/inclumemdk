@@ -1,4 +1,4 @@
-import { ReactElement, FormEvent, useRef, useState } from "react";
+import { ReactElement, FormEvent, useRef, useState, useEffect } from "react";
 import { useTranslate } from "@tolgee/react";
 
 import Window from "@/components/Os/Window";
@@ -33,7 +33,15 @@ interface Message {
 	content: string | ReactElement;
 }
 
-const Message: AppProps = () => {
+const Message: AppProps = (defaultContent) => {
+	const [isCall, setCall] = useState(false);
+
+	useEffect(() => {
+		if (defaultContent && defaultContent["props"] && defaultContent["props"][1] && defaultContent["props"][1].defaultContent === true) {
+		  setCall(true);
+		}
+	}, [defaultContent]);
+
 	const { t } = useTranslate();
 	const { handleInfoWindow, closeInfoWindow } = useExplorer();
 
@@ -45,8 +53,6 @@ const Message: AppProps = () => {
 	const [isWebcamOn, setWebcamOn] = useState(false);
 	const [isMicOn, setMicOn] = useState(true);
 	const [isSoundOn, setSoundOn] = useState(true);
-	const [isCall, setCall] = useState(true);
-
 	const [messages, setMessages] = useState<Message[]>([
 		{
 			id: 1,
@@ -151,7 +157,7 @@ const Message: AppProps = () => {
 	return (
 		<Window
 			appName={Message.title}
-			contextMenus={!isCall ? (
+			contextMenus={isCall === false ? (
 				<ContextualBar.Menu name="Fichiers">
 					<ContextualBar.Item onClick={() => handleFileAttachment()}>
 						{t("join_file", "Joindre un fichier")}
@@ -159,7 +165,7 @@ const Message: AppProps = () => {
 				</ContextualBar.Menu>
 			) : null}
 		>
-			{!isCall && (
+			{isCall === false && (
 				<section className="flex flex-col flex-1 w-full overflow-auto text-black bg-white/90 backdrop-blur dark:bg-black/70">
 					<header className="px-6 py-4 bg-white dark:bg-black">
 						<div className="flex flex-row items-center gap-2">
@@ -282,7 +288,7 @@ const Message: AppProps = () => {
 				</section>
 			)}
 
-			{isCall && (
+			{isCall === true && (
 				<section className="bg-black w-full h-full flex justify-center">
 					{/* Référence pour la vidéo */}
 					<video autoPlay loop ref={videoRef} muted={!isSoundOn}>
