@@ -44,6 +44,7 @@ import VirusGuardian from "./VirusGuardian";
 import VisitOstende from "./VisitOstende";
 import Welcome from "./Welcome";
 import WereldsmakenOostende from "./WereldsmakenOostende";
+import BngBanque from "./BngBanque";
 
 interface WebsiteComponentProps {
 	url: string;
@@ -105,6 +106,7 @@ export const websites: WebsitesProps = {
 	restaurantLaSiesta: RestaurantLaSiesta,
 	restaurantLaSiestaCubanFood: RestaurantLaSiestaCubanFood,
 	restaurantLaSiestaOostende: RestaurantLaSiestaOostende,
+	bngBanque: BngBanque,
 };
 
 const RenderWebsite = ({ componentName, url }: RenderWebsiteProps) => {

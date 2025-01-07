@@ -1,6 +1,6 @@
 import IconBrowser from "@/assets/icons/app-browser.svg?react";
 import SearchEngine from "../SearchEngine";
-import Bng from "../Bng";
+import BngBanque from "../BngBanque";
 import ButtonWebsite from "./ButtonWebsite";
 
 const Welcome: Website = () => {
@@ -11,7 +11,7 @@ const Welcome: Website = () => {
 					<h1 className="mb-12 text-2xl font-bold text-black">Favoris</h1>
 					<ul className="grid grid-cols-4 gap-x-5 gap-y-6">
 						<ButtonWebsite website={SearchEngine} />
-						<ButtonWebsite website={Bng} />
+						<ButtonWebsite website={BngBanque} />
 					</ul>
 				</div>
 			</div>
