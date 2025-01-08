@@ -5,10 +5,13 @@ import Virement from "@/assets/icons/app-banque-virement.svg";
 import Compte from "@/assets/icons/credit-card.svg";
 import Epargne from "@/assets/icons/bank.svg";
 import Go from "@/assets/icons/go.svg";
+import Carte from "@/assets/icons/app-banque-carte.svg"
+import Back from "@/assets/icons/back.svg";
 
 const BngBanque = () => {
   const [virement, setVirement] = useState(false);
   const [virementDone, setVirementDone] = useState(false);
+  const [consultationCompte, setConsultationCompte] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
   // Gestion des comptes et des soldes
@@ -90,9 +93,9 @@ const BngBanque = () => {
         </div>
       </header>
 
-      {!virement && !virementDone && (
+      {!virement && !virementDone && !consultationCompte && (
         <section className="content pt-16 w-[50%]">
-          <h1 className="text-3xl font-semibold">Aperçu</h1>
+          <h1 className="text-4xl text-[#FF7212]">Aperçu</h1>
           <div className="flex pt-6" onClick={() => setVirement(true)}>
             <div className="flex flex-col items-center cursor-pointer">
               <img src={Virement} alt="Icone virement" className="w-12 h-12" />
@@ -106,13 +109,13 @@ const BngBanque = () => {
               <img src={Compte} alt="Compte courant" className="w-[40px]" />
               <h2 className="text-lg ml-3">Comptes à vue</h2>
             </div>
-            <div className="flex justify-between p-3">
+            <div className="flex justify-between p-3 cursor-pointer" onClick={() => setConsultationCompte(true)}>
               <div>
                 <h2 className="text-xl font-medium">{accounts.courant.name}</h2>
                 <p>{accounts.courant.iban}</p>
                 <p>Banque Account</p>
               </div>
-              <div className="flex h-auto cursor-pointer">
+              <div className="flex h-auto">
                 <div className="flex flex-col items-end">
                   <p className="font-medium">{accounts.courant.balance.toFixed(2)} EUR</p>
                   <p className="font-light text-sm">
@@ -150,6 +153,12 @@ const BngBanque = () => {
       {virement && !virementDone && (
         <section className="flex justify-center w-full pt-16">
           <div className="flex flex-col items-start w-[50%]">
+            <div className="cursor-pointer pb-6 flex items-center" onClick={() => {
+                setVirement(false);
+              }}>
+              <img src={Back} alt="retour" className="w-6 h-6"/>
+              <p className="underline">Retour</p>
+            </div>
             <h1 className="text-4xl text-[#FF7212]">Virement</h1>
             <div className="mt-8 w-full">
               <h2 className="text-3xl text-[#FF7212] mb-8">De</h2>
@@ -286,23 +295,75 @@ const BngBanque = () => {
         </section>
       )}
 
-	  {virementDone && (
-		<section className="content pt-16 w-[50%]">
-          	<h1 className="text-4xl text-[#FF7212] mb-8">Succès</h1>
-		  	<p className="text-xl">
-				Votre virement de <b>{virementData.montant}€</b> vers <b>{virementData.nomBeneficiaire}</b> a été effectué avec succès. <br/>
-				Merci de votre confiance.
-		  	</p>
-		  	<button
-				className="bg-[#FF7212] text-white rounded-md py-2 px-6 mt-8 float-right"
-				onClick={() => {
-					setVirementDone(false);
-				}}
-				>
-					Retour
-			</button>
-		</section>
-	  )}
+	    {virementDone && (
+        <section className="content pt-16 w-[50%]">
+                <h1 className="text-4xl text-[#FF7212] mb-8">Succès</h1>
+            <p className="text-xl">
+            Votre virement de <b>{virementData.montant}€</b> vers <b>{virementData.nomBeneficiaire}</b> a été effectué avec succès. <br/>
+            Merci de votre confiance.
+            </p>
+            <button
+            className="bg-[#FF7212] text-white rounded-md py-2 px-6 mt-8 float-right"
+            onClick={() => {
+              setVirementDone(false);
+            }}
+            >
+              Retour
+          </button>
+        </section>
+	    )}
+
+      {consultationCompte && (
+        <section className="content pt-16 w-[50%]">
+          <div className="cursor-pointer pb-6 flex items-center" onClick={() => {
+              setConsultationCompte(false);
+            }}>
+            <img src={Back} alt="retour" className="w-6 h-6"/>
+            <p className="underline">Retour</p>
+          </div>
+          <h1 className="text-4xl text-[#FF7212]">Compte à vue</h1>
+          <div className="flex justify-between py-12">
+            <div>
+              <h2 className="text-xl font-medium">{accounts.courant.name}</h2>
+              <p>{accounts.courant.iban}</p>
+              <p>Banque Account</p>
+            </div>
+            <div className="flex h-auto">
+              <div className="flex flex-col items-end">
+                <p className="font-medium">{accounts.courant.balance.toFixed(2)} EUR</p>
+                <p className="font-light text-sm">
+                  Disponible {accounts.courant.available.toFixed(2)} EUR
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="flex" onClick={() => {
+            setVirement(true);
+            setConsultationCompte(false);
+          }}>
+            <div className="flex flex-col items-center cursor-pointer">
+              <img src={Virement} alt="Icone virement" className="w-12 h-12" />
+              <p className="font-medium">Nouveau virement</p>
+            </div>
+          </div>
+          <div className="mt-12 w-full border rounded-lg py-8">
+              <h2 className="text-3xl text-[#FF7212] w-full border-b px-8 pb-8">Opérations</h2>
+              <div className="operations pt-8 px-8">
+                <div className="flex justify-between pb-8">
+                  <p className="text-xl">10 novembre</p>
+                  <p className="text-xl">EUR</p>
+                </div>
+                <div className="operation mb-4 flex justify-between">
+                  <div className="flex w-full">
+                    <img src={Carte} alt="icone carte de banque"/>
+                    <p className="text-lg ml-4">Paiement Amazon carte de crédit</p>
+                  </div>
+                  <p className="montant">-3,95</p>
+                </div>
+              </div>
+          </div>
+        </section>
+      )}
     </body>
   );
 };
@@ -317,7 +378,10 @@ BngBanque.title = "Bng | La banque proche de vous";
 BngBanque.excerpt = "Découvrez la banque préférée de Wap[e].";
 
 // Mots clés
-BngBanque.motsCles = ["banque", "bng"];
+BngBanque.motsCles = [
+  "banque", 
+  "bng"
+];
 
 // Site favicon icon
 BngBanque.favicon = <IconSearchEngine />;

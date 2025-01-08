@@ -48,6 +48,7 @@ import VilleDeNamur from "../VilleDeNamur";
 import VirusGuardian from "../VirusGuardian";
 import VisitOstende from "../VisitOstende";
 import WereldsmakenOostende from "../WereldsmakenOostende";
+import BngBanque from "../BngBanque";
 
 const sites = [
 	RestaurantVueSurMer,
@@ -93,7 +94,8 @@ const sites = [
 	CuevaDeGabi,
 	RestaurantLaSiesta,
 	RestaurantLaSiestaCubanFood,
-	RestaurantLaSiestaOostende
+	RestaurantLaSiestaOostende,
+	BngBanque
 ];
 interface WebsiteProps extends React.FC {
 	pages: {
