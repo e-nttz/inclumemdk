@@ -49,6 +49,7 @@ import VirusGuardian from "../VirusGuardian";
 import VisitOstende from "../VisitOstende";
 import WereldsmakenOostende from "../WereldsmakenOostende";
 import BngBanque from "../BngBanque";
+import ChildVirus from "../ChildVirus";
 
 const sites = [
 	RestaurantVueSurMer,
@@ -95,7 +96,8 @@ const sites = [
 	RestaurantLaSiesta,
 	RestaurantLaSiestaCubanFood,
 	RestaurantLaSiestaOostende,
-	BngBanque
+	BngBanque,
+	ChildVirus
 ];
 interface WebsiteProps extends React.FC {
 	pages: {
