@@ -30,6 +30,8 @@ const ChildVirus: AppProps<ChildVirusProps> = () => {
   const [installationStarted, setInstallationStarted] = useState<boolean>(false);
   const [installationFinished, setInstallationFinished] = useState<boolean>(false);
   const [analyseStarted, setAnalyseStarted] = useState<boolean>(false);
+  const [analyseEnded, setAnalyseEnded] = useState<boolean>(false);
+  const [analyseResult, setAnalyseResult] = useState<boolean>(false); 
   // État pour suivre si l'antivirus est installé
   const [antivirusInstalled, setAntivirusInstalled] = useState<boolean>(false);
 
@@ -90,6 +92,7 @@ const ChildVirus: AppProps<ChildVirusProps> = () => {
           setProgressAnalyse((prev) => {
             if (prev >= 100) {
               clearInterval(interval);
+              setAnalyseEnded(true);  
               return 100;
             }
             return prev + 1; // Incrémentation par 1% toutes les 200ms
@@ -130,7 +133,7 @@ const ChildVirus: AppProps<ChildVirusProps> = () => {
               Votre système est entièrement protégé.
             </h1>
             <p className="text-lg font-semibold mt-4">
-              Dernière analyse complète : Le 20/10/2024 à 12:54
+              Dernière analyse complète : Aujourd'hui
             </p>
             <p className="text-lg font-semibold mt-4">
               Statut de la protection : Activée et à jour
@@ -143,14 +146,14 @@ const ChildVirus: AppProps<ChildVirusProps> = () => {
         )}
         {!antivirusInstalled && (
           <div className="flex justify-center items-center w-full h-full">
-            {!installationStarted && !installationFinished && !analyseStarted &&(
+            {!installationStarted && !installationFinished && !analyseStarted && !analyseResult &&(
               <div className="instalaltion flex flex-col items-center justify-center w-[80%]">
                 <img src={ChildVirusLogo} alt="Logo ChildVirus" className="w-24 mb-4"/>
                 <h1 className="text-6xl w-7/12 text-center">
                   ChildVirus
                 </h1>
                 <p className="text-lg font-semibold w-6/12 text-center mt-16 mb-8">
-                  En cliquant sur installer, vous confirmez avoir lu et approuver la Politique de confidentialité de Chil virus, qui régissent le téléchargement et l’utilisation des produits concernés.
+                  En cliquant sur installer, vous confirmez avoir lu et approuver la Politique de confidentialité de ChildVirus, qui régissent le téléchargement et l’utilisation des produits concernés.
                 </p>
                 <button className="bg-[#FF7100] text-white px-8 py-2 rounded-3xl cursor-pointer" onClick={
                   () => {
@@ -200,7 +203,7 @@ const ChildVirus: AppProps<ChildVirusProps> = () => {
               </div>
             )}
             {analyseStarted && (
-              <div className="instalaltion flex flex-col items-center justify-center w-[80%]">
+              <div className="instalation flex flex-col items-center justify-center w-[80%]">
                 <div className="relative flex w-[80%] items-center">
                   {/* Système d'exploitation */}
                   <div className={`flex flex-col items-center absolute left-0 bg-[#F9F9F9] z-10 ${progressAnalyse < 33 ? "transform translate-y-[-18px]" : ""}`}>
@@ -252,14 +255,78 @@ const ChildVirus: AppProps<ChildVirusProps> = () => {
                     )}
                   </div>
                 </div>
-
-
-                <h1 className="text-6xl w-7/12 text-center mt-56">
-                  Recherche de menaces en cours... {progressAnalyse}%
-                </h1>
-                <p className="text-lg font-semibold w-6/12 text-center mt-48">
-                  Ne fermez pas cette fenêtre pendant l'analyse.
-                </p>
+                
+                {!analyseEnded && (
+                  <>
+                    <h1 className="text-6xl w-7/12 text-center mt-56">
+                      Recherche de menaces en cours... {progressAnalyse}%
+                    </h1>
+                    <p className="text-lg font-semibold w-6/12 text-center mt-48">
+                      Ne fermez pas cette fenêtre pendant l'analyse.
+                    </p>
+                  </>
+                )}
+                {analyseEnded && (
+                  <>
+                    <p className="text-lg font-semibold w-6/12 text-center mt-36 mb-12">Vos paramètres actuels pourraient exposer votre sécurité et confidentialité. Appliquez ces changements afin de protéger votre PC.</p>
+                    <div className="bg-[#FF7100] bg-opacity-80 flex items-center p-4 w-[70%]">
+                      <p className="text-2xl mr-8">✅</p>
+                      <div className="w-9/12">
+                        <h2 className="text-xl text-white">Des logiciels malveillants et autres menaces pourraient s’exécuter dans la mémoire de votre PC</h2>
+                        <p className="text-white mt-2">Activez la Prévention de l’exécution des données pour détecter les codes malveillants (l’activation se
+                          fere aprés le redémarrage du PC).</p>
+                      </div>
+                    </div>
+                    <div className="bg-[#FF7100] bg-opacity-80 flex items-center p-4 w-[70%] mt-4">
+                      <p className="text-2xl mr-8">✅</p>
+                      <div className="w-9/12">
+                        <h2 className="text-xl text-white">D’autres personnes pourraient voir vos notifications lorsque vous n’êtes pas devant votre pc</h2>
+                        <p className="text-white mt-2">Si vous souhaitez les garder privées, désactivez les notifications sur l’écran de verrouillage.</p>
+                      </div>
+                    </div>
+                    <button className="bg-[#FF7100] text-white px-10 py-4 rounded-3xl cursor-pointer mt-12 text-xl" onClick={() => {
+                      setAnalyseStarted(false);
+                      setAnalyseEnded(false);
+                      setAnalyseResult(true);
+                    }}>Résoudre les problèmes</button>
+                  </>
+                )}
+              </div>
+            )}
+            {analyseResult && (
+              <div className="instalation flex flex-col items-center justify-center w-[80%]">
+                <div className="relative flex flex-col w-[80%]">
+                  <h1 className="text-6xl w-7/12">
+                    Nous avons terminé l’analyse de l’appareil
+                  </h1>
+                  <p className="text-2xl font-semibold w-6/12 mt-12 mb-12">
+                    Pensez à exécuter de nouveau une analyse bientôt pour résoudre de futur problèmes.
+                  </p>
+                  <div className="flex items-center mb-4">
+                    <img src={Good} alt="Ok" className="mr-4 w-8"/>
+                    <p className="text-lg">0 probléme de paramètres systèmme trouvé</p>
+                  </div>
+                  <div className="flex items-center mb-4">
+                    <img src={Good} alt="Ok" className="mr-4 w-8"/>
+                    <p className="text-lg">2 menace de malware trouvées</p>
+                  </div>
+                  <div className="flex items-center mb-4">
+                    <img src={Good} alt="Ok" className="mr-4 w-8"/>
+                    <p className="text-lg">11 problèmes avancés trouvés</p>
+                  </div>
+                  {/* <div className="bg-[#FF7100] bg-opacity-80 flex items-center justify-center p-4 mt-4">
+                    <div className="">
+                      <h2 className="text-xl text-white">Contribuez à protéger votre PC en programmant votre analyse</h2>
+                      <p className="text-white mt-2">Actuellement programmée tous les 28 jours du mois à 12h00.</p>
+                    </div>
+                  </div> */}
+                  <div className="w-full flex justify-center">
+                    <button className="bg-[#FF7100] text-white px-10 py-4 rounded-3xl cursor-pointer mt-12 text-xl w-96" onClick={() => {
+                        setAnalyseResult(false);
+                        setAntivirusInstalled(true);
+                      }}>Fermer l'analyse</button>
+                  </div>
+                </div>
               </div>
             )}
           </div>
