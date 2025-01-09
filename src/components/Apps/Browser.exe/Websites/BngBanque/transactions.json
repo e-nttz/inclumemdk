@@ -1,0 +1,95 @@
+{
+    "transactions": [
+      {
+        "nom": "Achat Amazon",
+        "montant": 50.75,
+        "entree_sortie": "sortie",
+        "date": "2025-01-07"
+      },
+      {
+        "nom": "Virement Salaire",
+        "montant": 2500.00,
+        "entree_sortie": "entree",
+        "date": "2025-01-05"
+      },
+      {
+        "nom": "Achat Station Essence Chell",
+        "montant": 88.96,
+        "entree_sortie": "sortie",
+        "date": "2025-01-18"
+      },   
+      {
+        "nom": "Achat Chell Shop",
+        "montant": 15.98,
+        "entree_sortie": "sortie",
+        "date": "2025-01-18"
+      },
+      {
+        "nom": "Virement de Céline Dupont",
+        "montant": 44.48,
+        "entree_sortie": "entree",
+        "date": "2025-01-18"
+      },
+      {
+        "nom": "La Siesta Oostende",
+        "montant": 62.00,
+        "entree_sortie": "sortie",
+        "date": "2025-01-18"
+      },
+      {
+        "nom": "Virement de Céline Dupont",
+        "montant": 31.00,
+        "entree_sortie": "entree",
+        "date": "2025-01-18"
+      },
+      {
+        "nom": "Reservation Hotel Namur",
+        "montant": 234.00,
+        "entree_sortie": "sortie",
+        "date": "2024-11-13"
+      },
+      {
+        "nom": "Virement de Céline Dupont",
+        "montant": 117.00,
+        "entree_sortie": "entree",
+        "date": "2024-12-05"
+      },
+      {
+        "nom": "Achat Wafel & Ijs Oostende",
+        "montant": 7.50,
+        "entree_sortie": "sortie",
+        "date": "2025-01-18"
+      },
+      {
+        "nom": "Virement loyer",
+        "montant": 740.00,
+        "entree_sortie": "sortie",
+        "date": "2024-11-01"
+      },
+      {
+        "nom": "Virement loyer",
+        "montant": 740.00,
+        "entree_sortie": "sortie",
+        "date": "2024-12-01"
+      },
+      {
+        "nom": "Virement loyer",
+        "montant": 740.00,
+        "entree_sortie": "sortie",
+        "date": "2024-01-01"
+      },
+      {
+        "nom": "Osteende Café",
+        "montant": 6.40,
+        "entree_sortie": "sortie",
+        "date": "2025-01-18"
+      },
+      {
+        "nom": "Virement Salaire",
+        "montant": 2500.00,
+        "entree_sortie": "sortie",
+        "date": "2024-12-05"
+      }
+    
+    ]
+}

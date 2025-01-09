@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import IconSearchEngine from "@/assets/icons/app-banque.svg?react";
 import Logo from "@/assets/icons/app-banque.svg";
 import Virement from "@/assets/icons/app-banque-virement.svg";
@@ -7,18 +7,44 @@ import Epargne from "@/assets/icons/bank.svg";
 import Go from "@/assets/icons/go.svg";
 import Carte from "@/assets/icons/app-banque-carte.svg"
 import Back from "@/assets/icons/back.svg";
+import transactionsData from "./transactions.json";
+import { getTransactions, resetTransactions, saveTransactions } from "@/utils/localeStorage";
 
 const BngBanque = () => {
   const [virement, setVirement] = useState(false);
   const [virementDone, setVirementDone] = useState(false);
   const [consultationCompte, setConsultationCompte] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [TodayTransactions, setTodayTransactions] = useState(() => {
+    return getTransactions();
+  });
 
   // Gestion des comptes et des soldes
   const [accounts, setAccounts] = useState({
     courant: { name: "Mr Inclume", balance: 950.14, iban: "BE12 3456 7890 1234", available: 789.78 },
     epargne: { name: "Livret épargne", balance: 4967.38, iban: "BE12 3456 7890 1234" },
   });
+
+  const updateBalance = () => {
+    if (TodayTransactions && TodayTransactions.length > 0) {
+      const totalSortie = TodayTransactions
+        .filter(transaction => transaction.entree_sortie === "sortie") // Filtrer les sorties
+        .reduce((total, transaction) => total + transaction.montant, 0); // Calculer la somme des sorties
+
+      // Mise à jour de la balance du compte courant
+      setAccounts(prevState => ({
+        ...prevState,
+        courant: {
+          ...prevState.courant,
+          balance: prevState.courant.balance - totalSortie, // Déduire la somme des sorties
+        },
+      }));
+    }
+  };
+
+  useEffect(() => {
+    updateBalance();
+  }, [TodayTransactions]);
 
   const [virementData, setVirementData] = useState({
     montant: "",
@@ -71,11 +97,29 @@ const BngBanque = () => {
       },
     }));
 
+    saveTransactions(virementData.nomBeneficiaire, montant, "sortie", new Date().toISOString());
+    setTodayTransactions(getTransactions());
+
 	setVirement(false);
 	setErrorMessage("");
     setVirementDone(true);	
   };
+  
+  const groupedTransactions = transactionsData.transactions
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .reduce((acc, transaction) => {
+      const formattedDate = new Date(transaction.date).toLocaleDateString("fr-FR", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+      });
 
+      if (!acc[formattedDate]) {
+        acc[formattedDate] = [];
+      }
+      acc[formattedDate].push(transaction);
+      return acc;
+  }, {} as Record<string, typeof transactionsData.transactions>);
   return (
     <body className="flex flex-col items-center py-10">
       <header className="flex w-[60%] justify-between items-center">
@@ -348,19 +392,58 @@ const BngBanque = () => {
           </div>
           <div className="mt-12 w-full border rounded-lg py-8">
               <h2 className="text-3xl text-[#FF7212] w-full border-b px-8 pb-8">Opérations</h2>
-              <div className="operations pt-8 px-8">
+              {TodayTransactions.length > 0 && (
+                <div className="operations pt-8 px-8">
                 <div className="flex justify-between pb-8">
-                  <p className="text-xl">10 novembre</p>
+                  <p className="text-xl">Aujourd'hui</p>
                   <p className="text-xl">EUR</p>
                 </div>
-                <div className="operation mb-4 flex justify-between">
-                  <div className="flex w-full">
-                    <img src={Carte} alt="icone carte de banque"/>
-                    <p className="text-lg ml-4">Paiement Amazon carte de crédit</p>
+                {TodayTransactions.reverse().map((transaction, index) => (
+                  <div className="operation mb-4 flex justify-between" key={index}>
+                    <div className="flex w-full">
+                      <img src={Carte} alt="icone carte de banque" />
+                      <p className="text-lg ml-4">{transaction.nom}</p>
+                    </div>
+                    <p
+                      className={`montant ${
+                        transaction.entree_sortie === "sortie"
+                          ? ""
+                          : "bg-green-200 bg-opacity-70"
+                      } rounded-md px-2 py-1`}
+                    >
+                      {transaction.entree_sortie === "sortie" ? "-" : "+"}
+                      {transaction.montant.toFixed(2)}
+                    </p>
                   </div>
-                  <p className="montant">-3,95</p>
+                ))}
                 </div>
-              </div>
+              )}
+              {Object.entries(groupedTransactions).map(([date, transactions]) => (
+              <div className="operations pt-8 px-8" key={date}>
+                <div className="flex justify-between pb-8">
+                  <p className="text-xl">{date}</p>
+                  <p className="text-xl">EUR</p>
+                </div>
+                {transactions.map((transaction, index) => (
+                    <div className="operation mb-4 flex justify-between" key={index}>
+                      <div className="flex w-full">
+                        <img src={Carte} alt="icone carte de banque" />
+                        <p className="text-lg ml-4">{transaction.nom}</p>
+                      </div>
+                      <p
+                        className={`montant ${
+                          transaction.entree_sortie === "sortie"
+                            ? ""
+                            : "bg-green-200 bg-opacity-70"
+                        } rounded-md px-2 py-1`}
+                      >
+                        {transaction.entree_sortie === "sortie" ? "-" : "+"}
+                        {transaction.montant.toFixed(2)}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              ))}
           </div>
         </section>
       )}

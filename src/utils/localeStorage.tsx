@@ -33,3 +33,26 @@ export const saveAntivirusInstalledToLocalStorage = (isInstalled: boolean) => {
 export const resetAntivirusInstalledInLocalStorage = () => {
     localStorage.removeItem('AntivirusInstalled');
 };
+
+// Fonction pour récupérer les transactions depuis le localStorage
+export const getTransactions = (): { nom: string, montant: number, entree_sortie: string, date: string }[] => {
+    const transactionTest = localStorage.getItem('TransactionsTest');
+    return transactionTest ? JSON.parse(transactionTest) : [];  // Retourne un tableau vide par défaut
+  };
+  
+  // Fonction pour sauvegarder une nouvelle transaction dans le localStorage
+  export const saveTransactions = (nom: string, montant: number, entree_sortie: string, date: string) => {
+    const transactions = getTransactions();  // Récupère les transactions existantes
+  
+    const newTransaction = { nom, montant, entree_sortie, date }; // Crée une nouvelle transaction
+  
+    transactions.push(newTransaction); // Ajoute la nouvelle transaction au tableau
+  
+    localStorage.setItem('TransactionsTest', JSON.stringify(transactions)); // Sauvegarde le tableau des transactions
+  };
+  
+  // Fonction pour réinitialiser les transactions dans le localStorage
+  export const resetTransactions = () => {
+    localStorage.removeItem('TransactionsTest');  // Supprime l'élément du localStorage
+  };
+  
