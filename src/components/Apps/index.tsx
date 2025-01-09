@@ -6,6 +6,7 @@ import Message from "./Message.exe";
 import Spreadsheets from "./Spreadsheets.exe";
 import TextEditor from "./TextEditor.exe";
 import Mail from "./Mail.exe";
+import ChildVirus from "./ChildVirus.exe";
 
 interface Apps {
 	[key: string]: React.FC;
@@ -18,6 +19,7 @@ export const apps: Apps = {
 	stylesheets: Spreadsheets,
 	textEditor: TextEditor,
 	mail: Mail,
+	childVirus: ChildVirus
 };
 
 const RenderAllApps = () => {

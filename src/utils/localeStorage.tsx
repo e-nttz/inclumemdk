@@ -16,3 +16,20 @@ export const resetLocalStorage = (UserSession: string) => {
     const localStorageKey = `userSessions_${UserSession}`;
     localStorage.removeItem(localStorageKey);  // Supprime l'élément du localStorage
 };
+
+
+// Fonction pour récupérer la valeur de AntivirusInstalled depuis le localStorage
+export const getAntivirusInstalledFromLocalStorage = (): boolean => {
+    const antivirusInstalled = localStorage.getItem('AntivirusInstalled');
+    return antivirusInstalled ? JSON.parse(antivirusInstalled) : false; // Par défaut, retourne `false` si non défini
+};
+
+// Fonction pour sauvegarder la valeur de AntivirusInstalled dans le localStorage
+export const saveAntivirusInstalledToLocalStorage = (isInstalled: boolean) => {
+    localStorage.setItem('AntivirusInstalled', JSON.stringify(isInstalled));
+};
+
+// Fonction pour réinitialiser AntivirusInstalled dans le localStorage
+export const resetAntivirusInstalledInLocalStorage = () => {
+    localStorage.removeItem('AntivirusInstalled');
+};
