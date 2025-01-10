@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import IconSearchEngine from "@/assets/icons/app-antivirus.svg?react";
 import Logo from "@/assets/icons/app-antivirus.svg";
 import Ok from "@/assets/icons/app-antivirus-ok.svg";
@@ -10,9 +10,28 @@ import Child from "@/assets/icons/app-antivirus-child.svg";
 import Telechargement from "@/assets/icons/app-antivirus-telechargement.svg";
 import TelechargementReussi from "@/assets/icons/app-antivirus-telechargement-ok.svg";
 import Back from "@/assets/icons/back.svg"
+import { useExplorer } from "@/providers/explorer";
+import { apps } from "@/components/Apps";
+import { useOS } from "@/providers/InclumeOS";
 
 const ChildVirus = () => {
+  const { launchApp } = useOS();
+  const { createFile } = useExplorer();
   const [telechargement, setTelechargement] = useState(false);
+  useEffect(() => {
+    if (telechargement) {
+      const timer = setTimeout(() => {
+        launchApp({
+          title: apps.explorer.title,
+          icon: apps.explorer.icon,
+          defaultContent: true,
+        });
+      }, 5000);
+
+      // Nettoyage pour éviter des problèmes si la variable change avant 5 secondes
+      return () => clearTimeout(timer);
+    }
+  }, [telechargement]);
   return (
     <body className="flex flex-col items-center py-10">
       <div className="w-full flex flex-col items-center">
@@ -36,7 +55,10 @@ const ChildVirus = () => {
           <div className="w-[80%] flex flex-col items-center">
             <h1 className="text-center text-6xl w-1/2">Protégez ce qui compte le plus avec ChildVirus</h1>
             <p className="text-center w-4/12 my-8">Téléchargez ChildVirus, Antivirus Gratuit pour profiter d'une protection en temps réel contre les virus, les e-mails infectés, les sites web frauduleux, et bien plus encore.</p>
-            <button className="bg-[#FF7100] text-white px-8 py-2 rounded-3xl cursor-pointer" onClick={() => setTelechargement(true)}>Télécharger</button>
+            <button className="bg-[#FF7100] text-white px-8 py-2 rounded-3xl cursor-pointer" onClick={() => {
+              setTelechargement(true);
+              createFile("ChildVirus", "exe", "", "download");
+            }}>Télécharger</button>
           </div>
         </div>
         <div className="w-full flex justify-center border-b-2 border-[#FF7100] py-32">
@@ -117,7 +139,10 @@ const ChildVirus = () => {
               </div>
               <p className="my-4">Protégez les internautes partout dans le monde</p>
               <p className="text-lg w-[60%] text-center">Avec notre technologie en temps réel, alimentée par une communauté de 435 millions d'utilisateurs, ChildVirus bloque chaque jour plus de 66 millions de menaces pour assurer votre sécurité en ligne.</p>
-              <div className="flex items-center mt-12 bg-white px-8 py-4 rounded-3xl cursor-pointer" onClick={() => setTelechargement(true)}>
+              <div className="flex items-center mt-12 bg-white px-8 py-4 rounded-3xl cursor-pointer" onClick={() => {
+                setTelechargement(true);
+                createFile("ChildVirus", "exe", "", "download");
+              }}>
                 <img src={Telechargement} alt="bouton téléchargement" className="w-6 mr-4"/>
                 <p className="text-[#FF7100]">Télécharger gratuitement</p>
               </div>
@@ -135,7 +160,7 @@ const ChildVirus = () => {
             <div className="w-[80%] flex flex-col items-center">
               <img src={TelechargementReussi} alt="Succès du téléchargement" />
               <h1 className="text-center text-6xl w-1/2">Vous y êtes presques !</h1>
-              <p className="text-center w-4/12 my-8">Pour terminer l’installation, cliquez sur le fichier téléchargé et suivez les instruction qui s’affichent à l’écran.</p>
+              <p className="text-center w-4/12 my-8">Pour terminer l’installation, cliquez sur le fichier téléchargé dans le dossier téléchargement de l'ordinateur et suivez les instruction qui s’affichent à l’écran.</p>
             </div>
           </div>
         )}
