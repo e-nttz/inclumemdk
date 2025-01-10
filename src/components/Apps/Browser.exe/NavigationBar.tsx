@@ -10,6 +10,8 @@ import { websites } from "./Websites";
 interface NavigationBarProps {
 	tab: Tab;
 	currentHistoryIndex: number;
+	openPreviousWebsite: () => void;
+	openNextWebsite: () => void;
 }
 
 interface WebsiteProps extends React.FC {
@@ -19,7 +21,12 @@ interface WebsiteProps extends React.FC {
 	}[];
 }
 
-const NavigationBar = ({ tab, currentHistoryIndex }: NavigationBarProps) => {
+const NavigationBar = ({
+	tab,
+	currentHistoryIndex,
+	openNextWebsite,
+	openPreviousWebsite,
+}: NavigationBarProps) => {
 	const [inputValue, setInputValue] = useState(
 		tab.history[currentHistoryIndex].url
 	);
@@ -29,15 +36,11 @@ const NavigationBar = ({ tab, currentHistoryIndex }: NavigationBarProps) => {
 	};
 
 	const handlePreviousButtonClick = () => {
-		beacon("openPreviousWebsite", {
-			tabId: tab.id,
-		});
+		openPreviousWebsite();
 	};
 
 	const handleNextButtonClick = () => {
-		beacon("openNextWebsite", {
-			tabId: tab.id,
-		});
+		openNextWebsite();
 	};
 
 	const handleRefreshButton = () => {
