@@ -10,6 +10,8 @@ import { classNames } from "@/helpers/sanitize";
 import { useEffect, useRef, useState } from "react";
 import { useOS } from "@/providers/InclumeOS";
 import TextEditor from "../../TextEditor.exe";
+import ChildVirus from "../../ChildVirus.exe";
+import ChildVirusIcon from "@/assets/icons/app-antivirus.svg?react";
 
 interface FileItemProps {
 	file: FileNode;
@@ -25,6 +27,7 @@ const getAppToOpen = async (file: FileNode): Promise<App | null> => {
 	// TODO : Get content of file if file.url (come from API)
 	const app = {
 		".docs,.docx,.doc": TextEditor,
+		".exe": ChildVirus,
 	};
 
 	const extension = file.extension;
@@ -65,6 +68,8 @@ const FileItem = ({ file, complete = false }: FileItemProps) => {
 			? HouseIcon
 			: file.type === "folder"
 			? FolderIcon
+			: file.extension === ".exe"
+			? ChildVirusIcon
 			: FileIcon;
 
 	// Random createdAt time for file and folder from 1 month to 2 week ago
