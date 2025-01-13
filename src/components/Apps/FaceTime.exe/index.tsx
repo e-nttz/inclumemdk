@@ -1,11 +1,10 @@
-import { useBeaconListener } from "@/helpers/beacon";
+import { beacon, useBeaconListener } from "@/helpers/beacon";
 import { classNames } from "@/helpers/sanitize";
 import useAudioPlayer from "@/hooks/useAudioPlayer";
 import { useEffect, useState } from "react";
 import { useTranslate } from "@tolgee/react";
 import { useOS } from "@/providers/InclumeOS";
 import { apps } from "@/components/Apps";
-
 
 const FaceTime = () => {
 	const { launchApp } = useOS();
@@ -59,7 +58,7 @@ const FaceTime = () => {
 								/>
 							</figure>
 							<p className="text-2xl font-bold text-black dark:text-white">
-								John Doe
+								Vincent Inclume
 							</p>
 						</header>
 
@@ -69,11 +68,13 @@ const FaceTime = () => {
 							onClick={() => {
 								setCallStatus("waiting");
 								incomingCallSound.stop();
-								launchApp({
-									title: apps.message.title,
-									icon: apps.message.icon,
-									defaultContent:true,
-								});
+								setTimeout(() => {
+									launchApp({
+										title: apps.message.title,
+										icon: apps.message.icon,
+										defaultContent:true,
+									});
+								},500)
 							}}
 						>
 							{t("accept_call", "Accepter l'appel")}

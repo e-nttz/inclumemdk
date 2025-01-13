@@ -9,7 +9,7 @@ const Notification = ({ message, temporary = true }: NotificationInterface) => {
 	const NotificationRef = React.useRef<HTMLDivElement | null>(null);
 	const NotificationRefTimer = React.useRef<HTMLDivElement | null>(null);
 
-	const NotificationDuration = 5000;
+	const NotificationDuration = 10000;
 
 	const { showSidebar } = useNotification();
 

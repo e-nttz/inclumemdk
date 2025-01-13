@@ -16,7 +16,7 @@ console.log(getAntivirusInstalledFromLocalStorage());
           return true;
         })
         .map(([, value]: any) => (
-          <li key={value.title}>
+          <li key={Math.random()}>
             <button
               className="w-[100px] h-[100px] flex flex-col items-center justify-center p-4 transition duration-150 rounded group hover:bg-white/30 focus:bg-white/30 active:bg-white/75 dark:hover:bg-white/25 dark:active:bg-white/50 cursor-default"
               onDoubleClick={() =>

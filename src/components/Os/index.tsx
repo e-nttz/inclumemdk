@@ -7,11 +7,13 @@ import { ContextMenu, ContextMenuTrigger } from "../Ui/context-menu";
 import OSContextualMenu from "../Ui/Menus/ContextualMenu";
 import ScreenPaused from "./ScreenPaused";
 import { useStepsListener } from "@/providers/stepsListener";
+import { beacon } from "@/helpers/beacon";
 
 const InclumeOs = () => {
 	const { t } = useTranslate();
 	const { pauseMode } = useStepsListener();
-
+	
+	
 	return (
 		<>
 			<ContextMenu>

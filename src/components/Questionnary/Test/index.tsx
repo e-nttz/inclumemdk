@@ -19,7 +19,7 @@ const Test = ({
 	const [results, setResults] = useState<{ [key: number]: boolean }>({});
 	const [answers, setAnswers] = useState<{ [key: number]: any }>({});
 
-	const [questionCounter] = useState<number>(1);
+	const [questionCounter, setQuestionCounter] = useState<number>(1);
 	const { t } = useTranslate();
 
 	const [selectedValues, setSelectedValues] = useState<string[]>([]);
@@ -119,6 +119,8 @@ const Test = ({
 		}
 
 		setCurrentQuestionId(nextQuestionId);
+		setQuestionCounter(questionCounter + 1);
+		console.log(nextQuestionId);
 	};
 
 	if (!question) {
@@ -139,8 +141,12 @@ const Test = ({
 						Question {questionCounter}
 					</p>
 
-					<h1 className="text-3xl font-bold">{question.question}</h1>
+					<h1 className="text-3xl font-bold" onClick={() => console.log(question)}>{question.question}</h1>
 				</div>
+
+				{question.id === 25 && (
+					<p className="text-xl mt-8 font-secondary text-orange">var texte = "Bonjour"</p>
+				)}
 
 				<figure
 					className={classNames(
@@ -213,69 +219,85 @@ const Test = ({
 					<span
 						className="absolute inset-y-0 left-0 block transition bg-orange"
 						style={{
-							width: `${(questionCounter / 16) * 100}%`,
+							width: `${(questionCounter / 14) * 100}%`,
 						}}
 					/>
 				</div>
+				
+				<div className={
+					classNames(
+						question.id === 26
+							? "flex items-center h-full"
+							: "flex flex-col justify-center h-full"
+					)
+				}>
+					{question.id === 26 && (
+								<img src="/images/questionnary/questionnaire_question_10_element.svg" alt="Image représentant une notification de localisation sur téléphone" className="w-72"/>
+					)}
 
-				<form
-					className="flex flex-col flex-1 gap-4 p-8 pb-0"
-					onSubmit={handleSubmit}
-				>
-					<div
-						className={classNames(
-							"flex gap-5 mt-auto",
-							question.display === "icon" || question.display === "image"
-								? "items-stretch flex-row"
-								: "flex-col",
-							question.display === "image" && "justify-evenly"
-						)}
+					<form
+						className="flex flex-col flex-1 gap-4 p-8 pb-0"
+						onSubmit={handleSubmit}
 					>
-						{question.choices.map((choice: Choice) => (
-							<Radio
-								key={choice.id}
-								name={
-									question.id.toString() +
-									(question.type === "multiple" ? "[]" : "")
-								}
-								question={choice.text}
-								image={choice?.image}
-								value={choice.id}
-								selectedValues={selectedValues}
-								type={
-									question.type === "multiple" ? "checkbox" : "radio"
-								}
-								onChange={(e) => {
-									const value = e.target.value;
-									const isChecked = e.target.checked;
-
-									if (isChecked) {
-										if (question.type === "single") {
-											setSelectedValues([value]);
-										} else {
-											setSelectedValues([...selectedValues, value]);
-										}
-									} else {
-										setSelectedValues(
-											selectedValues.filter((v) => v !== value)
-										);
+						<div
+							className={classNames(
+								"flex gap-5 mt-auto",
+								question.display === "icon" || question.display === "image"
+									? "items-stretch flex-row"
+									: "flex-col",
+								question.display === "image" && "justify-evenly",
+								question.id === 23 || question.id === 28
+									? "grid grid-cols-2"
+									: ""
+							)}
+						>	
+							
+							{question.choices.map((choice: Choice) => (
+								<Radio
+									key={choice.id}
+									name={
+										question.id.toString() +
+										(question.type === "multiple" ? "[]" : "")
 									}
-								}}
-								style={question.display}
-							/>
-						))}
-					</div>
+									question={choice.text}
+									image={choice?.image}
+									value={choice.id}
+									selectedValues={selectedValues}
+									type={
+										question.type === "multiple" ? "checkbox" : "radio"
+									}
+									onChange={(e) => {
+										const value = e.target.value;
+										const isChecked = e.target.checked;
 
-					<Button
-						type="submit"
-						size="sm"
-						disabled={selectedValues.length === 0}
-						className="mx-auto mt-auto"
-					>
-						{t("next_question", "Question suivante")}
-						<IconArrowRight className="w-6 h-auto" />
-					</Button>
-				</form>
+										if (isChecked) {
+											if (question.type === "single") {
+												setSelectedValues([value]);
+											} else {
+												setSelectedValues([...selectedValues, value]);
+											}
+										} else {
+											setSelectedValues(
+												selectedValues.filter((v) => v !== value)
+											);
+										}
+									}}
+									style={question.display}
+								/>
+							))}
+						</div>
+
+						<Button
+							type="submit"
+							size="sm"
+							disabled={selectedValues.length === 0}
+							className="mx-auto mt-auto"
+						>
+							{t("next_question", "Question suivante")}
+							<IconArrowRight className="w-6 h-auto" />
+						</Button>
+					</form>
+				</div>
 			</div>
 		</div>
 	);

@@ -40,7 +40,7 @@ const ChildVirus: AppProps<ChildVirusProps> = () => {
   useEffect(() => {
     const installed = getAntivirusInstalledFromLocalStorage();
     setAntivirusInstalled(installed);
-    setBeforeInstall(!installed); // Met à jour `beforeInstall` ici
+    setBeforeInstall(!installed); 
   }, []);
 
   // Fonction pour activer l'antivirus

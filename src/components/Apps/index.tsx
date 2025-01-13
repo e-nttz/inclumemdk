@@ -19,7 +19,7 @@ export const apps: Apps = {
 	stylesheets: Spreadsheets,
 	textEditor: TextEditor,
 	mail: Mail,
-	childVirus: ChildVirus
+	childVirus: ChildVirus,
 };
 
 const RenderAllApps = () => {

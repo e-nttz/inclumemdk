@@ -273,7 +273,6 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 					</ContextMenuItem>
 					<ContextMenuItem
 						onClick={() => {
-							// Dispatch false message using "beacomMessage" event
 							beacon("call", {
 								status: "incoming",
 							});

@@ -44,6 +44,13 @@ export const getLastStep = async (sessionId: string): Promise<any> => {
 	return response;
 };
 
+export const getNextStep = async (sessionId: string): Promise<any> => {
+	const db = database();
+
+	const response = await db.get(`/testsession/${sessionId}/teststeptemplate/next`);
+	return response;
+};
+
 export const saveStep = async (
 	sessionId: string,
 	step: TestStep

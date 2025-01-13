@@ -9,10 +9,16 @@ import Test from "./Test";
 import FullScreenToggler from "../Ui/Toggle/FullScreen";
 import ThemeToggler from "../Ui/Toggle/Theme";
 import { getQuestions, saveStep } from "@/lib/client/quiz";
+import { useOS } from "@/providers/InclumeOS";
+import { apps } from "@/components/Apps";
+import { useNotification } from "@/providers/notifications";
+
 
 const Questionnary = () => {
+	const { addNotification } = useNotification();
 	const { t } = useTranslate();
-
+	const { launchApp } = useOS();
+	console.log(apps)
 	const { user, setTestStatus, session } = useAuth();
 
 	const welcomeRef = useRef<HTMLDivElement>(null);
@@ -115,7 +121,16 @@ const Questionnary = () => {
 
 								<div className="flex items-center justify-center mt-8 mb-2 text-center">
 									{score >= REQUIRED_SCORE ? (
-										<Button onClick={() => setTestStatus("success")}>
+										<Button onClick={() => {
+											setTestStatus("success");
+											setTimeout(() => {
+												addNotification({
+													title: "Nouveau message !",
+													message:
+														"<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+												});
+											}, 5000);
+										}}>
 											{t(
 												"questionnary_success_cta",
 												"Aller sur le bureau"
@@ -210,6 +225,13 @@ const Questionnary = () => {
 									disabled={questions.length === 0}
 									onClick={() => {
 										setTestStatus("success");
+										setTimeout(() => {
+											addNotification({
+												title: "Nouveau message !",
+												message:
+													"<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+											});
+										}, 5000);
 									}}
 								>
 									Ignorez le test

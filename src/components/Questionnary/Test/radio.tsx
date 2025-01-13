@@ -79,7 +79,7 @@ const Radio = ({
 			{style === "image" && (
 				<figure
 					className={classNames(
-						"max-w-[240px] rounded-[12px] overflow-hidden shadow-[0px_6px_20px_0px_#005FB814] border-2 border-accent/10 group-hover:-translate-y-2 transition",
+						"max-w-[340px] rounded-[12px] overflow-hidden shadow-[0px_6px_20px_0px_#005FB814] border-2 border-accent/10 group-hover:-translate-y-2 transition",
 						checked && "border-accent/100"
 					)}
 				>

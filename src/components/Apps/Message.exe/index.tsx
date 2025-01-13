@@ -1,3 +1,5 @@
+import { useAuth } from "@/providers/auth";
+import { getLastStep, getNextStep, saveStep } from "@/lib/client/quiz";
 import { ReactElement, FormEvent, useRef, useState, useEffect } from "react";
 import { useTranslate } from "@tolgee/react";
 
@@ -34,6 +36,8 @@ interface Message {
 }
 
 const Message: AppProps = (defaultContent) => {
+	const {user, session} = useAuth();
+	console.log(getNextStep(session))
 	const [isCall, setCall] = useState(false);
 
 	useEffect(() => {
@@ -55,25 +59,9 @@ const Message: AppProps = (defaultContent) => {
 	const [isSoundOn, setSoundOn] = useState(true);
 	const [messages, setMessages] = useState<Message[]>([
 		{
-			id: 1,
-			sender: 4,
-			content: "Hello, world!",
-		},
-		{
-			id: 2,
-			sender: 4,
-			content: "Want to chat?",
-		},
-		{
-			id: 3,
-			sender: 1,
-			content: "Sure!",
-		},
-		{
-			id: 5,
-			sender: 4,
-			content:
-				"Labore ipsum nostrud duis mollit velit. Anim ut eu elit aute occaecat aliqua cupidatat incididunt ut dolore consequat veniam eu. Consequat Lorem dolor tempor mollit pariatur. Exercitation labore Lorem reprehenderit qui nulla. Esse fugiat eiusmod est fugiat esse adipisicing exercitation nostrud cillum culpa anim id consectetur amet. Anim sint amet aliqua aute pariatur ea commodo enim eiusmod consequat magna nostrud deserunt excepteur irure. Exercitation aliquip mollit mollit dolore eu est in tempor. Duis consectetur ut in do exercitation incididunt aute proident culpa amet sint minim et nulla amet.",
+		  id: 1,
+		  sender: 4,
+		  content: `Salut ${user.candidate.first_name}, merci de garder la maison pendant les vacances. Nous arrivons dans quelques instants à Ostende, es-tu disponible pour que je t’appelle à mon arrivée ?`,
 		},
 	]);
 
@@ -81,7 +69,6 @@ const Message: AppProps = (defaultContent) => {
 		const message = e.detail;
 		setMessages((prev) => [...prev, message]);
 
-		// Scroll to the bottom
 		setTimeout(() => {
 			messagesList.current?.scrollTo({
 				top: messagesList.current.scrollHeight,
@@ -177,7 +164,7 @@ const Message: AppProps = (defaultContent) => {
 								/>
 							</figure>
 
-							<p className="font-bold dark:text-white">John Doe</p>
+							<p className="font-bold dark:text-white">Vincent Inclume</p>
 						</div>
 					</header>
 
@@ -197,7 +184,7 @@ const Message: AppProps = (defaultContent) => {
 							</li>
 						))}
 					</ul>
-
+					
 					<form
 						className="gap-4 px-6 py-4 space-y-4 bg-white dark:bg-black dark:text-white"
 						onSubmit={handleSubmit}
@@ -219,13 +206,13 @@ const Message: AppProps = (defaultContent) => {
 								</button>
 							</div>
 						)}
-
+						
 						<div className="flex flex-row items-center gap-4">
 							<span className="relative flex-1 peer">
 								<input
 									type="text"
 									name="message"
-									placeholder="Type a message..."
+									placeholder="Ecrivez un message..."
 									autoComplete="off"
 									className="flex-1 w-full p-2 pr-12 border-2 border-solid rounded-lg bg-gray-50/50 border-gray-50/50 dark:hover:border-accent-dark dark:focus:border-accent-dark dark:bg-gray-900 dark:border-gray-900 hover:border-accent focus:border-accent focus:outline-none focus:shadow-none peer"
 									// Listen when a paste event is made on input
