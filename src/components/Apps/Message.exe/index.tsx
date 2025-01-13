@@ -37,7 +37,6 @@ interface Message {
 
 const Message: AppProps = (defaultContent) => {
 	const {user, session} = useAuth();
-	console.log(getNextStep(session))
 	const [isCall, setCall] = useState(false);
 
 	useEffect(() => {

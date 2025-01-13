@@ -8,12 +8,46 @@ import OSContextualMenu from "../Ui/Menus/ContextualMenu";
 import ScreenPaused from "./ScreenPaused";
 import { useStepsListener } from "@/providers/stepsListener";
 import { beacon } from "@/helpers/beacon";
+import { useNotification } from "@/providers/notifications";
+import { useAuth } from "@/providers/auth";
+import { getNextStep } from "@/lib/client/quiz";
 
 const InclumeOs = () => {
+	const { notifications } = useNotification();
 	const { t } = useTranslate();
 	const { pauseMode } = useStepsListener();
-	
-	
+	const { addNotification } = useNotification();
+	const {session} = useAuth();
+
+	const fetchStepId = async (session) => {
+		try {
+		  const step = await getNextStep(session);
+	  
+		  // Vérifiez si la notification existe déjà
+		  const notificationExists = notifications.some(
+			(notif) =>
+			  notif.title === "Nouveau message !" &&
+			  notif.message ===
+				"<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter."
+		  );
+	  
+		  if (step.id === 1 && !notificationExists) {
+			setTimeout(() => {
+			  addNotification({
+				title: "Nouveau message !",
+				message:
+				  "<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+			  });
+			}, 5000);
+		  }
+		} catch (error) {
+		  console.error("Erreur lors de la récupération de l'étape :", error);
+		}
+	  };
+	  
+	fetchStepId(session);
+	  
+
 	return (
 		<>
 			<ContextMenu>
