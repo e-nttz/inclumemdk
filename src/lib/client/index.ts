@@ -18,14 +18,18 @@ export const database = () => {
 	 */
 	const fetchClient = async (
 		path: string,
-		query: { [key: string]: string },
+		query: { [key: string]: any }, // Autorise des valeurs génériques
 		method = "GET"
 	) => {
 		try {
-			const queryParams = new URLSearchParams(query)?.toString();
-
+			const queryParams = new URLSearchParams(
+				Object.entries(query)
+					.filter(([_, value]) => typeof value === "string") // Ne garde que les strings pour l'URL
+					.reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {})
+			).toString();
+	
 			if (queryParams) path = path + "?" + queryParams;
-
+	
 			const response = await fetch("/api/client", {
 				method: "POST",
 				headers: {
@@ -34,19 +38,20 @@ export const database = () => {
 				body: JSON.stringify({
 					url: endpoint + path,
 					method,
-					query,
+					query, // Envoie le query complet ici
 				}),
 			})
 				.then((res) => res.json())
 				.catch((error) => {
 					console.error("An error has been thrown: ", error);
 				});
-
+	
 			return response;
 		} catch (error) {
 			console.error(error);
 		}
 	};
+	
 
 	/**
 	 * Get data from the middleware.
@@ -73,5 +78,17 @@ export const database = () => {
 		return await fetchClient(path, query || {}, "POST");
 	};
 
-	return { get, post };
+	/**
+	 * Put data to the middleware.
+	 *
+	 * @param {string} path
+	 * @param {object} query
+	 *
+	 * @return {*} {Promise<any>}
+	 */
+	const put = async (path: string, query?: { [key: string]: string }) => {
+		return await fetchClient(path, query || {}, "PUT");
+	};
+
+	return { get, post, put };
 };

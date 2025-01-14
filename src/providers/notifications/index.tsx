@@ -109,15 +109,15 @@ export const NotificationProvider = ({ children }) => {
 					},
 				},
 			},
-			{
-				id: 2,
-				title: "Welcome to Inclume OS",
-				message: "This is an helpful notification with video",
-				muted: true,
-				visualHint: {
-					video: "https://www.youtube.com/watch?v=_85L5NWT87M",
-				},
-			},
+			// {
+			// 	id: 2,
+			// 	title: "Welcome to Inclume OS",
+			// 	message: "This is an helpful notification with video",
+			// 	muted: true,
+			// 	visualHint: {
+			// 		video: "https://www.youtube.com/watch?v=_85L5NWT87M",
+			// 	},
+			// },
 		]
 	);
 

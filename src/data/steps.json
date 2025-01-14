@@ -3,6 +3,19 @@
 		"step_id": 1,
 		"items": [
 			{
+				"value": "openMessage",
+				"clues": [
+					{
+						"time_launched": 5,
+						"title": "Nouveau message !",
+						"message": "<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+						"visualHint": {
+							"image": ""
+						}
+					}
+				]
+			},
+			{
 				"value": "openNavigateur",
 				"clues": [
 					{

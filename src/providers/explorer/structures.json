@@ -153,6 +153,14 @@
 			]
 		},
 		{
+			"name": "Vacances",
+			"type": "folder",
+			"createdAt": "2023-10-01T12:05:00Z",
+			"updatedAt": "2023-10-02T15:00:00Z",
+			"path": "vacances",
+			"children": []
+		},
+		{
 			"name": "Pictures",
 			"type": "folder",
 			"createdAt": "2023-10-01T13:25:00Z",

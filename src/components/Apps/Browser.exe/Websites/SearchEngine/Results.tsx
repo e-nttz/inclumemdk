@@ -3,6 +3,7 @@ import { useState } from "react";
 import SearchEngine from ".";
 import SearchIcon from "@/assets/icons/search.svg"
 import CHOQ from "@/assets/icons/choq.png"
+import Partenaires from "@/assets/icons/partenaires.svg"
 
 import ActivitesNamur from "../ActivitesNamur";
 import AntivirusAdvisor from "../AntivirusAdvisor";
@@ -251,7 +252,8 @@ const Results = ({ url }: ResultsProps) => {
 		  <div className="shadow-md p-5 rounded-[20px]">
 			<img src={CHOQ} alt="Logo du CHOQ - Association en Wallonie picarde" className="mt-5 mb-5"/>
 			<h3 className="text-xl font-medium text-[#1265AF]">CHOQ</h3>
-			<p className="text-sm text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam, libero iste? Reprehenderit sit corporis accusamus, labore harum, eos recusandae dicta tenetur quibusdam omnis unde laborum asperiores sapiente libero laboriosam ab?</p>
+			<p className="text-sm text-gray-400">L'ASBL CHOQ est une association située à Kain (Tournai). Toutes ses actions visent à développer son bassin de vie : la Wallonie picarde. L'ASBL propose des formations en informatique de base, des formations orientées sur l'emploi ainsi que différents projets mettant en avant les initiatives made in Wapi.</p>
+			<img src={Partenaires} alt="Partenaires Digilab" className="mt-8"/>
 		  </div>
 		</div>
 	  </div>

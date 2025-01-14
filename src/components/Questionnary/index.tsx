@@ -8,7 +8,7 @@ import { classNames } from "@/helpers/sanitize";
 import Test from "./Test";
 import FullScreenToggler from "../Ui/Toggle/FullScreen";
 import ThemeToggler from "../Ui/Toggle/Theme";
-import { getQuestions, saveStep } from "@/lib/client/quiz";
+import { getQuestions, saveStep, updateTestSession } from "@/lib/client/quiz";
 import { useOS } from "@/providers/InclumeOS";
 import { apps } from "@/components/Apps";
 import { useNotification } from "@/providers/notifications";
@@ -23,7 +23,7 @@ const Questionnary = () => {
 
 	const welcomeRef = useRef<HTMLDivElement>(null);
 
-	const REQUIRED_SCORE = 1;
+	const REQUIRED_SCORE = 5;
 
 	const [closeWelcome, setCloseWelcome] = useState<boolean>(false);
 	const [startTest, setStartTest] = useState<boolean>(false);
@@ -123,13 +123,6 @@ const Questionnary = () => {
 									{score >= REQUIRED_SCORE ? (
 										<Button onClick={() => {
 											setTestStatus("success");
-											setTimeout(() => {
-												addNotification({
-													title: "Nouveau message !",
-													message:
-														"<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
-												});
-											}, 5000);
 										}}>
 											{t(
 												"questionnary_success_cta",
@@ -138,7 +131,10 @@ const Questionnary = () => {
 											<IconArrowRight className="w-6 h-auto" />
 										</Button>
 									) : (
-										<Button onClick={() => setTestStatus("failed")}>
+										<Button onClick={() => {
+											setTestStatus("failed")
+											updateTestSession(session, true)
+										}}>
 											{t(
 												"questionnary_failure_cta",
 												"Fermer ma session"
@@ -225,13 +221,6 @@ const Questionnary = () => {
 									disabled={questions.length === 0}
 									onClick={() => {
 										setTestStatus("success");
-										setTimeout(() => {
-											addNotification({
-												title: "Nouveau message !",
-												message:
-													"<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
-											});
-										}, 5000);
 									}}
 								>
 									Ignorez le test

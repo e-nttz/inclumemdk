@@ -3,7 +3,7 @@ import { useOS } from "@/providers/InclumeOS";
 import { getAntivirusInstalledFromLocalStorage } from "@/utils/localeStorage";
 import { useNotification } from "@/providers/notifications";
 import { useState, useEffect } from "react";
-
+import DossierVacances from "@/assets/icons/colors/folder.svg"
 const GridIcons = () => {
   const { notifications } = useNotification();
   const { launchApp } = useOS();
@@ -62,6 +62,26 @@ const GridIcons = () => {
             </button>
           </li>
         ))}
+        <li key={Math.random()}>
+          <button className="w-[100px] h-[100px] flex flex-col items-center justify-center p-4 transition duration-150 rounded group hover:bg-white/30 focus:bg-white/30 active:bg-white/75 dark:hover:bg-white/25 dark:active:bg-white/50 cursor-default"
+            onDoubleClick={
+              () => {
+                launchApp({
+                  title: apps.explorer.title,
+                  icon: apps.explorer.icon,
+                  defaultContent: "vacances"
+                })
+                return {
+                  defaultContent: "vacances",
+                };
+              }
+            }>
+            <figure className="w-16 h-16 p-1 mb-2 relative">
+                <img src={DossierVacances} alt="" className="w-full"/>
+            </figure>
+            <span className="text-[12px] text-white">Vacances</span>
+          </button>
+        </li>
     </ul>
   );
 };

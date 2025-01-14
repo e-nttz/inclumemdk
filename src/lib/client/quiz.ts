@@ -64,3 +64,30 @@ export const saveStep = async (
 
 	return response;
 };
+
+export const updateTestSession = async (
+	sessionId: string,
+	is_finished: boolean
+): Promise<any> => {
+	try {
+		const db = database();
+
+		// Prépare le payload pour la requête PUT avec une clé string
+		const payload = { "is_finished": is_finished };
+
+		// Envoie la requête PUT
+		const response = await db.put(`/testsession/${sessionId}`, payload);
+
+		// Vérifie la réponse avant de la retourner
+		if (!response || response.error) {
+			throw new Error(
+				response?.error || "An unknown error occurred while updating the test session."
+			);
+		}
+
+		return response;
+	} catch (error) {
+		console.error("Failed to update test session:", error);
+		throw new Error("Failed to update the test session. Please try again later.");
+	}
+};

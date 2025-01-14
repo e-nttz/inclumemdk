@@ -43,7 +43,7 @@ const InclumeOs = () => {
 		} catch (error) {
 		  console.error("Erreur lors de la récupération de l'étape :", error);
 		}
-	  };
+	};
 	  
 	fetchStepId(session);
 	  

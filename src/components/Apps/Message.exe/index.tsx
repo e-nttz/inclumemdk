@@ -39,12 +39,34 @@ const Message: AppProps = (defaultContent) => {
 	const {user, session} = useAuth();
 	const [isCall, setCall] = useState(false);
 
+	const fetchStepId = async (session, message) => {
+		try {
+		  const step = await getNextStep(session);
+		  if (step.id === 1) {
+			await saveStep(session, {
+				test_step_template_id: step.id,
+				is_successful: true,
+				extra_data: {
+					"message" : message,
+				},
+			});
+			setTimeout(() => {
+				beacon("call", {
+					status: "incoming",
+				})
+			}, 3000);
+		  }
+		} catch (error) {
+		  console.error("Erreur lors de la récupération de l'étape :", error);
+		}
+	};
+
 	useEffect(() => {
 		if (defaultContent && defaultContent["props"] && defaultContent["props"][1] && defaultContent["props"][1].defaultContent === true) {
 		  setCall(true);
 		}
 	}, [defaultContent]);
-
+	
 	const { t } = useTranslate();
 	const { handleInfoWindow, closeInfoWindow } = useExplorer();
 
@@ -114,6 +136,7 @@ const Message: AppProps = (defaultContent) => {
 				sender: 1,
 				content: message,
 			});
+			fetchStepId(session, message);
 
 			// Clear input
 			form.reset();
@@ -278,7 +301,7 @@ const Message: AppProps = (defaultContent) => {
 				<section className="bg-black w-full h-full flex justify-center">
 					{/* Référence pour la vidéo */}
 					<video autoPlay loop ref={videoRef} muted={!isSoundOn}>
-						<source src="https://cdn.pixabay.com/video/2020/01/05/30902-383991325_large.mp4" />
+						<source src="https://ik.imagekit.io/0jngziwft/appel_1.mp4" />
 					</video>
 					<div className="options flex justify-between absolute bottom-4 w-60">
 						<div
