@@ -1,8 +1,10 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const ActivitesNamur = () => {
 	return (
-		<body className="bg-gray-50">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-gray-50">
 			<header className="bg-green-600 py-8 shadow-lg">
 				<div className="container mx-auto text-center">
 					<h1 className="text-5xl font-bold text-white">5 Activités Incontournables à Namur</h1>
@@ -11,10 +13,7 @@ const ActivitesNamur = () => {
 			</header>
 
 			<section className="py-12 text-center bg-white">
-				<img
-					src="https://images.pexels.com/photos/18042326/pexels-photo-18042326/free-photo-of-ville-riviere-fleuve-urbain.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-					alt="Activités à Namur"
-					className="object-cover w-full h-80 md:h-96 rounded-lg shadow-md"
+				<IKImage path={ActivitesNamur.images[0]} className="object-cover w-full h-80 md:h-96 rounded-lg shadow-md"
 				/>
 				<div className="container mx-auto mt-6 max-w-2xl">
 					<p className="text-lg text-gray-800">
@@ -108,6 +107,7 @@ const ActivitesNamur = () => {
 				</div>
 			</footer>
 		</body>
+		</IKContext>
 	);
 };
 
@@ -161,6 +161,10 @@ ActivitesNamur.motsCles = [
 
 // Site favicon icon
 ActivitesNamur.favicon = <IconSearchEngine />;
+
+ActivitesNamur.images = [
+	"Activités Namur.jpeg"
+]
 
 ActivitesNamur.pages = [
 	{

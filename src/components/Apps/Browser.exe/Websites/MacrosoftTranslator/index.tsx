@@ -1,8 +1,10 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const MacrosoftTranslator = () => {
 	return (
-		<body className="bg-white">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-white">
 			<header className="bg-purple-600 py-8 shadow-md">
 				<div className="container mx-auto text-center">
 					<h1 className="text-4xl font-bold text-white">Macrosoft Translator</h1>
@@ -13,8 +15,8 @@ const MacrosoftTranslator = () => {
 			</header>
 
 			<section className="py-16 text-center">
-				<img
-					src="https://images.pexels.com/photos/267669/pexels-photo-267669.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+				<IKImage
+					path={MacrosoftTranslator.images[0]}
 					alt="Macrosoft Translator"
 					className="object-cover w-full h-80 md:h-96 rounded-lg shadow-lg"
 				/>
@@ -99,6 +101,7 @@ const MacrosoftTranslator = () => {
 				</div>
 			</footer>
 		</body>
+		</IKContext>
 	);
 };
 
@@ -155,6 +158,10 @@ MacrosoftTranslator.motsCles = [
 ];
 
 MacrosoftTranslator.favicon = <IconSearchEngine />;
+
+MacrosoftTranslator.images = [
+	"Macrosoft Translator.webp"
+]
 
 MacrosoftTranslator.pages = [
 	{

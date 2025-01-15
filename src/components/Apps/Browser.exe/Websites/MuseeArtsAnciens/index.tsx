@@ -1,8 +1,10 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const MuseeArtsAnciens = () => {
 	return (
-		<body className="bg-gray-50">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-gray-50">
 			<header className="bg-purple-600 py-8 shadow-lg">
 				<div className="container mx-auto text-center">
 					<h1 className="text-5xl font-bold text-white">Musée des Arts Anciens du Namurois</h1>
@@ -11,8 +13,8 @@ const MuseeArtsAnciens = () => {
 			</header>
 
 			<section className="py-12 text-center bg-white">
-				<img
-					src="https://images.pexels.com/photos/25974825/pexels-photo-25974825/free-photo-of-une-merveille-architecturale-de-spiritualite-et-d-art-l-heritage-intemporel-des-grottes-de-mogao-creusees-au-coeur-de-la-falaise-de-dunhuang.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+				<IKImage
+					path={MuseeArtsAnciens.images[0]}
 					alt="Musée des Arts Anciens à Namur"
 					className="object-cover w-full h-80 md:h-96 rounded-lg shadow-md"
 				/>
@@ -50,6 +52,7 @@ const MuseeArtsAnciens = () => {
 				</div>
 			</footer>
 		</body>
+		</IKContext>
 	);
 };
 
@@ -105,6 +108,10 @@ MuseeArtsAnciens.motsCles = [
 
 // Site favicon icon
 MuseeArtsAnciens.favicon = <IconSearchEngine />;
+
+MuseeArtsAnciens.images = [
+	"Musée Arts Anciens.jpeg"
+]
 
 MuseeArtsAnciens.pages = [
 	{

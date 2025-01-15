@@ -1,8 +1,10 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const TukTukNamur = () => {
 	return (
-		<body className="bg-white">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-white">
 			<header className="bg-green-600 py-8 shadow-lg">
 				<div className="container mx-auto text-center">
 					<h1 className="text-5xl font-bold text-white">Visites guidées insolites à Namur</h1>
@@ -11,8 +13,8 @@ const TukTukNamur = () => {
 			</header>
 
 			<section className="py-12 text-center bg-gray-50">
-				<img
-					src="https://images.pexels.com/photos/18042328/pexels-photo-18042328/free-photo-of-ville-religion-cathedrale-catholique.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+				<IKImage
+					path={TukTukNamur.images[0]}
 					alt="Tuk-Tuk à Namur"
 					className="object-cover w-full h-80 md:h-96 rounded-lg shadow-md"
 				/>
@@ -58,6 +60,7 @@ const TukTukNamur = () => {
 				</div>
 			</footer>
 		</body>
+		</IKContext>
 	);
 };
 
@@ -140,6 +143,10 @@ TukTukNamur.motsCles = [
 
 // Site favicon icon
 TukTukNamur.favicon = <IconSearchEngine />;
+
+TukTukNamur.images = [
+	"Tuk Tuk Namur.jpeg"
+]
 
 TukTukNamur.pages = [
 	{

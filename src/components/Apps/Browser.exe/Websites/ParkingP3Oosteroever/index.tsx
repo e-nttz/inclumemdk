@@ -1,8 +1,10 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const ParkingP3Oosteroever = () => {
 	return (
-		<body className="bg-gray-100">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-gray-100">
 			<header className="bg-teal-600 py-6">
 				<div className="container mx-auto text-center">
 					<h1 className="text-4xl font-bold text-white">Parking périphérique P3 Oosteroever</h1>
@@ -12,8 +14,8 @@ const ParkingP3Oosteroever = () => {
 
 			<section className="py-10">
 				<div className="container mx-auto flex flex-col items-center">
-					<img
-						src="https://images.pexels.com/photos/2655864/pexels-photo-2655864.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+					<IKImage
+						path={ParkingP3Oosteroever.images[0]}
 						alt="Parking P3 Oosteroever"
 						className="w-full max-w-md h-auto rounded-lg shadow-lg"
 					/>
@@ -78,6 +80,7 @@ const ParkingP3Oosteroever = () => {
 				</div>
 			</footer>
 		</body>
+		</IKContext>
 	);
 };
 
@@ -152,6 +155,10 @@ ParkingP3Oosteroever.motsCles = [
 ];
 
 ParkingP3Oosteroever.favicon = <IconSearchEngine />;
+
+ParkingP3Oosteroever.images = [
+	"Parking P3 Oostende.jpeg"
+]
 
 ParkingP3Oosteroever.pages = [
 	{

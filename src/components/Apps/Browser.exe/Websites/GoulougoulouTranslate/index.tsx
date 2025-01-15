@@ -1,8 +1,10 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const GoulougoulouTranslate = () => {
 	return (
-		<body className="bg-white">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-white">
 			<header className="bg-blue-700 py-8 shadow-lg">
 				<div className="container mx-auto text-center">
 					<h1 className="text-5xl font-bold text-yellow-300">Goulougoulou Traduction</h1>
@@ -13,8 +15,8 @@ const GoulougoulouTranslate = () => {
 			</header>
 
 			<section className="py-16 text-center">
-				<img
-					src="https://images.pexels.com/photos/346885/pexels-photo-346885.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+				<IKImage
+					path={GoulougoulouTranslate.images[0]}
 					alt="Goulougoulou Traduction"
 					className="object-cover w-full h-80 md:h-96 rounded-lg shadow-md"
 				/>
@@ -95,6 +97,7 @@ const GoulougoulouTranslate = () => {
 				</div>
 			</footer>
 		</body>
+		</IKContext>
 	);
 };
 
@@ -155,6 +158,10 @@ GoulougoulouTranslate.motsCles = [
 ];
 
 GoulougoulouTranslate.favicon = <IconSearchEngine />;
+
+GoulougoulouTranslate.images = [
+	"Goulougoulou Translate.webp"
+]
 
 GoulougoulouTranslate.pages = [
 	{

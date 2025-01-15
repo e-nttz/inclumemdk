@@ -1,8 +1,10 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const VenteCanapesLaSiesta = () => {
 	return (
-		<body className="bg-gray-50">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-gray-50">
 			<header className="bg-green-600 py-8 shadow-lg">
 				<div className="container mx-auto text-center">
 					<h1 className="text-5xl font-bold text-white">Vente en ligne de Canapés « La Siesta »</h1>
@@ -11,8 +13,8 @@ const VenteCanapesLaSiesta = () => {
 			</header>
 
 			<section className="py-12 text-center bg-white">
-				<img
-					src="https://images.pexels.com/photos/27059631/pexels-photo-27059631/free-photo-of-appartement-concevoir-designer-interieur.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+				<IKImage
+					path={VenteCanapesLaSiesta.images[0]}
 					alt="Canapés La Siesta"
 					className="object-cover w-full h-80 md:h-96 rounded-lg shadow-md"
 				/>
@@ -75,6 +77,7 @@ const VenteCanapesLaSiesta = () => {
 				</div>
 			</footer>
 		</body>
+		</IKContext>
 	);
 };
 
@@ -159,11 +162,17 @@ VenteCanapesLaSiesta.motsCles = [
 	"personnalisable",
 	"options",
 	"chaise longue",
-	"fauteuil"
+	"fauteuil",
+	"siesta",
+	"la siesta"
 ];
 
 // Site favicon icon
 VenteCanapesLaSiesta.favicon = <IconSearchEngine />;
+
+VenteCanapesLaSiesta.images = [
+	"Canapé la Siesta.webp"
+]
 
 VenteCanapesLaSiesta.pages = [
 	{

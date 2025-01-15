@@ -1,13 +1,15 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const VirusGuardian = () => {
 	return (
-		<body className="bg-gray-100">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-gray-100">
 			<section className="relative text-white bg-blue-500">
 				<div
 					className="absolute inset-0 bg-center bg-cover opacity-60"
 					style={{
-						backgroundImage: "url('https://images.pexels.com/photos/18069694/pexels-photo-18069694.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')",
+						backgroundImage: `url("https://ik.imagekit.io/0jngziwft/inclume/photos_sites/${VirusGuardian.images[0]}")`,
 					}}
 				></div>
 				<div className="container relative px-6 py-20 mx-auto text-center">
@@ -31,9 +33,9 @@ const VirusGuardian = () => {
 					<h2 className="text-3xl font-bold text-gray-800">Nos Tutoriels</h2>
 					<div className="grid gap-8 mt-10 sm:grid-cols-2 lg:grid-cols-4">
 						<div className="overflow-hidden bg-white rounded-lg shadow-lg">
-							<img
+							<IKImage
 								className="object-cover w-full h-48"
-								src="https://images.pexels.com/photos/8879118/pexels-photo-8879118.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+								path={VirusGuardian.images[1]}
 								alt="Installer Antivirus"
 							/>
 							<div className="p-6">
@@ -51,9 +53,9 @@ const VirusGuardian = () => {
 						</div>
 
 						<div className="overflow-hidden bg-white rounded-lg shadow-lg">
-							<img
+							<IKImage
 								className="object-cover w-full h-48"
-								src="https://images.pexels.com/photos/39584/censorship-limitations-freedom-of-expression-restricted-39584.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+								path={VirusGuardian.images[3]}
 								alt="Configurer Antivirus"
 							/>
 							<div className="p-6">
@@ -71,9 +73,9 @@ const VirusGuardian = () => {
 						</div>
 
 						<div className="overflow-hidden bg-white rounded-lg shadow-lg">
-							<img
+							<IKImage
 								className="object-cover w-full h-48"
-								src="https://images.pexels.com/photos/5483248/pexels-photo-5483248.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+								path={VirusGuardian.images[2]}
 								alt="Utiliser Antivirus"
 							/>
 							<div className="p-6">
@@ -91,9 +93,9 @@ const VirusGuardian = () => {
 						</div>
 
 						<div className="overflow-hidden bg-white rounded-lg shadow-lg">
-							<img
+							<IKImage
 								className="object-cover w-full h-48"
-								src="https://images.pexels.com/photos/6963098/pexels-photo-6963098.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+								path={VirusGuardian.images[4]}
 								alt="Prévention des menaces"
 							/>
 							<div className="p-6">
@@ -146,6 +148,7 @@ const VirusGuardian = () => {
 				</button>
 			</section>
 		</body>
+		</IKContext>
 	);
 };
 
@@ -227,6 +230,13 @@ VirusGuardian.motsCles = [
 ];
 
 VirusGuardian.favicon = <IconSearchEngine />;
+
+VirusGuardian.images = [
+	"Virus Guardian 1.webp",
+	"Virus Guardian 2.webp",
+	"Virus Guardian 3.jpeg",
+	"Virus Guardian 4.webp",
+]
 
 VirusGuardian.pages = [
 	{

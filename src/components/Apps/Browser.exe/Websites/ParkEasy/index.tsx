@@ -1,4 +1,5 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const ParkEasy = () => {
 	return (
@@ -7,7 +8,7 @@ const ParkEasy = () => {
 				<div
 					className="absolute inset-0 bg-center bg-cover opacity-50"
 					style={{
-						backgroundImage: "url('https://images.pexels.com/photos/1756957/pexels-photo-1756957.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')",
+						backgroundImage: `url("https://ik.imagekit.io/0jngziwft/inclume/photos_sites/${ParkEasy.images[0]}")`,
 					}}
 				></div>
 				<div className="container relative px-6 py-20 mx-auto text-center">
@@ -35,9 +36,9 @@ const ParkEasy = () => {
 				</div>
 				<div className="grid gap-6 mt-10 sm:grid-cols-2 lg:grid-cols-4">
 					<div className="overflow-hidden bg-white rounded-lg shadow-lg">
-						<img
+						<IKImage
 							className="object-cover w-full h-48"
-							src="https://images.pexels.com/photos/753876/pexels-photo-753876.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+							path={ParkEasy.images[1]}
 							alt="Recherche"
 						/>
 						<div className="p-6">
@@ -49,9 +50,9 @@ const ParkEasy = () => {
 					</div>
 
 					<div className="overflow-hidden bg-white rounded-lg shadow-lg">
-						<img
+						<IKImage
 							className="object-cover w-full h-48"
-							src="https://images.pexels.com/photos/2417466/pexels-photo-2417466.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+							path={ParkEasy.images[2]}
 							alt="Réservation"
 						/>
 						<div className="p-6">
@@ -63,9 +64,9 @@ const ParkEasy = () => {
 					</div>
 
 					<div className="overflow-hidden bg-white rounded-lg shadow-lg">
-						<img
+						<IKImage
 							className="object-cover w-full h-48"
-							src="https://images.pexels.com/photos/395537/pexels-photo-395537.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+							path={ParkEasy.images[3]}
 							alt="Temps réel"
 						/>
 						<div className="p-6">
@@ -77,9 +78,9 @@ const ParkEasy = () => {
 					</div>
 
 					<div className="overflow-hidden bg-white rounded-lg shadow-lg">
-						<img
+						<IKImage
 							className="object-cover w-full h-48"
-							src="https://images.pexels.com/photos/753865/pexels-photo-753865.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+							path={ParkEasy.images[4]}
 							alt="Tarifs"
 						/>
 						<div className="p-6">
@@ -191,6 +192,14 @@ ParkEasy.motsCles = [
 ];
 
 ParkEasy.favicon = <IconSearchEngine />;
+
+ParkEasy.images = [
+	"Park Easy 1.webp",
+	"Park Easy 2.jpeg",
+	"Park Easy 3.jpeg",
+	"Park Easy 4.jpeg",
+	"Park Easy 5.jpeg",
+]
 
 ParkEasy.pages = [
 	{

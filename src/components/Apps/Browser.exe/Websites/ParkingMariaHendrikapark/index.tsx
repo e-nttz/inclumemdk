@@ -1,8 +1,10 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const ParkingMariaHendrikapark = () => {
 	return (
-		<body className="bg-white">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-white">
 			<header className="bg-gradient-to-r from-blue-600 to-blue-400 py-8 shadow-lg">
 				<div className="container mx-auto text-center">
 					<h1 className="text-4xl font-bold text-white">Parking périphérique Maria Hendrikapark</h1>
@@ -13,8 +15,8 @@ const ParkingMariaHendrikapark = () => {
 			</header>
 
 			<section className="py-16 text-center">
-				<img
-					src="https://images.pexels.com/photos/28374669/pexels-photo-28374669.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+				<IKImage
+					path={ParkingMariaHendrikapark.images[0]}
 					alt="Parking Maria Hendrikapark"
 					className="object-cover w-full h-80 md:h-96 rounded-lg shadow-lg"
 				/>
@@ -68,6 +70,7 @@ const ParkingMariaHendrikapark = () => {
 				</div>
 			</footer>
 		</body>
+		</IKContext>
 	);
 };
 
@@ -142,6 +145,10 @@ ParkingMariaHendrikapark.motsCles = [
 ];
 
 ParkingMariaHendrikapark.favicon = <IconSearchEngine />;
+
+ParkingMariaHendrikapark.images = [
+	"Parking Maria Hendrika Park.jpeg"
+]
 
 ParkingMariaHendrikapark.pages = [
 	{

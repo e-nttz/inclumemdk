@@ -1,8 +1,10 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const ParkingsOostende = () => {
 	return (
-		<body className="bg-white">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-white">
 			<header className="bg-blue-700 py-8 shadow-md">
 				<div className="container mx-auto text-center">
 					<h1 className="text-4xl font-bold text-white">Où garer ma voiture à Ostende ?</h1>
@@ -11,8 +13,8 @@ const ParkingsOostende = () => {
 			</header>
 
 			<section className="py-16 text-center">
-				<img
-					src="https://images.pexels.com/photos/13861/IMG_3496bfree.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+				<IKImage
+					path={ParkingsOostende.images[0]}
 					alt="Où garer ma voiture à Ostende ?"
 					className="object-cover w-full h-80 md:h-96 rounded-lg shadow-lg"
 				/>
@@ -79,6 +81,7 @@ const ParkingsOostende = () => {
 				</div>
 			</footer>
 		</body>
+		</IKContext>
 	);
 };
 
@@ -155,6 +158,10 @@ ParkingsOostende.motsCles = [
 ];
 
 ParkingsOostende.favicon = <IconSearchEngine />;
+
+ParkingsOostende.images = [
+	"Parking Oostende.webp"
+]
 
 ParkingsOostende.pages = [
 	{

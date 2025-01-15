@@ -1,13 +1,15 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const SecureInstall = () => {
 	return (
-		<body className="bg-gray-50">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-gray-50">
 			<section className="relative text-white bg-blue-600">
 				<div
 					className="absolute inset-0 bg-center bg-cover opacity-60"
 					style={{
-						backgroundImage: "url('https://images.pexels.com/photos/2882554/pexels-photo-2882554.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')",
+						backgroundImage: `url("https://ik.imagekit.io/0jngziwft/inclume/photos_sites/${SecureInstall.images[0]}")`,
 					}}
 				></div>
 				<div className="container relative px-6 py-20 mx-auto text-center">
@@ -66,6 +68,7 @@ const SecureInstall = () => {
 				</button>
 			</section>
 		</body>
+		</IKContext>
 	);
 };
 
@@ -143,6 +146,10 @@ SecureInstall.motsCles = [
 ];
 
 SecureInstall.favicon = <IconSearchEngine />;
+
+SecureInstall.images = [
+	"Secure Install.webp"
+]
 
 SecureInstall.pages = [
 	{

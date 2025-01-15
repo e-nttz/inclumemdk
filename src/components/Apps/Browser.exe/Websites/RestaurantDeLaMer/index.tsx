@@ -1,8 +1,10 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const RestaurantDeLaMer = () => {
 	return (
-		<body className="bg-gray-50">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-gray-50">
 			<header className="bg-blue-600 py-8 shadow-lg">
 				<div className="container mx-auto text-center">
 					<h1 className="text-5xl font-bold text-white">Restaurant de la Mer</h1>
@@ -11,8 +13,8 @@ const RestaurantDeLaMer = () => {
 			</header>
 
 			<section className="py-12 text-center bg-white">
-				<img
-					src="https://images.pexels.com/photos/3640451/pexels-photo-3640451.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+				<IKImage
+					path={RestaurantDeLaMer.images[0]}
 					alt="Restaurant de la Mer"
 					className="object-cover w-full h-80 md:h-96 rounded-lg shadow-md"
 				/>
@@ -86,6 +88,7 @@ const RestaurantDeLaMer = () => {
 				</div>
 			</footer>
 		</body>
+		</IKContext>
 	);
 };
 
@@ -132,6 +135,10 @@ RestaurantDeLaMer.motsCles = [
 
 // Site favicon icon
 RestaurantDeLaMer.favicon = <IconSearchEngine />;
+
+RestaurantDeLaMer.images = [
+	"Restaurant de La Mer.webp"
+]
 
 RestaurantDeLaMer.pages = [
 	{

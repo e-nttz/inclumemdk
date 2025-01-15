@@ -1,8 +1,10 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const RestaurantLaSiesta = () => {
 	return (
-		<body className="bg-gray-50">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-gray-50">
 			<header className="bg-red-600 py-8 shadow-lg">
 				<div className="container mx-auto text-center">
 					<h1 className="text-5xl font-bold text-white">Restaurant La Siesta</h1>
@@ -11,8 +13,8 @@ const RestaurantLaSiesta = () => {
 			</header>
 
 			<section className="py-12 text-center bg-white">
-				<img
-					src="https://images.pexels.com/photos/12419160/pexels-photo-12419160.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+				<IKImage
+					path={RestaurantLaSiesta.images[0]}
 					alt="Restaurant La Siesta"
 					className="object-cover w-full h-80 md:h-96 rounded-lg shadow-md"
 				/>
@@ -72,6 +74,7 @@ const RestaurantLaSiesta = () => {
 				</div>
 			</footer>
 		</body>
+		</IKContext>
 	);
 };
 
@@ -124,11 +127,17 @@ RestaurantLaSiesta.motsCles = [
     "souper",
     "supper",
     "repas",
-    "repa"
+    "repa",
+	"siesta",
+	"la siesta"
 ];
 
 // Site favicon icon
 RestaurantLaSiesta.favicon = <IconSearchEngine />;
+
+RestaurantLaSiesta.images = [
+	"Restaurant La Siesta.webp"
+]
 
 RestaurantLaSiesta.pages = [
 	{

@@ -1,13 +1,15 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const AntivirusFacile = () => {
 	return (
-		<body className="bg-gray-50">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-gray-50">
 			<section className="relative text-white bg-green-700">
 				<div
 					className="absolute inset-0 bg-center bg-cover opacity-70"
 					style={{
-						backgroundImage: "url('https://images.pexels.com/photos/3949100/pexels-photo-3949100.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')",
+						backgroundImage: `url("https://ik.imagekit.io/0jngziwft/inclume/photos_sites/${AntivirusFacile.images[0]}")`,
 					}}
 				></div>
 				<div className="container relative px-6 py-20 mx-auto text-center">
@@ -35,9 +37,9 @@ const AntivirusFacile = () => {
 				</div>
 				<div className="grid gap-6 mt-10 sm:grid-cols-2 lg:grid-cols-3">
 					<div className="overflow-hidden bg-white rounded-lg shadow-lg">
-						<img
+						<IKImage
 							className="object-cover w-full h-48"
-							src="https://images.pexels.com/photos/5380664/pexels-photo-5380664.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+							path={AntivirusFacile.images[1]}
 							alt="Guide d'installation"
 						/>
 						<div className="p-6">
@@ -55,9 +57,9 @@ const AntivirusFacile = () => {
 					</div>
 
 					<div className="overflow-hidden bg-white rounded-lg shadow-lg">
-						<img
+						<IKImage
 							className="object-cover w-full h-48"
-							src="https://images.pexels.com/photos/2064586/pexels-photo-2064586.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+							path={AntivirusFacile.images[2]}
 							alt="Guides d'installation"
 						/>
 						<div className="p-6">
@@ -75,9 +77,9 @@ const AntivirusFacile = () => {
 					</div>
 
 					<div className="overflow-hidden bg-white rounded-lg shadow-lg">
-						<img
+						<IKImage
 							className="object-cover w-full h-48"
-							src="https://images.pexels.com/photos/1923286/pexels-photo-1923286.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+							path={AntivirusFacile.images[3]}
 							alt="Conseils pratiques"
 						/>
 						<div className="p-6">
@@ -111,6 +113,7 @@ const AntivirusFacile = () => {
 				</button>
 			</section>
 		</body>
+		</IKContext>
 	);
 };
 
@@ -191,6 +194,13 @@ AntivirusFacile.motsCles = [
 ];
 
 AntivirusFacile.favicon = <IconSearchEngine />;
+
+AntivirusFacile.images = [
+	"Antivirus Facile 1.webp",
+	"Antivirus Facile 2.jpeg",
+	"Antivirus Facile 3.webp",
+	"Antivirus Facile 4.webp"
+]
 
 AntivirusFacile.pages = [
 	{

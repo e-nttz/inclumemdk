@@ -1,13 +1,15 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const AntivirusDeals = () => {
 	return (
-		<body className="bg-gray-100">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-gray-100">
 			<section className="relative text-white bg-gray-900">
 				<div
 					className="absolute inset-0 bg-center bg-cover opacity-60"
 					style={{
-						backgroundImage: "url('https://cdn.pixabay.com/photo/2014/02/13/07/28/security-265130_1280.jpg')",
+						backgroundImage : `url("https://ik.imagekit.io/0jngziwft/inclume/photos_sites/${AntivirusDeals.images[0]}")`
 					}}
 				></div>
 				<div className="container relative px-6 py-16 mx-auto text-center">
@@ -33,9 +35,9 @@ const AntivirusDeals = () => {
 				</h2>
 				<div className="grid gap-6 mt-10 sm:grid-cols-2 lg:grid-cols-3">
 					<div className="overflow-hidden bg-white rounded-lg shadow-lg">
-						<img
+						<IKImage
 							className="object-cover w-full h-48"
-							src="https://cdn.pixabay.com/photo/2023/02/07/15/34/computer-protection-7774394_1280.jpg"
+							path={AntivirusDeals.images[1]}
 							alt="Offre du jour"
 						/>
 						<div className="p-6">
@@ -54,9 +56,9 @@ const AntivirusDeals = () => {
 					</div>
 
 					<div className="overflow-hidden bg-white rounded-lg shadow-lg">
-						<img
+						<IKImage
 							className="object-cover w-full h-48"
-							src="https://cdn.pixabay.com/photo/2015/05/15/02/05/money-767778_1280.jpg"
+							path={AntivirusDeals.images[2]}
 							alt="Comparateur de prix"
 						/>
 						<div className="p-6">
@@ -75,9 +77,9 @@ const AntivirusDeals = () => {
 					</div>
 
 					<div className="overflow-hidden bg-white rounded-lg shadow-lg">
-						<img
+						<IKImage
 							className="object-cover w-full h-48"
-							src="https://cdn.pixabay.com/photo/2020/05/27/09/09/discount-5226409_1280.jpg"
+							path={AntivirusDeals.images[3]}
 							alt="Codes de réduction"
 						/>
 						<div className="p-6">
@@ -149,6 +151,7 @@ const AntivirusDeals = () => {
 				</button>
 			</section>
 		</body>
+		</IKContext>
 	);
 };
 
@@ -198,6 +201,13 @@ AntivirusDeals.motsCles = [
 ];
 
 AntivirusDeals.favicon = <IconSearchEngine />;
+
+AntivirusDeals.images = [
+	"Antivirus Deals 1.jpg",
+	"Antivirus Deals 2.webp",
+	"Antivirus Deals 3.jpg",
+	"Antivirus Deals 4.jpg",
+]
 
 AntivirusDeals.pages = [
 	{

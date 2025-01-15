@@ -1,8 +1,10 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const FamilierestaurantOostende = () => {
 	return (
-		<body className="bg-gray-50">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-gray-50">
 			<header className="bg-orange-600 py-8 shadow-lg">
 				<div className="container mx-auto text-center">
 					<h1 className="text-5xl font-bold text-white">Familierestaurant in Oostende</h1>
@@ -11,8 +13,8 @@ const FamilierestaurantOostende = () => {
 			</header>
 
 			<section className="py-12 text-center bg-white">
-				<img
-					src="https://images.pexels.com/photos/7772194/pexels-photo-7772194.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+				<IKImage
+					path={FamilierestaurantOostende.images[0]}
 					alt="Familierestaurant Oostende"
 					className="object-cover w-full h-80 md:h-96 rounded-lg shadow-md"
 				/>
@@ -86,6 +88,7 @@ const FamilierestaurantOostende = () => {
 				</div>
 			</footer>
 		</body>
+		</IKContext>
 	);
 };
 
@@ -154,6 +157,10 @@ FamilierestaurantOostende.motsCles = [
 
 // Site favicon icon
 FamilierestaurantOostende.favicon = <IconSearchEngine />;
+
+FamilierestaurantOostende.images = [
+	"Familie Restaurant.webp"
+]
 
 FamilierestaurantOostende.pages = [
 	{

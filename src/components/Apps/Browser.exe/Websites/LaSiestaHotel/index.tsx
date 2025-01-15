@@ -1,8 +1,10 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const LaSiestaHotel = () => {
 	return (
-		<body className="bg-gray-50">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-gray-50">
 			<header className="bg-blue-600 py-8 shadow-lg">
 				<div className="container mx-auto text-center">
 					<h1 className="text-5xl font-bold text-white">La Siesta Hotel</h1>
@@ -11,8 +13,8 @@ const LaSiestaHotel = () => {
 			</header>
 
 			<section className="py-12 text-center bg-white">
-				<img
-					src="https://images.pexels.com/photos/271639/pexels-photo-271639.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+				<IKImage
+					path={LaSiestaHotel.images[0]}
 					alt="La Siesta Hotel"
 					className="object-cover w-full h-80 md:h-96 rounded-lg shadow-md"
 				/>
@@ -72,6 +74,7 @@ const LaSiestaHotel = () => {
 				</div>
 			</footer>
 		</body>
+		</IKContext>
 	);
 };
 
@@ -129,11 +132,17 @@ LaSiestaHotel.motsCles = [
     "chambre",
     "reservation", // Variante de mauvaise orthographe
     "luxe",
-    "escapade"
+	"escapade",
+	"siesta",
+	"la siesta"
 ];
 
 // Site favicon icon
 LaSiestaHotel.favicon = <IconSearchEngine />;
+
+LaSiestaHotel.images = [
+	"La Siesta Hotel.webp"
+]
 
 LaSiestaHotel.pages = [
 	{

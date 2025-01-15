@@ -1,13 +1,15 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const AntivirusExpress = () => {
 	return (
-		<body className="bg-gray-100">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-gray-100">
 			<section className="relative text-white bg-purple-800">
 				<div
 					className="absolute inset-0 bg-center bg-cover opacity-60"
 					style={{
-						backgroundImage: "url('https://images.pexels.com/photos/5475752/pexels-photo-5475752.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')",
+						backgroundImage: `url("https://ik.imagekit.io/0jngziwft/inclume/photos_sites/${AntivirusExpress.images[0]}")`,
 					}}
 				></div>
 				<div className="container relative px-6 py-16 mx-auto text-center">
@@ -33,9 +35,9 @@ const AntivirusExpress = () => {
 				</h2>
 				<div className="grid gap-6 mt-10 sm:grid-cols-2 lg:grid-cols-3">
 					<div className="overflow-hidden bg-white rounded-lg shadow-lg">
-						<img
+						<IKImage
 							className="object-cover w-full h-48"
-							src="https://images.pexels.com/photos/3305/numbers-money-calculating-calculation.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+							path={AntivirusExpress.images[1]}
 							alt="Comparateur d’antivirus"
 						/>
 						<div className="p-6">
@@ -54,9 +56,9 @@ const AntivirusExpress = () => {
 					</div>
 
 					<div className="overflow-hidden bg-white rounded-lg shadow-lg">
-						<img
+						<IKImage
 							className="object-cover w-full h-48"
-							src="https://images.pexels.com/photos/5650026/pexels-photo-5650026.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+							path={AntivirusExpress.images[2]}
 							alt="Offres spéciales"
 						/>
 						<div className="p-6">
@@ -75,9 +77,9 @@ const AntivirusExpress = () => {
 					</div>
 
 					<div className="overflow-hidden bg-white rounded-lg shadow-lg">
-						<img
+						<IKImage
 							className="object-cover w-full h-48"
-							src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+							path={AntivirusExpress.images[3]}
 							alt="Critiques et évaluations"
 						/>
 						<div className="p-6">
@@ -149,6 +151,7 @@ const AntivirusExpress = () => {
 				</button>
 			</section>
 		</body>
+		</IKContext>
 	);
 };
 
@@ -234,6 +237,13 @@ AntivirusExpress.motsCles = [
 ];
 
 AntivirusExpress.favicon = <IconSearchEngine />;
+
+AntivirusExpress.images = [
+	"Antivirus Express 1.webp",
+	"Antivirus Express 2.jpg",
+	"Antivirus Express 3.jpeg",
+	"Antivirus Express 4.webp"
+]
 
 AntivirusExpress.pages = [
 	{

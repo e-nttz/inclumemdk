@@ -1,13 +1,15 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const OuikiHow = () => {
 	return (
-		<body className="bg-gray-50">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-gray-50">
 			<section className="relative text-white bg-green-500">
 				<div
 					className="absolute inset-0 bg-center bg-cover opacity-70"
 					style={{
-						backgroundImage: "url('https://images.pexels.com/photos/14066351/pexels-photo-14066351.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')",
+						backgroundImage: `url("https://ik.imagekit.io/0jngziwft/inclume/photos_sites/${OuikiHow.images[0]}")`,
 					}}
 				></div>
 				<div className="container relative px-6 py-20 mx-auto text-center">
@@ -90,6 +92,7 @@ const OuikiHow = () => {
 				</button>
 			</section>
 		</body>
+		</IKContext>
 	);
 };
 
@@ -161,6 +164,10 @@ OuikiHow.motsCles = [
 ];
 
 OuikiHow.favicon = <IconSearchEngine />;
+
+OuikiHow.images = [
+	"OuikiHow.jpeg"
+]
 
 OuikiHow.pages = [
 	{

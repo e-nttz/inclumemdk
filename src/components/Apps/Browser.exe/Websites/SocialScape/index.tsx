@@ -1,8 +1,10 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const SocialScape = () => {
 	return (
-		<body className="bg-gray-100">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-gray-100">
 			<header className="bg-blue-600 py-8 shadow-md">
 				<div className="container mx-auto text-center">
 					<h1 className="text-4xl font-bold text-white">SocialScape</h1>
@@ -13,8 +15,8 @@ const SocialScape = () => {
 			</header>
 
 			<section className="py-12 text-center bg-white">
-				<img
-					src="https://images.pexels.com/photos/1472887/pexels-photo-1472887.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+				<IKImage
+					path={SocialScape.images[0]}
 					alt="Activités SocialScape"
 					className="object-cover w-full h-80 md:h-96 rounded-lg shadow-lg mx-auto"
 				/>
@@ -104,6 +106,7 @@ const SocialScape = () => {
 				</div>
 			</footer>
 		</body>
+		</IKContext>
 	);
 };
 
@@ -183,6 +186,10 @@ SocialScape.motsCles = [
 ];
 
 SocialScape.favicon = <IconSearchEngine />;
+
+SocialScape.images = [
+	"Social Scape.jpeg"
+]
 
 SocialScape.pages = [
 	{

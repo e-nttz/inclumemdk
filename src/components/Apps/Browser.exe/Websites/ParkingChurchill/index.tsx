@@ -1,8 +1,10 @@
+import { IKContext, IKImage } from "imagekitio-react";
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
 
 const ParkingChurchill = () => {
 	return (
-		<body className="bg-gray-50">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-gray-50">
 			<header className="bg-red-600 py-8 shadow-md">
 				<div className="container mx-auto text-center">
 					<h1 className="text-4xl font-bold text-white">Parking Churchill</h1>
@@ -13,8 +15,8 @@ const ParkingChurchill = () => {
 			</header>
 
 			<section className="py-16 text-center">
-				<img
-					src="https://images.pexels.com/photos/1500459/pexels-photo-1500459.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+				<IKImage
+					path={ParkingChurchill.images[0]}
 					alt="Parking Churchill"
 					className="object-cover w-full h-80 md:h-96 rounded-lg shadow-lg"
 				/>
@@ -91,6 +93,7 @@ const ParkingChurchill = () => {
 				</div>
 			</footer>
 		</body>
+		</IKContext>
 	);
 };
 
@@ -169,6 +172,10 @@ ParkingChurchill.motsCles = [
 ];
 
 ParkingChurchill.favicon = <IconSearchEngine />;
+
+ParkingChurchill.images = [
+	"Parking Churchill.jpeg"
+]
 
 ParkingChurchill.pages = [
 	{

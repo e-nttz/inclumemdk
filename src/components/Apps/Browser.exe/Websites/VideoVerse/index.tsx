@@ -1,13 +1,15 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const VideoVerse = () => {
 	return (
-		<body className="bg-gray-50">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-gray-50">
 			<section className="relative text-white bg-purple-600">
 				<div
 					className="absolute inset-0 bg-center bg-cover opacity-70"
 					style={{
-						backgroundImage: "url('https://images.pexels.com/photos/6266639/pexels-photo-6266639.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')",
+						backgroundImage: `url("https://ik.imagekit.io/0jngziwft/inclume/photos_sites/${VideoVerse.images[0]}")`,
 					}}
 				></div>
 				<div className="container relative px-6 py-20 mx-auto text-center">
@@ -66,9 +68,9 @@ const VideoVerse = () => {
 					<h2 className="text-3xl font-bold text-gray-800">Autres Tutoriels</h2>
 					<div className="grid gap-8 mt-10 sm:grid-cols-2 lg:grid-cols-3">
 						<div className="overflow-hidden bg-white rounded-lg shadow-lg">
-							<img
+							<IKImage
 								className="object-cover w-full h-48"
-								src="https://images.pexels.com/photos/5935787/pexels-photo-5935787.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+								path={VideoVerse.images[1]}
 								alt="Configurer un Antivirus"
 							/>
 							<div className="p-6">
@@ -83,9 +85,9 @@ const VideoVerse = () => {
 						</div>
 
 						<div className="overflow-hidden bg-white rounded-lg shadow-lg">
-							<img
+							<IKImage
 								className="object-cover w-full h-48"
-								src="https://images.pexels.com/photos/5380605/pexels-photo-5380605.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+								path={VideoVerse.images[2]}
 								alt="Mises à Jour Antivirus"
 							/>
 							<div className="p-6">
@@ -100,9 +102,9 @@ const VideoVerse = () => {
 						</div>
 
 						<div className="overflow-hidden bg-white rounded-lg shadow-lg">
-							<img
+							<IKImage
 								className="object-cover w-full h-48"
-								src="https://images.pexels.com/photos/19285776/pexels-photo-19285776/free-photo-of-homme-sombre-ordinateur-portable-technologie.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+								path={VideoVerse.images[3]}
 								alt="Dépanner un Antivirus"
 							/>
 							<div className="p-6">
@@ -132,6 +134,7 @@ const VideoVerse = () => {
 				</button>
 			</section>
 		</body>
+		</IKContext>
 	);
 };
 
@@ -196,6 +199,13 @@ VideoVerse.motsCles = [
 ];
 
 VideoVerse.favicon = <IconSearchEngine />;
+
+VideoVerse.images = [
+	"VideoVerse1.webp",
+	"VideoVerse2.webp",
+	"VideoVerse3.webp",
+	"VideoVerse4.webp",
+]
 
 VideoVerse.pages = [
 	{

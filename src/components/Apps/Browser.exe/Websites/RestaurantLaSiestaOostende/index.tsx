@@ -1,8 +1,10 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const RestaurantLaSiestaOostende = () => {
 	return (
-		<body className="bg-gray-50">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-gray-50">
 			<header className="bg-green-600 py-8 shadow-lg">
 				<div className="container mx-auto text-center">
 					<h1 className="text-5xl font-bold text-white">La Siesta | Oostende</h1>
@@ -11,8 +13,8 @@ const RestaurantLaSiestaOostende = () => {
 			</header>
 
 			<section className="py-12 text-center bg-white">
-				<img
-					src="https://ik.imagekit.io/2swxzjkju/Inclume%201.png?updatedAt=1731573393266"
+				<IKImage
+					path={RestaurantLaSiestaOostende.images[0]}
 					alt="La Siesta | Oostende"
 					className="object-cover w-full h-80 md:h-96 rounded-lg shadow-md"
 				/>
@@ -75,6 +77,7 @@ const RestaurantLaSiestaOostende = () => {
 				</div>
 			</footer>
 		</body>
+		</IKContext>
 	);
 };
 
@@ -146,11 +149,17 @@ RestaurantLaSiestaOostende.motsCles = [
 	"goûts",
 	"gouts", // Variante d'orthographe
 	"fête",
-	"fêtes"
+	"fêtes",
+	"siesta",
+	"la siesta"
 ];
 
 // Site favicon icon
 RestaurantLaSiestaOostende.favicon = <IconSearchEngine />;
+
+RestaurantLaSiestaOostende.images = [
+	"La Siesta Oostende.webp"
+]
 
 RestaurantLaSiestaOostende.pages = [
 	{

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const translations = {
   // Traductions mot à mot
@@ -41,7 +42,8 @@ const Inverso = () => {
   };
 
   return (
-    <body className="bg-white">
+    <IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+      <body className="bg-white">
       <header className="bg-blue-800 py-8 shadow-md">
         <div className="container mx-auto text-center">
           <h1 className="text-5xl font-extrabold text-gray-100">Inverso</h1>
@@ -76,8 +78,8 @@ const Inverso = () => {
       </section>
 
 	  <section className="py-16 text-center">
-			<img
-				src="https://images.pexels.com/photos/41949/earth-earth-at-night-night-lights-41949.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+			<IKImage
+				path={Inverso.images[0]}
 				alt="Inverso"
 				className="object-cover w-full h-80 md:h-96 rounded-lg shadow-md"
 			/>
@@ -128,6 +130,7 @@ const Inverso = () => {
         </div>
       </footer>
     </body>
+    </IKContext>
   );
 };
 
@@ -182,6 +185,10 @@ Inverso.motsCles = [
 ];
 
 Inverso.favicon = <IconSearchEngine />;
+
+Inverso.images = [
+  "Inverso.jpeg"
+]
 
 Inverso.pages = [
 	{

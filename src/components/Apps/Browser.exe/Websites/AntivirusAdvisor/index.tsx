@@ -1,14 +1,16 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const AntivirusAdvisor = () => {
 	return (
-		<body className="bg-gray-100">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-gray-100">
 			<section className="relative text-white bg-gray-900">
 				<div
 					className="absolute inset-0 bg-center bg-cover opacity-60"
 					style={{
 						backgroundImage:
-							"url('https://cdn.pixabay.com/photo/2018/09/05/07/33/hacker-3655668_1280.jpg')",
+							`url("https://ik.imagekit.io/0jngziwft/inclume/photos_sites/${AntivirusAdvisor.images[0]}")`,
 					}}
 				></div>
 				<div className="container relative px-6 py-16 mx-auto text-center">
@@ -34,9 +36,9 @@ const AntivirusAdvisor = () => {
 				</h2>
 				<div className="grid gap-6 mt-10 sm:grid-cols-2 lg:grid-cols-3">
 					<div className="overflow-hidden bg-white rounded-lg shadow-lg">
-						<img
+						<IKImage
 							className="object-cover w-full h-48"
-							src="https://cdn.pixabay.com/photo/2018/09/21/07/07/e-commerce-3692440_1280.jpg"
+							path={AntivirusAdvisor.images[1]}
 							alt="Guide d’achat"
 						/>
 						<div className="p-6">
@@ -55,9 +57,9 @@ const AntivirusAdvisor = () => {
 					</div>
 
 					<div className="overflow-hidden bg-white rounded-lg shadow-lg">
-						<img
+						<IKImage
 							className="object-cover w-full h-48"
-							src="https://cdn.pixabay.com/photo/2020/05/21/15/38/pros-5201376_1280.jpg"
+							path={AntivirusAdvisor.images[2]}
 							alt="Comparateur d’antivirus"
 						/>
 						<div className="p-6">
@@ -76,9 +78,9 @@ const AntivirusAdvisor = () => {
 					</div>
 
 					<div className="overflow-hidden bg-white rounded-lg shadow-lg">
-						<img
+						<IKImage
 							className="object-cover w-full h-48"
-							src="https://cdn.pixabay.com/photo/2018/01/15/03/01/criticism-3083099_1280.jpg"
+							path={AntivirusAdvisor.images[3]}
 							alt="Évaluations et critiques"
 						/>
 						<div className="p-6">
@@ -145,6 +147,8 @@ const AntivirusAdvisor = () => {
 				</button>
 			</section>
 		</body>
+		</IKContext>
+		
 	);
 };
 
@@ -227,6 +231,13 @@ AntivirusAdvisor.motsCles = [
 ];
 
 AntivirusAdvisor.favicon = <IconSearchEngine />;
+
+AntivirusAdvisor.images = [
+	"Antivirus Advisor 1.jpg",
+	"Antivirus Advisor 2.jpg",
+	"Antivirus Advisor 3.jpg",
+	"Antivirus Advisor 4.jpg"
+]
 
 AntivirusAdvisor.pages = [
 	{

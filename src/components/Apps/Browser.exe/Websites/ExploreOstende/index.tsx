@@ -1,8 +1,10 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const ExploreOstende = () => {
 	return (
-		<body className="bg-gradient-to-r from-green-50 to-white">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-gradient-to-r from-green-50 to-white">
 			<header className="bg-green-600 py-8">
 				<div className="container mx-auto text-center">
 					<h1 className="text-5xl font-extrabold text-white">Explore Ostende</h1>
@@ -12,8 +14,8 @@ const ExploreOstende = () => {
 
 			<section className="py-12">
 				<div className="container mx-auto flex flex-col items-center">
-					<img
-						src="https://images.pexels.com/photos/37403/bora-bora-french-polynesia-sunset-ocean.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+					<IKImage
+						path={ExploreOstende.images[0]}
 						alt="Explore Ostende"
 						className="w-full max-w-xl h-auto rounded-lg shadow-lg"
 					/>
@@ -79,6 +81,7 @@ const ExploreOstende = () => {
 				</div>
 			</footer>
 		</body>
+		</IKContext>
 	);
 };
 
@@ -154,6 +157,10 @@ ExploreOstende.motsCles = [
 ];
 
 ExploreOstende.favicon = <IconSearchEngine />;
+
+ExploreOstende.images = [
+	"Explore Ostende.jpg"
+]
 
 ExploreOstende.pages = [
 	{

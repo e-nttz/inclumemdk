@@ -1,13 +1,15 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const CyberSafeAcademy = () => {
 	return (
-		<body className="bg-gray-100">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-gray-100">
 			<section className="relative text-white bg-purple-700">
 				<div
 					className="absolute inset-0 bg-center bg-cover opacity-60"
 					style={{
-						backgroundImage: "url('https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')",
+						backgroundImage: `url("https://ik.imagekit.io/0jngziwft/inclume/photos_sites/${CyberSafeAcademy.images[0]}")`,
 					}}
 				></div>
 				<div className="container relative px-6 py-16 mx-auto text-center">
@@ -33,9 +35,9 @@ const CyberSafeAcademy = () => {
 					</h2>
 					<div className="grid gap-8 mt-10 sm:grid-cols-2 lg:grid-cols-3">
 						<div className="overflow-hidden bg-white rounded-lg shadow-lg">
-							<img
+							<IKImage
 								className="object-cover w-full h-48"
-								src="https://images.pexels.com/photos/2036656/pexels-photo-2036656.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+								path={CyberSafeAcademy.images[1]}
 								alt="Module de Formation"
 							/>
 							<div className="p-6">
@@ -53,9 +55,9 @@ const CyberSafeAcademy = () => {
 						</div>
 
 						<div className="overflow-hidden bg-white rounded-lg shadow-lg">
-							<img
+							<IKImage
 								className="object-cover w-full h-48"
-								src="https://images.pexels.com/photos/4709289/pexels-photo-4709289.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+								path={CyberSafeAcademy.images[2]}
 								alt="Cours Intermédiaire"
 							/>
 							<div className="p-6">
@@ -73,9 +75,9 @@ const CyberSafeAcademy = () => {
 						</div>
 
 						<div className="overflow-hidden bg-white rounded-lg shadow-lg">
-							<img
+							<IKImage
 								className="object-cover w-full h-48"
-								src="https://images.pexels.com/photos/5380642/pexels-photo-5380642.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+								path={CyberSafeAcademy.images[3]}
 								alt="Formation Avancée"
 							/>
 							<div className="p-6">
@@ -143,6 +145,7 @@ const CyberSafeAcademy = () => {
 				</button>
 			</section>
 		</body>
+		</IKContext>
 	);
 };
 
@@ -212,6 +215,13 @@ CyberSafeAcademy.motsCles = [
 ];
 
 CyberSafeAcademy.favicon = <IconSearchEngine />;
+
+CyberSafeAcademy.images = [
+	"CyberSafe Academy 1.webp",
+	"CyberSafe Academy 2.webp",
+	"CyberSafe Academy 3.webp",
+	"CyberSafe Academy 4.webp",
+]
 
 CyberSafeAcademy.pages = [
 	{

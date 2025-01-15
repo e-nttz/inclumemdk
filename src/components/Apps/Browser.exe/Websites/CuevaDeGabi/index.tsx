@@ -1,8 +1,10 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const CuevaDeGabi = () => {
 	return (
-		<body className="bg-gray-50">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-gray-50">
 			<header className="bg-orange-600 py-8 shadow-lg">
 				<div className="container mx-auto text-center">
 					<h1 className="text-5xl font-bold text-white">Cueva de Gabi</h1>
@@ -11,8 +13,8 @@ const CuevaDeGabi = () => {
 			</header>
 
 			<section className="py-12 text-center bg-white">
-				<img
-					src="https://images.pexels.com/photos/26508136/pexels-photo-26508136/free-photo-of-assiette-homme-mains-repas.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+				<IKImage
+					path={CuevaDeGabi.images[0]}
 					alt="Cueva de Gabi"
 					className="object-cover w-full h-80 md:h-96 rounded-lg shadow-md"
 				/>
@@ -75,6 +77,7 @@ const CuevaDeGabi = () => {
 				</div>
 			</footer>
 		</body>
+		</IKContext>
 	);
 };
 
@@ -139,6 +142,10 @@ CuevaDeGabi.motsCles = [
 
 // Site favicon icon
 CuevaDeGabi.favicon = <IconSearchEngine />;
+
+CuevaDeGabi.images = [
+	"Cueva de Gabi.webp"
+]
 
 CuevaDeGabi.pages = [
 	{

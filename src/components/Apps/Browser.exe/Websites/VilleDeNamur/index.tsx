@@ -1,8 +1,10 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const VilleDeNamur = () => {
 	return (
-		<body className="bg-gray-50">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-gray-50">
 			<header className="bg-gray-800 py-8 shadow-md">
 				<div className="container mx-auto text-center">
 					<h1 className="text-4xl font-bold text-white">Ville de Namur</h1>
@@ -11,8 +13,8 @@ const VilleDeNamur = () => {
 			</header>
 
 			<section className="py-12 text-center bg-white">
-				<img
-					src="https://images.pexels.com/photos/18042330/pexels-photo-18042330/free-photo-of-maisons-monument-horizon-immeubles.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+				<IKImage
+					path={VilleDeNamur.images[0]}
 					alt="Ville de Namur"
 					className="object-cover w-full h-80 md:h-96 rounded-lg shadow-lg mx-auto"
 				/>
@@ -65,6 +67,7 @@ const VilleDeNamur = () => {
 				</div>
 			</footer>
 		</body>
+		</IKContext>
 	);
 };
 
@@ -167,6 +170,10 @@ VilleDeNamur.motsCles = [
 
 // Site favicon icon
 VilleDeNamur.favicon = <IconSearchEngine />;
+
+VilleDeNamur.images = [
+	"Ville de Namur.jpeg"
+]
 
 VilleDeNamur.pages = [
 	{

@@ -1,8 +1,10 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const NamurPage = () => {
 	return (
-		<body className="bg-white">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-white">
 			<header className="bg-green-800 py-8 shadow-md">
 				<div className="container mx-auto text-center">
 					<h1 className="text-5xl font-bold text-white">Namur</h1>
@@ -13,8 +15,8 @@ const NamurPage = () => {
 			</header>
 
 			<section className="py-16 text-center">
-				<img
-					src="https://images.pexels.com/photos/2464426/pexels-photo-2464426.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+				<IKImage
+					path={NamurPage.images[0]}
 					alt="Namur, Belgique"
 					className="object-cover w-full h-80 md:h-96 rounded-lg shadow-lg"
 				/>
@@ -100,6 +102,7 @@ const NamurPage = () => {
 				</div>
 			</footer>
 		</body>
+		</IKContext>
 	);
 };
 
@@ -165,6 +168,10 @@ NamurPage.motsCles = [
 ];
 
 NamurPage.favicon = <IconSearchEngine />;
+
+NamurPage.images = [
+	"Namur Page.jpeg"
+]
 
 NamurPage.pages = [
 	{

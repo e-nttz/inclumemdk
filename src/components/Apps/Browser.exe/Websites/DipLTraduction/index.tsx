@@ -1,8 +1,10 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const DipLTraduction = () => {
 	return (
-		<body className="bg-white">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-white">
 			<header className="bg-blue-700 py-8 shadow-md">
 				<div className="container mx-auto text-center">
 					<h1 className="text-4xl font-bold text-white">DipL Traduction</h1>
@@ -13,8 +15,8 @@ const DipLTraduction = () => {
 			</header>
 
 			<section className="py-16 text-center bg-white">
-				<img
-					src="https://images.pexels.com/photos/2927599/pexels-photo-2927599.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+				<IKImage
+					path={DipLTraduction.images[0]}
 					alt="DipL Traduction"
 					className="object-cover w-full h-80 md:h-96 rounded-lg shadow-lg"
 				/>
@@ -90,6 +92,7 @@ const DipLTraduction = () => {
 				</div>
 			</footer>
 		</body>
+		</IKContext>
 	);
 };
 
@@ -156,6 +159,10 @@ DipLTraduction.motsCles = [
 ];
 
 DipLTraduction.favicon = <IconSearchEngine />;
+
+DipLTraduction.images = [
+	"DipL Traduction.jpeg"
+]
 
 DipLTraduction.pages = [
 	{

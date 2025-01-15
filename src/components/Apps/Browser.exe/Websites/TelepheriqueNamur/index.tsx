@@ -1,8 +1,10 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const TelepheriqueNamur = () => {
 	return (
-		<body className="bg-white">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-white">
 			<header className="bg-blue-600 py-8 shadow-lg">
 				<div className="container mx-auto text-center">
 					<h1 className="text-5xl font-bold text-white">Téléphérique de la Citadelle de Namur</h1>
@@ -11,8 +13,8 @@ const TelepheriqueNamur = () => {
 			</header>
 
 			<section className="py-12 text-center bg-gray-50">
-				<img
-					src="https://images.pexels.com/photos/18004071/pexels-photo-18004071/free-photo-of-ville-monument-transport-public-tram.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+				<IKImage
+					path={TelepheriqueNamur.images[0]}
 					alt="Téléphérique de Namur"
 					className="object-cover w-full h-80 md:h-96 rounded-lg shadow-md"
 				/>
@@ -76,6 +78,7 @@ const TelepheriqueNamur = () => {
 				</div>
 			</footer>
 		</body>
+		</IKContext>
 	);
 };
 
@@ -159,6 +162,10 @@ TelepheriqueNamur.motsCles = [
 
 // Site favicon icon
 TelepheriqueNamur.favicon = <IconSearchEngine />;
+
+TelepheriqueNamur.images = [
+	"Téléphérique Namur.jpeg"
+]
 
 TelepheriqueNamur.pages = [
 	{

@@ -1,8 +1,10 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const TeenTrends = () => {
 	return (
-		<body className="bg-gray-50">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-gray-50">
 			<header className="bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 py-8">
 				<div className="container mx-auto text-center">
 					<h1 className="text-5xl font-extrabold text-white uppercase">Teen Trends</h1>
@@ -13,8 +15,8 @@ const TeenTrends = () => {
 			</header>
 
 			<section className="py-12 px-4 text-center bg-blue-50">
-				<img
-					src="https://images.pexels.com/photos/40815/youth-active-jump-happy-40815.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+				<IKImage
+					path={TeenTrends.images[0]}
 					alt="Teen Trends Activities"
 					className="object-cover w-full h-72 md:h-96 rounded-lg shadow-md mb-6"
 				/>
@@ -106,6 +108,7 @@ const TeenTrends = () => {
 				</div>
 			</footer>
 		</body>
+		</IKContext>
 	);
 };
 
@@ -194,6 +197,10 @@ TeenTrends.motsCles = [
 ];
 
 TeenTrends.favicon = <IconSearchEngine />;
+
+TeenTrends.images = [
+	"Teen Trends.webp"
+]
 
 TeenTrends.pages = [
 	{

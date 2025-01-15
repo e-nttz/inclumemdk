@@ -4,6 +4,7 @@ import SearchEngine from ".";
 import SearchIcon from "@/assets/icons/search.svg"
 import CHOQ from "@/assets/icons/choq.png"
 import Partenaires from "@/assets/icons/partenaires.svg"
+import { IKContext, IKImage } from "imagekitio-react";
 
 import ActivitesNamur from "../ActivitesNamur";
 import AntivirusAdvisor from "../AntivirusAdvisor";
@@ -188,76 +189,108 @@ const Results = ({ url }: ResultsProps) => {
 	}
 
 	return (
-	  <div className="absolute inset-0 h-full px-8 py-8 overflow-y-auto bg-white flex">
-		<div className="logo">
-			<h1 className="mb-8 text-3xl text-[#5A9DFF] font-semibold cursor-pointer">Gougoule</h1>
-		</div>
-		<div className="ml-8 w-5/12 max-w-7xl mr-8">
+		<div className="absolute inset-0 h-full px-8 py-8 overflow-y-auto bg-white flex">
+		  <div className="logo">
+			<h1 className="mb-8 text-3xl text-[#5A9DFF] font-semibold cursor-pointer">
+			  Gougoule
+			</h1>
+		  </div>
+		  <div className="ml-8 w-5/12 max-w-7xl mr-8">
 			<div className="relative flex items-center mb-4">
-				<form onSubmit={handleSubmit} className="w-full">
-					<input
-					type="text"
-					placeholder="Rechercher sur Goulougoulou"
-					className="bg-[#f2f2f2] rounded-[85px] h-[40px] w-full px-2 py-2 transition border shadow-sm border-gray-50 focus-visible:outline-accent pr-[40px] pl-[10px]"
-					defaultValue={searchedValue || ""}
-					onChange={(e) => handleInputChange(e)}
-					/>
-				</form>
-				<img src={SearchIcon} alt="Icône de recherche" className="search absolute w-[30px] right-[10px]"/>
+			  <form onSubmit={handleSubmit} className="w-full">
+				<input
+				  type="text"
+				  placeholder="Rechercher sur Goulougoulou"
+				  className="bg-[#f2f2f2] rounded-[85px] h-[40px] w-full px-2 py-2 transition border shadow-sm border-gray-50 focus-visible:outline-accent pr-[40px] pl-[10px]"
+				  defaultValue={searchedValue || ""}
+				  onChange={(e) => handleInputChange(e)}
+				/>
+			  </form>
+			  <img
+				src={SearchIcon}
+				alt="Icône de recherche"
+				className="search absolute w-[30px] right-[10px]"
+			  />
 			</div>
 			<div className="filtres flex mb-4">
-				<div className={`filtre border rounded-[20px] cursor-pointer pl-3 pr-3 pt-2 pb-2 mr-2 ${
-					tousActive ? "border-[#005fb8] text-[#005fb8] bg-blue-100" : ""
-				}`} onClick={() => handleClick("tous")}>
-					<p>Tous</p>
-				</div>
-				<div className={`filtre border rounded-[20px] cursor-pointer pl-3 pr-3 pt-2 pb-2 mr-2 ${
-					imagesActive ? "border-[#005fb8] text-[#005fb8] bg-blue-100" : ""
-				}`} onClick={() => handleClick("images")}>
-					<p>Images</p>
-				</div>
-				<div className="filtre text-gray-300 cursor-not-allowed border border-gray-300 rounded-[20px] pl-3 pr-3 pt-2 pb-2 mr-2">
-					<p>Vidéos</p>
-				</div>
-				<div className="filtre text-gray-300 cursor-not-allowed border border-gray-300 rounded-[20px] pl-3 pr-3 pt-2 pb-2">
-					<p>Actualités</p>
-				</div>
+			  <div
+				className={`filtre border rounded-[20px] cursor-pointer pl-3 pr-3 pt-2 pb-2 mr-2 ${
+				  tousActive ? "border-[#005fb8] text-[#005fb8] bg-blue-100" : ""
+				}`}
+				onClick={() => handleClick("tous")}
+			  >
+				<p>Tous</p>
+			  </div>
+			  <div
+				className={`filtre border rounded-[20px] cursor-pointer pl-3 pr-3 pt-2 pb-2 mr-2 ${
+				  imagesActive ? "border-[#005fb8] text-[#005fb8] bg-blue-100" : ""
+				}`}
+				onClick={() => handleClick("images")}
+			  >
+				<p>Images</p>
+			  </div>
+			  <div className="filtre text-gray-300 cursor-not-allowed border border-gray-300 rounded-[20px] pl-3 pr-3 pt-2 pb-2 mr-2">
+				<p>Vidéos</p>
+			  </div>
+			  <div className="filtre text-gray-300 cursor-not-allowed border border-gray-300 rounded-[20px] pl-3 pr-3 pt-2 pb-2">
+				<p>Actualités</p>
+			  </div>
 			</div>
 			<p className="text-gray-500">{`Résultats de recherche pour "${searchedValue}"`}</p>
+	
 			{/* Affichage des résultats */}
-			{filteredAndSortedSites.length > 0 ? (
-				filteredAndSortedSites.map((site, index) => (
-					<div
-					key={index}
-					className="mt-8 cursor-pointer"
-					onClick={() => handleResultClick(site.pages[0].url)}
-					>
-					<h2>{site.pages[0].title}</h2>
-					<p className="text-sm">{site.pages[0].url}</p>
-					<h3 className="text-xl font-medium text-[#1265AF]">{site.title}</h3>
-					<p className="mt-2 text-gray-500">{site.excerpt}</p>
-					<p className="mt-1 text-sm text-gray-400">{`Mots-clés correspondants : ${site.matchCount}`}</p>
+			{tousActive &&
+			  filteredAndSortedSites.length > 0 &&
+			  filteredAndSortedSites.map((site, index) => (
+				<div
+				  key={index}
+				  className="mt-8 cursor-pointer"
+				  onClick={() => handleResultClick(site.pages[0].url)}
+				>
+				  <h2>{site.pages[0].title}</h2>
+				  <p className="text-sm">{site.pages[0].url}</p>
+				  <h3 className="text-xl font-medium text-[#1265AF]">{site.title}</h3>
+				  <p className="mt-2 text-gray-500">{site.excerpt}</p>
+				  <p className="mt-1 text-sm text-gray-400">{`Mots-clés correspondants : ${site.matchCount}`}</p>
+				</div>
+			  ))}
+	
+			{imagesActive &&
+			  filteredAndSortedSites.length > 0 &&
+			  filteredAndSortedSites.map((site, index) => (
+				<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+					<div key={index} className="mt-8">
+						<div className="grid grid-cols-3 gap-4">
+							{site.images?.map((imageUrl, imgIndex) => (
+								<IKImage key={imgIndex} path={imageUrl}/>
+							))}
+						</div>
 					</div>
-				))
-				) : (
-				<p className="mt-8 text-gray-500">
-					{imagesActive && !tousActive
-					? `Aucune image trouvée pour "${searchedValue}"`
-					: `Aucun résultat trouvé pour "${searchedValue}"`}
-				</p>
+				</IKContext>
+			  ))}
+	
+			{/* Message si aucun résultat */}
+			{filteredAndSortedSites.length === 0 && (
+			  <p className="mt-8 text-gray-500">
+				{imagesActive && !tousActive
+				  ? `Aucune image trouvée pour "${searchedValue}"`
+				  : `Aucun résultat trouvé pour "${searchedValue}"`}
+			  </p>
+			)}
+		  </div>
+			{!imagesActive && (
+				<div className="choq relative w-3/12 mt-[]">
+				<p className="font-bold absolute bg-[white] left-[20px]">Annonce partenaire</p>
+				<div className="shadow-md p-5 rounded-[20px]">
+					<img src={CHOQ} alt="Logo du CHOQ - Association en Wallonie picarde" className="mt-5 mb-5"/>
+					<h3 className="text-xl font-medium text-[#1265AF]">CHOQ</h3>
+					<p className="text-sm text-gray-400">L'ASBL CHOQ est une association située à Kain (Tournai). Toutes ses actions visent à développer son bassin de vie : la Wallonie picarde. L'ASBL propose des formations en informatique de base, des formations orientées sur l'emploi ainsi que différents projets mettant en avant les initiatives made in Wapi.</p>
+					<img src={Partenaires} alt="Partenaires Digilab" className="mt-8"/>
+				</div>
+			</div>
 			)}
 		</div>
-		<div className="choq relative w-3/12 mt-[]">
-		  <p className="font-bold absolute bg-[white] left-[20px]">Annonce partenaire</p>
-		  <div className="shadow-md p-5 rounded-[20px]">
-			<img src={CHOQ} alt="Logo du CHOQ - Association en Wallonie picarde" className="mt-5 mb-5"/>
-			<h3 className="text-xl font-medium text-[#1265AF]">CHOQ</h3>
-			<p className="text-sm text-gray-400">L'ASBL CHOQ est une association située à Kain (Tournai). Toutes ses actions visent à développer son bassin de vie : la Wallonie picarde. L'ASBL propose des formations en informatique de base, des formations orientées sur l'emploi ainsi que différents projets mettant en avant les initiatives made in Wapi.</p>
-			<img src={Partenaires} alt="Partenaires Digilab" className="mt-8"/>
-		  </div>
-		</div>
-	  </div>
-	);
-};
-  
-export default Results;
+	  );
+	};
+	
+	export default Results;

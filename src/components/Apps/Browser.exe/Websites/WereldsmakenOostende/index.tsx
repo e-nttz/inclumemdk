@@ -1,8 +1,10 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const WereldsmakenOostende = () => {
 	return (
-		<body className="bg-gray-50">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-gray-50">
 			<header className="bg-green-600 py-8 shadow-lg">
 				<div className="container mx-auto text-center">
 					<h1 className="text-5xl font-bold text-white">Café-Restaurant « Wereldsmaken »</h1>
@@ -11,8 +13,8 @@ const WereldsmakenOostende = () => {
 			</header>
 
 			<section className="py-12 text-center bg-white">
-				<img
-					src="https://images.pexels.com/photos/324028/pexels-photo-324028.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+				<IKImage
+					path={WereldsmakenOostende.images[0]}
 					alt="Wereldsmaken Restaurant"
 					className="object-cover w-full h-80 md:h-96 rounded-lg shadow-md"
 				/>
@@ -92,6 +94,7 @@ const WereldsmakenOostende = () => {
 				</div>
 			</footer>
 		</body>
+		</IKContext>
 	);
 };
 
@@ -177,6 +180,10 @@ WereldsmakenOostende.motsCles = [
 
 // Site favicon icon
 WereldsmakenOostende.favicon = <IconSearchEngine />;
+
+WereldsmakenOostende.images = [
+	"Wereld smaken Oostende.webp"
+]
 
 WereldsmakenOostende.pages = [
 	{

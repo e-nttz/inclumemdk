@@ -1,13 +1,15 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
+import { IKContext, IKImage } from "imagekitio-react";
 
 const SecureTech = () => {
 	return (
-		<body className="bg-gray-100">
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
+			<body className="bg-gray-100">
 			<section className="relative text-white bg-orange-600">
 				<div
 					className="absolute inset-0 bg-center bg-cover opacity-70"
 					style={{
-						backgroundImage: "url('https://images.pexels.com/photos/5380669/pexels-photo-5380669.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')",
+						backgroundImage: `url("https://ik.imagekit.io/0jngziwft/inclume/photos_sites/${SecureTech.images[0]}")`,
 					}}
 				></div>
 				<div className="container relative px-6 py-20 mx-auto text-center">
@@ -32,9 +34,9 @@ const SecureTech = () => {
 					<h2 className="text-3xl font-bold text-gray-800">Nos Tutoriels</h2>
 					<div className="grid gap-8 mt-10 sm:grid-cols-2 lg:grid-cols-3">
 						<div className="overflow-hidden bg-white rounded-lg shadow-lg">
-							<img
+							<IKImage
 								className="object-cover w-full h-48"
-								src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+								path={SecureTech.images[1]}
 								alt="Choisir un Antivirus"
 							/>
 							<div className="p-6">
@@ -52,9 +54,9 @@ const SecureTech = () => {
 						</div>
 
 						<div className="overflow-hidden bg-white rounded-lg shadow-lg">
-							<img
+							<IKImage
 								className="object-cover w-full h-48"
-								src="https://images.pexels.com/photos/196650/pexels-photo-196650.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+								path={SecureTech.images[2]}
 								alt="Configurer Antivirus"
 							/>
 							<div className="p-6">
@@ -72,9 +74,9 @@ const SecureTech = () => {
 						</div>
 
 						<div className="overflow-hidden bg-white rounded-lg shadow-lg">
-							<img
+							<IKImage
 								className="object-cover w-full h-48"
-								src="https://images.pexels.com/photos/5935788/pexels-photo-5935788.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+								path={SecureTech.images[3]}
 								alt="Détection d'Infections"
 							/>
 							<div className="p-6">
@@ -126,6 +128,7 @@ const SecureTech = () => {
 				</button>
 			</section>
 		</body>
+		</IKContext>
 	);
 };
 
@@ -202,6 +205,13 @@ SecureTech.motsCles = [
 ];
 
 SecureTech.favicon = <IconSearchEngine />;
+
+SecureTech.images = [
+	"SecureTech 1.webp",
+	"SecureTech 2.webp",
+	"SecureTech 3.jpeg",
+	"SecureTech 4.jpeg",
+]
 
 SecureTech.pages = [
 	{
