@@ -4,7 +4,6 @@ import SearchEngine from ".";
 import SearchIcon from "@/assets/icons/search.svg"
 import CHOQ from "@/assets/icons/choq.png"
 import Partenaires from "@/assets/icons/partenaires.svg"
-import { IKContext, IKImage } from "imagekitio-react";
 
 import ActivitesNamur from "../ActivitesNamur";
 import AntivirusAdvisor from "../AntivirusAdvisor";
@@ -195,7 +194,7 @@ const Results = ({ url }: ResultsProps) => {
 			  Gougoule
 			</h1>
 		  </div>
-		  <div className="ml-8 w-5/12 max-w-7xl mr-8">
+		  <div className={`ml-8 max-w-7xl mr-8 ${imagesActive ? "w-full" : "w-5/12"}`}>
 			<div className="relative flex items-center mb-4">
 			  <form onSubmit={handleSubmit} className="w-full">
 				<input
@@ -255,19 +254,21 @@ const Results = ({ url }: ResultsProps) => {
 				</div>
 			  ))}
 	
-			{imagesActive &&
-			  filteredAndSortedSites.length > 0 &&
-			  filteredAndSortedSites.map((site, index) => (
-				<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
-					<div key={index} className="mt-8">
-						<div className="grid grid-cols-3 gap-4">
-							{site.images?.map((imageUrl, imgIndex) => (
-								<IKImage key={imgIndex} path={imageUrl}/>
-							))}
-						</div>
-					</div>
-				</IKContext>
-			  ))}
+			<div className="w-full h-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-8">
+				{imagesActive &&
+					filteredAndSortedSites.length > 0 &&
+					filteredAndSortedSites.map((site) =>
+					site.images?.map((imageUrl, imgIndex) => (
+						<div
+						key={imgIndex}
+						className="w-full aspect-video bg-cover bg-center rounded-lg shadow-md"
+						style={{
+							backgroundImage: `url("https://ik.imagekit.io/0jngziwft/inclume/photos_sites/${imageUrl}")`,
+						}}
+						></div>
+					))
+				)}
+			</div>
 	
 			{/* Message si aucun résultat */}
 			{filteredAndSortedSites.length === 0 && (

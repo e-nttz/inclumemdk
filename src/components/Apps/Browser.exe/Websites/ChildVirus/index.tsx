@@ -189,6 +189,8 @@ ChildVirus.motsCles = [
 // Site favicon icon
 ChildVirus.favicon = <IconSearchEngine />;
 
+ChildVirus.images = []
+
 ChildVirus.pages = [
   {
     title: "Child Virus",

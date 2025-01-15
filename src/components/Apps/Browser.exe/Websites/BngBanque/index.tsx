@@ -469,6 +469,8 @@ BngBanque.motsCles = [
 // Site favicon icon
 BngBanque.favicon = <IconSearchEngine />;
 
+BngBanque.images = []
+
 BngBanque.pages = [
   {
     title: "Bng Banque",
