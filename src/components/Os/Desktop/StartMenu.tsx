@@ -2,14 +2,23 @@ import { apps } from "@/components/Apps";
 import { classNames } from "@/helpers/sanitize";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { useAuth } from "@/providers/auth";
+import { getNextStep, saveStep } from "@/lib/client/quiz";
 import { useOS } from "@/providers/InclumeOS";
 import { Transition } from "@headlessui/react";
 import { useRef } from "react";
 
 const StartMenu = () => {
 	const { startMenuOpen, setStartMenuOpen, launchApp } = useOS();
-	const { logout } = useAuth();
-
+	const { logout, session } = useAuth();
+  	const validationEtape18 = async () =>{
+		const step = await getNextStep(session);
+		if (step.id === 18) {
+			await saveStep(session, {
+				test_step_template_id: step.id,
+				is_successful: true,
+			});
+		}
+	}
 	const nodeRef = useRef<HTMLDivElement>(null);
 
 	useClickOutside(nodeRef, (e: MouseEvent) => {
@@ -178,6 +187,8 @@ const StartMenu = () => {
 									window.location.reload();
 								}, 300);
 							}
+
+							validationEtape18();
 						}}
 					>
 						<svg

@@ -9,6 +9,8 @@ import Carte from "@/assets/icons/app-banque-carte.svg"
 import Back from "@/assets/icons/back.svg";
 import transactionsData from "./transactions.json";
 import { getTransactions, resetTransactions, saveTransactions } from "@/utils/localeStorage";
+import { useAuth } from "@/providers/auth";
+import { getNextStep, saveStep } from "@/lib/client/quiz";
 
 const BngBanque = () => {
   const [virement, setVirement] = useState(false);
@@ -18,7 +20,16 @@ const BngBanque = () => {
   const [TodayTransactions, setTodayTransactions] = useState(() => {
     return getTransactions();
   });
-
+  const {session} = useAuth();
+  const validationEtape13 = async () =>{
+		const step = await getNextStep(session);
+		if (step.id === 13) {
+			await saveStep(session, {
+				test_step_template_id: step.id,
+				is_successful: true,
+			});
+		}
+	}
   // Gestion des comptes et des soldes
   const [accounts, setAccounts] = useState({
     courant: { name: "Mr Inclume", balance: 950.14, iban: "BE12 3456 7890 1234", available: 789.78 },
@@ -82,11 +93,15 @@ const BngBanque = () => {
       return;
     }
 
-	if (montant > accounts.courant.balance) {
-	  setErrorMessage("Fonds insuffisants sur le compte courant.");
-	  return;
-	}
+    if (montant > accounts.courant.balance) {
+      setErrorMessage("Fonds insuffisants sur le compte courant.");
+      return;
+    }
 
+    if (virementData.compteBeneficiaire.replace(/\s+/g, "") === "BE012345678910") {
+      validationEtape13();
+    }
+  
     // Mise à jour des soldes
     setAccounts((prev) => ({
       ...prev,

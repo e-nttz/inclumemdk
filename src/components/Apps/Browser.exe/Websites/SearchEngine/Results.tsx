@@ -4,7 +4,8 @@ import SearchEngine from ".";
 import SearchIcon from "@/assets/icons/search.svg"
 import CHOQ from "@/assets/icons/choq.png"
 import Partenaires from "@/assets/icons/partenaires.svg"
-
+import { useAuth } from "@/providers/auth";
+import { getNextStep, saveStep } from "@/lib/client/quiz";
 import ActivitesNamur from "../ActivitesNamur";
 import AntivirusAdvisor from "../AntivirusAdvisor";
 import AntivirusDeals from "../AntivirusDeals";
@@ -112,6 +113,17 @@ interface WebsiteProps extends React.FC {
   }
   
 const Results = ({ url }: ResultsProps) => {
+	const {user, session} = useAuth();
+	const validationEtape3 = async () =>{
+		const step = await getNextStep(session);
+		if (step.id === 3) {
+			await saveStep(session, {
+				test_step_template_id: step.id,
+				is_successful: true,
+			});
+		}
+	}
+	
 	const [searchedValue, setSearchedValue] = useState(
 		decodeURI(url.split("?search=")[1])
 	);
@@ -224,7 +236,10 @@ const Results = ({ url }: ResultsProps) => {
 				className={`filtre border rounded-[20px] cursor-pointer pl-3 pr-3 pt-2 pb-2 mr-2 ${
 				  imagesActive ? "border-[#005fb8] text-[#005fb8] bg-blue-100" : ""
 				}`}
-				onClick={() => handleClick("images")}
+				onClick={() => {
+					handleClick("images")
+					validationEtape3();
+				}}
 			  >
 				<p>Images</p>
 			  </div>

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
 import { IKContext, IKImage } from "imagekitio-react";
-
+import { useAuth } from "@/providers/auth";
+import { getNextStep, saveStep } from "@/lib/client/quiz";
 const translations = {
   // Traductions mot à mot
   "dagelijks": "quotidien",
@@ -29,6 +30,16 @@ const translations = {
 };
 
 const Inverso = () => {
+  const {session} = useAuth();
+    const validationEtape14 = async () =>{
+      const step = await getNextStep(session);
+      if (step.id === 14) {
+        await saveStep(session, {
+          test_step_template_id: step.id,
+          is_successful: true,
+        });
+      }
+  }
   const [inputWord, setInputWord] = useState("");
   const [translation, setTranslation] = useState("");
 
@@ -36,6 +47,7 @@ const Inverso = () => {
     const lowerCasedWord = inputWord.toLowerCase().trim();
     if (translations[lowerCasedWord]) {
       setTranslation(translations[lowerCasedWord]);
+      validationEtape14();
     } else {
       setTranslation("Est-ce la bonne orthographe? Nous n'avons pas trouvé le mot dans notre dictionnaire.");
     }

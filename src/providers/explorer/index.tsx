@@ -1,7 +1,8 @@
 import { createContext, useCallback, useContext, useState } from "react";
 
 import defaultStructure from "./structures.json";
-import { useAuth } from "../auth";
+import { useAuth } from "@/providers/auth";
+import { getNextStep, saveStep } from "@/lib/client/quiz";
 import { getLocalSession, storeLocalSession } from "@/helpers/storage";
 import { addFileToFolder, addFolderToFolder } from "@/helpers/file";
 import { slugify } from "@/helpers/sanitize";
@@ -26,7 +27,24 @@ export const ExplorerContext = createContext<ExplorerContextType>({
 
 export const ExplorerProvider = ({ children }) => {
 	const { session } = useAuth();
-
+	const validationEtape6 = async () =>{
+		const step = await getNextStep(session);
+		if (step.id === 6) {
+			await saveStep(session, {
+				test_step_template_id: step.id,
+				is_successful: true,
+			});
+		}
+	}
+	const validationEtape12 = async () =>{
+		const step = await getNextStep(session);
+		if (step.id === 12) {
+			await saveStep(session, {
+				test_step_template_id: step.id,
+				is_successful: true,
+			});
+		}
+	}
 	const [currentPath, setCurrentPath] = useState("/root");
 	const [selectedFile, _setSelectedFile] = useState<FileNode | null>(null);
 
@@ -267,6 +285,16 @@ export const ExplorerProvider = ({ children }) => {
 				updatedAt: new Date().toISOString(),
 				content,
 			};
+
+			if (name === "dupont") {
+				if (content.data.toLowerCase().includes("dupont")) {
+					validationEtape6();
+				}
+			}
+
+			if(content.data.toLowerCase().includes("1976")){
+				validationEtape12()
+			}
 
 			const path = currentFolderPath.split("/").filter((p) => p !== "");
 

@@ -42,14 +42,16 @@ const Message: AppProps = (defaultContent) => {
 	const fetchStepId = async (session, message) => {
 		try {
 		  const step = await getNextStep(session);
-		  if (step.id === 1) {
-			await saveStep(session, {
-				test_step_template_id: step.id,
-				is_successful: true,
-				extra_data: {
-					"message" : message,
-				},
-			});
+		  if (step.id === 2) {
+			if(message === "adresse"){
+				await saveStep(session, {
+					test_step_template_id: step.id,
+					is_successful: true,
+					extra_data: {
+						"message" : message,
+					},
+				});
+			}
 			setTimeout(() => {
 				beacon("call", {
 					status: "incoming",

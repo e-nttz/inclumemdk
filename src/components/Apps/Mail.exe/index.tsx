@@ -13,6 +13,7 @@ import Trash from "@/assets/icons/mail_trash.svg";
 import MailContent from "./MailContent";
 import NewMessage from "@/assets/icons/mail_newmessage.svg";
 import { getMailsFromLocalStorage, saveMailsToLocalStorage, resetLocalStorage } from "@/utils/localeStorage";
+import { getNextStep, saveStep } from "@/lib/client/quiz";
 import { useAuth } from "@/providers/auth";
 
 interface AppProps<T> extends React.FC<T> {
@@ -32,7 +33,33 @@ const Mail: AppProps<MailProps> = () => {
   const appData: any = Object.entries(openedApps).find(
     (x) => x[1].title === Mail.title
   );
-
+  const validationEtape5 = async () =>{
+    const step = await getNextStep(session);
+    if (step.id === 5) {
+      await saveStep(session, {
+        test_step_template_id: step.id,
+        is_successful: true,
+      });
+    }
+  };
+  const validationEtape7 = async () =>{
+    const step = await getNextStep(session);
+    if (step.id === 7) {
+      await saveStep(session, {
+        test_step_template_id: step.id,
+        is_successful: true,
+      });
+    }
+  };
+  const validationEtape8 = async () =>{
+    const step = await getNextStep(session);
+    if (step.id === 8) {
+      await saveStep(session, {
+        test_step_template_id: step.id,
+        is_successful: true,
+      });
+    }
+  }
   const [folderName, setFolderName] = useState("Boîte de réception");
   const [activeFolder, setActiveFolder] = useState<string | null>("Boîte de réception");
   const [newMessage, setNewMessage] = useState(false);
@@ -224,6 +251,17 @@ const Mail: AppProps<MailProps> = () => {
       files: files
     };
 
+    if(toEmail === "benoit@choq.be" && files.length > 0){
+      validationEtape5()
+    }
+
+    if(toEmail === "reservation@hotlenamur.be" && files.length > 0){
+      validationEtape7()
+    }
+
+    if(toEmail === "reservation@hotelnamur.be" && files.length > 0){
+      validationEtape8()
+    }
     const updatedMails = [...mails, newMail];
     updateMails(updatedMails);
 

@@ -7,7 +7,8 @@ import Error from "@/assets/icons/app-antivirus-error.svg";
 import Ellipse from "@/assets/icons/app-antivirus-ellipse.svg";
 import Good from "@/assets/icons/app-antivirus-analyse-good.svg";
 import Separator from "@/assets/icons/app-antivirus-separator.svg";
-
+import { useAuth } from "@/providers/auth";
+import { getNextStep, saveStep } from "@/lib/client/quiz";
 import { getAntivirusInstalledFromLocalStorage, saveAntivirusInstalledToLocalStorage, resetAntivirusInstalledInLocalStorage } from "@/utils/localeStorage";
 import { useOS } from "@/providers/InclumeOS";
 
@@ -26,7 +27,16 @@ const ChildVirus: AppProps<ChildVirusProps> = () => {
   const appData: any = Object.entries(openedApps).find(
     (x) => x[1].title === ChildVirus.title
   );
-
+  const {session} = useAuth();
+  const validationEtape17 = async () =>{
+		const step = await getNextStep(session);
+		if (step.id === 17) {
+			await saveStep(session, {
+				test_step_template_id: step.id,
+				is_successful: true,
+			});
+		}
+	}
   const [installationStarted, setInstallationStarted] = useState<boolean>(false);
   const [installationFinished, setInstallationFinished] = useState<boolean>(false);
   const [analyseStarted, setAnalyseStarted] = useState<boolean>(false);
@@ -316,6 +326,7 @@ const ChildVirus: AppProps<ChildVirusProps> = () => {
                         setAnalyseStarted(false);
                         setAnalyseEnded(false);
                         setAnalyseResult(true);
+                        validationEtape17();
                       }}>Résoudre les problèmes</button>
                     </>
                   )}

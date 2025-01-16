@@ -1,7 +1,20 @@
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
 import { IKContext, IKImage } from "imagekitio-react";
+import { useAuth } from "@/providers/auth";
+import { getNextStep, saveStep } from "@/lib/client/quiz";
 
 const RestaurantLaSiestaOostende = () => {
+	const {user, session} = useAuth();
+	const validationEtape1 = async () =>{
+		const step = await getNextStep(session);
+		if (step.id === 1) {
+			await saveStep(session, {
+				test_step_template_id: step.id,
+				is_successful: true,
+			});
+		}
+	}
+	validationEtape1();
 	return (
 		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
 			<body className="bg-gray-50">
