@@ -1,5 +1,12 @@
 import { getLocalStorage, setLocalStorage } from "@/helpers/storage";
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+	createContext,
+	useCallback,
+	useContext,
+	useEffect,
+	useMemo,
+	useState,
+} from "react";
 import { useAuth } from "../auth";
 import { beacon } from "@/helpers/beacon";
 
@@ -52,31 +59,34 @@ const InclumeOSProvider = ({ children }: InclumeOSProviderProps) => {
 
 	const [openedApps, setOpenedApps] = useState<App[]>([]);
 
-	const launchApp = (app: App) => {
-		if (!openedApps.find((a) => a.title === app.title)) {
-			setOpenedApps([...openedApps, app]);
-		} else {
-			// Add app.defaultContent to the openedApps
-			setOpenedApps(
-				openedApps.map((a) => {
-					if (a.title === app.title) {
-						return {
-							...a,
-							defaultContent: app.defaultContent,
-						};
-					}
+	const launchApp = useCallback(
+		(app: App) => {
+			if (!openedApps.find((a) => a.title === app.title)) {
+				setOpenedApps([...openedApps, app]);
+			} else {
+				// Add app.defaultContent to the openedApps
+				setOpenedApps(
+					openedApps.map((a) => {
+						if (a.title === app.title) {
+							return {
+								...a,
+								defaultContent: app.defaultContent,
+							};
+						}
 
-					return a;
-				})
-			);
-		}
+						return a;
+					})
+				);
+			}
 
-		beacon("triggerStep", {
-			value: "open" + app.title,
-		});
+			beacon("triggerStep", {
+				value: "open" + app.title,
+			});
 
-		setCurrentApp(app.title);
-	};
+			setCurrentApp(app.title);
+		},
+		[openedApps]
+	);
 
 	/**
 	 * UI State handler
@@ -119,22 +129,37 @@ const InclumeOSProvider = ({ children }: InclumeOSProviderProps) => {
 		};
 	}, []);
 
+	const value = useMemo(
+		() => ({
+			appLoading,
+			theme,
+			changeTheme,
+			currentApp,
+			setCurrentApp,
+			openedApps,
+			setOpenedApps,
+			launchApp,
+			startMenuOpen,
+			setStartMenuOpen,
+			focusedElement,
+		}),
+		[
+			appLoading,
+			theme,
+			changeTheme,
+			currentApp,
+			setCurrentApp,
+			openedApps,
+			setOpenedApps,
+			launchApp,
+			startMenuOpen,
+			setStartMenuOpen,
+			focusedElement,
+		]
+	);
+
 	return (
-		<InclumeOSContext.Provider
-			value={{
-				appLoading,
-				theme,
-				changeTheme,
-				currentApp,
-				setCurrentApp,
-				openedApps,
-				setOpenedApps,
-				launchApp,
-				startMenuOpen,
-				setStartMenuOpen,
-				focusedElement,
-			}}
-		>
+		<InclumeOSContext.Provider value={value}>
 			{children}
 		</InclumeOSContext.Provider>
 	);

@@ -15,14 +15,14 @@ import Image from "@/components/Ui/Images/image";
 import { useExplorer } from "@/providers/explorer";
 
 // Icons
-import HangUp from "@/assets/icons/hang_up.svg"
-import SoundOff from "@/assets/icons/sound_off.svg"
-import SoundOn from "@/assets/icons/sound_on.svg"
-import WebcamOff from "@/assets/icons/webcam_off.svg"
-import WebcamOn from "@/assets/icons/webcam_on.svg"
-import MicOff from "@/assets/icons/mic_off.svg"
-import MicOn from "@/assets/icons/mic_on.svg"
-import WebcamImage from "@/assets/icons/webcam.jpg"
+import HangUp from "@/assets/icons/hang_up.svg";
+import SoundOff from "@/assets/icons/sound_off.svg";
+import SoundOn from "@/assets/icons/sound_on.svg";
+import WebcamOff from "@/assets/icons/webcam_off.svg";
+import WebcamOn from "@/assets/icons/webcam_on.svg";
+import MicOff from "@/assets/icons/mic_off.svg";
+import MicOn from "@/assets/icons/mic_on.svg";
+import WebcamImage from "@/assets/icons/webcam.jpg";
 
 interface AppProps extends React.FC {
 	title: string;
@@ -35,40 +35,40 @@ interface Message {
 	content: string | ReactElement;
 }
 
-const Message: AppProps = (defaultContent) => {
-	const {user, session} = useAuth();
+const Message: AppProps = ({ defaultContent }) => {
+	const { user, session } = useAuth();
 	const [isCall, setCall] = useState(false);
 
 	const fetchStepId = async (session, message) => {
 		try {
-		  const step = await getNextStep(session);
-		  if (step.id === 2) {
-			if(message === "adresse"){
-				await saveStep(session, {
-					test_step_template_id: step.id,
-					is_successful: true,
-					extra_data: {
-						"message" : message,
-					},
-				});
+			const step = await getNextStep(session);
+			if (step.id === 2) {
+				if (message === "adresse") {
+					await saveStep(session, {
+						test_step_template_id: step.id,
+						is_successful: true,
+						extra_data: {
+							message: message,
+						},
+					});
+				}
+				setTimeout(() => {
+					beacon("call", {
+						status: "incoming",
+					});
+				}, 3000);
 			}
-			setTimeout(() => {
-				beacon("call", {
-					status: "incoming",
-				})
-			}, 3000);
-		  }
 		} catch (error) {
-		  console.error("Erreur lors de la récupération de l'étape :", error);
+			console.error("Erreur lors de la récupération de l'étape :", error);
 		}
 	};
 
 	useEffect(() => {
-		if (defaultContent && defaultContent["props"] && defaultContent["props"][1] && defaultContent["props"][1].defaultContent === true) {
-		  setCall(true);
+		if (defaultContent) {
+			setCall(true);
 		}
 	}, [defaultContent]);
-	
+
 	const { t } = useTranslate();
 	const { handleInfoWindow, closeInfoWindow } = useExplorer();
 
@@ -82,9 +82,9 @@ const Message: AppProps = (defaultContent) => {
 	const [isSoundOn, setSoundOn] = useState(true);
 	const [messages, setMessages] = useState<Message[]>([
 		{
-		  id: 1,
-		  sender: 4,
-		  content: `Salut ${user.candidate.first_name}, merci de garder la maison pendant les vacances. Nous arrivons dans quelques instants à Ostende, es-tu disponible pour que je t’appelle à mon arrivée ?`,
+			id: 1,
+			sender: 4,
+			content: `Salut ${user.candidate.first_name}, merci de garder la maison pendant les vacances. Nous arrivons dans quelques instants à Ostende, es-tu disponible pour que je t’appelle à mon arrivée ?`,
 		},
 	]);
 
@@ -168,13 +168,15 @@ const Message: AppProps = (defaultContent) => {
 	return (
 		<Window
 			appName={Message.title}
-			contextMenus={isCall === false ? (
-				<ContextualBar.Menu name="Fichiers">
-					<ContextualBar.Item onClick={() => handleFileAttachment()}>
-						{t("join_file", "Joindre un fichier")}
-					</ContextualBar.Item>
-				</ContextualBar.Menu>
-			) : null}
+			contextMenus={
+				isCall === false ? (
+					<ContextualBar.Menu name="Fichiers">
+						<ContextualBar.Item onClick={() => handleFileAttachment()}>
+							{t("join_file", "Joindre un fichier")}
+						</ContextualBar.Item>
+					</ContextualBar.Menu>
+				) : null
+			}
 		>
 			{isCall === false && (
 				<section className="flex flex-col flex-1 w-full overflow-auto text-black bg-white/90 backdrop-blur dark:bg-black/70">
@@ -188,7 +190,9 @@ const Message: AppProps = (defaultContent) => {
 								/>
 							</figure>
 
-							<p className="font-bold dark:text-white">Vincent Inclume</p>
+							<p className="font-bold dark:text-white">
+								Vincent Inclume
+							</p>
 						</div>
 					</header>
 
@@ -208,7 +212,7 @@ const Message: AppProps = (defaultContent) => {
 							</li>
 						))}
 					</ul>
-					
+
 					<form
 						className="gap-4 px-6 py-4 space-y-4 bg-white dark:bg-black dark:text-white"
 						onSubmit={handleSubmit}
@@ -230,7 +234,7 @@ const Message: AppProps = (defaultContent) => {
 								</button>
 							</div>
 						)}
-						
+
 						<div className="flex flex-row items-center gap-4">
 							<span className="relative flex-1 peer">
 								<input
@@ -300,24 +304,32 @@ const Message: AppProps = (defaultContent) => {
 			)}
 
 			{isCall === true && (
-				<section className="bg-black w-full h-full flex justify-center">
+				<section className="flex justify-center w-full h-full bg-black">
 					{/* Référence pour la vidéo */}
 					<video autoPlay loop ref={videoRef} muted={!isSoundOn}>
 						<source src="https://ik.imagekit.io/0jngziwft/appel_1.mp4" />
 					</video>
-					<div className="options flex justify-between absolute bottom-4 w-60">
+					<div className="absolute flex justify-between options bottom-4 w-60">
 						<div
 							className="camera rounded-[50%] w-12 h-12 flex items-center justify-center cursor-pointer bg-black/40 backdrop-blur"
 							onClick={() => setWebcamOn(!isWebcamOn)}
 						>
-							<img src={isWebcamOn ? WebcamOn : WebcamOff} alt="Webcam" className="h-6" />
+							<img
+								src={isWebcamOn ? WebcamOn : WebcamOff}
+								alt="Webcam"
+								className="h-6"
+							/>
 						</div>
 
 						<div
 							className="micro rounded-[50%] w-12 h-12 flex items-center justify-center cursor-pointer bg-black/40 backdrop-blur"
 							onClick={() => setMicOn(!isMicOn)}
 						>
-							<img src={isMicOn ? MicOn : MicOff} alt="Microphone" className="h-6" />
+							<img
+								src={isMicOn ? MicOn : MicOff}
+								alt="Microphone"
+								className="h-6"
+							/>
 						</div>
 
 						{/* Bouton pour couper/activer le son */}
@@ -330,7 +342,11 @@ const Message: AppProps = (defaultContent) => {
 								}
 							}}
 						>
-							<img src={isSoundOn ? SoundOn : SoundOff} alt="Haut-parleur" className="h-6" />
+							<img
+								src={isSoundOn ? SoundOn : SoundOff}
+								alt="Haut-parleur"
+								className="h-6"
+							/>
 						</div>
 
 						<div
@@ -341,8 +357,12 @@ const Message: AppProps = (defaultContent) => {
 						</div>
 					</div>
 					{isWebcamOn && (
-						<div className="webcam absolute w-64 absolute bottom-3 right-3">
-							<img src={WebcamImage} alt="Personnage Webcam" className=""/>
+						<div className="absolute w-64 webcam bottom-3 right-3">
+							<img
+								src={WebcamImage}
+								alt="Personnage Webcam"
+								className=""
+							/>
 						</div>
 					)}
 				</section>
