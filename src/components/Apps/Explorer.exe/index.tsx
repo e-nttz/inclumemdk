@@ -16,7 +16,7 @@ const Explorer = ({ forceRender = false, ...props }) => {
 	if (openedApps && openedApps[0] && openedApps[0].defaultContent) {
 		if (openedApps[0].defaultContent === "vacances") {
 			setPath({
-				name: "Vacances", 
+				name: "Vacances",
 				type: "folder",
 				createdAt: new Date().toISOString(),
 				updatedAt: new Date().toISOString(),
@@ -24,8 +24,7 @@ const Explorer = ({ forceRender = false, ...props }) => {
 			});
 		}
 	}
-	
-	console.log(getStructure());
+
 	return (
 		<Window
 			appName={"Explorateur de fichier"}

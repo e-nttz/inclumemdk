@@ -90,7 +90,6 @@ type FileNode = {
 interface StepsListenerContextType {
 	pauseMode: boolean;
 	setPauseMode: React.Dispatch<React.SetStateAction<boolean>>;
-	timer: number;
 	setTimer: React.Dispatch<React.SetStateAction<number>>;
 	clearTimer: () => void;
 }
