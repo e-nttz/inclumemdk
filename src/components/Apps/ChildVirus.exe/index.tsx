@@ -30,7 +30,7 @@ const ChildVirus: AppProps<ChildVirusProps> = () => {
   const {session} = useAuth();
   const validationEtape17 = async () =>{
 		const step = await getNextStep(session);
-		if (step.id === 17) {
+		if (step.id === 40){
 			await saveStep(session, {
 				test_step_template_id: step.id,
 				is_successful: true,
@@ -43,7 +43,6 @@ const ChildVirus: AppProps<ChildVirusProps> = () => {
   const [analyseEnded, setAnalyseEnded] = useState<boolean>(false);
   const [analyseResult, setAnalyseResult] = useState<boolean>(false);
   const [beforeInstall, setBeforeInstall] = useState<boolean>(true);
-  // État pour suivre si l'antivirus est installé
   const [antivirusInstalled, setAntivirusInstalled] = useState<boolean>(false);
 
   // Charger l'état initial de AntivirusInstalled au montage du composant
@@ -100,7 +99,6 @@ const ChildVirus: AppProps<ChildVirusProps> = () => {
             if (prev >= 100) {
               clearInterval(interval);
               setAnalyseEnded(true);
-              activateAntivirus();
               return 100;
             }
             return prev + 1; // Incrémentation par 1% toutes les 200ms
@@ -363,6 +361,7 @@ const ChildVirus: AppProps<ChildVirusProps> = () => {
                       <button className="bg-[#FF7100] text-white px-10 py-4 rounded-3xl cursor-pointer mt-12 text-xl w-96" onClick={() => {
                           setAnalyseResult(false);
                           setAntivirusInstalled(true);
+                          activateAntivirus();
                         }}>Fermer l'analyse</button>
                     </div>
                   </div>

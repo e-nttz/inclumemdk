@@ -2,7 +2,7 @@ import { apps } from "@/components/Apps";
 import { classNames } from "@/helpers/sanitize";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { useAuth } from "@/providers/auth";
-import { getNextStep, saveStep } from "@/lib/client/quiz";
+import { getNextStep, saveStep, updateTestSession } from "@/lib/client/quiz";
 import { useOS } from "@/providers/InclumeOS";
 import { Transition } from "@headlessui/react";
 import { useRef } from "react";
@@ -10,14 +10,17 @@ import { useRef } from "react";
 const StartMenu = () => {
 	const { startMenuOpen, setStartMenuOpen, launchApp } = useOS();
 	const { logout, session } = useAuth();
-  	const validationEtape18 = async () =>{
+  	const validationEtape19 = async (confirmation) =>{
 		const step = await getNextStep(session);
-		if (step.id === 18) {
+		if (step.id === 41) {
 			await saveStep(session, {
 				test_step_template_id: step.id,
 				is_successful: true,
 			});
 		}
+		await updateTestSession(session, true)
+		logout();
+		window.location.reload();
 	}
 	const nodeRef = useRef<HTMLDivElement>(null);
 
@@ -181,14 +184,7 @@ const StartMenu = () => {
 								"Voulez-vous vraiment éteindre votre ordinateur ? Toutes modifications non sauvegardées seront perdues."
 							);
 
-							if (confirmation) {
-								logout();
-								setTimeout(() => {
-									window.location.reload();
-								}, 300);
-							}
-
-							validationEtape18();
+							validationEtape19(confirmation);
 						}}
 					>
 						<svg

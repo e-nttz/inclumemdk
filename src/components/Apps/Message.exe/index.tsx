@@ -42,8 +42,24 @@ const Message: AppProps = (defaultContent) => {
 	const fetchStepId = async (session, message) => {
 		try {
 		  const step = await getNextStep(session);
+		  if(step.id === 1){
+			if(message === "appel"){
+				beacon("call", {
+					status: "incoming",
+				})
+			}
+			if(message === "raté"){
+				await saveStep(session, {
+					test_step_template_id: step.id,
+					is_successful: false,
+					extra_data: {
+						"message" : message,
+					},
+				});
+			}
+		  }
 		  if (step.id === 2) {
-			if(message === "adresse"){
+			if(message){
 				await saveStep(session, {
 					test_step_template_id: step.id,
 					is_successful: true,
@@ -52,11 +68,68 @@ const Message: AppProps = (defaultContent) => {
 					},
 				});
 			}
-			setTimeout(() => {
-				beacon("call", {
-					status: "incoming",
-				})
-			}, 3000);
+		  }
+		//   Etape 2 bis
+		// Ajouter pa
+		  if(step.id === 3){
+			if(message.toLowerCase().includes("pas","pa","p as", "p a","non")){
+				await saveStep(session, {
+					test_step_template_id: step.id,
+					is_successful: true,
+					extra_data: {
+						"message" : message,
+					},
+				});
+			}
+			if(message === "raté"){
+				await saveStep(session, {
+					test_step_template_id: step.id,
+					is_successful: false,
+					extra_data: {
+						"message" : message,
+					},
+				});
+			}
+		  }
+		  	if(step.id === 14){
+				if(message.toLowerCase().includes("https") && message.toLowerCase().includes("namur")){
+					await saveStep(session, {
+						test_step_template_id: step.id,
+						is_successful: true,
+						extra_data: {
+							"message" : message,
+						},
+					});
+				}
+			}
+		  if(step.id === 39){
+			if(message.toLowerCase().includes("https://tutoriel-wifi.com")){
+				await saveStep(session, {
+					test_step_template_id: step.id,
+					is_successful: true,
+					extra_data: {
+						"message" : message,
+					},
+				});
+			}
+		  }
+		  if(step.id === 35 || step.id === 51 || step.id === 55){
+			await saveStep(session, {
+				test_step_template_id: step.id,
+				is_successful: true,
+				extra_data: {
+					"message" : message,
+				},
+			});
+		  }
+		  if(step.id === 38 && message.toLowerCase().includes("salade", "epicee", "épicée", "epicée", "épicee", "epice")){
+			await saveStep(session, {
+				test_step_template_id: step.id,
+				is_successful: true,
+				extra_data: {
+					"message" : message,
+				},
+			});
 		  }
 		} catch (error) {
 		  console.error("Erreur lors de la récupération de l'étape :", error);
@@ -84,7 +157,7 @@ const Message: AppProps = (defaultContent) => {
 		{
 		  id: 1,
 		  sender: 4,
-		  content: `Salut ${user.candidate.first_name}, merci de garder la maison pendant les vacances. Nous arrivons dans quelques instants à Ostende, es-tu disponible pour que je t’appelle à mon arrivée ?`,
+		  content: `Salut ${user.candidate.first_name}, merci de garder la maison pendant les vacances. Nous arrivons dans quelques instants à Ostende, je t’appelle à mon arrivée !`,
 		},
 	]);
 
@@ -165,6 +238,15 @@ const Message: AppProps = (defaultContent) => {
 		setSelectedFiles("/images/restaurant.jpg");
 	};
 
+	// // Mettre étape en raté si délais trop long
+	// // Régler timing en fonction des indices
+	// // S'activer après avoir décroché
+	// setTimeout(() => {
+	// 	fetchStepId(session, "appel")
+	// }, 20000)
+	// setTimeout(() => {
+	// 	fetchStepId(session, "raté")
+	// }, 5000)
 	return (
 		<Window
 			appName={Message.title}
@@ -328,6 +410,7 @@ const Message: AppProps = (defaultContent) => {
 								if (videoRef.current) {
 									videoRef.current.muted = isSoundOn; // Mettre à jour la propriété muted
 								}
+								fetchStepId(session, "")
 							}}
 						>
 							<img src={isSoundOn ? SoundOn : SoundOff} alt="Haut-parleur" className="h-6" />

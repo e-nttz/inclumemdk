@@ -51,7 +51,7 @@ const Message = ({
             <div className="content w-full">
                 <div className="flex justify-between mb-[10px]">
                     <h3
-                        className={`font-semibold text-xl ${
+                        className={`text-xl ${
                             active ? "text-[#005fb8]" : ""
                         }`}
                     >
@@ -59,7 +59,7 @@ const Message = ({
                     </h3>
                     <p className="opacity-70">{hour}</p>
                 </div>
-                <h4 className="font-semibold text-l mb-[5px]">{title}</h4>
+                <h4 className="text-l mb-[5px]">{title}</h4>
                 <p className="overflow-hidden text-ellipsis whitespace-normal max-h-[3rem] leading-[1.5rem] mb-[15px] opacity-80">
                     {preview}
                 </p>

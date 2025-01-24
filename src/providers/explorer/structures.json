@@ -170,6 +170,47 @@
 					"content": {
 						"data": "<div>Fiche Client - Réservation Hôtel Namur</div><div>Vincent Inclume - Réservation N°1</div><div>Céline - Réservation N°2</div>"
 					}
+				},
+				{
+					"name": "Carte identié Céline",
+					"type": "file",
+					"createdAt": "2023-10-01T13:40:00Z",
+					"updatedAt": "2023-10-02T19:45:00Z",
+					"path": "id-celine-jpg",
+					"extension": ".jpg",
+					"slug": "id-celine.jpg",
+					"url": "/images/photos/beach.jpg"
+				},
+				{
+					"name": "Carte identié Vincent",
+					"type": "file",
+					"createdAt": "2023-10-01T13:40:00Z",
+					"updatedAt": "2023-10-02T19:45:00Z",
+					"path": "id-vincent-jpg",
+					"extension": ".jpg",
+					"slug": "id-vincent.jpg",
+					"url": "/images/photos/beach.jpg"
+				}
+			]
+		},
+		{
+			"name": "Bureau",
+			"type": "folder",
+			"createdAt": "2023-10-01T12:05:00Z",
+			"updatedAt": "2023-10-02T15:00:00Z",
+			"path": "bureau",
+			"children": [
+				{
+					"name": "Info resto",
+					"type": "file",
+					"createdAt": "2023-10-01T13:45:00Z",
+					"updatedAt": "2023-10-02T20:00:00Z",
+					"path": "info-resto-docx",
+					"extension": ".docx",
+					"slug": "info-resto.docx",
+					"content": {
+						"data": "<div>Adresse : <div>+image</div></div>"
+					}
 				}
 			]
 		},

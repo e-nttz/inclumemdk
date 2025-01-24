@@ -5,12 +5,23 @@ import IconSunOff from "@/assets/icons/sun-off.svg?react";
 import IconSettings from "@/assets/icons/settings.svg?react";
 import IconPause from "@/assets/icons/pause.svg?react";
 import { useStepsListener } from "@/providers/stepsListener";
+import { useAuth } from "@/providers/auth";
+import { getNextStep, saveStep } from "@/lib/client/quiz";
 
 const Actions = () => {
 	const { theme, changeTheme } = useOS();
 	const { setPauseMode } = useStepsListener();
-
 	const IconDarkMode = theme === "dark" ? IconSunOff : IconSun;
+	const {session} = useAuth();
+	  const validationEtape18 = async () =>{
+			const step = await getNextStep(session);
+			if (step.id === 64) {
+				await saveStep(session, {
+					test_step_template_id: step.id,
+					is_successful: true,
+			});
+		}
+	}
 
 	return (
 		<div className="grid grid-cols-4 gap-2 p-4 text-xs">
@@ -26,6 +37,7 @@ const Actions = () => {
 				className="p-2 text-left bg-white rounded hover:bg-white/50 focus:outline-none active:bg-white dark:bg-black/30 dark:hover:bg-black/50 dark:active:bg-black/30"
 				onClick={() => {
 					changeTheme(theme === "dark" ? "light" : "dark");
+					validationEtape18();
 				}}
 			>
 				<IconDarkMode className="block w-6 h-6 mb-5" />

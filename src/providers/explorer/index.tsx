@@ -29,7 +29,16 @@ export const ExplorerProvider = ({ children }) => {
 	const { session } = useAuth();
 	const validationEtape6 = async () =>{
 		const step = await getNextStep(session);
-		if (step.id === 6) {
+		if (step.id === 8 || step.id === 45 || step.id === 59 || step.id === 9 || step.id === 44) {
+			await saveStep(session, {
+				test_step_template_id: step.id,
+				is_successful: true,
+			});
+		}
+	}
+	const validationEtape11 = async () =>{
+		const step = await getNextStep(session);
+		if (step.id === 15 || step.id === 53 || step.id === 58 || step.id === 16) {
 			await saveStep(session, {
 				test_step_template_id: step.id,
 				is_successful: true,
@@ -38,7 +47,7 @@ export const ExplorerProvider = ({ children }) => {
 	}
 	const validationEtape12 = async () =>{
 		const step = await getNextStep(session);
-		if (step.id === 12) {
+		if (step.id === 17 || step.id === 52 || step.id === 57 || step.id === 34) {
 			await saveStep(session, {
 				test_step_template_id: step.id,
 				is_successful: true,
@@ -272,6 +281,7 @@ export const ExplorerProvider = ({ children }) => {
 			},
 			currentFolderPath = currentPath
 		) => {
+			console.log(content)
 			const randId = Math.random().toString(36).substring(7);
 
 			const newFile: FileNode = {
@@ -288,14 +298,24 @@ export const ExplorerProvider = ({ children }) => {
 
 			if (name === "dupont") {
 				if (content.data.toLowerCase().includes("dupont")) {
-					validationEtape6();
+					validationEtape6();  
 				}
 			}
 
-			if(content.data.toLowerCase().includes("1976")){
-				validationEtape12()
+			if(fileType === "xlsx"){
+				content.data.forEach(cellule => {
+					if(cellule.data["value"].toLowerCase().includes("1976")){
+						validationEtape12();
+					}
+				});
 			}
-
+			
+			if(fileType === "docx"){
+				if(content.data.toLowerCase().includes("<img")){
+					validationEtape11();
+				}
+			}
+			
 			const path = currentFolderPath.split("/").filter((p) => p !== "");
 
 			addFileToFolder(structures, path[path.length - 1], newFile);

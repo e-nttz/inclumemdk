@@ -15,7 +15,8 @@ import { useNotification } from "@/providers/notifications";
 import { useStepsListener } from "@/providers/stepsListener";
 import { useTolgee, useTranslate } from "@tolgee/react";
 import { useExplorer } from "@/providers/explorer";
-
+import { useAuth } from "@/providers/auth";
+import { getNextStep, saveStep } from "@/lib/client/quiz";
 
 interface OSContextualMenuProps {
 	actions?: {
@@ -51,7 +52,16 @@ interface OSContextualMenuProps {
 const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 	const { changeTheme, theme, focusedElement } = useOS();
 	const { t } = useTranslate();
-
+	const {user, session} = useAuth();
+	const validationEtape4 = async () =>{
+		const step = await getNextStep(session);
+		if (step.id === 5) {
+			await saveStep(session, {
+				test_step_template_id: step.id,
+				is_successful: true,
+			});
+		}
+	}
 	const tolgee = useTolgee(["language"]);
 	const { addNotification } = useNotification();
 	const { setPauseMode, clearTimer } = useStepsListener();
@@ -213,7 +223,8 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 				<ContextMenuShortcut>⌘V</ContextMenuShortcut>
 			</ContextMenuItem>
 			<ContextMenuItem inset onClick={() => {
-				if (focusedElement.tagName === "IMG") {
+				validationEtape4();
+				if (focusedElement.tagName === "IKImage") {
 					handleInfoWindow(undefined, (currentPath) => {
 						const fileName = prompt(
 							t("enter_filename", "Entrez le nom du fichier")
@@ -226,7 +237,6 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 							},
 							currentPath
 						);
-
 						closeInfoWindow();
 					});
 				}

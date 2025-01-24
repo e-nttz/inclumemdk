@@ -52,6 +52,7 @@ import VisitOstende from "../VisitOstende";
 import WereldsmakenOostende from "../WereldsmakenOostende";
 import BngBanque from "../BngBanque";
 import ChildVirus from "../ChildVirus";
+import ActiverWifi from "../Wifi";
 
 const sites = [
 	RestaurantVueSurMer,
@@ -99,7 +100,8 @@ const sites = [
 	RestaurantLaSiestaCubanFood,
 	RestaurantLaSiestaOostende,
 	BngBanque,
-	ChildVirus
+	ChildVirus,
+	ActiverWifi
 ];
 interface WebsiteProps extends React.FC {
 	pages: {
@@ -116,7 +118,7 @@ const Results = ({ url }: ResultsProps) => {
 	const {user, session} = useAuth();
 	const validationEtape3 = async () =>{
 		const step = await getNextStep(session);
-		if (step.id === 3) {
+		if (step.id === 4) {
 			await saveStep(session, {
 				test_step_template_id: step.id,
 				is_successful: true,

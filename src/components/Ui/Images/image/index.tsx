@@ -1,21 +1,11 @@
 import { useTranslate } from "@tolgee/react";
 import { ContextMenu, ContextMenuTrigger } from "../../context-menu";
 import OSContextualMenu from "../../Menus/ContextualMenu";
-import { useExplorer } from "@/providers/explorer";import { useAuth } from "@/providers/auth";
-import { getNextStep, saveStep } from "@/lib/client/quiz";
+import { useExplorer } from "@/providers/explorer";
 
 const Image = ({ ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => {
 	const { t } = useTranslate();
-	const {user, session} = useAuth();
-	const validationEtape4 = async () =>{
-		const step = await getNextStep(session);
-		if (step.id === 4) {
-			await saveStep(session, {
-				test_step_template_id: step.id,
-				is_successful: true,
-			});
-		}
-	}
+
 	const { handleInfoWindow, closeInfoWindow, createFile } = useExplorer();
 
 	return (
@@ -36,7 +26,6 @@ const Image = ({ ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => {
 									createFile(fileName, "png", "test", currentPath);
 
 									closeInfoWindow();
-									validationEtape4();
 								});
 							},
 						},

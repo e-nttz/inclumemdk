@@ -128,7 +128,7 @@ const Spreadsheets = () => {
 										fileName,
 										"xlsx",
 										{
-											data: "",
+											data: cells,
 										},
 										currentPath
 									);

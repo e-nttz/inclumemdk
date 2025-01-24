@@ -46,6 +46,7 @@ import Welcome from "./Welcome";
 import WereldsmakenOostende from "./WereldsmakenOostende";
 import BngBanque from "./BngBanque";
 import ChildVirus from "./ChildVirus";
+import ActiverWifi from "./Wifi";
 
 interface WebsiteComponentProps {
 	url: string;
@@ -108,7 +109,8 @@ export const websites: WebsitesProps = {
 	restaurantLaSiestaCubanFood: RestaurantLaSiestaCubanFood,
 	restaurantLaSiestaOostende: RestaurantLaSiestaOostende,
 	bngBanque: BngBanque,
-	childVirus: ChildVirus
+	childVirus: ChildVirus,
+	activerWifi: ActiverWifi
 };
 
 const RenderWebsite = ({ componentName, url }: RenderWebsiteProps) => {

@@ -23,7 +23,7 @@ const BngBanque = () => {
   const {session} = useAuth();
   const validationEtape13 = async () =>{
 		const step = await getNextStep(session);
-		if (step.id === 13) {
+		if (step.id === 61 || step.id === 62 || step.id === 63 || step.id === 56 || step.id === 50 || step.id === 36) {
 			await saveStep(session, {
 				test_step_template_id: step.id,
 				is_successful: true,

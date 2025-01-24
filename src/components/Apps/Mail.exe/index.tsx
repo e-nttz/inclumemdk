@@ -35,7 +35,7 @@ const Mail: AppProps<MailProps> = () => {
   );
   const validationEtape5 = async () =>{
     const step = await getNextStep(session);
-    if (step.id === 5) {
+    if (step.id === 6 || step.id === 42 || step.id === 7 || step.id === 46) {
       await saveStep(session, {
         test_step_template_id: step.id,
         is_successful: true,
@@ -44,22 +44,57 @@ const Mail: AppProps<MailProps> = () => {
   };
   const validationEtape7 = async () =>{
     const step = await getNextStep(session);
-    if (step.id === 7) {
+    if (step.id === 10) {
+      await saveStep(session, {
+        test_step_template_id: step.id,
+        is_successful: true,
+      });
+    }
+    if (step.id === 49) {
       await saveStep(session, {
         test_step_template_id: step.id,
         is_successful: true,
       });
     }
   };
-  const validationEtape8 = async () =>{
+  const validationEtape8 = async (contenu) =>{
     const step = await getNextStep(session);
-    if (step.id === 8) {
+      if (step.id === 11) {
+        await saveStep(session, {
+          test_step_template_id: step.id,
+          is_successful: true,
+        });
+        await saveStep(session, {
+          test_step_template_id: 12,
+          is_successful: true,
+          extra_data: {
+            "Mail envoyé" : contenu,
+          },
+        });
+      }
+      if (step.id === 54) {
+        await saveStep(session, {
+          test_step_template_id: step.id,
+          is_successful: true,
+        });
+        await saveStep(session, {
+          test_step_template_id: 65,
+          is_successful: true,
+          extra_data: {
+            "Mail envoyé" : contenu,
+          },
+        });
+      }
+  }
+  const validationEtape10 = async () =>{
+    const step = await getNextStep(session);
+    if (step.id === 13) {
       await saveStep(session, {
         test_step_template_id: step.id,
         is_successful: true,
       });
     }
-  }
+  };
   const [folderName, setFolderName] = useState("Boîte de réception");
   const [activeFolder, setActiveFolder] = useState<string | null>("Boîte de réception");
   const [newMessage, setNewMessage] = useState(false);
@@ -251,7 +286,7 @@ const Mail: AppProps<MailProps> = () => {
       files: files
     };
 
-    if(toEmail === "benoit@choq.be" && files.length > 0){
+    if(toEmail === "vincent@inclume.be" && files.length > 0){
       validationEtape5()
     }
 
@@ -260,7 +295,11 @@ const Mail: AppProps<MailProps> = () => {
     }
 
     if(toEmail === "reservation@hotelnamur.be" && files.length > 0){
-      validationEtape8()
+      validationEtape8(newContent)
+    }
+
+    if(toEmail === "vincent@inclume.be" && newContent.toLowerCase().includes("namur") && newContent.toLowerCase().includes("https")){
+      validationEtape10()
     }
     const updatedMails = [...mails, newMail];
     updateMails(updatedMails);

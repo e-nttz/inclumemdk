@@ -33,7 +33,7 @@ const Inverso = () => {
   const {session} = useAuth();
     const validationEtape14 = async () =>{
       const step = await getNextStep(session);
-      if (step.id === 14) {
+      if (step.id === 37) {
         await saveStep(session, {
           test_step_template_id: step.id,
           is_successful: true,
