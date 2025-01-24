@@ -40,9 +40,17 @@ const RenderAllApps = () => {
 				// If app isn't open and unmount is true, don't render
 				if (!openedApp && App.unmount) return null;
 
-				return <App key={`all-apps-${key}`} props={openedApp}/>;
+				const defaultContent = openedApp ? openedApp[1].defaultContent : "";
+
+				return (
+					<App
+						key={`all-apps-${key}`}
+						props={openedApp}
+						defaultContent={defaultContent}
+					/>
+				);
 			})}
-			
+
 			<FaceTime />
 			<Explorer />
 		</>

@@ -68,13 +68,14 @@ const FaceTime = () => {
 							onClick={() => {
 								setCallStatus("waiting");
 								incomingCallSound.stop();
+
 								setTimeout(() => {
 									launchApp({
 										title: apps.message.title,
 										icon: apps.message.icon,
-										defaultContent:true,
+										defaultContent: true,
 									});
-								},500)
+								}, 500);
 							}}
 						>
 							{t("accept_call", "Accepter l'appel")}

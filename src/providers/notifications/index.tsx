@@ -1,5 +1,11 @@
 import NotificationCenter from "@/components/Os/Notifications";
-import { createContext, useContext, useReducer, useState } from "react";
+import {
+	createContext,
+	useCallback,
+	useContext,
+	useReducer,
+	useState,
+} from "react";
 import { createPortal } from "react-dom";
 
 export const notificationReducer = (
@@ -37,78 +43,78 @@ export const NotificationProvider = ({ children }) => {
 	const [notifications, notificationDispatch] = useReducer(
 		notificationReducer,
 		[
-			{
-				id: 1,
-				title: "Welcome to Inclume OS",
-				message: "This is a notification",
-				muted: true,
-				action: {
-					label: "View",
-					onClick: () => {
-						alert("Hello");
-					},
-				},
-			},
-			{
-				id: 33333,
-				title: "Welcome to Inclume OS",
-				message: "This is a notification with image",
-				muted: true,
-				visualHint: {
-					image: "https://external-preview.redd.it/8-reasons-to-avoid-the-latest-windows-11-update-hint-theyre-v0-5r9jKiru_PTykEpqMk_nUtYBZ0TJGepL3huWTi8qgvE.jpg?auto=webp&s=1cdb83b896a4456b59c7f73cea255f1748f7d9cd",
-				},
-				action: {
-					label: "View",
-					onClick: () => {
-						alert("Hello");
-					},
-				},
-			},
-			{
-				id: 3033,
-				title: "Welcome to Inclume OS",
-				message: "This is a notification with image",
-				muted: true,
-				visualHint: {
-					image: "https://external-preview.redd.it/8-reasons-to-avoid-the-latest-windows-11-update-hint-theyre-v0-5r9jKiru_PTykEpqMk_nUtYBZ0TJGepL3huWTi8qgvE.jpg?auto=webp&s=1cdb83b896a4456b59c7f73cea255f1748f7d9cd",
-				},
-				action: {
-					label: "View",
-					onClick: () => {
-						alert("Hello");
-					},
-				},
-			},
-			{
-				id: 3313,
-				title: "Welcome to Inclume OS",
-				message: "This is a notification with image",
-				muted: true,
-				visualHint: {
-					image: "https://external-preview.redd.it/8-reasons-to-avoid-the-latest-windows-11-update-hint-theyre-v0-5r9jKiru_PTykEpqMk_nUtYBZ0TJGepL3huWTi8qgvE.jpg?auto=webp&s=1cdb83b896a4456b59c7f73cea255f1748f7d9cd",
-				},
-				action: {
-					label: "View",
-					onClick: () => {
-						alert("Hello");
-					},
-				},
-			},
-			{
-				id: 3233,
-				title: "Welcome to Inclume OS",
-				message: "This is a notification with image",
-				muted: true,
-				visualHint: {
-					image: "https://external-preview.redd.it/8-reasons-to-avoid-the-latest-windows-11-update-hint-theyre-v0-5r9jKiru_PTykEpqMk_nUtYBZ0TJGepL3huWTi8qgvE.jpg?auto=webp&s=1cdb83b896a4456b59c7f73cea255f1748f7d9cd",
-				},
-				action: {
-					label: "View",
-					onClick: () => {
-						alert("Hello");
-					},
-				},
-			},
+			// {
+			// 	id: 1,
+			// 	title: "Welcome to Inclume OS",
+			// 	message: "This is a notification",
+			// 	muted: true,
+			// 	action: {
+			// 		label: "View",
+			// 		onClick: () => {
+			// 			alert("Hello");
+			// 		},
+			// 	},
+			// },
+			// {
+			// 	id: 33333,
+			// 	title: "Welcome to Inclume OS",
+			// 	message: "This is a notification with image",
+			// 	muted: true,
+			// 	visualHint: {
+			// 		image: "https://external-preview.redd.it/8-reasons-to-avoid-the-latest-windows-11-update-hint-theyre-v0-5r9jKiru_PTykEpqMk_nUtYBZ0TJGepL3huWTi8qgvE.jpg?auto=webp&s=1cdb83b896a4456b59c7f73cea255f1748f7d9cd",
+			// 	},
+			// 	action: {
+			// 		label: "View",
+			// 		onClick: () => {
+			// 			alert("Hello");
+			// 		},
+			// 	},
+			// },
+			// {
+			// 	id: 3033,
+			// 	title: "Welcome to Inclume OS",
+			// 	message: "This is a notification with image",
+			// 	muted: true,
+			// 	visualHint: {
+			// 		image: "https://external-preview.redd.it/8-reasons-to-avoid-the-latest-windows-11-update-hint-theyre-v0-5r9jKiru_PTykEpqMk_nUtYBZ0TJGepL3huWTi8qgvE.jpg?auto=webp&s=1cdb83b896a4456b59c7f73cea255f1748f7d9cd",
+			// 	},
+			// 	action: {
+			// 		label: "View",
+			// 		onClick: () => {
+			// 			alert("Hello");
+			// 		},
+			// 	},
+			// },
+			// {
+			// 	id: 3313,
+			// 	title: "Welcome to Inclume OS",
+			// 	message: "This is a notification with image",
+			// 	muted: true,
+			// 	visualHint: {
+			// 		image: "https://external-preview.redd.it/8-reasons-to-avoid-the-latest-windows-11-update-hint-theyre-v0-5r9jKiru_PTykEpqMk_nUtYBZ0TJGepL3huWTi8qgvE.jpg?auto=webp&s=1cdb83b896a4456b59c7f73cea255f1748f7d9cd",
+			// 	},
+			// 	action: {
+			// 		label: "View",
+			// 		onClick: () => {
+			// 			alert("Hello");
+			// 		},
+			// 	},
+			// },
+			// {
+			// 	id: 3233,
+			// 	title: "Welcome to Inclume OS",
+			// 	message: "This is a notification with image",
+			// 	muted: true,
+			// 	visualHint: {
+			// 		image: "https://external-preview.redd.it/8-reasons-to-avoid-the-latest-windows-11-update-hint-theyre-v0-5r9jKiru_PTykEpqMk_nUtYBZ0TJGepL3huWTi8qgvE.jpg?auto=webp&s=1cdb83b896a4456b59c7f73cea255f1748f7d9cd",
+			// 	},
+			// 	action: {
+			// 		label: "View",
+			// 		onClick: () => {
+			// 			alert("Hello");
+			// 		},
+			// 	},
+			// },
 			// {
 			// 	id: 2,
 			// 	title: "Welcome to Inclume OS",
@@ -131,9 +137,9 @@ export const NotificationProvider = ({ children }) => {
 	 * @returns void
 	 *
 	 */
-	const showSidebar = () => {
+	const showSidebar = useCallback(() => {
 		setSidebarVisibility(true);
-	};
+	}, []);
 
 	/**
 	 * Hide the sidebar
@@ -141,9 +147,9 @@ export const NotificationProvider = ({ children }) => {
 	 * @returns void
 	 *
 	 */
-	const hideSidebar = () => {
+	const hideSidebar = useCallback(() => {
 		setSidebarVisibility(false);
-	};
+	}, []);
 
 	/**
 	 * Clear all notifications
@@ -151,11 +157,11 @@ export const NotificationProvider = ({ children }) => {
 	 * @returns void
 	 *
 	 */
-	const handleClearAll = () => {
+	const handleClearAll = useCallback(() => {
 		notificationDispatch({
 			type: "REMOVE_ALL",
 		});
-	};
+	}, []);
 
 	/**
 	 * Add a notification
@@ -164,12 +170,12 @@ export const NotificationProvider = ({ children }) => {
 	 * @returns void
 	 *
 	 */
-	const addNotification = (notification) => {
+	const addNotification = useCallback((notification) => {
 		notificationDispatch({
 			type: "ADD",
 			payload: notification,
 		});
-	};
+	}, []);
 
 	return (
 		<NotificationContext.Provider

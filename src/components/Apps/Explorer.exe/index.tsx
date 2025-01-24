@@ -7,16 +7,16 @@ import Button from "@/components/Ui/Buttons/button";
 import { useTranslate } from "@tolgee/react";
 import { useOS } from "@/providers/InclumeOS";
 
-const Explorer = ({ forceRender = false, ...props }) => {
+const Explorer = ({ forceRender = false, defaultContent, ...props }) => {
 	const { openedApps } = useOS();
 	const { currentPath, setPath, getStructure, selectedFile } = useExplorer();
 	const { t } = useTranslate();
 	const { onSave, onSelect, onCancel } = props;
 
-	if (openedApps && openedApps[0] && openedApps[0].defaultContent) {
-		if (openedApps[0].defaultContent === "vacances") {
+	if (defaultContent) {
+		if (defaultContent === "vacances") {
 			setPath({
-				name: "Vacances", 
+				name: "Vacances",
 				type: "folder",
 				createdAt: new Date().toISOString(),
 				updatedAt: new Date().toISOString(),
@@ -24,8 +24,7 @@ const Explorer = ({ forceRender = false, ...props }) => {
 			});
 		}
 	}
-	
-	console.log(getStructure());
+
 	return (
 		<Window
 			appName={"Explorateur de fichier"}
