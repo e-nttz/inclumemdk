@@ -41,7 +41,7 @@ const Actions = () => {
 				}}
 			>
 				<IconDarkMode className="block w-6 h-6 mb-5" />
-				<span>{theme === "dark" ? "Light mode" : "Dark mode"}</span>
+				<span>{theme === "dark" ? "Mode jour" : "Mode nuit"}</span>
 			</button>
 			<button
 				type="button"

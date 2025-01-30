@@ -32,7 +32,7 @@ const Input = memo(
 		}, [editionMode]);
 
 		const buttonValueWithImage = (value: string) => {
-			return value && value.includes("/images/") ? (
+			return value && value.includes("imagekit") ? (
 				<img src={value} alt="" className="w-full h-full" />
 			) : (
 				value

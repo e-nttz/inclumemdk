@@ -281,7 +281,7 @@ export const ExplorerProvider = ({ children }) => {
 			},
 			currentFolderPath = currentPath
 		) => {
-			console.log(content)
+			console.log(currentFolderPath)
 			const randId = Math.random().toString(36).substring(7);
 
 			const newFile: FileNode = {
@@ -302,7 +302,7 @@ export const ExplorerProvider = ({ children }) => {
 				}
 			}
 
-			if(fileType === "xlsx"){
+			if(fileType === "xlsx" && currentFolderPath === "/root/cloud"){
 				content.data.forEach(cellule => {
 					if(cellule.data["value"].toLowerCase().includes("1976")){
 						validationEtape12();
@@ -311,7 +311,7 @@ export const ExplorerProvider = ({ children }) => {
 			}
 			
 			if(fileType === "docx"){
-				if(content.data.toLowerCase().includes("<img")){
+				if(content.data.toLowerCase().includes("<img") && currentFolderPath === "/root/cloud"){
 					validationEtape11();
 				}
 			}

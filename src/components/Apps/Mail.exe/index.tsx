@@ -123,11 +123,6 @@ const Mail: AppProps<MailProps> = () => {
 
   const localStorageKey = `userSession_${session}`;
 
-  const handleResetLocalStorage = () => {
-    resetLocalStorage(session);
-    setMails([]);
-  };
-
   const [mails, setMails] = useState(() => {
     const savedMails = localStorage.getItem(localStorageKey);
     if (savedMails) {
@@ -156,6 +151,27 @@ const Mail: AppProps<MailProps> = () => {
 
   const [isReply, setIsReply] = useState(false);
 
+  const handleMailValidation = (email: string, newContent: string) => {
+    const allowedEmails = ["vincent@inclume.be", "reservation@hotelnamur.be"];
+  
+    if (!allowedEmails.includes(email)) {
+      const errorMail = {
+        id: mails.length + 1,
+        from: "Echec de l'envoi",
+        emailFrom: "echec.envoi@system.com",
+        to: "Moi",
+        emailTo: "moi@inclume.be",
+        title: "Échec de la livraison du message",
+        content: `Le message que vous avez envoyé à "${email}" n'a pas pu être envoyé.\n\nContenu du message:\n"${newContent}"`,
+        hour: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        Folder: "Boîte de réception",
+        files: [],
+      };
+      updateMails([...mails, errorMail]);
+    }
+  };
+
+  
   const handleFolderClick = useCallback((folderName: string) => {
     setNewMessage(false);
     setActiveFolder(folderName);
@@ -265,7 +281,6 @@ const Mail: AppProps<MailProps> = () => {
   }, [activeMail]);
 
   const handleSendMail = useCallback((newContent: string, email: string, title: string, files: { url: string; name: string }[]) => {
-    if (!newContent.trim()) return;
 
     const toEmail = email || (isReply ? activeMail.emailFrom : activeMail.emailTo);
     const emailTitle = title || (isReply ? `${activeMail.title}` : activeMail.title);
@@ -285,7 +300,7 @@ const Mail: AppProps<MailProps> = () => {
       Folder: "Messages envoyés",
       files: files
     };
-
+    
     if(toEmail === "vincent@inclume.be" && files.length > 0){
       validationEtape5()
     }
@@ -303,6 +318,8 @@ const Mail: AppProps<MailProps> = () => {
     }
     const updatedMails = [...mails, newMail];
     updateMails(updatedMails);
+
+    handleMailValidation(toEmail, newContent);
 
     setActiveMail({
       id: null,
@@ -344,7 +361,6 @@ const Mail: AppProps<MailProps> = () => {
               />
             ))}
           </div>
-          <p onClick={handleResetLocalStorage}>Reset</p>
         </div>
 
         <div className="w-3/12 bg-white border-gray-50 border overflow-scroll">
@@ -368,7 +384,7 @@ const Mail: AppProps<MailProps> = () => {
           <MailContent
             newMessageSent={newMessageSent}
             newMessage={newMessage}
-            activeMail={!!activeMail.content}
+            activeMail={!!activeMail.from}
             {...activeMail}
             onDeleteDraft={handleDeleteDraft}
             onDeleteMail={() => handleDeleteMail(activeMail.id!)}

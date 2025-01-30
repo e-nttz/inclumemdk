@@ -215,7 +215,7 @@ const Questionnary = () => {
 									<IconArrowRight className="w-6 h-auto" />
 								</Button>
 
-								<button
+								{/* <button
 									type="button"
 									className="mt-4"
 									disabled={questions.length === 0}
@@ -223,8 +223,8 @@ const Questionnary = () => {
 										setTestStatus("success");
 									}}
 								>
-									Ignorez le test
-								</button>
+									Ignorer le test
+								</button> */}
 							</div>
 						</div>
 					</div>

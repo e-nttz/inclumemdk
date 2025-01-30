@@ -180,12 +180,12 @@ const Browser: AppProps = () => {
 								currentHistoryIndex={currentHistoryIndex}
 							/>
 						))}
-						<NewTabButton
+						{/* <NewTabButton
 							setTabs={setTabs}
 							setCurrentTab={setCurrentTab}
 							setCurrentHistoryTab={setCurrentHistoryTab}
 							setCurrentHistoryIndex={setCurrentHistoryIndex}
-						/>
+						/> */}
 					</nav>
 					<div className="px-1 pb-1">
 						<NavigationBar

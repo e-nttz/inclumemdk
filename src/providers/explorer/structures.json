@@ -168,7 +168,19 @@
 					"extension": ".docx",
 					"slug": "fiche-client.docx",
 					"content": {
-						"data": "<div>Fiche Client - Réservation Hôtel Namur</div><div>Vincent Inclume - Réservation N°1</div><div>Céline - Réservation N°2</div>"
+						"data": "<div><h1 class='text-2xl mb-8'>Fiche Client - Réservation Hôtel Namur</h1></div><div class='mb-4'><p>Bienvenue à l'Hôtel Namur, un établissement offrant confort et élégance au cœur de la ville. Profitez de nos chambres modernes, d'un service exceptionnel et d'un cadre idéal pour votre séjour, que ce soit pour affaires ou pour le plaisir.</p></div><div class='mb-4'><p>📝 Conditions de réservation : </p><p>- L'enregistrement se fait à partir de 15h00 et le départ avant 11h00.</p><p>- Toute annulation doit être effectuée au moins 48 heures avant la date d'arrivée.</p><p>- Un dépôt de garantie peut être demandé lors de l'enregistrement.</p></div><div>📍 Adresse : 12 Rue des Magnolias, 5000 Namur, Belgique</div><div>📞 Téléphone : +32 81 12 34 56</div><div class='mb-4'>📧 Email : reservation@hotelnamur.be</div><div class='mb-4'>-------------------------</div><div>👤 Client 1 :</div><div>Nom : Inclume</div><div class='mb-4'>Prénom : Vincent</div><div> </div><div>👤 Client 2 :</div><div>Nom : </div><div>Prénom : Céline</div>"
+					}
+				},
+				{
+					"name": "Restaurant - La siesta Fiche Info",
+					"type": "file",
+					"createdAt": "2023-10-01T13:45:00Z",
+					"updatedAt": "2023-10-02T20:00:00Z",
+					"path": "fiche-info-la-siesta-docx",
+					"extension": ".docx",
+					"slug": "fiche-info-la-siesta.docx",
+					"content": {
+						"data": "<div><h1 class='text-2xl mb-8'>Fiche Restaurant - La Siesta Oostende</h1></div><div class='mb-4'><p>Bienvenue à <strong>La Siesta Oostende</strong>, un restaurant chaleureux offrant une cuisine raffinée dans une ambiance conviviale. Profitez de nos plats savoureux, préparés avec des ingrédients frais et de qualité, dans un cadre élégant en bord de mer.</p></div><div class='mb-4'><p>🍽️ <strong>Horaires d'ouverture :</strong></p><p>- Lundi - Vendredi : 12h00 - 14h30 / 18h30 - 22h00</p><p>- Samedi : 12h00 - 15h00 / 18h30 - 23h00</p><p>- Dimanche : 12h00 - 15h00 / 18h30 - 22h00</p></div><div class='mb-4'><p>📝 <strong>Informations de réservation :</strong></p><p>- Les réservations sont conseillées, surtout en soirée et le week-end.</p><p>- Toute annulation doit être effectuée au moins 24 heures à l'avance.</p><p>- Un acompte peut être demandé pour les groupes de plus de 6 personnes.</p></div><div>📍 <strong>Adresse :</strong> Rodestraat 24, Oostende, Belgique</div><div>📞 <strong>Téléphone :</strong> +32 59 12 34 56</div><div class='mb-4'>📧 <strong>Email :</strong> reservation@lasiestaoostende.be</div><div class='mb-4'>-------------------------</div><div class='mb-4'><img src='https://ik.imagekit.io/0jngziwft/photos_sites/La%20Siesta%20Oostende.webp' alt='La Siesta Oostende' style='max-width:100%; height:auto;'/></div>"
 					}
 				},
 				{

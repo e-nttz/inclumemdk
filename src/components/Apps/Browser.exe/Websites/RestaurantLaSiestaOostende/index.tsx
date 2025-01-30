@@ -71,16 +71,16 @@ const RestaurantLaSiestaOostende = () => {
 			<section className="py-16 text-center bg-white">
 				<h2 className="text-3xl font-semibold text-green-600">Praktische Informatie</h2>
 				<p className="mt-4 text-gray-700">
-					Adres: <span className="font-bold">Rodenonnenstraat 24, 8400 Oostende</span>
+					Adres: <span className="font-bold">Rodestraat 24, Oostende</span>
 				</p>
 				<p className="mt-2 text-gray-700">
 					Openingstijden: <span className="font-bold">Dinsdag tot zondag 11h30-23h (gesloten dinsdag en vrijdagmiddag)</span>
 				</p>
 				<p className="mt-2 text-gray-700">
-					Telefoon: <button className="text-green-600">+32 476 45 45 45 1</button>
+					Telefoon: <button className="text-green-600">+32 59 12 34 56</button>
 				</p>
 				<p className="mt-2 text-gray-700">
-					E-mail: <button className="text-green-600 underline">lasiesta_oostende@outmail.be</button>
+					E-mail: <button className="text-green-600 underline">reservation@lasiestaoostende.be</button>
 				</p>
 			</section>
 

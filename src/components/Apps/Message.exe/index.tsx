@@ -2,6 +2,7 @@ import { useAuth } from "@/providers/auth";
 import { getLastStep, getNextStep, saveStep } from "@/lib/client/quiz";
 import { ReactElement, FormEvent, useRef, useState, useEffect } from "react";
 import { useTranslate } from "@tolgee/react";
+import AttachmentDocument from "@/assets/icons/mail_attachment.svg"
 
 import Window from "@/components/Os/Window";
 import ContextualBar from "@/components/Os/Window/ContextualBar";
@@ -38,6 +39,7 @@ interface Message {
 const Message: AppProps = (defaultContent) => {
 	const {user, session} = useAuth();
 	const [isCall, setCall] = useState(false);
+	const [isSoundOn, setSoundOn] = useState(true);
 
 	const fetchStepId = async (session, message) => {
 		try {
@@ -122,7 +124,8 @@ const Message: AppProps = (defaultContent) => {
 				},
 			});
 		  }
-		  if(step.id === 38 && message.toLowerCase().includes("salade", "epicee", "épicée", "epicée", "épicee", "epice")){
+		  if(step.id === 38 && 
+			message.toLowerCase().includes("salade", "epicee", "épicée", "epicée", "épicee", "epice")){
 			await saveStep(session, {
 				test_step_template_id: step.id,
 				is_successful: true,
@@ -137,10 +140,22 @@ const Message: AppProps = (defaultContent) => {
 	};
 
 	useEffect(() => {
-		if (defaultContent && defaultContent["props"] && defaultContent["props"][1] && defaultContent["props"][1].defaultContent === true) {
-		  setCall(true);
-		}
-	}, [defaultContent]);
+		const executeCall = async () => {
+			if (defaultContent && defaultContent["props"] && defaultContent["props"][1] && defaultContent["props"][1].defaultContent === true) {
+				// Fonction secondCall directement ici
+				const step = await getNextStep(session);
+				if (step.id === 35 || step.id === 51 || step.id === 55) {
+					setSoundOn(false);
+				}
+				else{
+					setSoundOn(true);
+				}
+				setCall(true);
+			}
+		};
+	
+		executeCall();
+	}, [defaultContent]);	
 	
 	const { t } = useTranslate();
 	const { handleInfoWindow, closeInfoWindow } = useExplorer();
@@ -152,7 +167,6 @@ const Message: AppProps = (defaultContent) => {
 
 	const [isWebcamOn, setWebcamOn] = useState(false);
 	const [isMicOn, setMicOn] = useState(true);
-	const [isSoundOn, setSoundOn] = useState(true);
 	const [messages, setMessages] = useState<Message[]>([
 		{
 		  id: 1,
@@ -189,17 +203,30 @@ const Message: AppProps = (defaultContent) => {
 
 		// If there's an image, send it
 		if (selectedFiles) {
-			beacon("message", {
-				id: Math.random(),
-				sender: 1,
-				content: (
-					<img
-						src={selectedFiles}
-						alt="Pasted image"
-						className="h-auto max-w-full"
-					/>
-				),
-			});
+			if(selectedFiles.includes("image")){
+				beacon("message", {
+					id: Math.random(),
+					sender: 1,
+					content: (
+						<img
+							src={selectedFiles}
+							alt="Pasted image"
+							className="h-auto max-w-full"
+						/>
+					),
+				});
+			}else{
+				beacon("message", {
+					id: Math.random(),
+					sender: 1,
+					content: (
+						<div className="flex items-center">
+							<img src={AttachmentDocument} className="mr-3" alt="" />
+							<p>{selectedFiles}</p>
+						</div>
+					),
+				});
+			}
 
 			// Clear input
 			setSelectedFiles(null);
@@ -233,9 +260,12 @@ const Message: AppProps = (defaultContent) => {
 	 * @returns {void}
 	 *
 	 */
-	const handleFileAttachment = () => {
-		alert("Not implemented yet. A fake image is sent instead.");
-		setSelectedFiles("/images/restaurant.jpg");
+	const handleFileAttachment = (file) => {
+		if(file.content.url){
+			setSelectedFiles(file.content.url);
+		}else{
+			setSelectedFiles(file.name)
+		}
 	};
 
 	// // Mettre étape en raté si délais trop long
@@ -252,7 +282,14 @@ const Message: AppProps = (defaultContent) => {
 			appName={Message.title}
 			contextMenus={isCall === false ? (
 				<ContextualBar.Menu name="Fichiers">
-					<ContextualBar.Item onClick={() => handleFileAttachment()}>
+					<ContextualBar.Item onClick={() => {
+						handleInfoWindow((selected: FileNode) => {
+							if (selected?.url || selected?.name) {
+								handleFileAttachment(selected)
+							}
+							closeInfoWindow();
+						}, undefined);
+					}}>
 						{t("join_file", "Joindre un fichier")}
 					</ContextualBar.Item>
 				</ContextualBar.Menu>
@@ -296,12 +333,20 @@ const Message: AppProps = (defaultContent) => {
 						onSubmit={handleSubmit}
 					>
 						{selectedFiles && (
-							<div className="relative w-20 h-auto overflow-hidden border-2 rounded-lg border-accent dark:border-accent-dark">
-								<img
-									src={selectedFiles}
-									alt="Avatar"
-									className="w-full h-auto"
-								/>
+							<div className="relative w-96 h-auto overflow-hidden border-2 rounded-lg border-accent dark:border-accent-dark">
+								{selectedFiles.includes("imagekit") && (
+									<img
+										src={selectedFiles}
+										alt="Fichier joint"
+										className="h-auto"
+									/>
+								)}
+								{!selectedFiles.includes("imagekit") && (
+									<div className="flex items-center px-2 py-2">
+										<img src={AttachmentDocument} className="mr-3" alt="" />
+										<p>{selectedFiles}</p>
+									</div>
+								)}
 
 								<button
 									type="button"
@@ -353,12 +398,11 @@ const Message: AppProps = (defaultContent) => {
 								<button
 									type="button"
 									className="absolute text-gray-300 -translate-y-1/2 right-4 top-1/2 hover:text-accent dark:hover:text-accent-dark"
-									onClick={async () => {
+									onClick={() => {
 										handleInfoWindow((selected: FileNode) => {
-											if (selected?.url) {
-												setSelectedFiles(selected.url);
+											if (selected?.url || selected?.name) {
+												handleFileAttachment(selected)
 											}
-
 											closeInfoWindow();
 										}, undefined);
 									}}

@@ -52,11 +52,9 @@ const Spreadsheets = () => {
 		setCells(newCells);
 	};
 
-	const addImage = () => {
-		alert("Not implemented yet. A fake image is added instead.");
+	const addImage = (url) => {
 		const newCells = [...cells];
 		let cell = cells.find((cell) => cell.position === currentCell);
-		console.log(cell);
 		if (!currentCell || currentCell === "") {
 			return;
 		}
@@ -71,7 +69,7 @@ const Spreadsheets = () => {
 				},
 			};
 		}
-		cell.data.value = "/images/restaurant.jpg";
+		cell.data.value = url;
 		newCells.push(cell);
 		setCells(newCells);
 	};
@@ -202,7 +200,14 @@ const Spreadsheets = () => {
 						className={classNames(
 							"flex items-center justify-center gap-1 p-1 transition rounded-sm hover:bg-gray-50 hover:bg-opacity-20"
 						)}
-						onClick={addImage}
+						onClick={() => {
+							handleInfoWindow((selected: FileNode) => {
+								if (selected?.url || selected?.name) {
+									addImage(selected.content.url)
+								}
+								closeInfoWindow();
+							}, undefined);
+						}}
 					>
 						<IconImage className="w-4 h-4" />
 						<span aria-hidden="true" className="block text-sm">

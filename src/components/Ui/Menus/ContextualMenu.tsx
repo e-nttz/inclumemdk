@@ -92,53 +92,58 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 			<ContextMenuItem
 				inset
 				onClick={async () => {
-					// If focusedElement is an image, add the image to the clipboard
+					try {
+					// Vérifier si l'élément ciblé est une image
 					if (focusedElement.tagName === "IMG") {
-						// try {
-						// 	setCanvasImage(
-						// 		(focusedElement as HTMLImageElement).src,
-						// 		(imgBlob) => {
-						// 			navigator.clipboard
-						// 				.write([
-						// 					new ClipboardItem({
-						// 						"image/png": imgBlob,
-						// 					}),
-						// 				])
-						// 				.then(() => console.info("Image copied!"))
-						// 				.catch((e) => {
-						// 					console.error(e);
-						// 				});
-						// 		}
-						// 	);
-
-						// 	return;
-						// } catch (error) {
-						// 	console.error(error);
-						// }
-
-						// const imgSrc = (focusedElement as HTMLImageElement).src;
-						// navigator.clipboard.writeText(imgSrc);
-
-						// Copy the image URL without domain name
 						const imgSrc = (focusedElement as HTMLImageElement).src;
 
-						const url = new URL(imgSrc);
-						const pathname = url.pathname;
-
-						navigator.clipboard.writeText(pathname);
-
+						// Copier l'URL relative de l'image (sans domaine)
+						await navigator.clipboard.writeText(imgSrc);
+						console.info("Image URL copiée !");
 						return;
 					}
 
-					// Get selected text
+					if (focusedElement.tagName === "DIV") {
+						const backgroundImage = window.getComputedStyle(focusedElement).backgroundImage;
+				
+						if (backgroundImage && backgroundImage !== 'none') {
+						  // Extraire l'URL du background-image avec une meilleure gestion des espaces et guillemets
+						  const urlMatch = backgroundImage.match(/url\(["']?(.*?)["']?\)/);
+				
+						  if (urlMatch && urlMatch[1]) {
+							let backgroundUrl = urlMatch[1].trim(); // Nettoyage de l'URL
+				
+							// Si l'URL est relative, nous la transformons en URL absolue
+							if (!backgroundUrl.startsWith('http')) {
+							  const baseUrl = window.location.origin; // Utilise l'origine de la page comme base
+							  backgroundUrl = new URL(backgroundUrl, baseUrl).href;
+							}
+				
+							// Copier l'URL relative de l'image de fond (sans domaine)
+							await navigator.clipboard.writeText(backgroundUrl);
+							console.info("URL de l'image de fond copiée !");
+							return;
+						  }
+						}
+					  }
+					  
+					// Sinon, si ce n'est pas une image, copier le texte sélectionné
 					const selection = window.getSelection();
-
-					navigator.clipboard.writeText(selection.toString());
+					if (selection && selection.toString()) {
+						await navigator.clipboard.writeText(selection.toString());
+						console.info("Texte copié !");
+					} else {
+						console.warn("Aucun texte sélectionné !");
+					}
+					} catch (error) {
+					console.error("Erreur lors de la copie :", error);
+					}
 				}}
-			>
+				>
 				{t("copy", "Copier")}
 				<ContextMenuShortcut>⌘C</ContextMenuShortcut>
 			</ContextMenuItem>
+
 			<ContextMenuItem
 				inset
 				onSelect={() => {
@@ -224,7 +229,8 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 			</ContextMenuItem>
 			<ContextMenuItem inset onClick={() => {
 				validationEtape4();
-				if (focusedElement.tagName === "IKImage") {
+				if (focusedElement.tagName === "IMG") {
+					const imgSrc = (focusedElement as HTMLImageElement).src;
 					handleInfoWindow(undefined, (currentPath) => {
 						const fileName = prompt(
 							t("enter_filename", "Entrez le nom du fichier")
@@ -233,14 +239,45 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 							fileName,
 							"png",
 							{
-								url: focusedElement.attributes["src"]["value"],
+								url: imgSrc,
 							},
 							currentPath
 						);
 						closeInfoWindow();
 					});
 				}
-			}}>
+				if (focusedElement.tagName === "DIV") {
+					const backgroundImage = window.getComputedStyle(focusedElement).backgroundImage;
+			
+					if (backgroundImage && backgroundImage !== 'none') {
+					  // Extraire l'URL du background-image avec une meilleure gestion des espaces et guillemets
+					  const urlMatch = backgroundImage.match(/url\(["']?(.*?)["']?\)/);
+			
+					  if (urlMatch && urlMatch[1]) {
+						let backgroundUrl = urlMatch[1].trim(); // Nettoyage de l'URL
+			
+						// Si l'URL est relative, nous la transformons en URL absolue
+						if (!backgroundUrl.startsWith('http')) {
+						  const baseUrl = window.location.origin; // Utilise l'origine de la page comme base
+						  backgroundUrl = new URL(backgroundUrl, baseUrl).href;
+						}
+						handleInfoWindow(undefined, (currentPath) => {
+							const fileName = prompt(
+								t("enter_filename", "Entrez le nom du fichier")
+							);
+							createFile(
+								fileName,
+								"png",
+								{
+									url: backgroundUrl,
+								},
+								currentPath
+							);
+							closeInfoWindow();
+						});
+					}
+				}
+			}}}>
 				{t("download picture", "Télécharger l'image")}
 			</ContextMenuItem>
 			<ContextMenuItem inset onClick={() => setPauseMode(true)}>

@@ -43,17 +43,25 @@ const TextEditor: AppProps<TextEditorProps> = ({ content = "" }) => {
 		console.log(e.target.value);
 	}
 
-	const addImage = () => {
+	const addImage = (url) => {
 		const selection = window.getSelection();
 		const img = document.createElement("img");
-		img.src =
-			"https://images.unsplash.com/photo-1721332150382-d4114ee27eff?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
-		img.className = "h-auto max-w-full";
+		img.src = url;
+		img.className = "h-auto max-w-[50%] inline-block";
+
 		if (selection.rangeCount > 0) {
 			const range = selection.getRangeAt(0);
-			range.insertNode(img);
-			range.collapse(false);
-			setValue(editorRef.current.innerHTML);
+			const startContainer = range.startContainer;
+
+			// Vérifier si le startContainer est un élément HTML avant d'afficher sa className
+			if (startContainer.nodeType === 1) {
+				const element = startContainer as HTMLElement;
+				if(element.className === "rsw-ce"){
+					range.insertNode(img);
+					range.collapse(false);
+					setValue(editorRef.current.innerHTML);
+				}
+			}
 		} else {
 			setValue(value + img.outerHTML);
 		}
@@ -91,11 +99,7 @@ const TextEditor: AppProps<TextEditorProps> = ({ content = "" }) => {
 						>
 							{t("save_file", "Enregistrer le fichier")}
 						</ContextualBar.Item>
-						<ContextualBar.Item
-							onClick={() => {
-								
-							}}
-						>
+						<ContextualBar.Item onClick={() => {}}>
 							{t("settings", "Paramètres")}
 						</ContextualBar.Item>
 					</ContextualBar.Menu>
@@ -103,14 +107,22 @@ const TextEditor: AppProps<TextEditorProps> = ({ content = "" }) => {
 			}
 		>
 			<EditorProvider>
-				<section className="relative flex flex-col flex-1 w-full overflow-auto text-black bg-[#F5F5F5] backdrop-blur dark:bg-black/70">
+				{/* ✅ Ajout de `flex-wrap` pour éviter que l'image ne casse la disposition */}
+				<section className="relative flex flex-row flex-wrap flex-1 w-full overflow-auto text-black bg-[#F5F5F5] backdrop-blur dark:bg-black/70">
 					<Toolbar>
 						<BtnBoldCustom className="flex items-center justify-center p-1 font-bold transition rounded-sm hover:bg-gray-50 hover:bg-opacity-40" />
 						<BtnItalicCustom className="flex items-center justify-center p-1 italic transition rounded-sm hover:bg-gray-50 hover:bg-opacity-40" />
 						<BtnUnderlineCustom className="flex items-center justify-center p-1 underline transition rounded-sm hover:bg-gray-50 hover:bg-opacity-40" />
 						<button
 							className="flex items-center justify-center gap-1 p-1 transition rounded-sm hover:bg-gray-50 hover:bg-opacity-20"
-							onClick={addImage}
+							onClick={() => {
+								handleInfoWindow((selected: FileNode) => {
+									if (selected?.url || selected?.name) {
+                                        addImage(selected.content.url)
+                                    }
+                                    closeInfoWindow();
+                                }, undefined);
+							}}
 						>
 							<IconImage className="w-4 h-4" />
 							<span aria-hidden="true" className="block text-sm">

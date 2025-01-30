@@ -25,8 +25,6 @@ export const apps: Apps = {
 const RenderAllApps = () => {
 	const { openedApps } = useOS();
 
-	console.log(openedApps);
-
 	return (
 		// loop through all apps and render them
 		<>

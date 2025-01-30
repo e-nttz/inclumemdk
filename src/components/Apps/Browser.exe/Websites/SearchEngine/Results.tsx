@@ -6,6 +6,8 @@ import CHOQ from "@/assets/icons/choq.png"
 import Partenaires from "@/assets/icons/partenaires.svg"
 import { useAuth } from "@/providers/auth";
 import { getNextStep, saveStep } from "@/lib/client/quiz";
+import { websites } from "../../Websites";
+
 import ActivitesNamur from "../ActivitesNamur";
 import AntivirusAdvisor from "../AntivirusAdvisor";
 import AntivirusDeals from "../AntivirusDeals";
@@ -203,7 +205,15 @@ const Results = ({ url }: ResultsProps) => {
 
 	return (
 		<div className="absolute inset-0 h-full px-8 py-8 overflow-y-auto bg-white flex">
-		  <div className="logo">
+		  <div className="logo" onClick={() => {
+			beacon("openWebsite", {
+				website: websites.searchEngine,
+				url: "https://gougoule.com"
+			});
+			beacon("triggerStep", {
+				value: "openGougoule",
+			});
+		  }}>
 			<h1 className="mb-8 text-3xl text-[#5A9DFF] font-semibold cursor-pointer">
 			  Gougoule
 			</h1>

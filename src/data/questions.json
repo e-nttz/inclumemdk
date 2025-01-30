@@ -4,22 +4,315 @@
 		"question": "Voici trois informations d’actualité, laquelle/lesquelles de ces informations pourraient être une fake news (fausses informations) ?",
 		"type": "multiple",
 		"display": "image",
-		"answer": [1],
+		"answer": [1, 3],
 		"choices": [
 			{
 				"id": 1,
 				"text": "",
-				"image": "/images/questionnary/questionnaire_question_1_reponse_1.svg"
+				"image": "/images/questionnary/questionnaire_question_1_reponse_1.png"
 			},
 			{
 				"id": 2,
 				"text": "",
-				"image": "/images/questionnary/questionnaire_question_1_reponse_2.svg"
+				"image": "/images/questionnary/questionnaire_question_1_reponse_2.png"
 			},
 			{
 				"id": 3,
 				"text": "",
-				"image": "/images/questionnary/questionnaire_question_1_reponse_3.svg"
+				"image": "/images/questionnary/questionnaire_question_1_reponse_3.png"
+			}
+		]
+	},
+	{
+		"id": 2,
+		"question": "Parmi ces différentes propositions, lesquelles sont réalisables à l’aide d’une application bancaire ?",
+		"type": "multiple",
+		"display": "vertical",
+		"answer": [2, 4],
+		"choices": [
+			{
+				"id": 1,
+				"text": "Réserver des billets de cinéma"
+			},
+			{
+				"id": 2,
+				"text": "Consulter son compte bancaire"
+			},
+			{
+				"id": 3,
+				"text": "Préparer sa déclaration de revenus"
+			},
+			{
+				"id": 4,
+				"text": "Effectuer des virements bancaires"
+			}
+		]
+	},
+	{
+		"id": 3,
+		"question": "Parmi ces différents logos, quel est l'intrus ?",
+		"type": "single",
+		"display": "icon",
+		"answer": [4],
+		"choices": [
+			{
+				"id": 1,
+				"text": "",
+				"image": "/images/questionnary/questionnaire_question_3_reponse_1.png"
+			},
+			{
+				"id": 2,
+				"text": "",
+				"image": "/images/questionnary/questionnaire_question_3_reponse_2.png"
+			},
+			{
+				"id": 3,
+				"text": "",
+				"image": "/images/questionnary/questionnaire_question_3_reponse_3.png"
+			},
+			{
+				"id": 4,
+				"text": "",
+				"image": "/images/questionnary/teams.png"
+			}
+		]
+	},
+	{
+		"id": 4,
+		"question": "Vous recevez un appel d’un employé Facebook, il vous demande de lui donner vos identifiants Facebook (mail et mot de passe), que faites-vous ?",
+		"type": "single",
+		"display": "vertical",
+		"answer": [3],
+		"choices": [
+			{
+				"id": 1,
+				"text": "J’accepte de lui fournir mes identifiants"
+			},
+			{
+				"id": 2,
+				"text": "Je demande le nom et le numéro d’identification de l’employé Facebook"
+			},
+			{
+				"id": 3,
+				"text": "Je refuse de fournir mes identifiants"
+			}
+		]
+	},
+	{
+		"id" : 5,
+		"question" : "Comment prévenir son employeur d'une absence au travail ?",
+		"type" : "single",
+		"display" : "image",
+		"answer" : [2],
+		"choices" : [
+			{
+				"id" : 1,
+				"image" : "/images/questionnary/questionnaire_question_5_reponse_1.png"
+			},
+			{
+				"id" : 2,
+				"image" : "/images/questionnary/questionnaire_question_5_reponse_2.png"
+			},
+			{
+				"id" : 3,
+				"image" : "/images/questionnary/questionnaire_question_5_reponse_3.png"
+			}
+		]
+	},
+	{
+		"id" : 6,
+		"question" : "Voici plusieurs images, selon vous, lesquelles sont libres de droit (sans droit d’auteur) ?",
+		"type" : "multiple",
+		"display" : "image",
+		"answer" : [3,4],
+		"choices" : [
+			{
+				"id" : 1,
+				"image" : "/images/questionnary/questionnaire_question_6_reponse_1.png"
+			},
+			{
+				"id" : 2,
+				"image" : "/images/questionnary/questionnaire_question_6_reponse_2.png"
+			},
+			{
+				"id" : 3,
+				"image" : "/images/questionnary/questionnaire_question_6_reponse_3.png"
+			},
+			{
+				"id" : 4,
+				"image" : "/images/questionnary/questionnaire_question_6_reponse_4.png"
+			}
+		]
+	},
+	{
+		"id" : 7,
+		"question" : "Voici les références bibliographiques/les sources d’un travail de fin d’étude, selon vous, laquelle de ces références est correcte ?",
+		"type" : "single",
+		"display" : "vertical",
+		"answer" : [3],
+		"choices" : [
+			{
+				"id" : 1,
+				"text" : "Lefebvre, Antoine. \"Fracture Numérique.\" Revue Informatique et Société, vol. 12, no. 4, 2018."
+			},
+			{
+				"id" : 2,
+				"text" : "Lefebvre, Antoine. \"Analyse des Enjeux Sociétaux et Propositions de Solutions.\" Revue Informatique et Société, 2018."
+			},
+			{
+				"id" : 3,
+				"text" : "Lefebvre, Antoine. \"Fracture Numérique : Analyse des Enjeux Sociétaux et Propositions de Solutions.\" Revue Informatique et Société, vol. 12, no. 4, 2018, pp. 67-82."
+			},
+			{
+				"id" : 4,
+				"text" : "Lefebvre, Antoine. \"Fracture Numérique.\" Revue Informatique et Société."
+			}
+		]
+	},
+	{
+		"id" : 8,
+		"question" : "Dans ces lignes de code Javascript, quelle est la ligne de code qui affichera “Bonjour à tous” dans la console du navigateur sans erreur ?",
+		"type" : "single",
+		"display" : "vertical",
+		"answer" : [2],
+		"choices" : [
+			{
+				"id" : 1,
+				"text" : "console.log(Bonjour à tous)"
+			},
+			{
+				"id" : 2,
+				"text" : "console.log (texte + “ à tous”)"
+			},
+			{
+				"id" : 3,
+				"text" : "console.log (“bonjour à tous) "
+			}
+		]
+	},
+	{
+		"id" : 9,
+		"question" : "Vous êtes en vacances en Espagne et vous essayez de vous connecter à votre boîte mail. Soudainement, vous recevez cette notification. Que faites-vous? ",
+		"type" : "single",
+		"display" : "vertical",
+		"answer" : [2],
+		"choices" : [
+			{
+				"id" : 1,
+				"text" : "Autoriser"
+			},
+			{
+				"id" : 2,
+				"text" : "Refuser"
+			}
+		]
+	},
+	{
+		"id" : 10,
+		"question" : "L’usage intensif des écrans est-il recommandé par les médecins ? ",
+		"type" : "single",
+		"display" : "vertical",
+		"answer" : [2],
+		"choices" : [
+			{
+				"id" : 1,
+				"text" : "Oui"
+			},
+			{
+				"id" : 2,
+				"text" : "Non"
+			},
+			{
+				"id" : 3,
+				"text" : "Non, sauf si des précautions sont prises (lunettes adaptées aux écrans)"
+			}
+		]
+	},
+	{
+		"id" : 11,
+		"question" : "Dans quelle position devriez-vous vous tenir lorsque vous utilisez un ordinateur ?",
+		"type" : "single",
+		"display" : "image",
+		"answer" : [4],
+		"choices" : [
+			{
+				"id" : 1,
+				"image" : "/images/questionnary/questionnaire_question_11_reponse_1.png"
+			},
+			{
+				"id" : 2,
+				"image" : "/images/questionnary/questionnaire_question_11_reponse_2.png"
+			},
+			{
+				"id" : 3,
+				"image" : "/images/questionnary/questionnaire_question_11_reponse_3.png"
+			},
+			{
+				"id" : 4,
+				"image" : "/images/questionnary/questionnaire_question_11_reponse_4.png"
+			}
+		]
+	},
+	{
+		"id" : 12,
+		"question" : "Parmi ces propositions, lesquelles vous semblent correctes ?",
+		"type" : "multiple",
+		"display" : "vertical",
+		"answer" : [1,3],
+		"choices" : [
+			{
+				"id" : 1,
+				"text" : "Travailler depuis chez soi grâce à Internet réduit les voyages en voiture, ce qui diminue la pollution."
+			},
+			{
+				"id" : 2,
+				"text" : "Les smartphones rechargés à l'énergie solaire éliminent complètement les émissions de carbone, rendant leur utilisation totalement neutre pour l'environnement."
+			},
+			{
+				"id" : 3,
+				"text" : "La fabrication et le jet des appareils électroniques comme les téléphones portables nécessitent beaucoup de ressources naturelles."
+			},
+			{
+				"id" : 4,
+				"text" : "Les publicités en ligne encouragent les comportements écologiques en offrant des récompenses virtuelles pour les actions durables."
+			}
+		]
+	},
+	{
+		"id" : 13,
+		"question" : "Avez-vous déjà suivi une formation en informatique/numérique ?",
+		"type" : "single",
+		"display" : "vertical",
+		"answer" : [2],
+		"choices" : [
+			{
+				"id" : 1,
+				"text" : "Non"
+			},
+			{
+				"id" : 2,
+				"text" : "Oui"
+			}
+		]
+	},
+	{
+		"id" : 14,
+		"question" : "Combien de formations avez-vous suivi ?",
+		"type" : "single",
+		"display" : "vertical",
+		"answer" : [1,2,3],
+		"choices" : [
+			{
+				"id" : 1,
+				"text" : "Une"
+			},
+			{
+				"id" : 2,
+				"text" : "Deux"
+			},
+			{
+				"id" : 3,
+				"text" : "Plus de deux"
 			}
 		]
 	}

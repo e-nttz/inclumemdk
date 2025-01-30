@@ -11,6 +11,7 @@ import { useEffect, useRef, useState } from "react";
 import { useOS } from "@/providers/InclumeOS";
 import TextEditor from "../../TextEditor.exe";
 import ChildVirus from "../../ChildVirus.exe";
+import Spreadsheets from "../../Spreadsheets.exe";
 import ChildVirusIcon from "@/assets/icons/app-antivirus.svg?react";
 
 interface FileItemProps {
@@ -28,6 +29,7 @@ const getAppToOpen = async (file: FileNode): Promise<App | null> => {
 	const app = {
 		".docs,.docx,.doc": TextEditor,
 		".exe": ChildVirus,
+		".xlsx" : Spreadsheets,
 	};
 
 	const extension = file.extension;
@@ -50,7 +52,7 @@ const getAppToOpen = async (file: FileNode): Promise<App | null> => {
 
 const FileItem = ({ file, complete = false }: FileItemProps) => {
 	const { setPath, getMainFolder, rename, setSelectedFile } = useExplorer();
-	const { launchApp } = useOS();
+	const { launchApp, openedApps } = useOS();
 
 	const renameRef = useRef<HTMLInputElement>(null);
 	const [showRename, setShowRename] = useState<boolean>(false);
@@ -85,14 +87,21 @@ const FileItem = ({ file, complete = false }: FileItemProps) => {
 		>
 			<button
 				onDoubleClick={async () => {
+					console.log(openedApps);
+				
 					if (file.type === "folder" && !showRename) {
 						setPath(file);
 						setSelectedFile(null);
 					} else if (file.type === "file" && !showRename) {
-						const appToOpen = await getAppToOpen(file);
-
-						if (appToOpen) {
-							launchApp(appToOpen);
+						// Vérifiez si "Explorateur de fichier" est déjà dans openedApps
+						const isExplorerOpen = openedApps.some(app => app.title === "Explorateur de fichier");
+				
+						if (isExplorerOpen) {
+							const appToOpen = await getAppToOpen(file);
+				
+							if (appToOpen) {
+								launchApp(appToOpen);
+							}
 						}
 					}
 				}}

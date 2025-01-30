@@ -51,22 +51,45 @@ const NavigationBar = ({
 
 	const handleUrlSubmit = (e: FormEvent) => {
 		e.preventDefault();
+	  
+		let isUrlFound = false;
+	  
+		// Parcours des sites et pages
 		Object.keys(websites).map((key) => {
-			const website = websites[key] as WebsiteProps;
-			website.pages.map((page) => {
-				if (page.url === inputValue) {
-					beacon("openWebsite", {
-						website,
-						url: inputValue,
-					});
-					beacon("triggerStep", {
-						value: "openGougoule",
-					});
-				}
-			});
+		  const website = websites[key] as WebsiteProps;
+		  website.pages.map((page) => {
+			// Si l'URL entrée correspond à une URL d'un site
+			if (page.url === inputValue) {
+			  isUrlFound = true;
+			  console.log("Site trouvé :", website);
+	  
+			  // Ouvre le site correspondant
+			  beacon("openWebsite", {
+				website,
+				url: inputValue,
+			  });
+			  beacon("triggerStep", {
+				value: "openWebsite", // Ou toute autre étape selon ton besoin
+			  });
+			}
+		  });
 		});
+	  
+		// Si aucune correspondance n'a été trouvée, on effectue une recherche sur Gougoule
+		if (!isUrlFound) {
+			beacon("openWebsite", {
+				website: websites.searchEngine, // On utilise "SearchEngine" ici
+				url: `https://gougoule.com/?search=${inputValue}`,
+			});
+			beacon("triggerStep", {
+				value: "openGougoule",
+			});
+		}
+	  
+		// Retirer le focus du champ de saisie
 		inputRef.current?.blur();
-	};
+	  };
+	  
 
 	const inputRef = useRef<HTMLInputElement>(null);
 
@@ -117,7 +140,7 @@ const NavigationBar = ({
 					type="text"
 					placeholder="Effectuez une recherche"
 					className="w-full p-2 pl-12 transition rounded-full h-9 focus-visible:outline-accent bg-[#1265AF12] bg-opacity-[0.07] placeholder:text-sm placeholder:text-black placeholder:text-opacity-60"
-					value={inputValue || tab.history[currentHistoryIndex].url}
+					value={inputValue}
 					onChange={handleInputChange}
 					ref={inputRef}
 				/>

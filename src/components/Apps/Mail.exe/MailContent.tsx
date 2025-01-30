@@ -9,7 +9,7 @@ import DeleteAttachment from "@/assets/icons/cross_close.svg"
 import DownloadAttachment from "@/assets/icons/download_attachment.svg"
 import { useState, useRef } from "react";
 import { useExplorer } from "@/providers/explorer";
-
+import { useOS } from "@/providers/InclumeOS";
 
 interface MailContentProps {
     activeMail?: boolean;
@@ -66,7 +66,14 @@ const MailContent = ({
             onSend(newContent, editableEmailTo, editableTitle, selectedFiles);
         }
     };
-
+    const { setOpenedApps, openedApps } = useOS();
+    const removeApp = (titleToRemove: string) => {
+        const openedAppsCopy = [...openedApps];
+        // Filtrer le tableau pour retirer l'application avec le title correspondant
+        const updatedApps = openedAppsCopy.filter((app) => app.title !== titleToRemove);
+        // Mettre à jour l'état avec le tableau filtré
+        setOpenedApps(updatedApps);
+    };
     return (
         <>
             {!activeMail && !newMessage && !newMessageSent && (
@@ -187,7 +194,7 @@ const MailContent = ({
                     </div>
 
                     {/* rédaction */}
-                    <div className="redactionMessage overflow-scroll w-full h-[65%] mt-[20px] outline-none" contentEditable ref={contentRef}>
+                    <div className="redactionMessage overflow-x-hidden overflow-y-scroll w-full h-[65%] mt-[20px] outline-none" contentEditable ref={contentRef}>
                         {content || ""}
                     </div>
 
@@ -230,6 +237,7 @@ const MailContent = ({
                             </div>
                             <div className="flex items-center mr-6 cursor-pointer"
                             onClick={async () => {
+                                removeApp("Explorateur de fichier")
                                 handleInfoWindow((selected: FileNode) => {
                                     if (selected?.url || selected?.name) {
                                         setSelectedFiles((prevFiles) => [
@@ -274,7 +282,7 @@ const MailContent = ({
                     </div>
 
                     {/* rédaction */}
-                    <div className="redactionMessage overflow-scroll w-full h-[70%] mt-[20px] outline-none whitespace-pre-line" contentEditable ref={contentRef}>
+                    <div className="redactionMessage overflow-x-hidden overflow-y-scroll w-full h-[70%] mt-[20px] outline-none whitespace-pre-line" contentEditable ref={contentRef}>
                         <p>
                             {`
 
@@ -331,6 +339,8 @@ const MailContent = ({
                             </div>
                             <div className="flex items-center mr-6 cursor-pointer"
                             onClick={async () => {
+                                removeApp("Explorateur de fichier")
+                                
                                 handleInfoWindow((selected: FileNode) => {
                                     if (selected?.url || selected?.name) {
                                         setSelectedFiles((prevFiles) => [
