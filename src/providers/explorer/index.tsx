@@ -7,6 +7,8 @@ import { getLocalSession, storeLocalSession } from "@/helpers/storage";
 import { addFileToFolder, addFolderToFolder } from "@/helpers/file";
 import { slugify } from "@/helpers/sanitize";
 import Explorer from "@/components/Apps/Explorer.exe";
+import { beacon } from "@/helpers/beacon";
+import { useNotification } from "@/providers/notifications";
 
 export const ExplorerContext = createContext<ExplorerContextType>({
 	currentPath: "/root",
@@ -27,6 +29,7 @@ export const ExplorerContext = createContext<ExplorerContextType>({
 
 export const ExplorerProvider = ({ children }) => {
 	const { session } = useAuth();
+	const {addNotification} = useNotification();
 	const validationEtape6 = async () =>{
 		const step = await getNextStep(session);
 		if (step.id === 8 || step.id === 45 || step.id === 59 || step.id === 9 || step.id === 44) {
@@ -34,6 +37,34 @@ export const ExplorerProvider = ({ children }) => {
 				test_step_template_id: step.id,
 				is_successful: true,
 			});
+			if(step.id === 44){
+				setTimeout(() => {
+					beacon("message", {
+						id: Math.random(),
+						sender: 0,
+						content: "Salut, c’est encore moi, nous avons mal organisé nos vacances... Pourrais tu regarder sur internet quelles sont les activités disponibles dans le ville de Namur et nous envoyer ce que tu as trouvé par message?",
+					});
+					addNotification({
+						title: "Nouveau message !",
+						message:
+							"<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+						});
+				}, 5000)
+			}
+			if(step.id === 9 || step.id === 59){
+				setTimeout(() => {
+					beacon("message", {
+						id: Math.random(),
+						sender: 0,
+						content: "Nous aimerions bien faire une activité mais nous devons envoyer un fichier word pour confirmer notre inscription, avec nos noms, prénoms et photos d’identité. Tu trouveras les photos d’identité dans le dossier “vacances”. Peux-tu l’enregistrer sur mon cloud? Je pourrais l’avoir directement sur mon téléphone.",
+					});
+					addNotification({
+						title: "Nouveau message !",
+						message:
+							"<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+					});
+				}, 5000)
+			}
 		}
 	}
 	const validationEtape11 = async () =>{
@@ -43,6 +74,20 @@ export const ExplorerProvider = ({ children }) => {
 				test_step_template_id: step.id,
 				is_successful: true,
 			});
+			if(step.id === 15 || step.id === 53){
+				setTimeout(() => {
+					beacon("message", {
+						id: Math.random(),
+						sender: 0,
+						content: "Super merci pour l’envoi du document mais le centre nous demande d’envoyer nos informations sous forme d’un tableau. Mais ce n’est pas la peine de remettre les photos d’identité. Voici les informations à ajouter : Inclume, Vincent, 03/09/1976 et Celine, Dupont, 25/04/1983. Peux-tu enregistrer le fichier sur “mon cloud” ?",
+					});
+					addNotification({
+						title: "Nouveau message !",
+						message:
+							"<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+					});
+				}, 5000)
+			}
 		}
 	}
 	const validationEtape12 = async () =>{
@@ -56,8 +101,6 @@ export const ExplorerProvider = ({ children }) => {
 	}
 	const [currentPath, setCurrentPath] = useState("/root");
 	const [selectedFile, _setSelectedFile] = useState<FileNode | null>(null);
-
-	console.log("ExplorerProvider", selectedFile);
 
 	const setSelectedFile = (file: FileNode) => {
 		_setSelectedFile(file);
@@ -281,7 +324,6 @@ export const ExplorerProvider = ({ children }) => {
 			},
 			currentFolderPath = currentPath
 		) => {
-			console.log(currentFolderPath)
 			const randId = Math.random().toString(36).substring(7);
 
 			const newFile: FileNode = {

@@ -52,7 +52,7 @@ const FaceTime = () => {
 						<header className="mx-auto mb-4 text-center">
 							<figure className="mx-auto mb-4 overflow-hidden rounded-full w-28 aspect-square">
 								<img
-									src="/images/avatar-message.jpg"
+									src="/images/avatar-message.png"
 									alt="Avatar"
 									className="object-cover w-full h-full"
 								/>

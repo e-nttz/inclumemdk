@@ -18,7 +18,6 @@ const Questionnary = () => {
 	const { addNotification } = useNotification();
 	const { t } = useTranslate();
 	const { launchApp } = useOS();
-	console.log(apps)
 	const { user, setTestStatus, session } = useAuth();
 
 	const welcomeRef = useRef<HTMLDivElement>(null);

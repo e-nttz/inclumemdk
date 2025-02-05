@@ -33,14 +33,12 @@ const TextEditor: AppProps<TextEditorProps> = ({ content = "" }) => {
 		(x) => x[1].title === TextEditor.title
 	);
 
-	console.log(appData?.[1]?.defaultContent);
 
 	const [value, setValue] = useState(appData?.[1]?.defaultContent || content);
 	const editorRef = useRef(null);
 
 	function onChange(e) {
 		setValue(e.target.value);
-		console.log(e.target.value);
 	}
 
 	const addImage = (url) => {

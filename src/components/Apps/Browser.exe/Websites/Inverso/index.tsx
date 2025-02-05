@@ -1,8 +1,8 @@
-import { useState } from "react";
 import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
 import { IKContext, IKImage } from "imagekitio-react";
 import { useAuth } from "@/providers/auth";
 import { getNextStep, saveStep } from "@/lib/client/quiz";
+import { useState } from "react";
 
 const translations = {
   "dagelijks": "quotidien",
@@ -107,7 +107,7 @@ const Inverso = () => {
               {copySuccess && <p className="text-green-600 mt-2">✅ Copié !</p>}
             </div>
           </div>
-        </section>
+      </section>
 
 	  <section className="py-16 text-center">
 			<IKImage

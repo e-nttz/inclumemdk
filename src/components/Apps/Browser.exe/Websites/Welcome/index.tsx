@@ -2,7 +2,7 @@ import IconBrowser from "@/assets/icons/app-browser.svg?react";
 import SearchEngine from "../SearchEngine";
 import BngBanque from "../BngBanque";
 import ButtonWebsite from "./ButtonWebsite";
-
+import { beacon } from "@/helpers/beacon";
 const Welcome: Website = () => {
 	return (
 		<div className="absolute inset-0 px-8 py-8">

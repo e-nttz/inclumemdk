@@ -4,12 +4,12 @@ import { XMarkIcon } from "@heroicons/react/24/solid";
 
 import React from "react";
 
-const Notification = ({ message, temporary = true }: NotificationInterface) => {
+const Notification = ({ title, message, temporary = true }: NotificationInterface) => {
 	const [show, setShow] = React.useState<boolean>(true);
 	const NotificationRef = React.useRef<HTMLDivElement | null>(null);
 	const NotificationRefTimer = React.useRef<HTMLDivElement | null>(null);
 
-	const NotificationDuration = 10000;
+	const NotificationDuration = 20000;
 
 	const { showSidebar } = useNotification();
 
@@ -81,8 +81,9 @@ const Notification = ({ message, temporary = true }: NotificationInterface) => {
 						</div>
 					</div>
 
-					<div className="flex items-start">
-						<div className="flex-1 w-0 ">
+					<div className="flex flex-col">
+						<div className="flex-1 flex flex-col w-full ">
+							<h3 className="text-lg font-semibold">{title}</h3>
 							{message && (
 								<p
 									className="mt-1 text-sm dark:text-white line-clamp-3"

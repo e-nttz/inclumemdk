@@ -87,7 +87,6 @@ const FileItem = ({ file, complete = false }: FileItemProps) => {
 		>
 			<button
 				onDoubleClick={async () => {
-					console.log(openedApps);
 				
 					if (file.type === "folder" && !showRename) {
 						setPath(file);
@@ -209,10 +208,10 @@ const FileItemWrapper = ({
 							label: "Renommer",
 							action: () => setShowRename(true),
 						},
-						{
-							label: "Supprimer",
-							action: () => console.log("Delete" + file.slug),
-						},
+						// {
+						// 	label: "Supprimer",
+						// 	action: () => console.log("Delete" + file.slug),
+						// },
 					]}
 				/>
 			</ContextMenuTrigger>

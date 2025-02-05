@@ -16,7 +16,7 @@ export const apps: Apps = {
 	message: Message,
 	browser: Browser,
 	explorer: Explorer,
-	stylesheets: Spreadsheets,
+	spreadSheets: Spreadsheets,
 	textEditor: TextEditor,
 	mail: Mail,
 	childVirus: ChildVirus,

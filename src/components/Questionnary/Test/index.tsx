@@ -120,7 +120,6 @@ const Test = ({
 
 		setCurrentQuestionId(nextQuestionId);
 		setQuestionCounter(questionCounter + 1);
-		console.log(nextQuestionId);
 	};
 
 	if (!question) {
@@ -141,7 +140,7 @@ const Test = ({
 						Question {questionCounter}
 					</p>
 
-					<h1 className="text-3xl font-bold" onClick={() => console.log(question)}>{question.question}</h1>
+					<h1 className="text-3xl font-bold">{question.question}</h1>
 				</div>
 
 				{question.id === 25 && (
@@ -232,7 +231,7 @@ const Test = ({
 					)
 				}>
 					{question.id === 26 && (
-								<img src="/images/questionnary/questionnaire_question_10_element.svg" alt="Image représentant une notification de localisation sur téléphone" className="w-72"/>
+								<img src="/images/questionnary/questionnaire_question_10_element.png" alt="Image représentant une notification de localisation sur téléphone" className="w-72"/>
 					)}
 
 					<form

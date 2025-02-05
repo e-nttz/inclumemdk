@@ -6,12 +6,14 @@ import { useExplorer } from "@/providers/explorer";
 import Button from "@/components/Ui/Buttons/button";
 import { useTranslate } from "@tolgee/react";
 import { useOS } from "@/providers/InclumeOS";
+import { useState } from "react";
 
 const Explorer = ({ forceRender = false, defaultContent, ...props }) => {
 	const { openedApps } = useOS();
 	const { currentPath, setPath, getStructure, selectedFile } = useExplorer();
 	const { t } = useTranslate();
 	const { onSave, onSelect, onCancel } = props;
+	const [fileName, setFileName] = useState("");
 
 	if (defaultContent) {
 		if (defaultContent === "vacances") {
@@ -43,7 +45,13 @@ const Explorer = ({ forceRender = false, defaultContent, ...props }) => {
 				</div>
 
 				{(onSave || onSelect) && (
-					<div className="flex items-center justify-end gap-2 px-3 py-3 bg-[#F7F7F7] dark:bg-gray-900">
+					<div className="bg-[#F7F7F7] dark:bg-gray-900 flex items-center justify-end">
+						<div>
+							<input type="text" id="inputSaveFile" value={fileName} placeholder="Insérez le nom du fichier" className="w-96 border border-[#] py-2 px-4 rounded-xl" onChange={(e) => {
+								setFileName(e.target.value)
+							}}/>
+						</div>
+						<div className="flex items-center justify-end gap-2 px-3 py-3">
 						<Button onClick={onCancel} size="sm" theme="secondary">
 							{t("cancel", "Annuler")}
 						</Button>
@@ -65,6 +73,7 @@ const Explorer = ({ forceRender = false, defaultContent, ...props }) => {
 								{t("confirm", "Confirmer")}
 							</Button>
 						)}
+					</div>
 					</div>
 				)}
 			</div>

@@ -24,6 +24,7 @@ import WebcamOn from "@/assets/icons/webcam_on.svg"
 import MicOff from "@/assets/icons/mic_off.svg"
 import MicOn from "@/assets/icons/mic_on.svg"
 import WebcamImage from "@/assets/icons/webcam.jpg"
+import { useNotification } from "@/providers/notifications";
 
 interface AppProps extends React.FC {
 	title: string;
@@ -40,16 +41,13 @@ const Message: AppProps = (defaultContent) => {
 	const {user, session} = useAuth();
 	const [isCall, setCall] = useState(false);
 	const [isSoundOn, setSoundOn] = useState(true);
+	const {addNotification } = useNotification();
 
+	const [videoLink, setVideoLink] = useState("https://ik.imagekit.io/0jngziwft/Appels%20/Appel%20vid%C3%A9o%20%C3%A9tape%201.mp4")
 	const fetchStepId = async (session, message) => {
 		try {
 		  const step = await getNextStep(session);
 		  if(step.id === 1){
-			if(message === "appel"){
-				beacon("call", {
-					status: "incoming",
-				})
-			}
 			if(message === "raté"){
 				await saveStep(session, {
 					test_step_template_id: step.id,
@@ -59,6 +57,7 @@ const Message: AppProps = (defaultContent) => {
 					},
 				});
 			}
+			setVideoLink("https://ik.imagekit.io/0jngziwft/Appels%20/Appel%20%C3%A9tape%2013.mp4?updatedAt=1738239549967")
 		  }
 		  if (step.id === 2) {
 			if(message){
@@ -69,6 +68,19 @@ const Message: AppProps = (defaultContent) => {
 						"message" : message,
 					},
 				});
+				
+				setTimeout(() => {
+					beacon("message", {
+						id: Math.random(),
+						sender: 0,
+						content: "Désolé de t’embêter, nous sommes dans la bonne rue mais nous ne trouvons pas le bâtiment. Pourrais-tu m’envoyer une photo du bâtiment par mail à l’adresse : vincent@inclume.be ?",
+					});
+					addNotification({
+						title: "Nouveau message !",
+						message:
+							"<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+					});
+				}, 5000)
 			}
 		  }
 		//   Etape 2 bis
@@ -82,6 +94,18 @@ const Message: AppProps = (defaultContent) => {
 						"message" : message,
 					},
 				});
+				setTimeout(() => {
+					beacon("message", {
+						id: Math.random(),
+						sender: 0,
+						content: "Je viens de me rappeler que dans mon dossier “vacances”, il y a un fichier “info resto” avec toutes les informations sur ce restaurant, peux-tu me l’envoyer par mail? Mon adresse est vincent@inclume.be.",
+					});
+					addNotification({
+						title: "Nouveau message !",
+						message:
+							"<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+					});
+				}, 5000)
 			}
 			if(message === "raté"){
 				await saveStep(session, {
@@ -102,6 +126,18 @@ const Message: AppProps = (defaultContent) => {
 							"message" : message,
 						},
 					});
+					setTimeout(() => {
+						beacon("message", {
+							id: Math.random(),
+							sender: 0,
+							content: "Nous aimerions bien faire une activité mais nous devons envoyer un fichier word pour confirmer notre inscription, avec nos noms, prénoms et photos d’identité. Tu trouveras les photos d’identité dans le dossier “vacances”. Peux-tu l’enregistrer sur mon cloud? Je pourrais l’avoir directement sur mon téléphone.",
+						});
+						addNotification({
+							title: "Nouveau message !",
+							message:
+								"<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+						});
+					}, 5000)
 				}
 			}
 		  if(step.id === 39){
@@ -301,7 +337,7 @@ const Message: AppProps = (defaultContent) => {
 						<div className="flex flex-row items-center gap-2">
 							<figure className="w-12 overflow-hidden rounded-full aspect-square">
 								<Image
-									src="/images/avatar-message.jpg"
+									src="/images/avatar-message.png"
 									alt="Avatar"
 									className="object-cover w-full h-full"
 								/>
@@ -338,7 +374,7 @@ const Message: AppProps = (defaultContent) => {
 									<img
 										src={selectedFiles}
 										alt="Fichier joint"
-										className="h-auto"
+										className="h-auto "
 									/>
 								)}
 								{!selectedFiles.includes("imagekit") && (
@@ -428,8 +464,12 @@ const Message: AppProps = (defaultContent) => {
 			{isCall === true && (
 				<section className="bg-black w-full h-full flex justify-center">
 					{/* Référence pour la vidéo */}
-					<video autoPlay loop ref={videoRef} muted={!isSoundOn}>
-						<source src="https://ik.imagekit.io/0jngziwft/appel_1.mp4" />
+					<video autoPlay ref={videoRef} muted={!isSoundOn} onEnded={() => {
+						setTimeout(() => {
+							setCall(false)
+						},1500)
+					}}>
+						<source src={videoLink} />
 					</video>
 					<div className="options flex justify-between absolute bottom-4 w-60">
 						<div

@@ -15,6 +15,8 @@ import NewMessage from "@/assets/icons/mail_newmessage.svg";
 import { getMailsFromLocalStorage, saveMailsToLocalStorage, resetLocalStorage } from "@/utils/localeStorage";
 import { getNextStep, saveStep } from "@/lib/client/quiz";
 import { useAuth } from "@/providers/auth";
+import { beacon } from "@/helpers/beacon";
+import { useNotification } from "@/providers/notifications";
 
 interface AppProps<T> extends React.FC<T> {
   title: string;
@@ -28,7 +30,7 @@ interface MailProps {
 
 const Mail: AppProps<MailProps> = () => {
   const { user, setTestStatus, session } = useAuth();
-
+  const {addNotification} = useNotification();
   const { openedApps } = useOS();
   const appData: any = Object.entries(openedApps).find(
     (x) => x[1].title === Mail.title
@@ -40,6 +42,18 @@ const Mail: AppProps<MailProps> = () => {
         test_step_template_id: step.id,
         is_successful: true,
       });
+      setTimeout(() => {
+        beacon("message", {
+          id: Math.random(),
+          sender: 0,
+          content: "Super, merci pour la photo nous avons trouvé le resto ! Sur le pc de la maison, il y’a un dossier “vacances”. Tu y trouveras la fiche client que je devais compléter pour notre réservation à l’hôtel mais j’ai totalement oublié d’ajouter le nom de famille de mon amie Céline. Pourrais-tu ajouter “Dupont” au document et l’envoyer par mail à l’hôtel. Avant de l’envoyer, peux-tu enregistrer le fichier en le renommant “dupont” ? L’adresse mail de l’hôtel est enregistrée dans mes contacts sous le nom de “hôtel namur”.",
+        });
+        addNotification({
+          title: "Nouveau message !",
+          message:
+            "<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+        });
+      }, 5000)
     }
   };
   const validationEtape7 = async () =>{
@@ -64,6 +78,18 @@ const Mail: AppProps<MailProps> = () => {
           test_step_template_id: step.id,
           is_successful: true,
         });
+        setTimeout(() => {
+          beacon("message", {
+              id: Math.random(),
+              sender: 0,
+              content: "Salut, c’est encore moi, nous avons mal organisé nos vacances... Pourrais tu regarder sur internet quelles sont les activités disponibles dans le ville de Namur et nous envoyer ce que tu as trouvé par mail?",
+          });
+          addNotification({
+              title: "Nouveau message !",
+              message:
+                  "<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+          });
+      }, 5000)
         await saveStep(session, {
           test_step_template_id: 12,
           is_successful: true,
@@ -77,6 +103,18 @@ const Mail: AppProps<MailProps> = () => {
           test_step_template_id: step.id,
           is_successful: true,
         });
+        setTimeout(() => {
+          beacon("message", {
+              id: Math.random(),
+              sender: 0,
+              content: "Nous aimerions bien faire une activité mais nous devons envoyer un fichier word pour confirmer notre inscription, avec nos noms, prénoms et photos d’identité. Tu trouveras les photos d’identité dans le dossier “vacances”. Peux-tu l’enregistrer sur mon cloud? Je pourrais l’avoir directement sur mon téléphone.",
+          });
+          addNotification({
+              title: "Nouveau message !",
+              message:
+                  "<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+          });
+      }, 5000)
         await saveStep(session, {
           test_step_template_id: 65,
           is_successful: true,
@@ -93,6 +131,18 @@ const Mail: AppProps<MailProps> = () => {
         test_step_template_id: step.id,
         is_successful: true,
       });
+      setTimeout(() => {
+          beacon("message", {
+              id: Math.random(),
+              sender: 0,
+              content: "Nous aimerions bien faire une activité mais nous devons envoyer un fichier word pour confirmer notre inscription, avec nos noms, prénoms et photos d’identité. Tu trouveras les photos d’identité dans le dossier “vacances”. Peux-tu l’enregistrer sur mon cloud? Je pourrais l’avoir directement sur mon téléphone.",
+          });
+          addNotification({
+              title: "Nouveau message !",
+              message:
+                  "<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+          });
+      }, 5000)
     }
   };
   const [folderName, setFolderName] = useState("Boîte de réception");
@@ -140,10 +190,8 @@ const Mail: AppProps<MailProps> = () => {
         content: encodeURIComponent(mail.content), // Encode le champ `content`
     }));
 
-    console.log("Mails encodés :", encodedMails);
     setMails(newMails);
     localStorage.setItem(localStorageKey, JSON.stringify(encodedMails));  // Mise à jour du localStorage
-    console.log("Taille du localStorage userMails :", localStorage.getItem(localStorageKey)?.length);
   }, [mails]);
 
   const filteredMessages = mails.filter((email) => email.Folder === folderName);

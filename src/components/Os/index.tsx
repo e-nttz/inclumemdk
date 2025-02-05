@@ -13,10 +13,9 @@ import { useAuth } from "@/providers/auth";
 import { getNextStep } from "@/lib/client/quiz";
 
 const InclumeOs = () => {
-	const { notifications } = useNotification();
 	const { t } = useTranslate();
 	const { pauseMode } = useStepsListener();
-	const { addNotification } = useNotification();
+	const {notifications, addNotification } = useNotification();
 	const {session} = useAuth();
 
 	// const fetchStepId = async (session) => {

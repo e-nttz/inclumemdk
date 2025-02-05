@@ -232,9 +232,7 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 				if (focusedElement.tagName === "IMG") {
 					const imgSrc = (focusedElement as HTMLImageElement).src;
 					handleInfoWindow(undefined, (currentPath) => {
-						const fileName = prompt(
-							t("enter_filename", "Entrez le nom du fichier")
-						);
+						const fileName = (document.querySelector("#inputSaveFile") as HTMLInputElement).value;
 						createFile(
 							fileName,
 							"png",
@@ -262,9 +260,7 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 						  backgroundUrl = new URL(backgroundUrl, baseUrl).href;
 						}
 						handleInfoWindow(undefined, (currentPath) => {
-							const fileName = prompt(
-								t("enter_filename", "Entrez le nom du fichier")
-							);
+							const fileName = (document.querySelector("#inputSaveFile") as HTMLInputElement).value;
 							createFile(
 								fileName,
 								"png",

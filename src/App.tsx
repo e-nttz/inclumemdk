@@ -18,7 +18,7 @@ const App = () => {
 				<InclumeOSProvider>
 					<NotificationProvider>
 						<StepsListenerProvider>
-							<OS />
+								<OS />
 						</StepsListenerProvider>
 					</NotificationProvider>
 				</InclumeOSProvider>

@@ -61,7 +61,6 @@ const NavigationBar = ({
 			// Si l'URL entrée correspond à une URL d'un site
 			if (page.url === inputValue) {
 			  isUrlFound = true;
-			  console.log("Site trouvé :", website);
 	  
 			  // Ouvre le site correspondant
 			  beacon("openWebsite", {
@@ -69,7 +68,7 @@ const NavigationBar = ({
 				url: inputValue,
 			  });
 			  beacon("triggerStep", {
-				value: "openWebsite", // Ou toute autre étape selon ton besoin
+				value: "openWebsite",
 			  });
 			}
 		  });

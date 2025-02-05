@@ -6,7 +6,7 @@
 				"value": "openMessage",
 				"clues": [
 					{
-						"time_launched": 5,
+						"time_launched": 10,
 						"title": "Nouveau message !",
 						"message": "<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
 						"visualHint": {
@@ -21,9 +21,9 @@
 					{
 						"time_launched": 10,
 						"title": "Ouvrez le navigateur",
-						"message": "Double-cliquez sur l'icone Navigateur pour l'ouvrir et continuer dans les étapes.",
+						"message": "Ouvre ce navigateur de recherche pour trouver l’adresse que ton ami demande.",
 						"visualHint": {
-							"image": ""
+							"image": "/images/indices/gougoule.png"
 						}
 					}
 				]
@@ -32,18 +32,936 @@
 				"value": "openGougoule",
 				"clues": [
 					{
-						"time_launched": 25,
+						"time_launched": 10,
 						"title": "Votre navigateur est ouvert et vous ne savez pas où aller ?",
-						"message": "Il vous suffit de cliquer sur le lien \"Gougoule\".",
+						"message": "Utilise des mots clés liés à ce que tu cherches pour trouver la bonne adresse.",
 						"visualHint": {
-							"video": ""
+							"image": ""
 						}
-					},
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 2,
+		"items": [
+			{
+				"value": "openMessage",
+				"clues": [
 					{
-						"time_launched": 50,
-						"title": "Autre méthode",
-						"message": "Si vous ne trouvez pas le lien, vous pouvez aussi taper \"https://gougoule.com\" dans la barre d'adresse.",
-						"visualHint": {}
+						"time_launched": 60,
+						"title": "Ouvre l'application message !",
+						"message": "Tu as trouvé l’adresse! Envoie cette adresse par message à ton ami.",
+						"visualHint": {
+							"image": ""
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 3,
+		"items": [
+			{
+				"value": "openMessage",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Envoie un message à ton ami.",
+						"message": "Si tu ne trouves pas l’adresse, ce n’est pas grave. Envoie un message à ton ami pour le prévenir que tu ne trouves pas l’adresse dont il a besoin.",
+						"visualHint": {
+							"image": ""
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 4,
+		"items": [
+			{
+				"value": "filtreImage",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Utilise les filtres !",
+						"message": "Pour trouver l’image plus facilement, utilise les filtres de recherche.",
+						"visualHint": {
+							"image": ""
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 5,
+		"items": [
+			{
+				"value": "clicDroit",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Enregistre l'image",
+						"message": "Utilise le clic droit de la souris pour interagir avec différents éléments.",
+						"visualHint": {
+							"image": ""
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 6,
+		"items": [
+			{
+				"value": "openMail",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Ouvre l'application Mail !",
+						"message": "Pour envoyer un mail, utilise cette application :",
+						"visualHint": {
+							"image": "/images/indices/mail.png"
+						}
+					}
+				]
+			},
+			{
+				"value": "addFile",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Ajoute une pièce jointe!",
+						"message": "Clique sur ce bouton pour insérer un fichier dans le mail :",
+						"visualHint": {
+							"image": "/images/indices/fichiers_joints.png"
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 42,
+		"items": [
+			{
+				"value": "openMail",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Ouvre l'application Mail !",
+						"message": "Pour envoyer un mail, utilise cette application :",
+						"visualHint": {
+							"image": "/images/indices/mail.png"
+						}
+					}
+				]
+			},
+			{
+				"value": "addFile",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Ajoute une pièce jointe!",
+						"message": "Clique sur cet onglet pour insérer un fichier dans le mail :",
+						"visualHint": {
+							"image": "/images/indices/fichiers_joints.png"
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 7,
+		"items": [
+			{
+				"value": "openMail",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Ouvre l'application Mail !",
+						"message": "Pour envoyer un mail, utilise cette application :",
+						"visualHint": {
+							"image": "/images/indices/mail.png"
+						}
+					}
+				]
+			},
+			{
+				"value": "addFile",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Ajoute une pièce jointe!",
+						"message": "Clique sur cet onglet pour insérer un fichier dans le mail :",
+						"visualHint": {
+							"image": "/images/indices/fichiers_joints.png"
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 46,
+		"items": [
+			{
+				"value": "openMail",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Ouvre l'application Mail !",
+						"message": "Pour envoyer un mail, utilise cette application :",
+						"visualHint": {
+							"image": "/images/indices/mail.png"
+						}
+					}
+				]
+			},
+			{
+				"value": "addFile",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Ajoute une pièce jointe!",
+						"message": "Clique sur cet onglet pour insérer un fichier dans le mail :",
+						"visualHint": {
+							"image": "/images/indices/fichiers_joints.png"
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 8,
+		"items": [
+			{
+				"value": "openExplorer",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Ouvre l'explorateur de fichiers !",
+						"message": "Pour retrouver un document qui n’est pas sur le bureau, ouvre l’explorateur de fichiers.",
+						"visualHint": {
+							"image": ""
+						}
+					}
+				]
+			},
+			{
+				"value": "saveFile",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Enregistre les modifications !",
+						"message": "Pour enregistrer le document et le renommer, clique sur cet onglet :",
+						"visualHint": {
+							"image": "/images/indices/enregistrer.png"
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 45,
+		"items": [
+			{
+				"value": "openExplorer",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Ouvre l'explorateur de fichiers !",
+						"message": "Pour retrouver un document qui n’est pas sur le bureau, ouvre l’explorateur de fichiers",
+						"visualHint": {
+							"image": ""
+						}
+					}
+				]
+			},
+			{
+				"value": "saveFile",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Enregistre les modifications !",
+						"message": "Pour enregistrer le document et le renommer, clique sur cet onglet :",
+						"visualHint": {
+							"image": "/images/indices/enregistrer.png"
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 9,
+		"items": [
+			{
+				"value": "openExplorer",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Ouvre l'explorateur de fichiers !",
+						"message": "Pour retrouver un document qui n’est pas sur le bureau, ouvre l’explorateur de fichiers",
+						"visualHint": {
+							"image": ""
+						}
+					}
+				]
+			},
+			{
+				"value": "saveFile",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Enregistre les modifications !",
+						"message": "Pour enregistrer le document et le renommer, clique sur cet onglet :",
+						"visualHint": {
+							"image": "/images/indices/enregistrer.png"
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 44,
+		"items": [
+			{
+				"value": "openExplorer",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Ouvre l'explorateur de fichiers !",
+						"message": "Pour retrouver un document qui n’est pas sur le bureau, ouvre l’explorateur de fichiers",
+						"visualHint": {
+							"image": ""
+						}
+					}
+				]
+			},
+			{
+				"value": "saveFile",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Enregistre les modifications !",
+						"message": "Pour enregistrer le document et le renommer, clique sur cet onglet :",
+						"visualHint": {
+							"image": "/images/indices/enregistrer.png"
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 59,
+		"items": [
+			{
+				"value": "openExplorer",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Ouvre l'explorateur de fichiers !",
+						"message": "Pour retrouver un document qui n’est pas sur le bureau, ouvre l’explorateur de fichiers",
+						"visualHint": {
+							"image": ""
+						}
+					}
+				]
+			},
+			{
+				"value": "saveFile",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Enregistre les modifications !",
+						"message": "Pour enregistrer le document et le renommer, clique sur cet onglet :",
+						"visualHint": {
+							"image": "/images/indices/enregistrer.png"
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 10,
+		"items": [
+			{
+				"value": "addFile",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Ajoute une pièce jointe!",
+						"message": "En cliquant sur ces différents éléments, tu trouveras celui qui sert à insérer des fichiers dans ton mail :",
+						"visualHint": {
+							"image": "/images/indices/boutons_mail.png"
+						}
+					}
+				]
+			},
+			{
+				"value": "writeEmail",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Recherche le contact !",
+						"message": "En écrivant \"hôtel namur\" dans le champ \"A\" tu retrouveras le contact enregistré.",
+						"visualHint": {
+							"image": ""
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 49,
+		"items": [
+			{
+				"value": "addFile",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Ajoute une pièce jointe!",
+						"message": "En cliquant sur ces différents éléments, tu trouveras celui qui sert à insérer des fichiers dans ton mail :",
+						"visualHint": {
+							"image": "/images/indices/boutons_mail.png"
+						}
+					}
+				]
+			},
+			{
+				"value": "writeEmail",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Recherche le contact !",
+						"message": "En écrivant \"hôtel namur\" dans le champ \"A\" tu retrouveras le contact enregistré.",
+						"visualHint": {
+							"image": ""
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 11,
+		"items": [
+			{
+				"value": "verifyMail",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Vérifiez l'adresse mail",
+						"message": "L’adresse mail enregistrée dans les contacts contient peut-être une faute. Vérifie l'adresse mail !",
+						"visualHint": {
+							"image": ""
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 54,
+		"items": [
+			{
+				"value": "verifyMail",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Vérifiez l'adresse mail",
+						"message": "L’adresse mail enregistrée dans les contacts contient peut-être une faute. Vérifie l'adresse mail !",
+						"visualHint": {
+							"image": ""
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 13,
+		"items": [
+			{
+				"value": "copyLink",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Copie le lien du site !",
+						"message": "Fais attention à ce que les sites soient fiables, utilise le clic droit de la souris pour interagir avec les liens.",
+						"visualHint": {
+							"image": ""
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 14,
+		"items": [
+			{
+				"value": "copyLink",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Copie le lien du site !",
+						"message": "Fais attention à ce que les sites soient fiables, utilise le clic droit de la souris pour interagir avec les liens.",
+						"visualHint": {
+							"image": ""
+						}
+					}
+				]
+			}
+		]
+	},		
+	{
+		"step_id": 15, 
+		"items": [
+			{
+				"value": "openTextEditor",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Crée un document texte !",
+						"message": "Pour créer ce document, utilise cet outil de traitement de texte :",
+						"visualHint": {
+							"image": "/images/indices/traitement_texte.png"
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 53, 
+		"items": [
+			{
+				"value": "openTextEditor",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Crée un document texte !",
+						"message": "Pour créer ce document, utilise cet outil de traitement de texte :",
+						"visualHint": {
+							"image": "/images/indices/traitement_texte.png"
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 16, 
+		"items": [
+			{
+				"value": "openTextEditor",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Crée un document texte !",
+						"message": "Pour créer ce document, utilise cet outil de traitement de texte :",
+						"visualHint": {
+							"image": "/images/indices/traitement_texte.png"
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 58, 
+		"items": [
+			{
+				"value": "openTextEditor",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Crée un document texte !",
+						"message": "Pour créer ce document, utilise cet outil de traitement de texte :",
+						"visualHint": {
+							"image": "/images/indices/traitement_texte.png"
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 17, 
+		"items": [
+			{
+				"value": "openSpreadsheets",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Crée un document texte !",
+						"message": "Pour créer un tableau, utilise ce tableur et entre les données nécessaires :",
+						"visualHint": {
+							"image": "/images/indices/tableur.png"
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 52, 
+		"items": [
+			{
+				"value": "openSpreadsheets",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Crée un document texte !",
+						"message": "Pour créer un tableau, utilise ce tableur et entre les données nécessaires :",
+						"visualHint": {
+							"image": "/images/indices/tableur.png"
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 34, 
+		"items": [
+			{
+				"value": "openSpreadsheets",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Crée un document texte !",
+						"message": "Pour créer un tableau, utilise ce tableur et entre les données nécessaires :",
+						"visualHint": {
+							"image": "/images/indices/tableur.png"
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 57, 
+		"items": [
+			{
+				"value": "openSpreadsheets",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Crée un document texte !",
+						"message": "Pour créer un tableau, utilise ce tableur et entre les données nécessaires :",
+						"visualHint": {
+							"image": "/images/indices/tableur.png"
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 35, 
+		"items": [
+			{
+				"value": "activateSound",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Active le son !",
+						"message": "Tu n’entends pas ton ami au téléphone ? Il doit y avoir un problème au niveau du son, vérifie les réglages !",
+						"visualHint": {
+							"image": ""
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 51, 
+		"items": [
+			{
+				"value": "activateSound",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Active le son !",
+						"message": "Tu n’entends pas ton ami au téléphone ? Il doit y avoir un problème au niveau du son, vérifie les réglages !",
+						"visualHint": {
+							"image": ""
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 55,
+		"items": [
+			{
+				"value": "activateSound",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Active le son !",
+						"message": "Tu n’entends pas ton ami au téléphone ? Il doit y avoir un problème au niveau du son, vérifie les réglages !",
+						"visualHint": {
+							"image": ""
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 61, 
+		"items": [
+			{
+				"value": "openBng",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Rends-toi sur le site de la banque !",
+						"message": "Utilise le moteur de recherche pour trouver une banque en ligne. Voici le logo de la banque de ton ami : ",
+						"visualHint": {
+							"image": "/images/indices/banque.png"
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 62, 
+		"items": [
+			{
+				"value": "openBng",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Rends-toi sur le site de la banque !",
+						"message": "Utilise le moteur de recherche pour trouver une banque en ligne. Voici le logo de la banque de ton ami : ",
+						"visualHint": {
+							"image": "/images/indices/banque.png"
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 63, 
+		"items": [
+			{
+				"value": "openBng",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Rends-toi sur le site de la banque !",
+						"message": "Utilise le moteur de recherche pour trouver une banque en ligne. Voici le logo de la banque de ton ami : ",
+						"visualHint": {
+							"image": "/images/indices/banque.png"
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 36, 
+		"items": [
+			{
+				"value": "openBng",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Rends-toi sur le site de la banque !",
+						"message": "Utilise le moteur de recherche pour trouver une banque en ligne. Voici le logo de la banque de ton ami : ",
+						"visualHint": {
+							"image": "/images/indices/banque.png"
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 50, 
+		"items": [
+			{
+				"value": "openBng",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Rends-toi sur le site de la banque !",
+						"message": "Utilise le moteur de recherche pour trouver une banque en ligne. Voici le logo de la banque de ton ami : ",
+						"visualHint": {
+							"image": "/images/indices/banque.png"
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 56, 
+		"items": [
+			{
+				"value": "openBng",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Rends-toi sur le site de la banque !",
+						"message": "Utilise le moteur de recherche pour trouver une banque en ligne. Voici le logo de la banque de ton ami : ",
+						"visualHint": {
+							"image": "/images/indices/banque.png"
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 37, 
+		"items": [
+			{
+				"value": "openTraduction",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Trouve un outil de traduction !",
+						"message": "Utilise le moteur de recherche pour trouver un outil de traduction, certains outils sont plus efficaces que d’autres.",
+						"visualHint": {
+							"image": ""
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 38, 
+		"items": [
+			{
+				"value": "openMessage",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Envoie la traduction !",
+						"message": "Utilise l'application message pour envoyer la traduction à ton ami.",
+						"visualHint": {
+							"image": ""
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 39, 
+		"items": [
+			{
+				"value": "openWifi",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Aide ton ami à régler son problème de Wifi !",
+						"message": "Cherche sur internet s’il y a un tutoriel à suivre pour résoudre ce problème.",
+						"visualHint": {
+							"image": ""
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 40, 
+		"items": [
+			{
+				"value": "openSiteChildVirus",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Trouve l'antivirus ChildVirus !",
+						"message": "Recherche sur internet le site de l'antivirus \"ChildVirus\"",
+						"visualHint": {
+							"image": ""
+						}
+					}
+				]
+			},
+			{
+				"value": "downloadChildVirus",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Télécharge l'antivirus ChildVirus !",
+						"message": "Recherche sur le site le bouton \"Télécharger\" afin d'installer l'antivirus.",
+						"visualHint": {
+							"image": ""
+						}
+					}
+				]
+			},{
+				"value": "installChildVirus",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Installe l'antivirus ChildVirus !",
+						"message": "Retrouve l'antivirus dans ton explorateur de fichier et double-clic sur le fichier.",
+						"visualHint": {
+							"image": ""
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 64, 
+		"items": [
+			{
+				"value": "changeTheme",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Change le thème de l'interface de l'ordinateur !",
+						"message": "Utilise les paramètres de l'ordinateur afin de passer le thème en mode nuit.",
+						"visualHint": {
+							"image": ""
+						}
+					}
+				]
+			}
+		]
+	},
+	{
+		"step_id": 41, 
+		"items": [
+			{
+				"value": "shutDown",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Etient l'ordinateur !",
+						"message": "N'oublie pas d'éteindre l'ordinateur avant de partir.",
+						"visualHint": {
+							"image": ""
+						}
 					}
 				]
 			}

@@ -29,7 +29,7 @@ export const OS = () => {
 	return (
 		<div
 			data-theme={theme}
-			className="relative min-h-screen bg-white bg-[url('/images/win11_wallpaper_light.jpg')] dark:bg-[url('/images/win11_wallpaper_dark.jpg')] bg-cover bg-center transition-all flex flex-col overflow-hidden text-gray dark:text-white dark:[color-scheme:dark]"
+			className="relative min-h-screen bg-white bg-[url('/images/wallpaper.jpg')] bg-cover bg-center transition-all flex flex-col overflow-hidden text-gray dark:text-white dark:[color-scheme:dark]"
 			id="inclume-os"
 		>
 			{!isAuth && (

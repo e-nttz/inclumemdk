@@ -8,6 +8,7 @@ import NavigationBar from "./NavigationBar";
 import RenderWebsite, { websites } from "./Websites";
 import { useBeaconListener } from "@/helpers/beacon";
 import LoadingState from "./Websites/LoadingState";
+import { beacon } from "@/helpers/beacon";
 
 interface AppProps extends React.FC {
 	title: string;
