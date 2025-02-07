@@ -149,6 +149,18 @@ const Message: AppProps = (defaultContent) => {
 						"message" : message,
 					},
 				});
+				setTimeout(() => {
+					beacon("message", {
+						id: Math.random(),
+						sender: 0,
+						content: "Tu te rappelles, tu m’avais dit que tu allais installer l’antivirus ChildVirus et faire une analyse de mon pc avec l’antivirus ? Peux-tu le faire maintenant ? Merci!",
+					});
+					addNotification({
+						title: "Nouveau message !",
+						message:
+							"<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+					});
+				},5000)
 			}
 		  }
 		  if(step.id === 35 || step.id === 51 || step.id === 55){
@@ -159,6 +171,18 @@ const Message: AppProps = (defaultContent) => {
 					"message" : message,
 				},
 			});
+			setTimeout(() => {
+                beacon("message", {
+                    id: Math.random(),
+                    sender: 0,
+                    content: "Voici le numéro de compte auquel tu dois faire le virement de 20€ : BE012345678910",
+                });
+                addNotification({
+                    title: "Nouveau message !",
+                    message:
+                        "<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+                });
+            }, 25000)
 		  }
 		  if(step.id === 38 && 
 			message.toLowerCase().includes("salade", "epicee", "épicée", "epicée", "épicee", "epice")){
@@ -169,6 +193,18 @@ const Message: AppProps = (defaultContent) => {
 					"message" : message,
 				},
 			});
+			setTimeout(() => {
+				beacon("message", {
+					id: Math.random(),
+					sender: 0,
+					content: "Merci grâce à toi nous avons pu commander notre repas. En attendant qu’il soit prêt, j’aimerai montrer les vidéos de mes dernières vacances à Céline mais je n’arrive pas à me connecter au Wifi du resto. Peux-tu m’envoyer un tuto qui pourrait m’aider à résoudre ce problème?",
+				});
+				addNotification({
+					title: "Nouveau message !",
+					message:
+						"<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+				});
+			},5000)
 		  }
 		} catch (error) {
 		  console.error("Erreur lors de la récupération de l'étape :", error);

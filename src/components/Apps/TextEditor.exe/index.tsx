@@ -12,7 +12,7 @@ import IconImage from "@/assets/icons/image.svg?react";
 import ContextualBar from "@/components/Os/Window/ContextualBar";
 import { useTranslate } from "@tolgee/react";
 import { useExplorer } from "@/providers/explorer";
-
+import { beacon } from "@/helpers/beacon";
 interface AppProps<T> extends React.FC<T> {
 	title: string;
 	icon: ReactElement;
@@ -77,6 +77,9 @@ const TextEditor: AppProps<TextEditorProps> = ({ content = "" }) => {
 					<ContextualBar.Menu name="Fichier">
 						<ContextualBar.Item
 							onClick={() => {
+								beacon("triggerStep", {
+									value: "saveFile",
+								  });
 								handleInfoWindow(undefined, (currentPath) => {
 									const fileName = prompt(
 										t("enter_filename", "Entrez le nom du fichier")
@@ -116,7 +119,7 @@ const TextEditor: AppProps<TextEditorProps> = ({ content = "" }) => {
 							onClick={() => {
 								handleInfoWindow((selected: FileNode) => {
 									if (selected?.url || selected?.name) {
-                                        addImage(selected.content.url)
+                                        addImage(selected.url)
                                     }
                                     closeInfoWindow();
                                 }, undefined);

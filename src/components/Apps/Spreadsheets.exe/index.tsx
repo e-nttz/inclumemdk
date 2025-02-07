@@ -10,7 +10,7 @@ import Button from "./Button";
 import { useKeyboardEvent } from "@/hooks/useKeyboardEvent";
 import { useExplorer } from "@/providers/explorer";
 import { useTranslate } from "@tolgee/react";
-
+import { beacon } from "@/helpers/beacon";
 export interface CellProps {
 	position: string;
 	data: {
@@ -118,6 +118,9 @@ const Spreadsheets = () => {
 					<ContextualBar.Menu name="Fichier">
 						<ContextualBar.Item
 							onClick={() => {
+								beacon("triggerStep", {
+                                    value: "saveFile",
+                                });
 								handleInfoWindow(undefined, (currentPath) => {
 									const fileName = prompt(
 										t("enter_filename", "Entrez le nom du fichier")
@@ -203,7 +206,7 @@ const Spreadsheets = () => {
 						onClick={() => {
 							handleInfoWindow((selected: FileNode) => {
 								if (selected?.url || selected?.name) {
-									addImage(selected.content.url)
+									addImage(selected.url)
 								}
 								closeInfoWindow();
 							}, undefined);

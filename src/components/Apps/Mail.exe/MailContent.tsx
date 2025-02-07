@@ -10,7 +10,7 @@ import DownloadAttachment from "@/assets/icons/download_attachment.svg"
 import { useState, useRef } from "react";
 import { useExplorer } from "@/providers/explorer";
 import { useOS } from "@/providers/InclumeOS";
-
+import { beacon } from "@/helpers/beacon";
 interface MailContentProps {
     activeMail?: boolean;
     title?: string;
@@ -50,6 +50,7 @@ const MailContent = ({
     const [selectedFiles, setSelectedFiles] = useState<{ url: string; name: string }[]>([]);
 
     const [editableEmailTo, setEditableEmailTo] = useState<string>(emailTo || "");
+    const [showSuggestion, setShowSuggestion] = useState(false);
     const [editableTitle, setEditableTitle] = useState<string>(title || "");
     const contentRef = useRef<HTMLDivElement>(null);
 
@@ -59,7 +60,22 @@ const MailContent = ({
             .replace(/&nbsp;/gi, ' ')
             .replace(/<[^>]*>/g, '');
     };
-    
+    const handleChange = (e) => {
+        const value = e.target.value;
+        setEditableEmailTo(value);
+
+        // Vérifier si les 3 premières lettres correspondent à "res"
+        if (value.toLowerCase().startsWith("res")) {
+            setShowSuggestion(true);
+        } else {
+            setShowSuggestion(false);
+        }
+    };
+
+    const handleSelectSuggestion = () => {
+        setEditableEmailTo("reservation@hotlenamur.be");
+        setShowSuggestion(false);
+    };
     const handleSendClick = () => {
         const newContent = contentRef.current?.innerHTML || "";
         if (onSend) {
@@ -167,15 +183,24 @@ const MailContent = ({
             {!activeMail && newMessage && (
                 <div className="pl-[30px] pr-[30px] pt-[20px] pb-[20px] w-full">
                     <div className="headerNewMessage">
-                        <div className="inputMessage w-full border-b border-gray-50 pb-2">
-                            <label htmlFor="a" className="mr-3 opacity-60">À :</label>
-                            <input 
-                                type="text" 
-                                id="a" 
-                                className="border-none outline-none w-[90%]" 
-                                value={editableEmailTo} 
-                                onChange={(e) => setEditableEmailTo(e.target.value)}
-                            />
+                    <div className="inputMessage w-full border-b border-gray-50 pb-2 relative">
+                        <label htmlFor="a" className="mr-3 opacity-60">À :</label>
+                        <input
+                            type="text"
+                            id="a"
+                            className="border-none outline-none w-[90%]"
+                            value={editableEmailTo}
+                            onChange={handleChange}
+                        />
+
+                        {showSuggestion && (
+                            <div 
+                                className="absolute z-10 mt-2 bg-white border border-gray-300 p-2 cursor-pointer w-full"
+                                onClick={handleSelectSuggestion}
+                            >
+                                reservation@hotelnamur.be
+                            </div>
+                            )}
                         </div>
                         <div className="inputMessage w-full border-b border-gray-50 pb-2 pt-2">
                             <label htmlFor="objet" className="mr-3 opacity-60">Objet :</label>
@@ -237,6 +262,9 @@ const MailContent = ({
                             </div>
                             <div className="flex items-center mr-6 cursor-pointer"
                             onClick={async () => {
+                                beacon("triggerStep", {
+                                    value: "addFile",
+                                });
                                 removeApp("Explorateur de fichier")
                                 handleInfoWindow((selected: FileNode) => {
                                     if (selected?.url || selected?.name) {
@@ -340,7 +368,9 @@ const MailContent = ({
                             <div className="flex items-center mr-6 cursor-pointer"
                             onClick={async () => {
                                 removeApp("Explorateur de fichier")
-                                
+                                beacon("triggerStep", {
+                                    value: "addFile",
+                                });
                                 handleInfoWindow((selected: FileNode) => {
                                     if (selected?.url || selected?.name) {
                                         setSelectedFiles((prevFiles) => [

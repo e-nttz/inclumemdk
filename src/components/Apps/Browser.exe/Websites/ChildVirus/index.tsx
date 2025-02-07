@@ -13,11 +13,14 @@ import Back from "@/assets/icons/back.svg"
 import { useExplorer } from "@/providers/explorer";
 import { apps } from "@/components/Apps";
 import { useOS } from "@/providers/InclumeOS";
-
+import { beacon } from "@/helpers/beacon";
 const ChildVirus = () => {
   const { launchApp } = useOS();
   const { createFile } = useExplorer();
   const [telechargement, setTelechargement] = useState(false);
+  // beacon("triggerStep", {
+  //   value: "downloadChildVirus",
+  // });
   useEffect(() => {
     if (telechargement) {
       const timer = setTimeout(() => {
@@ -26,8 +29,10 @@ const ChildVirus = () => {
           icon: apps.explorer.icon,
           defaultContent: true,
         });
+        beacon("triggerStep", {
+          value: "downloadChildVirus",
+        });
       }, 5000);
-
       // Nettoyage pour éviter des problèmes si la variable change avant 5 secondes
       return () => clearTimeout(timer);
     }

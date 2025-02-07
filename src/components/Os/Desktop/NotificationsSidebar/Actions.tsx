@@ -7,10 +7,12 @@ import IconPause from "@/assets/icons/pause.svg?react";
 import { useStepsListener } from "@/providers/stepsListener";
 import { useAuth } from "@/providers/auth";
 import { getNextStep, saveStep } from "@/lib/client/quiz";
-
+import { beacon } from "@/helpers/beacon";
+import { useNotification } from "@/providers/notifications";
 const Actions = () => {
 	const { theme, changeTheme } = useOS();
 	const { setPauseMode } = useStepsListener();
+	const {addNotification} = useNotification();
 	const IconDarkMode = theme === "dark" ? IconSunOff : IconSun;
 	const {session} = useAuth();
 	  const validationEtape18 = async () =>{
@@ -20,6 +22,18 @@ const Actions = () => {
 					test_step_template_id: step.id,
 					is_successful: true,
 			});
+			setTimeout(() => {
+							beacon("message", {
+							id: Math.random(),
+							sender: 0,
+							content: "Merci pour tout ce que tu as fait pour moi, avant de partir, n’oublie d’éteindre mon ordinateur!",
+							});
+							addNotification({
+							title: "Nouveau message !",
+							message:
+								"<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+						});
+					},5000)
 		}
 	}
 

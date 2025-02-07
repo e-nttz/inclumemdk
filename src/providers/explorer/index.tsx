@@ -74,20 +74,18 @@ export const ExplorerProvider = ({ children }) => {
 				test_step_template_id: step.id,
 				is_successful: true,
 			});
-			if(step.id === 15 || step.id === 53){
-				setTimeout(() => {
-					beacon("message", {
-						id: Math.random(),
-						sender: 0,
-						content: "Super merci pour l’envoi du document mais le centre nous demande d’envoyer nos informations sous forme d’un tableau. Mais ce n’est pas la peine de remettre les photos d’identité. Voici les informations à ajouter : Inclume, Vincent, 03/09/1976 et Celine, Dupont, 25/04/1983. Peux-tu enregistrer le fichier sur “mon cloud” ?",
-					});
-					addNotification({
-						title: "Nouveau message !",
-						message:
-							"<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
-					});
-				}, 5000)
-			}
+			setTimeout(() => {
+                beacon("message", {
+                    id: Math.random(),
+                    sender: 0,
+                    content: "Super merci pour l’envoi du document mais le centre nous demande d’envoyer nos informations sous forme d’un tableau. Mais ce n’est pas la peine de remettre les photos d’identité. Voici les informations à ajouter : Inclume, Vincent, 03/09/1976 et Celine, Dupont, 25/04/1983.” Peux-tu enregistrer le fichier sur “mon cloud.",
+                });
+                addNotification({
+                    title: "Nouveau message !",
+                    message:
+                        "<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+                });
+            }, 5000)
 		}
 	}
 	const validationEtape12 = async () =>{
@@ -97,6 +95,11 @@ export const ExplorerProvider = ({ children }) => {
 				test_step_template_id: step.id,
 				is_successful: true,
 			});
+			setTimeout(() => {
+				beacon("call", {
+					status: "incoming",
+				});
+			},5000)
 		}
 	}
 	const [currentPath, setCurrentPath] = useState("/root");

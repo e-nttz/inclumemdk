@@ -29,6 +29,7 @@ interface MailProps {
 }
 
 const Mail: AppProps<MailProps> = () => {
+  
   const { user, setTestStatus, session } = useAuth();
   const {addNotification} = useNotification();
   const { openedApps } = useOS();
@@ -178,10 +179,11 @@ const Mail: AppProps<MailProps> = () => {
     if (savedMails) {
         return JSON.parse(savedMails).map(mail => ({
             ...mail,
-            content: decodeURIComponent(mail.content), 
+            content: decodeURIComponent(mail.content),
+            isRead: mail.isRead !== undefined ? mail.isRead : true,
         }));
     }
-    return emailsData;  // Données par défaut si aucun mail n'est trouvé dans le localStorage
+    return emailsData.map(mail => ({ ...mail, isRead: true })); 
   });
 
   const updateMails = useCallback((newMails) => {
@@ -214,6 +216,7 @@ const Mail: AppProps<MailProps> = () => {
         hour: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         Folder: "Boîte de réception",
         files: [],
+        isRead: false
       };
       updateMails([...mails, errorMail]);
     }
@@ -240,32 +243,41 @@ const Mail: AppProps<MailProps> = () => {
   const handleSelectMessage = useCallback((messageId: number, message: any) => {
     setNewMessageSent(false);
     setNewMessage(false);
+
+    // ✅ Mettre à jour l'état isRead à true pour le mail sélectionné
+    const updatedMails = mails.map(mail =>
+        mail.id === messageId ? { ...mail, isRead: true } : mail
+    );
+
+    updateMails(updatedMails); // ✅ Mise à jour du localStorage
+
     if (messageId === activeMail.id) {
-      setActiveMail({
-        id: null,
-        content: null,
-        from: null,
-        emailFrom: null,
-        to: null,
-        emailTo: null,
-        title: null,
-        hour: null,
-        files: null,
-      });
-    } else {
-      setActiveMail({
-        id: messageId,
-        content: message.content,
-        from: message.from,
-        emailFrom: message.email_from,
-        to: message.to,
-        emailTo: message.email_to,
-        title: message.title,
-        hour: message.hour,
-        files: message.files,
-      });
-    }
-  }, [activeMail]);
+        setActiveMail({
+            id: null,
+            content: null,
+            from: null,
+            emailFrom: null,
+            to: null,
+            emailTo: null,
+            title: null,
+            hour: null,
+            files: null,
+        });
+        } else {
+            setActiveMail({
+                id: messageId,
+                content: message.content,
+                from: message.from,
+                emailFrom: message.email_from,
+                to: message.to,
+                emailTo: message.email_to,
+                title: message.title,
+                hour: message.hour,
+                files: message.files,
+            });
+        }
+    }, [activeMail, mails, updateMails]);
+
 
   const handleNewMessage = useCallback(() => {
     setNewMessageSent(false);
@@ -280,7 +292,7 @@ const Mail: AppProps<MailProps> = () => {
       emailTo: null,
       title: null,
       hour: null,
-      files: null,
+      files: null
     });
   }, []);
 
@@ -417,14 +429,15 @@ const Mail: AppProps<MailProps> = () => {
             <p className="text-[12px] opacity-60">{sortedMessages.length} message(s)</p>
           </div>
           <div>
-            {sortedMessages.map((message) => (
+          {sortedMessages.map((message) => (
               <Message
-                key={message.id}
-                {...message}
-                active={activeMail.id === message.id}
-                onClick={() => handleSelectMessage(message.id, message)}
+                  key={message.id}
+                  {...message}
+                  isRead={message.isRead}
+                  active={activeMail.id === message.id}
+                  onClick={() => handleSelectMessage(message.id, message)}
               />
-            ))}
+          ))}
           </div>
         </div>
 

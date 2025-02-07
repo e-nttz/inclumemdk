@@ -11,6 +11,8 @@ import transactionsData from "./transactions.json";
 import { getTransactions, resetTransactions, saveTransactions } from "@/utils/localeStorage";
 import { useAuth } from "@/providers/auth";
 import { getNextStep, saveStep } from "@/lib/client/quiz";
+import { beacon } from "@/helpers/beacon";
+import { useNotification } from "@/providers/notifications";
 
 const BngBanque = () => {
   const [virement, setVirement] = useState(false);
@@ -21,6 +23,7 @@ const BngBanque = () => {
     return getTransactions();
   });
   const {session} = useAuth();
+  const {addNotification} = useNotification();
   const validationEtape13 = async () =>{
 		const step = await getNextStep(session);
 		if (step.id === 61 || step.id === 62 || step.id === 63 || step.id === 56 || step.id === 50 || step.id === 36) {
@@ -28,6 +31,48 @@ const BngBanque = () => {
 				test_step_template_id: step.id,
 				is_successful: true,
 			});
+      if(step.id === 61 || step.id === 36){
+        setTimeout(() => {
+          beacon("message", {
+              id: Math.random(),
+              sender: 0,
+              content: "Décidemment ce début de vacances est super épique. Le restaurant n’a aucune carte en français... Peux-tu me traduire le plat “pittige salade” s’il te plait ?",
+          });
+          addNotification({
+              title: "Nouveau message !",
+              message:
+                  "<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+          });
+      }, 5000)
+      }
+      if(step.id === 50 || step.id === 62){
+        setTimeout(() => {
+          beacon("message", {
+            id: Math.random(),
+            sender: 0,
+            content: "Tu te rappelles, tu m’avais dit que tu allais installer l’antivirus ChildVirus et faire une analyse de mon pc avec l’antivirus ? Peux-tu le faire maintenant ? Merci!",
+          });
+          addNotification({
+            title: "Nouveau message !",
+            message:
+              "<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+          });
+        },5000)
+      }
+      if(step.id === 63 || step.id === 56){
+        setTimeout(() => {
+                beacon("message", {
+                  id: Math.random(),
+                  sender: 0,
+                  content: "Merci pour tout ce que tu as fait pour moi aujourd’hui! J’ai un dernier service à te demander, peux changer l’interface de mon bureau pour le mode “sombre”? Si tu n’y arrives, pas ce n’est pas grave, je le ferais moi-même. N’oublie pas d’éteindre l’ordinateur quand tu auras fini!",
+                });
+                addNotification({
+                  title: "Nouveau message !",
+                  message:
+                    "<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+            });
+        },5000)
+      }
 		}
 	}
   // Gestion des comptes et des soldes

@@ -225,20 +225,27 @@ export const StepsListenerProvider = memo(({ children }) => {
     const { addNotification } = useNotification();
     const timeoutRef = useRef<number | null>(null); // Stocke l'ID du timeout pour éviter les doublons
     const [steps] = useState(dataSteps);
-    const [currentStepId, setCurrentStepId] = useState(0);
+    const [currentStepId, setCurrentStepId] = useState(1);
     const { session } = useAuth();
     const [lastTrigger, setLastTrigger] = useState<any[]>([]);
 
     useBeaconListener("triggerStep", (e) => {
         setLastTrigger(prevState => [...prevState, e]);
+        console.log(lastTrigger)
     });
-
+    
     // 🔹 Fonction pour récupérer un indice
     const handleGetHint = async () => {
         const currentStep = await getNextStep(session);
-        const currentStepHints = steps.find(step => step.step_id === currentStep.id);
-        setCurrentStepId(currentStep.id);
+        console.log(currentStep)
+        setCurrentStepId(currentStep.id)
 
+        if(currentStepId != currentStep.id) {
+            setLastTrigger([]);
+        }
+        
+        const currentStepHints = steps.find(step => step.step_id === currentStep.Id);
+        
         if (currentStepHints) {
             let hintFound = false;
 
@@ -260,11 +267,6 @@ export const StepsListenerProvider = memo(({ children }) => {
             // Si aucun indice trouvé, on ne déclenche pas le timeout
             if (!hintFound) return;
         }
-
-        if (currentStepId !== currentStep.id) {
-            setLastTrigger([]);
-        }
-
         setShowHintButton(false);
     };
 
@@ -379,6 +381,111 @@ export const StepsListenerProvider = memo(({ children }) => {
                 });
             }, 5000)
         }
+        if(step.id === 15 || step.id === 16 || step.id === 17 || step.id === 34 || step.id === 52 || step.id === 53 || step.id === 57 || step.id === 58){
+            setTimeout(() => {
+				beacon("call", {
+					status: "incoming",
+				});
+			},5000)
+        }
+        if(step.id === 35 || step.id === 51 || step.id === 55){
+            setTimeout(() => {
+                beacon("message", {
+                    id: Math.random(),
+                    sender: 0,
+                    content: "Notre réservation pour l’activité est confirmée mais il n’est pas possible de payer sur place? Il faut faire un virement avant le début de l’activité. Pourrais tu le faire pour nous? Il faut envoyer 20€ au Compte BE012345678910. Merci!",
+                });
+                addNotification({
+                    title: "Nouveau message !",
+                    message:
+                        "<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+                });
+            }, 5000)
+        }
+        if(step.id === 37){
+            setTimeout(() => {
+                beacon("message", {
+                    id: Math.random(),
+                    sender: 0,
+                    content: "Merci grâce à toi nous avons pu commander notre repas. En attendant qu’il soit prêt, j’aimerai montrer les vidéos de mes dernières vacances à Céline mais je n’arrive pas à me connecter au Wifi du resto. Peux-tu m’envoyer un tuto qui pourrait m’aider à résoudre ce problème?",
+                });
+                addNotification({
+                    title: "Nouveau message !",
+                    message:
+                        "<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+                });
+            }, 5000)
+        }
+        if(step.id === 61 || step.id === 36){
+            setTimeout(() => {
+              beacon("message", {
+                  id: Math.random(),
+                  sender: 0,
+                  content: "Décidemment ce début de vacances est super épique. Le restaurant n’a aucune carte en français... Peux-tu me traduire le plat “pittige salade” s’il te plait ?",
+              });
+              addNotification({
+                  title: "Nouveau message !",
+                  message:
+                      "<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+              });
+          }, 5000)
+        }
+        if(step.id === 38){
+            setTimeout(() => {
+				beacon("message", {
+					id: Math.random(),
+					sender: 0,
+					content: "Merci grâce à toi nous avons pu commander notre repas. En attendant qu’il soit prêt, j’aimerai montrer les vidéos de mes dernières vacances à Céline mais je n’arrive pas à me connecter au Wifi du resto. Peux-tu m’envoyer un tuto qui pourrait m’aider à résoudre ce problème?",
+				});
+				addNotification({
+					title: "Nouveau message !",
+					message:
+						"<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+				});
+			},5000)
+        }
+        if(step.id === 39 || step.id === 50 || step.id === 62){
+            setTimeout(() => {
+				beacon("message", {
+					id: Math.random(),
+					sender: 0,
+					content: "Tu te rappelles, tu m’avais dit que tu allais installer l’antivirus ChildVirus et faire une analyse de mon pc avec l’antivirus ? Peux-tu le faire maintenant ? Merci!",
+				});
+				addNotification({
+					title: "Nouveau message !",
+					message:
+						"<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+				});
+			},5000)
+        }
+        if(step.id === 40 || step.id === 56 || step.id === 63){
+            setTimeout(() => {
+                    beacon("message", {
+                    id: Math.random(),
+                    sender: 0,
+                    content: "Merci pour tout ce que tu as fait pour moi aujourd’hui! J’ai un dernier service à te demander, peux changer l’interface de mon bureau pour le mode “sombre”? Si tu n’y arrives, pas ce n’est pas grave, je le ferais moi-même. N’oublie pas d’éteindre l’ordinateur quand tu auras fini!",
+                    });
+                    addNotification({
+                    title: "Nouveau message !",
+                    message:
+                        "<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+                });
+            },5000)
+        }
+        if(step.id === 64){
+            setTimeout(() => {
+                beacon("message", {
+                id: Math.random(),
+                sender: 0,
+                content: "Merci pour tout ce que tu as fait pour moi, avant de partir, n’oublie d’éteindre mon ordinateur!",
+                });
+                addNotification({
+                title: "Nouveau message !",
+                message:
+                    "<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+            });
+        },5000)
+        }
     };
 
     return (
@@ -386,18 +493,18 @@ export const StepsListenerProvider = memo(({ children }) => {
             {children}
 
             {showHintButton && (
-                <div onClick={handleGetHint} className="cursor-pointer absolute z-10 right-2 bottom-20 flex items-center bg-[#EB5D1D] rounded-2xl opacity-60 hover:opacity-100 transition-opacity duration-300">
+                <div onClick={handleGetHint} className="cursor-pointer absolute right-2 bottom-20 flex items-center bg-[#EB5D1D] rounded-2xl opacity-60 hover:opacity-100 transition-opacity duration-300">
                     <div className="bg-white px-6 py-2 mr-3 rounded-l-2xl">
-                        <img src={MascotteIndice} className="w-6" alt="" />
+                        <img src={MascotteIndice} className="h-6" alt="" />
                     </div>
                     <p className="text-[#D7EBFF] pr-6 py-2 font-semibold">Obtenir un indice</p>
                 </div>
             )}
 
             {showSkipButton && (
-                <div onClick={skipStep} className="cursor-pointer absolute z-10 right-2 bottom-40 flex items-center bg-[#EB5D1D] rounded-2xl opacity-60 hover:opacity-100 transition-opacity duration-300">
+                <div onClick={skipStep} className="cursor-pointer absolute right-2 bottom-40 flex items-center bg-[#EB5D1D] rounded-2xl opacity-60 hover:opacity-100 transition-opacity duration-300">
                     <div className="bg-white px-6 py-2 mr-3 rounded-l-2xl">
-                        <img src={MascotteNeutre} className="w-6" alt="" />
+                        <img src={MascotteNeutre} className="h-6" alt="" />
                     </div>
                     <p className="text-[#D7EBFF] pr-6 py-2 font-semibold">Passer cette étape</p>
                 </div>

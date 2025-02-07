@@ -11,7 +11,8 @@ import { useAuth } from "@/providers/auth";
 import { getNextStep, saveStep } from "@/lib/client/quiz";
 import { getAntivirusInstalledFromLocalStorage, saveAntivirusInstalledToLocalStorage, resetAntivirusInstalledInLocalStorage } from "@/utils/localeStorage";
 import { useOS } from "@/providers/InclumeOS";
-
+import { beacon } from "@/helpers/beacon";
+import { useNotification } from "@/providers/notifications";
 interface AppProps<T> extends React.FC<T> {
   title: string;
   icon: ReactElement;
@@ -24,6 +25,7 @@ interface ChildVirusProps {
 
 const ChildVirus: AppProps<ChildVirusProps> = () => {
   const { openedApps } = useOS();
+  const {addNotification} = useNotification();
   const appData: any = Object.entries(openedApps).find(
     (x) => x[1].title === ChildVirus.title
   );
@@ -31,10 +33,25 @@ const ChildVirus: AppProps<ChildVirusProps> = () => {
   const validationEtape17 = async () =>{
 		const step = await getNextStep(session);
 		if (step.id === 40){
+      beacon("triggerStep", {
+        value: "installChildVirus",
+      });
 			await saveStep(session, {
 				test_step_template_id: step.id,
 				is_successful: true,
 			});
+      setTimeout(() => {
+              beacon("message", {
+                id: Math.random(),
+                sender: 0,
+                content: "Merci pour tout ce que tu as fait pour moi aujourd’hui! J’ai un dernier service à te demander, peux changer l’interface de mon bureau pour le mode “sombre”? Si tu n’y arrives, pas ce n’est pas grave, je le ferais moi-même. N’oublie pas d’éteindre l’ordinateur quand tu auras fini!",
+              });
+              addNotification({
+                title: "Nouveau message !",
+                message:
+                  "<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+          });
+      },5000)
 		}
 	}
   const [installationStarted, setInstallationStarted] = useState<boolean>(false);

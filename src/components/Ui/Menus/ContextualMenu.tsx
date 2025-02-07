@@ -131,6 +131,9 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 					const selection = window.getSelection();
 					if (selection && selection.toString()) {
 						await navigator.clipboard.writeText(selection.toString());
+						beacon("triggerStep", {
+							value: "copyLink",
+						});
 						console.info("Texte copié !");
 					} else {
 						console.warn("Aucun texte sélectionné !");
@@ -228,6 +231,9 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 				<ContextMenuShortcut>⌘V</ContextMenuShortcut>
 			</ContextMenuItem>
 			<ContextMenuItem inset onClick={() => {
+				beacon("triggerStep", {
+					value: "clicDroit",
+				  });
 				validationEtape4();
 				if (focusedElement.tagName === "IMG") {
 					const imgSrc = (focusedElement as HTMLImageElement).src;

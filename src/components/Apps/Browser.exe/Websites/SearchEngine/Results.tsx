@@ -251,6 +251,9 @@ const Results = ({ url }: ResultsProps) => {
 				onClick={() => {
 					handleClick("images")
 					validationEtape3();
+					beacon("triggerStep", {
+						value: "filtreImage",
+					  });
 				}}
 			  >
 				<p>Images</p>
