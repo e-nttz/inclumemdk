@@ -405,7 +405,7 @@ export const StepsListenerProvider = memo(({ children }) => {
                 beacon("message", {
                     id: Math.random(),
                     sender: 0,
-                    content: "Notre réservation pour l’activité est confirmée mais il n’est pas possible de payer sur place? Il faut faire un virement avant le début de l’activité. Pourrais tu le faire pour nous? Il faut envoyer 20€ au Compte BE012345678910. Merci!",
+                    content: "Notre réservation pour l’activité est confirmée mais il n’est pas possible de payer sur place? Il faut faire un virement avant le début de l’activité. Pourrais tu le faire pour nous? Il faut envoyer 20€ au Compte BE12345678910. Merci!",
                 });
                 addNotification({
                     title: "Nouveau message !",

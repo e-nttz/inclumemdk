@@ -198,7 +198,7 @@ const Message: AppProps = (defaultContent) => {
                 beacon("message", {
                     id: Math.random(),
                     sender: 0,
-                    content: "Voici le numéro de compte auquel tu dois faire le virement de 20€ : BE012345678910",
+                    content: "Voici le numéro de compte auquel tu dois faire le virement de 20€ : BE12345678910",
                 });
                 addNotification({
                     title: "Nouveau message !",

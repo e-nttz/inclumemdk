@@ -143,7 +143,7 @@ const BngBanque = () => {
       return;
     }
 
-    if (virementData.compteBeneficiaire.replace(/\s+/g, "") === "BE012345678910") {
+    if (virementData.compteBeneficiaire.replace(/\s+/g, "") === "BE12345678910") {
       validationEtape13();
     }
   

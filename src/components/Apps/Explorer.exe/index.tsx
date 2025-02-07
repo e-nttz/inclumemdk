@@ -25,6 +25,7 @@ const Explorer = ({ forceRender = false, defaultContent, ...props }) => {
 				path: "vacances",
 			});
 		}
+		defaultContent = "";
 	}
 
 	return (

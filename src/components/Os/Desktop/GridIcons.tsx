@@ -62,7 +62,7 @@ const GridIcons = () => {
             </button>
           </li>
         ))}
-        <li key={Math.random()}>
+        {/* <li key={Math.random()}>
           <button className="w-[100px] h-[100px] flex flex-col items-center justify-center p-4 transition duration-150 rounded group hover:bg-white/30 focus:bg-white/30 active:bg-white/75 dark:hover:bg-white/25 dark:active:bg-white/50 cursor-default"
             onDoubleClick={
               () => {
@@ -71,9 +71,6 @@ const GridIcons = () => {
                   icon: apps.explorer.icon,
                   defaultContent: "vacances"
                 })
-                return {
-                  defaultContent: "vacances",
-                };
               }
             }>
             <figure className="w-16 h-16 p-1 mb-2 relative">
@@ -81,7 +78,7 @@ const GridIcons = () => {
             </figure>
             <span className="text-[12px] text-white">Vacances</span>
           </button>
-        </li>
+        </li> */}
     </ul>
   );
 };
