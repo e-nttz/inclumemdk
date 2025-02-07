@@ -54,7 +54,7 @@ const GridIcons = () => {
                 {value.icon}
                 {value.title === "Message" && messageNotification && (
                   <div className="flex items-center justify-center text-xs w-5 h-5 bg-[#FB4343] rounded-[50%] text-white font-bold absolute top-0 right-0">
-                    1
+                    
                   </div>
                 )}
               </figure>

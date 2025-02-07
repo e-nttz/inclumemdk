@@ -48,6 +48,18 @@ const Message: AppProps = (defaultContent) => {
 	const [videoLink, setVideoLink] = useState(null)
 	
 	useEffect(() => {
+		const appelEnded = async () => {
+			const step = await getNextStep(session);
+			if(step.id !== 1){
+				setStepId(step.id)
+				setCallEnded(false);
+				setVideoLink("https://ik.imagekit.io/0jngziwft/Appels%20/Appel%20%C3%A9tape%2013.mp4");
+			}
+		}
+		appelEnded();
+	})
+
+	useEffect(() => {
 		const fetchStepVideo = async () => {
 		  try {
 			const stepVideo = await getNextStep(session);
@@ -90,7 +102,6 @@ const Message: AppProps = (defaultContent) => {
 						"message" : message,
 					},
 				});
-				setCallEnded(false)
 				setTimeout(() => {
 					beacon("message", {
 						id: Math.random(),
@@ -238,7 +249,6 @@ const Message: AppProps = (defaultContent) => {
 	useEffect(() => {
 		const executeCall = async () => {
 			if (defaultContent && defaultContent["props"] && defaultContent["props"][1] && defaultContent["props"][1].defaultContent === true) {
-				// Fonction secondCall directement ici
 				const step = await getNextStep(session);
 				if (step.id === 35 || step.id === 51 || step.id === 55) {
 					setSoundOn(false);
@@ -246,13 +256,16 @@ const Message: AppProps = (defaultContent) => {
 				else{
 					setSoundOn(true);
 				}
-				if(!callEnded){
-					setCall(true);
-				}
+				
+				setCall(true);
+				
 			}
+			return defaultContent = ""
 		};
-	
-		executeCall();
+		
+		if(!callEnded){
+			executeCall();
+		}
 	}, [defaultContent]);	
 	
 	const { t } = useTranslate();
