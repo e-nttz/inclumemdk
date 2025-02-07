@@ -44,21 +44,8 @@ const Message: AppProps = (defaultContent) => {
 	const {addNotification } = useNotification();
 
 	const [stepId, setStepId] = useState(1)
-	const [callEnded, setCallEnded] = useState(false)
 	const [videoLink, setVideoLink] = useState(null)
 	
-	useEffect(() => {
-		const appelEnded = async () => {
-			const step = await getNextStep(session);
-			if(step.id !== 1){
-				setStepId(step.id)
-				setCallEnded(false);
-				setVideoLink("https://ik.imagekit.io/0jngziwft/Appels%20/Appel%20%C3%A9tape%2013.mp4");
-			}
-		}
-		appelEnded();
-	})
-
 	useEffect(() => {
 		const fetchStepVideo = async () => {
 		  try {
@@ -102,6 +89,7 @@ const Message: AppProps = (defaultContent) => {
 						"message" : message,
 					},
 				});
+				
 				setTimeout(() => {
 					beacon("message", {
 						id: Math.random(),
@@ -246,27 +234,41 @@ const Message: AppProps = (defaultContent) => {
 		}
 	};
 
+	const hasCalled = useRef(false);
+
 	useEffect(() => {
 		const executeCall = async () => {
-			if (defaultContent && defaultContent["props"] && defaultContent["props"][1] && defaultContent["props"][1].defaultContent === true) {
+			if (hasCalled.current) return; // Évite l'appel en boucle
+
+			if (
+				defaultContent &&
+				defaultContent["props"] &&
+				defaultContent["props"][1] &&
+				defaultContent["props"][1].defaultContent === true
+			) {
+				hasCalled.current = true; // Marque l'appel comme exécuté
+
 				const step = await getNextStep(session);
-				if (step.id === 35 || step.id === 51 || step.id === 55) {
+				if((step.id === 35 || step.id === 51 || step.id === 55)){
+					setStepId(step.id)
 					setSoundOn(false);
+					setVideoLink("https://ik.imagekit.io/0jngziwft/Appels%20/Appel%20%C3%A9tape%2013.mp4");
+					hasCalled.current = true;
 				}
-				else{
-					setSoundOn(true);
-				}
-				
 				setCall(true);
-				
 			}
-			return defaultContent = ""
 		};
-		
-		if(!callEnded){
-			executeCall();
-		}
-	}, [defaultContent]);	
+
+		executeCall();
+	}, [defaultContent, session]); // Déclenché quand defaultContent ou session change
+
+	// 🔄 Réinitialisation de hasCalled quand `defaultContent` ou `session` change
+	useEffect(() => {
+		hasCalled.current = false; // Permet un nouvel appel
+	}, [defaultContent, session]); // Se réinitialise quand defaultContent/session change
+
+	
+	
 	
 	const { t } = useTranslate();
 	const { handleInfoWindow, closeInfoWindow } = useExplorer();
@@ -537,7 +539,6 @@ const Message: AppProps = (defaultContent) => {
 					onEnded={() => {
 						setTimeout(() => {
 							setCall(false);
-							setCallEnded(true);
 						}, 1500);
 					}}
 				>
