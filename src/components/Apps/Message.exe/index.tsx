@@ -43,6 +43,7 @@ const Message: AppProps = (defaultContent) => {
 	const [isSoundOn, setSoundOn] = useState(true);
 	const {addNotification } = useNotification();
 
+	const [stepId, setStepId] = useState(1)
 	const [videoLink, setVideoLink] = useState(null)
 	
 	useEffect(() => {
@@ -52,7 +53,8 @@ const Message: AppProps = (defaultContent) => {
 			if (stepVideo.id === 1) {
 			  setVideoLink("https://ik.imagekit.io/0jngziwft/Appels%20/Appel%20vid%C3%A9o%20%C3%A9tape%201.mp4");
 			} else {
-			  setVideoLink("https://ik.imagekit.io/0jngziwft/Appels%20/Appel%20%C3%A9tape%2013.mp4");
+				setStepId(stepVideo.id)
+			  	setVideoLink("https://ik.imagekit.io/0jngziwft/Appels%20/Appel%20%C3%A9tape%2013.mp4");
 			}
 		  } catch (error) {
 			console.error("Error fetching step video:", error);
@@ -520,55 +522,51 @@ const Message: AppProps = (defaultContent) => {
 
 			{isCall === true && (
 				<section className="bg-black w-full h-full flex justify-center">
-					{/* Référence pour la vidéo */}
-					<video autoPlay ref={videoRef} muted={!isSoundOn} onEnded={() => {
+				{/* Référence pour la vidéo */}
+				<video 
+					autoPlay 
+					ref={videoRef} 
+					muted={!isSoundOn} 
+					onEnded={() => {
 						setTimeout(() => {
-							setCall(false)
-						},1500)
-					}}>
-						<source src={videoLink} />
-					</video>
-					<div className="options flex justify-between absolute bottom-4 w-60">
-						<div
-							className="camera rounded-[50%] w-12 h-12 flex items-center justify-center cursor-pointer bg-black/40 backdrop-blur"
-							onClick={() => setWebcamOn(!isWebcamOn)}
-						>
-							<img src={isWebcamOn ? WebcamOn : WebcamOff} alt="Webcam" className="h-6" />
-						</div>
-
-						<div
-							className="micro rounded-[50%] w-12 h-12 flex items-center justify-center cursor-pointer bg-black/40 backdrop-blur"
-							onClick={() => setMicOn(!isMicOn)}
-						>
-							<img src={isMicOn ? MicOn : MicOff} alt="Microphone" className="h-6" />
-						</div>
-
-						{/* Bouton pour couper/activer le son */}
-						<div
-							className="hautparleur rounded-[50%] w-12 h-12 flex items-center justify-center cursor-pointer bg-black/40 backdrop-blur"
-							onClick={() => {
-								setSoundOn(!isSoundOn); // Alterne l'état local
-								if (videoRef.current) {
-									videoRef.current.muted = isSoundOn; // Mettre à jour la propriété muted
+							setCall(false);
+						}, 1500);
+					}}
+				>
+					<source src={videoLink} />
+				</video>
+				
+				<div className="options flex justify-between absolute bottom-4 w-60">
+					{/* ... autres boutons ... */}
+			
+					{/* Bouton pour couper/activer le son */}
+					<div
+						className="hautparleur rounded-[50%] w-12 h-12 flex items-center justify-center cursor-pointer bg-black/40 backdrop-blur"
+						onClick={() => {
+							setSoundOn(!isSoundOn); // Alterne l'état local
+							if (videoRef.current) {
+								videoRef.current.muted = !isSoundOn; // Mettre à jour la propriété muted
+								
+								// Réinitialiser la vidéo au début lorsque l'on active/désactive le son
+								if(stepId != 1){
+									videoRef.current.currentTime = 0;
 								}
-								fetchStepId(session, "")
-							}}
-						>
-							<img src={isSoundOn ? SoundOn : SoundOff} alt="Haut-parleur" className="h-6" />
-						</div>
-
-						<div
-							className="raccrocher bg-[#FB4343] rounded-[50%] w-12 h-12 flex items-center justify-center cursor-pointer"
-						>
-							<img src={HangUp} alt="" className="h-6" />
-						</div>
+							}
+							fetchStepId(session, "");
+						}}
+					>
+						<img src={isSoundOn ? SoundOn : SoundOff} alt="Haut-parleur" className="h-6" />
 					</div>
-					{isWebcamOn && (
-						<div className="webcam absolute w-64 absolute bottom-3 right-3">
-							<img src={WebcamImage} alt="Personnage Webcam" className=""/>
-						</div>
-					)}
-				</section>
+			
+					{/* ... autres boutons ... */}
+				</div>
+				
+				{isWebcamOn && (
+					<div className="webcam absolute w-64 absolute bottom-3 right-3">
+						<img src={WebcamImage} alt="Personnage Webcam" className=""/>
+					</div>
+				)}
+			</section>			
 			)}
 		</Window>
 	);

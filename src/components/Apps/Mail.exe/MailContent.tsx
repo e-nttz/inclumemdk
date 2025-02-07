@@ -65,7 +65,7 @@ const MailContent = ({
         setEditableEmailTo(value);
 
         // Vérifier si les 3 premières lettres correspondent à "res"
-        if (value.toLowerCase().startsWith("res")) {
+        if (value.toLowerCase().startsWith("res") || value.toLowerCase().startsWith("hot")) {
             setShowSuggestion(true);
         } else {
             setShowSuggestion(false);
@@ -198,7 +198,7 @@ const MailContent = ({
                                 className="absolute z-10 mt-2 bg-white border border-gray-300 p-2 cursor-pointer w-full"
                                 onClick={handleSelectSuggestion}
                             >
-                                reservation@hotelnamur.be
+                                reservation@hotlenamur.be
                             </div>
                             )}
                         </div>
