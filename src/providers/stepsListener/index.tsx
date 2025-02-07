@@ -225,26 +225,38 @@ export const StepsListenerProvider = memo(({ children }) => {
     const { addNotification } = useNotification();
     const timeoutRef = useRef<number | null>(null); // Stocke l'ID du timeout pour éviter les doublons
     const [steps] = useState(dataSteps);
-    const [currentStepId, setCurrentStepId] = useState(1);
     const { session } = useAuth();
     const [lastTrigger, setLastTrigger] = useState<any[]>([]);
+    const [currentStepId, setCurrentStepId] = useState(null);
+    const [stepType, setStepType] = useState(null);
+    const [currentStep, setCurrentStep] = useState(null);
 
+    useEffect(() => {
+        const fetchNextStep = async () => {
+            if (session) {
+                const nextStep = await getNextStep(session);
+                console.log(nextStep);  // Pour voir la réponse
+                setCurrentStep(nextStep);
+                setCurrentStepId(nextStep.id);
+                setStepType(nextStep.step_type);
+            }
+        };
+
+        if (lastTrigger.length > 0) {
+            // Appeler fetchNextStep seulement lorsque lastTrigger est mis à jour
+            fetchNextStep();
+        }
+    }, [lastTrigger, session]); // Dépendances: lastTrigger et session
+
+    // Écouteur de beacon
     useBeaconListener("triggerStep", (e) => {
-        setLastTrigger(prevState => [...prevState, e]);
-        console.log(lastTrigger)
+        setLastTrigger((prevState) => [...prevState, e]);
+        console.log("Last trigger:", lastTrigger);  // Pour voir les changements
     });
     
     // 🔹 Fonction pour récupérer un indice
     const handleGetHint = async () => {
-        const currentStep = await getNextStep(session);
-        console.log(currentStep)
-        setCurrentStepId(currentStep.id)
-
-        if(currentStepId != currentStep.id) {
-            setLastTrigger([]);
-        }
-        
-        const currentStepHints = steps.find(step => step.step_id === currentStep.Id);
+        const currentStepHints = steps.find(step => step.step_id === currentStep.id);
         
         if (currentStepHints) {
             let hintFound = false;
@@ -492,7 +504,7 @@ export const StepsListenerProvider = memo(({ children }) => {
         <StepsListenerContext.Provider value={{}}>
             {children}
 
-            {showHintButton && (
+            {showHintButton && stepType === "TEST" && (
                 <div onClick={handleGetHint} className="cursor-pointer absolute right-2 bottom-20 flex items-center bg-[#EB5D1D] rounded-2xl opacity-60 hover:opacity-100 transition-opacity duration-300">
                     <div className="bg-white px-6 py-2 mr-3 rounded-l-2xl">
                         <img src={MascotteIndice} className="h-6" alt="" />
@@ -501,7 +513,7 @@ export const StepsListenerProvider = memo(({ children }) => {
                 </div>
             )}
 
-            {showSkipButton && (
+            {showSkipButton && stepType === "TEST" && (
                 <div onClick={skipStep} className="cursor-pointer absolute right-2 bottom-40 flex items-center bg-[#EB5D1D] rounded-2xl opacity-60 hover:opacity-100 transition-opacity duration-300">
                     <div className="bg-white px-6 py-2 mr-3 rounded-l-2xl">
                         <img src={MascotteNeutre} className="h-6" alt="" />

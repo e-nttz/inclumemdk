@@ -122,9 +122,8 @@ const Spreadsheets = () => {
                                     value: "saveFile",
                                 });
 								handleInfoWindow(undefined, (currentPath) => {
-									const fileName = prompt(
-										t("enter_filename", "Entrez le nom du fichier")
-									);
+									const fileName = (document.querySelector("#inputSaveFile") as HTMLInputElement).value;
+
 									createFile(
 										fileName,
 										"xlsx",

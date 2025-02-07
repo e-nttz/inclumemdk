@@ -4,18 +4,25 @@ import StartMenu from "./StartMenu";
 import RenderAllApps from "@/components/Apps";
 import { useAuth } from "@/providers/auth";
 import { getNextStep, saveStep } from "@/lib/client/quiz";
-import MascotteNeutre from "@/assets/mascotte/mascotte_neutre.svg";
+import { useNotification } from "@/providers/notifications";
 import { useEffect } from "react";
 import { beacon } from "@/helpers/beacon";
 
 const Desktop = () => {
 	const {session} = useAuth();
-
+	const { addNotification } = useNotification();
 	useEffect(() => {
 		const start = async () => {
 			try {
 				const step = await getNextStep(session);
 				if (step?.id === 1) {
+					setTimeout(() => {
+						addNotification({
+							title: "Nouveau message !",
+							message:
+								"<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+						});
+					},5000)
 					setTimeout(() => {
 						beacon("call", {
 							status: "incoming",

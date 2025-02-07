@@ -280,7 +280,7 @@ const Results = ({ url }: ResultsProps) => {
 				  <p className="text-sm">{site.pages[0].url}</p>
 				  <h3 className="text-xl font-medium text-[#1265AF]">{site.title}</h3>
 				  <p className="mt-2 text-gray-500">{site.excerpt}</p>
-				  <p className="mt-1 text-sm text-gray-400">{`Mots-clés correspondants : ${site.matchCount}`}</p>
+				  {/* <p className="mt-1 text-sm text-gray-400">{`Mots-clés correspondants : ${site.matchCount}`}</p> */}
 				</div>
 			  ))}
 	

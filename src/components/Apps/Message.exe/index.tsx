@@ -43,7 +43,27 @@ const Message: AppProps = (defaultContent) => {
 	const [isSoundOn, setSoundOn] = useState(true);
 	const {addNotification } = useNotification();
 
-	const [videoLink, setVideoLink] = useState("https://ik.imagekit.io/0jngziwft/Appels%20/Appel%20vid%C3%A9o%20%C3%A9tape%201.mp4")
+	const [videoLink, setVideoLink] = useState(null)
+	
+	useEffect(() => {
+		const fetchStepVideo = async () => {
+		  try {
+			const stepVideo = await getNextStep(session);
+			if (stepVideo.id === 1) {
+			  setVideoLink("https://ik.imagekit.io/0jngziwft/Appels%20/Appel%20vid%C3%A9o%20%C3%A9tape%201.mp4");
+			} else {
+			  setVideoLink("https://ik.imagekit.io/0jngziwft/Appels%20/Appel%20%C3%A9tape%2013.mp4");
+			}
+		  } catch (error) {
+			console.error("Error fetching step video:", error);
+		  }
+		};
+	
+		if (session) {
+		  fetchStepVideo();
+		}
+	}, [session]);
+
 	const fetchStepId = async (session, message) => {
 		try {
 		  const step = await getNextStep(session);
@@ -57,7 +77,6 @@ const Message: AppProps = (defaultContent) => {
 					},
 				});
 			}
-			setVideoLink("https://ik.imagekit.io/0jngziwft/Appels%20/Appel%20%C3%A9tape%2013.mp4?updatedAt=1738239549967")
 		  }
 		  if (step.id === 2) {
 			if(message){
@@ -86,7 +105,9 @@ const Message: AppProps = (defaultContent) => {
 		//   Etape 2 bis
 		// Ajouter pa
 		  if(step.id === 3){
-			if(message.toLowerCase().includes("pas","pa","p as", "p a","non")){
+			if (
+				["pas", "pa", "p as", "p a", "non"].some(keyword => message.toLowerCase().includes(keyword))
+			  ) {
 				await saveStep(session, {
 					test_step_template_id: step.id,
 					is_successful: true,
@@ -184,8 +205,8 @@ const Message: AppProps = (defaultContent) => {
                 });
             }, 25000)
 		  }
-		  if(step.id === 38 && 
-			message.toLowerCase().includes("salade", "epicee", "épicée", "epicée", "épicee", "epice")){
+		  if(step.id === 38 &&
+  				["salade", "epicee", "épicée", "epicée", "épicee", "epice"].some(keyword => message.toLowerCase().includes(keyword))){
 			await saveStep(session, {
 				test_step_template_id: step.id,
 				is_successful: true,
@@ -538,7 +559,6 @@ const Message: AppProps = (defaultContent) => {
 
 						<div
 							className="raccrocher bg-[#FB4343] rounded-[50%] w-12 h-12 flex items-center justify-center cursor-pointer"
-							onClick={() => setCall(false)}
 						>
 							<img src={HangUp} alt="" className="h-6" />
 						</div>

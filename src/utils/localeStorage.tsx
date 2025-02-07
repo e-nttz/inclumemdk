@@ -56,3 +56,22 @@ export const getTransactions = (): { nom: string, montant: number, entree_sortie
     localStorage.removeItem('TransactionsTest');  // Supprime l'élément du localStorage
   };
   
+  export const saveMessageToLocalStorage = (UserSession: string, message: { id: string, text: string, timestamp: number }) => {
+    const localStorageKey = `messages_${UserSession}`; 
+    const savedMessages = localStorage.getItem(localStorageKey);
+    const messages = savedMessages ? JSON.parse(savedMessages) : [];
+    
+    messages.push(message); // Ajoute le nouveau message à la liste
+    localStorage.setItem(localStorageKey, JSON.stringify(messages)); // Sauvegarde
+};
+
+export const getMessagesFromLocalStorage = (UserSession: string) => {
+    const localStorageKey = `messages_${UserSession}`;  
+    const savedMessages = localStorage.getItem(localStorageKey);
+    return savedMessages ? JSON.parse(savedMessages) : [];  
+};
+
+export const resetMessagesInLocalStorage = (UserSession: string) => {
+    const localStorageKey = `messages_${UserSession}`;
+    localStorage.removeItem(localStorageKey);  
+};

@@ -2,6 +2,7 @@ import IconSearchEngine from "@/assets/icons/search-engine.svg?react";
 import { IKContext, IKImage } from "imagekitio-react";
 import { useAuth } from "@/providers/auth";
 import { getNextStep, saveStep } from "@/lib/client/quiz";
+import { beacon } from "@/helpers/beacon";
 
 const RestaurantLaSiestaOostende = () => {
 	const {user, session} = useAuth();
@@ -12,6 +13,9 @@ const RestaurantLaSiestaOostende = () => {
 				test_step_template_id: step.id,
 				is_successful: true,
 			});
+			beacon("triggerStep", {
+				value: "openSiesta",
+			  });
 		}
 	}
 	validationEtape1();

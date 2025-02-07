@@ -39,6 +39,7 @@ const TextEditor: AppProps<TextEditorProps> = ({ content = "" }) => {
 
 	function onChange(e) {
 		setValue(e.target.value);
+		console.log(value)
 	}
 
 	const addImage = (url) => {
@@ -46,15 +47,16 @@ const TextEditor: AppProps<TextEditorProps> = ({ content = "" }) => {
 		const img = document.createElement("img");
 		img.src = url;
 		img.className = "h-auto max-w-[50%] inline-block";
-
+	
 		if (selection.rangeCount > 0) {
 			const range = selection.getRangeAt(0);
 			const startContainer = range.startContainer;
-
+	
 			// Vérifier si le startContainer est un élément HTML avant d'afficher sa className
 			if (startContainer.nodeType === 1) {
 				const element = startContainer as HTMLElement;
-				if(element.className === "rsw-ce"){
+				// Vérifier si l'élément ou un de ses ancêtres a la classe "rsw-ce"
+				if (element.closest(".rsw-ce")) {
 					range.insertNode(img);
 					range.collapse(false);
 					setValue(editorRef.current.innerHTML);
@@ -64,6 +66,7 @@ const TextEditor: AppProps<TextEditorProps> = ({ content = "" }) => {
 			setValue(value + img.outerHTML);
 		}
 	};
+	
 
 	const BtnBoldCustom = createButton("Bold", "B", "bold");
 	const BtnItalicCustom = createButton("Italic", "I", "italic");
@@ -81,9 +84,7 @@ const TextEditor: AppProps<TextEditorProps> = ({ content = "" }) => {
 									value: "saveFile",
 								  });
 								handleInfoWindow(undefined, (currentPath) => {
-									const fileName = prompt(
-										t("enter_filename", "Entrez le nom du fichier")
-									);
+									const fileName = (document.querySelector("#inputSaveFile") as HTMLInputElement).value;
 
 									createFile(
 										fileName,
