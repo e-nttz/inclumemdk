@@ -44,7 +44,7 @@ const ChildVirus: AppProps<ChildVirusProps> = () => {
               beacon("message", {
                 id: Math.random(),
                 sender: 0,
-                content: "Merci pour tout ce que tu as fait pour moi aujourd’hui! J’ai un dernier service à te demander, peux changer l’interface de mon bureau pour le mode “sombre”? Si tu n’y arrives, pas ce n’est pas grave, je le ferais moi-même. N’oublie pas d’éteindre l’ordinateur quand tu auras fini!",
+                content: "Merci pour tout ce que tu as fait pour moi aujourd’hui! J’ai un dernier service à te demander, peux-tu changer l’interface de mon bureau pour le mode “sombre”? Si tu n’y arrives, pas ce n’est pas grave, je le ferais moi-même. N’oublie pas d’éteindre l’ordinateur quand tu auras fini!",
               });
               addNotification({
                 title: "Nouveau message !",
