@@ -957,7 +957,7 @@
 				"clues": [
 					{
 						"time_launched": 60,
-						"title": "Etient l'ordinateur !",
+						"title": "Eteint l'ordinateur !",
 						"message": "N'oublie pas d'éteindre l'ordinateur avant de partir.",
 						"visualHint": {
 							"image": ""
