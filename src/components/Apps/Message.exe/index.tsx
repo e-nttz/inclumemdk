@@ -246,7 +246,9 @@ const Message: AppProps = (defaultContent) => {
 				else{
 					setSoundOn(true);
 				}
-				setCall(true);
+				if(!callEnded){
+					setCall(true);
+				}
 			}
 		};
 	
@@ -512,7 +514,7 @@ const Message: AppProps = (defaultContent) => {
 				</section>
 			)}
 
-			{isCall === true && !callEnded && (
+			{isCall === true && (
 				<section className="bg-black w-full h-full flex justify-center">
 				{/* Référence pour la vidéo */}
 				<video 
