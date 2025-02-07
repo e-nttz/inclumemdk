@@ -7,8 +7,8 @@ const TelepheriqueNamur = () => {
 			<body className="bg-white">
 			<header className="bg-blue-600 py-8 shadow-lg">
 				<div className="container mx-auto text-center">
-					<h1 className="text-5xl font-bold text-white">Téléphérique de la Citadelle de Namur</h1>
-					<p className="mt-2 text-lg text-blue-200">Découvrez Namur sous un nouveau jour</p>
+					<h1 className="text-5xl font-bold text-white">Teleph&rique de la $itAdel de N@mur</h1>
+					<p className="mt-2 text-lg text-blue-200">D&couvrer Namr sous un nouveau jour</p>
 				</div>
 			</header>
 
@@ -169,6 +169,6 @@ TelepheriqueNamur.images = [
 TelepheriqueNamur.pages = [
 	{
 		title: "Téléphérique de Namur",
-		url: "https://namur-telepherique.be/fr",
+		url: "http://namur-telepherique.be/fr",
 	},
 ];

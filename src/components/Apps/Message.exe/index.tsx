@@ -44,6 +44,7 @@ const Message: AppProps = (defaultContent) => {
 	const {addNotification } = useNotification();
 
 	const [stepId, setStepId] = useState(1)
+	const [callEnded, setCallEnded] = useState(false)
 	const [videoLink, setVideoLink] = useState(null)
 	
 	useEffect(() => {
@@ -54,6 +55,7 @@ const Message: AppProps = (defaultContent) => {
 			  setVideoLink("https://ik.imagekit.io/0jngziwft/Appels%20/Appel%20vid%C3%A9o%20%C3%A9tape%201.mp4");
 			} else {
 				setStepId(stepVideo.id)
+				setCallEnded(false)
 			  	setVideoLink("https://ik.imagekit.io/0jngziwft/Appels%20/Appel%20%C3%A9tape%2013.mp4");
 			}
 		  } catch (error) {
@@ -363,15 +365,6 @@ const Message: AppProps = (defaultContent) => {
 		}
 	};
 
-	// // Mettre étape en raté si délais trop long
-	// // Régler timing en fonction des indices
-	// // S'activer après avoir décroché
-	// setTimeout(() => {
-	// 	fetchStepId(session, "appel")
-	// }, 20000)
-	// setTimeout(() => {
-	// 	fetchStepId(session, "raté")
-	// }, 5000)
 	return (
 		<Window
 			appName={Message.title}
@@ -520,7 +513,7 @@ const Message: AppProps = (defaultContent) => {
 				</section>
 			)}
 
-			{isCall === true && (
+			{isCall === true && !callEnded (
 				<section className="bg-black w-full h-full flex justify-center">
 				{/* Référence pour la vidéo */}
 				<video 
@@ -530,6 +523,7 @@ const Message: AppProps = (defaultContent) => {
 					onEnded={() => {
 						setTimeout(() => {
 							setCall(false);
+							setCallEnded(true);
 						}, 1500);
 					}}
 				>
