@@ -99,7 +99,7 @@ const TextEditor: AppProps<TextEditorProps> = ({ content = "" }) => {
 								});
 							}}
 						>
-							{t("save_file", "Enregistrer le fichier")}
+							{t("save_file", "Enregistrer sous")}
 						</ContextualBar.Item>
 						<ContextualBar.Item onClick={() => {}}>
 							{t("settings", "Paramètres")}

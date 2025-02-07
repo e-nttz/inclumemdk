@@ -46,6 +46,11 @@ const Desktop = () => {
 	
 		start();
 	}, [session]);
+
+	window.addEventListener("beforeunload", (e) => {  
+		e.preventDefault();
+		e.returnValue = "Etes-vous sûr de vouloir quitter le test ?"; // Correctement assigné
+	});
 	
 
 	return (
