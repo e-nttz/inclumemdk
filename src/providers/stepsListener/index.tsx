@@ -235,32 +235,30 @@ export const StepsListenerProvider = memo(({ children }) => {
         const fetchNextStep = async () => {
             if (session) {
                 const nextStep = await getNextStep(session);
-                console.log(nextStep);  // Pour voir la réponse
                 setCurrentStep(nextStep);
                 setCurrentStepId(nextStep.id);
                 setStepType(nextStep.step_type);
             }
         };
-
         if (lastTrigger.length > 0) {
-            // Appeler fetchNextStep seulement lorsque lastTrigger est mis à jour
             fetchNextStep();
         }
-    }, [lastTrigger, session]); // Dépendances: lastTrigger et session
+    }, [lastTrigger, session]);
 
     // Écouteur de beacon
     useBeaconListener("triggerStep", (e) => {
         setLastTrigger((prevState) => [...prevState, e]);
-        console.log("Last trigger:", lastTrigger);  // Pour voir les changements
     });
     
     // 🔹 Fonction pour récupérer un indice
     const handleGetHint = async () => {
-        const currentStepHints = steps.find(step => step.step_id === currentStep.id);
-        
+        const nextStep = await getNextStep(session);
+        console.log(nextStep)
+        const currentStepHints = steps.find(step => step.step_id === nextStep.id);
+        console.log(currentStepHints)
+        console.log(lastTrigger)
         if (currentStepHints) {
             let hintFound = false;
-
             for (let i = 0; i < currentStepHints.items.length; i++) {
                 const item = currentStepHints.items[i];
                 const isMatch = lastTrigger.some(trigger => trigger.detail?.value === item.value);
@@ -272,6 +270,9 @@ export const StepsListenerProvider = memo(({ children }) => {
                         visualHint: item.clues[0].visualHint
                     });
                     hintFound = true;
+                    if(i === currentStepHints.items.length - 1){
+                        setLastTrigger([]);
+                    }
                     return;
                 }
             }

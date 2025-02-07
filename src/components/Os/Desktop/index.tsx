@@ -12,6 +12,9 @@ const Desktop = () => {
 	const {session} = useAuth();
 	const { addNotification } = useNotification();
 	useEffect(() => {
+		beacon("triggerStep", {
+			value: "testLaunched",
+		  });
 		const start = async () => {
 			try {
 				const step = await getNextStep(session);

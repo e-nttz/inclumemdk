@@ -344,6 +344,9 @@ export const ExplorerProvider = ({ children }) => {
 			if (name === "dupont") {
 				if (content.data.toLowerCase().includes("dupont")) {
 					validationEtape6();  
+					beacon("triggerStep", {
+						value: "stepValidated",
+					  });
 				}
 			}
 
