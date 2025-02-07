@@ -55,7 +55,6 @@ const Message: AppProps = (defaultContent) => {
 			  setVideoLink("https://ik.imagekit.io/0jngziwft/Appels%20/Appel%20vid%C3%A9o%20%C3%A9tape%201.mp4");
 			} else {
 				setStepId(stepVideo.id)
-				setCallEnded(false)
 			  	setVideoLink("https://ik.imagekit.io/0jngziwft/Appels%20/Appel%20%C3%A9tape%2013.mp4");
 			}
 		  } catch (error) {
@@ -91,7 +90,7 @@ const Message: AppProps = (defaultContent) => {
 						"message" : message,
 					},
 				});
-				
+				setCallEnded(false)
 				setTimeout(() => {
 					beacon("message", {
 						id: Math.random(),
