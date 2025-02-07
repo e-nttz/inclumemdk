@@ -513,7 +513,7 @@ const Message: AppProps = (defaultContent) => {
 				</section>
 			)}
 
-			{isCall === true && !callEnded (
+			{isCall === true && !callEnded && (
 				<section className="bg-black w-full h-full flex justify-center">
 				{/* Référence pour la vidéo */}
 				<video 
