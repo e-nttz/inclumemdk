@@ -47,8 +47,8 @@ const TelepheriqueNamur = () => {
 				<h2 className="text-3xl font-semibold text-blue-600">Contactez-nous</h2>
 				<p className="mt-4 text-gray-700">Pour toute question ou réservation :</p>
 				<div className="mt-6">
-					<p className="text-gray-700">Mail : <button className="underline text-blue-600">namur.téléphérique@outmail.be</button></p>
-					<p className="text-gray-700 mt-2">Téléphone : <button className="underline text-blue-600">065 34 12 432 1</button></p>
+					<p className="text-gray-700">Mail : <button className="underline text-blue-600">namur.cajldklfi1413de@outmail.be</button></p>
+					<p className="text-gray-700 mt-2">Téléphone : <button className="underline text-blue-600">+48 65 34 12 432 1</button></p>
 				</div>
 			</section>
 
@@ -62,7 +62,7 @@ const TelepheriqueNamur = () => {
 				<p className="mt-4 text-gray-700">Voici ce que nos visiteurs disent :</p>
 				<div className="mt-6 max-w-3xl mx-auto space-y-4">
 					<blockquote className="bg-white p-4 rounded-lg shadow">
-						<p className="text-gray-600">“Une expérience incroyable, les vues sont à couper le souffle !”</p>
+						<p className="text-gray-600">“Неверојатно искуство, погледите го одземаат здивот!”</p>
 						<footer className="mt-2 text-gray-500">- Sophie M.</footer>
 					</blockquote>
 					<blockquote className="bg-white p-4 rounded-lg shadow">
