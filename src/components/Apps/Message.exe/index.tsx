@@ -538,7 +538,19 @@ const Message: AppProps = (defaultContent) => {
 				
 				<div className="options flex justify-between absolute bottom-4 w-60">
 					{/* ... autres boutons ... */}
-			
+					<div
+							className="camera rounded-[50%] w-12 h-12 flex items-center justify-center cursor-pointer bg-black/40 backdrop-blur"
+							onClick={() => setWebcamOn(!isWebcamOn)}
+						>
+							<img src={isWebcamOn ? WebcamOn : WebcamOff} alt="Webcam" className="h-6" />
+						</div>
+
+						<div
+							className="micro rounded-[50%] w-12 h-12 flex items-center justify-center cursor-pointer bg-black/40 backdrop-blur"
+							onClick={() => setMicOn(!isMicOn)}
+						>
+							<img src={isMicOn ? MicOn : MicOff} alt="Microphone" className="h-6" />
+						</div>
 					{/* Bouton pour couper/activer le son */}
 					<div
 						className="hautparleur rounded-[50%] w-12 h-12 flex items-center justify-center cursor-pointer bg-black/40 backdrop-blur"
@@ -558,7 +570,11 @@ const Message: AppProps = (defaultContent) => {
 						<img src={isSoundOn ? SoundOn : SoundOff} alt="Haut-parleur" className="h-6" />
 					</div>
 			
-					{/* ... autres boutons ... */}
+					<div
+							className="raccrocher bg-[#FB4343] rounded-[50%] w-12 h-12 flex items-center justify-center cursor-pointer"
+						>
+							<img src={HangUp} alt="" className="h-6" />
+						</div>
 				</div>
 				
 				{isWebcamOn && (
