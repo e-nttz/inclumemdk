@@ -24,29 +24,8 @@ interface OSContextualMenuProps {
 		action: () => void;
 	}[];
 }
-const { addNotification } = useNotification();
-const {session} = useAuth();
-	  const validationEtape18 = async () =>{
-			const step = await getNextStep(session);
-			if (step.id === 64) {
-				await saveStep(session, {
-					test_step_template_id: step.id,
-					is_successful: true,
-			});
-			setTimeout(() => {
-							beacon("message", {
-							id: Math.random(),
-							sender: 0,
-							content: "Merci pour tout ce que tu as fait pour moi, avant de partir, n’oublie d’éteindre mon ordinateur!",
-							});
-							addNotification({
-							title: "Nouveau message !",
-							message:
-								"<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
-						});
-					},5000)
-		}
-	}
+
+	  
 // const setCanvasImage = (path, func) => {
 // 	const img = document.createElement("img");
 
@@ -88,7 +67,27 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 	const { setPauseMode, clearTimer } = useStepsListener();
 
 	const { createFile, handleInfoWindow, closeInfoWindow } = useExplorer();
-
+	const validationEtape18 = async () =>{
+			const step = await getNextStep(session);
+			if (step.id === 64) {
+				await saveStep(session, {
+					test_step_template_id: step.id,
+					is_successful: true,
+			});
+			setTimeout(() => {
+							beacon("message", {
+							id: Math.random(),
+							sender: 0,
+							content: "Merci pour tout ce que tu as fait pour moi, avant de partir, n’oublie d’éteindre mon ordinateur!",
+							});
+							addNotification({
+							title: "Nouveau message !",
+							message:
+								"<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+						});
+					},5000)
+		}
+	}
 	return (
 		<ContextMenuContent className="w-64 z-[15555000]" sticky={"always"}>
 			{actions?.map((action) => {
