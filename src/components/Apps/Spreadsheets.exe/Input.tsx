@@ -30,7 +30,11 @@ const Input = memo(
 				inputRef.current.focus();
 			}
 		}, [editionMode]);
-
+		
+		useEffect(() => {
+			setEditionMode(false);
+		}, [currentCell]);
+		
 		const buttonValueWithImage = (value: string) => {
 			return value && value.includes("imagekit") ? (
 				<img src={value} alt="" className="w-full h-full" />
@@ -38,6 +42,9 @@ const Input = memo(
 				value
 			);
 		};
+
+
+		
 
 		return editionMode ? (
 			<input
@@ -130,27 +137,19 @@ const Input = memo(
 					gridColumn: `${indexRow + 2} / ${indexRow + 3}`,
 					gridRow: `${indexCol + 2} / ${indexCol + 3}`,
 				}}
-				onClick={() =>
-					setCurrentCell(
-						`${String.fromCharCode(65 + indexRow)}:${indexCol + 1}`
-					)
-				}
 				onContextMenu={() =>
 					setCurrentCell(
 						`${String.fromCharCode(65 + indexRow)}:${indexCol + 1}`
 					)
 				}
-				onDoubleClick={() => {
-					const cell = cells?.find(
-						(cell) =>
-							cell.position ===
-							`${String.fromCharCode(65 + indexRow)}:${indexCol + 1}`
-					);
-					if (!cell?.data?.value?.includes("/images/")) {
+				onClick={() => {
+					setCurrentCell(`${String.fromCharCode(65 + indexRow)}:${indexCol + 1}`);
+					setEditionMode(true);
+				}}				
+				onKeyDown={(e) => {
+					if (e.key.length === 1 || e.key === "Backspace") {
 						setEditionMode(true);
 					}
-				}}
-				onKeyDown={(e) => {
 					if (e.key === "Backspace") {
 						const newCells = [...cells];
 						const currCell = newCells.find(

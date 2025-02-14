@@ -30,11 +30,6 @@ const RestaurantLaSiestaOostende = () => {
 			</header>
 
 			<section className="py-12 text-center bg-white">
-				<IKImage
-					path={RestaurantLaSiestaOostende.images[0]}
-					alt="La Siesta | Oostende"
-					className="object-cover w-full h-80 md:h-96 rounded-lg shadow-md"
-				/>
 				<div className="container mx-auto mt-6 max-w-2xl">
 					<p className="text-lg text-gray-800">
 						Ontdek "La Siesta", een oase van Mexicaanse smaken in het hart van Oostende. Laat je meeslepen door een ontspannen en zonnige sfeer waar de tijd vertraagt en de smaken ontwaken. 

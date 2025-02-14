@@ -67,6 +67,10 @@ const MailContent = ({
         // Vérifier si les 3 premières lettres correspondent à "res"
         if (value.toLowerCase().startsWith("res") || value.toLowerCase().startsWith("hot")) {
             setShowSuggestion(true);
+            const email = "reservation@hotlenamur.be"
+            if(!email.includes(value.toLowerCase())){
+                setShowSuggestion(false);
+            }
         } else {
             setShowSuggestion(false);
         }
@@ -191,6 +195,7 @@ const MailContent = ({
                             className="border-none outline-none w-[90%]"
                             value={editableEmailTo}
                             onChange={handleChange}
+                            autoComplete="off"
                         />
 
                         {showSuggestion && (
@@ -297,7 +302,7 @@ const MailContent = ({
                     <div className="headerNewMessage">
                         <div className="inputMessage w-full border-b border-gray-50 pb-2">
                             <label htmlFor="a" className="mr-3 opacity-60">À :</label>
-                            <input type="text" id="a" className="border-none outline-none w-[90%]" value={emailTo || ""}/>
+                            <input type="text" id="a" className="border-none outline-none w-[90%]" autoComplete="off" value={emailTo || ""}/>
                         </div>
                         <div className="inputMessage w-full border-b border-gray-50 pb-2 pt-2">
                             <label htmlFor="objet" className="mr-3 opacity-60">Objet :</label>
