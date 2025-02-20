@@ -43,9 +43,6 @@ const Input = memo(
 			);
 		};
 
-
-		
-
 		return editionMode ? (
 			<input
 				type="text"

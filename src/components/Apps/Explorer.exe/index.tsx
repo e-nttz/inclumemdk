@@ -13,7 +13,7 @@ const Explorer = ({ forceRender = false, defaultContent, ...props }) => {
 	const { currentPath, setPath, getStructure, selectedFile } = useExplorer();
 	const { t } = useTranslate();
 	const { onSave, onSelect, onCancel } = props;
-	const [fileName, setFileName] = useState("");
+	const [fileName, setFileName] = useState("sans-titre");
 
 	if (defaultContent) {
 		if (defaultContent === "vacances") {

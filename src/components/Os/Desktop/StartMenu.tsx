@@ -6,6 +6,8 @@ import { getNextStep, saveStep, updateTestSession } from "@/lib/client/quiz";
 import { useOS } from "@/providers/InclumeOS";
 import { Transition } from "@headlessui/react";
 import { useRef } from "react";
+import { getAntivirusInstalledFromLocalStorage } from "@/utils/localeStorage";
+
 
 const StartMenu = () => {
 	const { startMenuOpen, setStartMenuOpen, launchApp } = useOS();
@@ -76,7 +78,14 @@ const StartMenu = () => {
 							</a>
 						</div>
 						<ul className="flex flex-wrap items-start justify-start max-h-full gap-16 !mt-9">
-							{Object.entries(apps).map(([, value]: any) => (
+							{Object.entries(apps).filter(([key]) => {
+							// Filtrer ChildVirus si antivirus non installé
+							if (key === "childVirus" && !getAntivirusInstalledFromLocalStorage()) {
+								return false;
+							}
+							return true;
+							})
+							.map(([, value]: any) => (
 								<li key={`start-menu-${value.title}`}>
 									<button
 										className="w-[70px] flex flex-col items-center justify-start transition duration-150 rounded group hover:bg-white/30 focus:bg-white/30 active:bg-white/75 dark:hover:bg-white/25 dark:active:bg-white/50"
@@ -189,7 +198,7 @@ const StartMenu = () => {
 					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
-							className="w-5 h-auto"
+							className="w-5 h-auto dark:fill-white"
 							fill="#000"
 							version="1.1"
 							viewBox="0 0 325.214 325.214"

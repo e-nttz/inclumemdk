@@ -1,4 +1,4 @@
-import { ReactElement, useRef, useState } from "react";
+import { ReactElement, useCallback, useEffect, useRef, useState } from "react";
 
 import Window from "@/components/Os/Window";
 import Editor, {
@@ -72,6 +72,28 @@ const TextEditor: AppProps<TextEditorProps> = ({ content = "" }) => {
 	const BtnItalicCustom = createButton("Italic", "I", "italic");
 	const BtnUnderlineCustom = createButton("Underline", "U", "underline");
 
+	const saveFile = () => {
+		handleInfoWindow((selected: FileNode) => {
+			if (selected?.url || selected?.name) {
+				addImage(selected.url)
+			}
+			closeInfoWindow();
+		}, undefined);
+	}
+
+	const handleUserKeyPress = useCallback(event => {
+		if (event.ctrlKey && event.key === "s") {
+			event.preventDefault();
+			saveFile();
+		}
+	}, []);
+	
+	useEffect(() => {
+		window.addEventListener("keydown", handleUserKeyPress);
+		return () => {
+			window.removeEventListener("keydown", handleUserKeyPress);
+		};
+	}, [handleUserKeyPress]);
 	return (
 		<Window
 			appName={TextEditor.title}
@@ -118,12 +140,7 @@ const TextEditor: AppProps<TextEditorProps> = ({ content = "" }) => {
 						<button
 							className="flex items-center justify-center gap-1 p-1 transition rounded-sm hover:bg-gray-50 hover:bg-opacity-20"
 							onClick={() => {
-								handleInfoWindow((selected: FileNode) => {
-									if (selected?.url || selected?.name) {
-                                        addImage(selected.url)
-                                    }
-                                    closeInfoWindow();
-                                }, undefined);
+								saveFile();
 							}}
 						>
 							<IconImage className="w-4 h-4" />

@@ -1,4 +1,5 @@
 import { classNames } from "@/helpers/sanitize";
+import { useState } from "react";
 
 const Radio = ({
 	type = "radio",
@@ -11,7 +12,7 @@ const Radio = ({
 	style = "vertical",
 }) => {
 	const checked = selectedValues.includes(value + "");
-
+	const [isZoomed, setIsZoomed] = useState(false);
 	const handleChange = (e) => {
 		if (onChange) {
 			onChange(e);
@@ -32,7 +33,7 @@ const Radio = ({
 		>
 			<div className="relative">
 				<input
-					className="absolute inset-0 opacity-0 peer"
+					className="absolute inset-0 opacity-0 peer cursor-pointer" 
 					type={type}
 					name={name}
 					value={value}
@@ -41,7 +42,7 @@ const Radio = ({
 				/>
 				<span
 					className={classNames(
-						"relative flex items-center justif-center w-9 h-9 bg-accent dark:bg-accent-dark opacity-15 peer-checked:opacity-100 group-hover:opacity-30 transition peer-checked:[&>span]:border-accent peer-checked:[&>svg]:opacity-100 dark:peer-checked:[&>span]:border-accent-dark",
+						"relative flex items-center justif-center w-9 h-9 bg-accent dark:bg-accent-dark opacity-15 peer-checked:opacity-100 group-hover:opacity-30 transition peer-checked:[&>span]:border-accent peer-checked:[&>svg]:opacity-100 dark:peer-checked:[&>span]:border-accent-dark cursor-pointer",
 						type === "radio" ? "rounded-full" : "rounded-[12px]"
 					)}
 				>
@@ -77,14 +78,26 @@ const Radio = ({
 			)}
 
 			{style === "image" && (
+			<>
 				<figure
-					className={classNames(
-						"max-w-[340px] rounded-[12px] overflow-hidden shadow-[0px_6px_20px_0px_#005FB814] border-2 border-accent/10 group-hover:-translate-y-2 transition",
-						checked && "border-accent/100"
-					)}
+				className={classNames(
+					"max-w-[400px] rounded-[12px] overflow-hidden shadow-[0px_6px_20px_0px_#005FB814] border-2 border-accent/10 group-hover:-translate-y-2 transition cursor-zoom-in",
+					checked && "border-accent/100"
+				)}
+				onClick={() => setIsZoomed(true)} // Ouvre l'image au clic
 				>
-					<img src={image} alt={question} className="object-cover" />
+				<img src={image} alt={question} className="object-cover w-full h-auto" />
 				</figure>
+
+				{isZoomed && (
+					<div 
+						className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50" 
+						onClick={() => setIsZoomed(false)} // Ferme au clic
+					>
+						<img src={image} alt={question} className="h-[80%] max-w-full max-h-full rounded-lg" />
+					</div>
+				)}
+			</>
 			)}
 		</label>
 	);

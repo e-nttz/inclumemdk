@@ -204,7 +204,7 @@ const Mail: AppProps<MailProps> = () => {
   const handleMailValidation = (email: string, newContent: string) => {
     const allowedEmails = ["vincent@inclume.be", "reservation@hotelnamur.be"];
   
-    if (!allowedEmails.includes(email)) {
+    if (!allowedEmails.includes(email.split(" ").join("").toLowerCase())) {
       const errorMail = {
         id: mails.length + 1,
         from: "Echec de l'envoi",

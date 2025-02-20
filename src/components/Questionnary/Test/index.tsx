@@ -79,9 +79,10 @@ const Test = ({
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		const isCorrect = question.answer.every((answer) =>
-			selectedValues.includes(answer + "")
-		);
+		const isCorrect =
+			question.answer.every((answer) => selectedValues.includes(answer + "")) && 
+			selectedValues.length === question.answer.length; 
+
 
 		setResults({
 			...results,

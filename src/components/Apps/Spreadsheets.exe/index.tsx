@@ -4,7 +4,7 @@ import Window from "@/components/Os/Window";
 import ContextualBar from "@/components/Os/Window/ContextualBar";
 import { classNames } from "@/helpers/sanitize";
 import { t } from "i18next";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Input from "./Input";
 import Button from "./Button";
 import { useKeyboardEvent } from "@/hooks/useKeyboardEvent";
@@ -51,7 +51,7 @@ const Spreadsheets = () => {
 		newCells = newCells.map((c) => (c.position === cell.position ? cell : c));
 		setCells(newCells);
 	};
-
+	
 	const addImage = (url) => {
 		const newCells = [...cells];
 		let cell = cells.find((cell) => cell.position === currentCell);
@@ -109,7 +109,28 @@ const Spreadsheets = () => {
 		}
 		setCurrentCell(`${newCol}:${row}`);
 	});
+	const saveFile = () => {
+		handleInfoWindow((selected: FileNode) => {
+			if (selected?.url || selected?.name) {
+				addImage(selected.url)
+			}
+			closeInfoWindow();
+		}, undefined);
+	}
 
+	const handleUserKeyPress = useCallback(event => {
+		if (event.ctrlKey && event.key === "s") {
+			event.preventDefault();
+			saveFile();
+		}
+	}, []);
+	
+	useEffect(() => {
+		window.addEventListener("keydown", handleUserKeyPress);
+		return () => {
+			window.removeEventListener("keydown", handleUserKeyPress);
+		};
+	}, [handleUserKeyPress]);
 	return (
 		<Window
 			appName={Spreadsheets.title}
@@ -202,14 +223,7 @@ const Spreadsheets = () => {
 						className={classNames(
 							"flex items-center justify-center gap-1 p-1 transition rounded-sm hover:bg-gray-50 hover:bg-opacity-20"
 						)}
-						onClick={() => {
-							handleInfoWindow((selected: FileNode) => {
-								if (selected?.url || selected?.name) {
-									addImage(selected.url)
-								}
-								closeInfoWindow();
-							}, undefined);
-						}}
+						onClick={() => {saveFile()}}
 					>
 						<IconImage className="w-4 h-4" />
 						<span aria-hidden="true" className="block text-sm">
