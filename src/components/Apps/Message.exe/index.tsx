@@ -240,7 +240,11 @@ const Message: AppProps = (defaultContent) => {
 			const call1 = localStorage.getItem("call1");
 			const call2 = localStorage.getItem("call2");
 			
-			if (step.id === 1 && call1) return; // Évite l'appel en boucle
+			if (call1 && !call2){
+				if(step.id != 35 || step.id != 51 || step.id != 55){
+					return;
+				}
+			} // Évite l'appel en boucle
 			if (call1 && call2) return; // Évite l'appel en boucle
 
 			if (
