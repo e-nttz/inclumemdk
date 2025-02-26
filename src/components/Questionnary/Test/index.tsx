@@ -80,9 +80,10 @@ const Test = ({
 		e.preventDefault();
 
 		const isCorrect =
-			question.answer.every((answer) => selectedValues.includes(answer + "")) && 
-			selectedValues.length === question.answer.length; 
-
+			currentQuestionId === 31
+				? selectedValues.some((answer) => question.answer.includes(Number(answer)))
+				: question.answer.every((answer) => selectedValues.includes(answer + "")) &&
+				selectedValues.length === question.answer.length;
 
 		setResults({
 			...results,

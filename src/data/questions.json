@@ -300,7 +300,7 @@
 		"question" : "Combien de formations avez-vous suivi ?",
 		"type" : "single",
 		"display" : "vertical",
-		"answer" : [1,2,3],
+		"answer" : [2,3],
 		"choices" : [
 			{
 				"id" : 1,
