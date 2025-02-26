@@ -1,5 +1,5 @@
 import { useAuth } from "@/providers/auth";
-import { getLastStep, getNextStep, saveStep } from "@/lib/client/quiz";
+import { getNextStep, saveStep } from "@/lib/client/quiz";
 import { ReactElement, FormEvent, useRef, useState, useEffect } from "react";
 import { useTranslate } from "@tolgee/react";
 import AttachmentDocument from "@/assets/icons/mail_attachment.svg"
@@ -234,11 +234,14 @@ const Message: AppProps = (defaultContent) => {
 		}
 	};
 
-	const hasCalled = useRef(false);
-
 	useEffect(() => {
 		const executeCall = async () => {
-			if (hasCalled.current) return; // Évite l'appel en boucle
+			const step = await getNextStep(session);
+			const call1 = localStorage.getItem("call1");
+			const call2 = localStorage.getItem("call2");
+			
+			if (step.id === 1 && call1) return; // Évite l'appel en boucle
+			if (call1 && call2) return; // Évite l'appel en boucle
 
 			if (
 				defaultContent &&
@@ -246,29 +249,20 @@ const Message: AppProps = (defaultContent) => {
 				defaultContent["props"][1] &&
 				defaultContent["props"][1].defaultContent === true
 			) {
-				hasCalled.current = true; // Marque l'appel comme exécuté
-
-				const step = await getNextStep(session);
-				if((step.id === 35 || step.id === 51 || step.id === 55)){
-					setStepId(step.id)
+				if (step.id === 35 || step.id === 51 || step.id === 55) {
+					setStepId(step.id);
 					setSoundOn(false);
 					setVideoLink("https://ik.imagekit.io/0jngziwft/Appels%20/Appel%20%C3%A9tape%2013.mp4");
-					hasCalled.current = true;
+					localStorage.setItem("call2", "true"); // Marque l'appel 2 comme exécuté
+				} else {
+					localStorage.setItem("call1", "true"); // Marque l'appel 1 comme exécuté
 				}
 				setCall(true);
 			}
 		};
-
+	
 		executeCall();
-	}, [defaultContent, session]); // Déclenché quand defaultContent ou session change
-
-	// 🔄 Réinitialisation de hasCalled quand `defaultContent` ou `session` change
-	useEffect(() => {
-		hasCalled.current = false; // Permet un nouvel appel
-	}, [defaultContent, session]); // Se réinitialise quand defaultContent/session change
-
-	
-	
+	}, [defaultContent, session]);
 	
 	const { t } = useTranslate();
 	const { handleInfoWindow, closeInfoWindow } = useExplorer();

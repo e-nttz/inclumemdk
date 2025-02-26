@@ -32,7 +32,7 @@ const ChildVirus = () => {
         beacon("triggerStep", {
           value: "downloadChildVirus",
         });
-      }, 5000);
+      }, 7500);
       // Nettoyage pour éviter des problèmes si la variable change avant 5 secondes
       return () => clearTimeout(timer);
     }

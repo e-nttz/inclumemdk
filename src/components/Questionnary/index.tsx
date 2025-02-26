@@ -18,7 +18,7 @@ const Questionnary = () => {
 	const { addNotification } = useNotification();
 	const { t } = useTranslate();
 	const { launchApp } = useOS();
-	const { user, setTestStatus, session } = useAuth();
+	const { user, setTestStatus, session, logout } = useAuth();
 
 	const welcomeRef = useRef<HTMLDivElement>(null);
 
@@ -133,6 +133,8 @@ const Questionnary = () => {
 										<Button onClick={() => {
 											setTestStatus("failed")
 											updateTestSession(session, true)
+											logout()
+											window.location.reload();
 										}}>
 											{t(
 												"questionnary_failure_cta",

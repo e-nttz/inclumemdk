@@ -246,7 +246,9 @@ DipLTraduction.motsCles = [
     "contenu",
     "contenus",
     "transfert",
-    "communication"
+    "communication",
+    "pittige",
+    "salade"
 ];
 
 DipLTraduction.favicon = <IconSearchEngine />;

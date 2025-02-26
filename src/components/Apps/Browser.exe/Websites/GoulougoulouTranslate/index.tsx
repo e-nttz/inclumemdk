@@ -70,7 +70,7 @@ const GoulougoulouTranslate = () => {
 			<body className="bg-white">
 			<header className="bg-blue-700 py-8 shadow-lg">
 				<div className="container mx-auto text-center">
-					<h1 className="text-5xl font-bold text-yellow-300">Goulougoulou Traduction</h1>
+					<h1 className="text-5xl font-bold text-yellow-300">Gougoule Traduction</h1>
 					<p className="mt-2 text-xl text-white">
 						Le service gratuit de traduction instantanée
 					</p>
@@ -85,7 +85,7 @@ const GoulougoulouTranslate = () => {
 				/>
 				<div className="container mx-auto mt-6 px-4">
 					<p className="text-lg text-gray-800 leading-relaxed">
-						Utilisez Goulougoulou pour traduire des mots, des phrases ou des pages web en un instant, gratuitement et sans inscription.
+						Utilisez Gougoule pour traduire des mots, des phrases ou des pages web en un instant, gratuitement et sans inscription.
 					</p>
 					<button
 						type="button"
@@ -181,10 +181,10 @@ const GoulougoulouTranslate = () => {
 				<div className="container mx-auto text-center">
 					<p className="text-yellow-300">
 						Contactez-nous pour plus d'informations : 
-						<button className="underline hover:text-white ml-2">info@goulougoulou-translate.be</button>
+						<button className="underline hover:text-white ml-2">info@gougoule-translate.be</button>
 					</p>
 					<p className="text-yellow-300">
-						&copy; {new Date().getFullYear()} Goulougoulou Traduction. Tous droits réservés.
+						&copy; {new Date().getFullYear()} Gougoule Traduction. Tous droits réservés.
 					</p>
 				</div>
 			</footer>
@@ -198,9 +198,9 @@ export default GoulougoulouTranslate;
 // used in RenderAllWebsites to select the right website
 GoulougoulouTranslate.componentName = "goulougoulouTranslate";
 // used in tab as site title
-GoulougoulouTranslate.title = "Goulougoulou Traduction | Traduction gratuite instantanée";
+GoulougoulouTranslate.title = "Gougoule Traduction | Traduction gratuite instantanée";
 // used in searchEngine
-GoulougoulouTranslate.excerpt = "Traduisez des mots, phrases et pages Web gratuitement avec Goulougoulou.";
+GoulougoulouTranslate.excerpt = "Traduisez des mots, phrases et pages Web gratuitement avec Gougoule.";
 
 // Mots clés
 GoulougoulouTranslate.motsCles = [
@@ -247,17 +247,19 @@ GoulougoulouTranslate.motsCles = [
     "interprétation",
     "interpretation", // Variante sans accent
     "communication",
+    "pittige",
+    "salade"
 ];
 
 GoulougoulouTranslate.favicon = <IconSearchEngine />;
 
 GoulougoulouTranslate.images = [
-	"Goulougoulou Translate.webp"
+	"Gougoule Translate.webp"
 ]
 
 GoulougoulouTranslate.pages = [
 	{
-		title: "Goulougoulou Traduction",
-		url: "https://goulougoulou-translate.be/fr",
+		title: "Gougoule Traduction",
+		url: "https://gougoule-translate.be/fr",
 	},
 ];

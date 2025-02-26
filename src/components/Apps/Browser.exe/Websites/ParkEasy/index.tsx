@@ -3,6 +3,7 @@ import { IKContext, IKImage } from "imagekitio-react";
 
 const ParkEasy = () => {
 	return (
+		<IKContext urlEndpoint="https://ik.imagekit.io/0jngziwft/inclume/photos_sites/">
 		<body className="bg-white">
 			<section className="relative text-gray-800 bg-blue-500">
 				<div
@@ -108,6 +109,7 @@ const ParkEasy = () => {
 				</p>
 			</section>
 		</body>
+		</IKContext>
 	);
 };
 

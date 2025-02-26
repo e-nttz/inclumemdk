@@ -47,8 +47,13 @@ const Mail: AppProps<MailProps> = () => {
         beacon("message", {
           id: Math.random(),
           sender: 0,
-          content: "Super, merci pour la photo nous avons trouvé le resto ! Sur le pc de la maison, il y’a un dossier “vacances”. Tu y trouveras la fiche client que je devais compléter pour notre réservation à l’hôtel mais j’ai totalement oublié d’ajouter le nom de famille de mon amie Céline. Pourrais-tu ajouter “Dupont” au document et l’envoyer par mail à l’hôtel. Avant de l’envoyer, peux-tu enregistrer le fichier en le renommant “dupont” ? L’adresse mail de l’hôtel est enregistrée dans mes contacts sous le nom de “hôtel namur”.",
-        });
+          content: `Super, merci pour la photo, nous avons trouvé le resto ! J’ai un petit service à te demander :<br><br>
+          - Sur l'ordinateur de la maison, ouvre le dossier vacances.<br>
+          - Trouve la fiche client pour la réservation à l’hôtel.<br>
+          - Ajoute "Dupont" comme nom de famille de Céline.<br>
+          - Enregistre le fichier en le renommant "dupont".<br>
+          - Envoie-le par e-mail à l’hôtel. L’adresse est enregistrée dans mes contacts sous "hôtel Namur".`
+        });              
         addNotification({
           title: "Nouveau message !",
           message:
@@ -83,7 +88,7 @@ const Mail: AppProps<MailProps> = () => {
           beacon("message", {
               id: Math.random(),
               sender: 0,
-              content: "Salut, c’est encore moi, nous avons mal organisé nos vacances... Pourrais tu regarder sur internet quelles sont les activités disponibles dans le ville de Namur et nous envoyer ce que tu as trouvé par mail?",
+              content: "Salut, c’est encore moi, nous avons mal organisé nos vacances... Pourrais tu regarder sur internet quelles sont les activités disponibles dans le ville de Namur et nous envoyer le lien (url) de ce que tu as trouvé par mail?",
           });
           addNotification({
               title: "Nouveau message !",

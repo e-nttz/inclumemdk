@@ -95,7 +95,7 @@ export const websites: WebsitesProps = {
 	tukTukNamur: TukTukNamur,
 	telepheriqueNamur: TelepheriqueNamur,
 	activitesNamur: ActivitesNamur,
-	parcoursSteetArt: ParcoursStreetArt,
+	parcoursStreetArt: ParcoursStreetArt,
 	museeArtsAnciens: MuseeArtsAnciens,
 	museeFelicienRops: MuseeFelicienRops,
 	venteCanapesLaSiesta: VenteCanapesLaSiesta,

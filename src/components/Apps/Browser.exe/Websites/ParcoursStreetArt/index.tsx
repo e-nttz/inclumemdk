@@ -148,7 +148,8 @@ ParcoursStreetArt.motsCles = [
     "metropole", // Variante sans accent
     "urbanisme",
     "région",
-    "region" // Variante sans accent
+    "region",
+	"namur"
 ];
 
 // Site favicon icon

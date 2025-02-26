@@ -249,7 +249,9 @@ MacrosoftTranslator.motsCles = [
     "liberté",
     "liberte", // Variante sans accent
     "compréhension",
-    "comprehension", // Variante sans accent
+    "comprehension",
+    "pittige",
+    "salade" 
 ];
 
 MacrosoftTranslator.favicon = <IconSearchEngine />;

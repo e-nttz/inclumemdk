@@ -213,7 +213,9 @@ Inverso.motsCles = [
     "contenu",
     "contenus",
     "langages",
-    "communication"
+    "communication",
+    "pittige",
+    "salade"
 ];
 
 Inverso.favicon = <IconSearchEngine />;

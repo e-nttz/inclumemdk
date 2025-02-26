@@ -14,7 +14,7 @@ const BubbleChat = ({ message, isMine }) => {
 					isMine ? "bg-[#2897FD] text-white" : "bg-[#E9E9EB] text-black"
 				)}
 			>
-				<p>{message.content}</p>
+				<p dangerouslySetInnerHTML={{ __html: message.content }}></p>
 
 				<svg
 					xmlns="http://www.w3.org/2000/svg"

@@ -42,7 +42,7 @@ export const ExplorerProvider = ({ children }) => {
 					beacon("message", {
 						id: Math.random(),
 						sender: 0,
-						content: "Salut, c’est encore moi, nous avons mal organisé nos vacances... Pourrais tu regarder sur internet quelles sont les activités disponibles dans le ville de Namur et nous envoyer ce que tu as trouvé par message?",
+						content: "Salut, c’est encore moi, nous avons mal organisé nos vacances... Pourrais tu regarder sur internet quelles sont les activités disponibles dans le ville de Namur et nous envoyer le lien (url) de ce que tu as trouvé par message?",
 					});
 					addNotification({
 						title: "Nouveau message !",
