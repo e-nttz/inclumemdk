@@ -99,6 +99,7 @@ const GoulougoulouTranslate = () => {
           <h2 className="text-3xl font-bold text-blue-800">Outil de traduction</h2>
           <div className="mt-8 container mx-auto flex flex-col items-center">
             <input
+            autoComplete="off"
               type="text"
               value={inputWord}
               onChange={(e) => setInputWord(e.target.value)}

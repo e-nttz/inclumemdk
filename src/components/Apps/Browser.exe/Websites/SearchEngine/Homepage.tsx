@@ -33,6 +33,7 @@ const Homepage = () => {
 				<form className="w-full relative flex items-center" onSubmit={handleSubmit}>
 					<img src={SearchGougouleIcon} alt="Icône gougoule" className="goulougoulouIcon left-[10px] absolute w-[30px]"/>
 					<input
+					autoComplete="off"
 						type="text"
 						placeholder="Rechercher sur Gougoule"
 						className="bg-[#f2f2f2] rounded-[85px] h-[50px] w-full px-2 py-2 transition border shadow-sm border-gray-50 focus-visible:outline-accent pr-[50px] pl-[50px]"

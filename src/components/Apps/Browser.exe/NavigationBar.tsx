@@ -142,6 +142,11 @@ const NavigationBar = ({
 					value={inputValue}
 					onChange={handleInputChange}
 					ref={inputRef}
+					onContextMenu={(e) => {
+						navigator.clipboard.writeText(inputValue).then(() => {
+						console.log("Texte copié dans le presse-papiers !");
+						}).catch(err => console.error("Erreur de copie :", err));
+				}}
 				/>
 				<button
 					type="submit"

@@ -173,7 +173,7 @@ export const StepsListenerProvider = memo(({ children }) => {
                 beacon("message", {
                     id: Math.random(),
                     sender: 0,
-                    content: "Nous aimerions bien faire une activité mais nous devons envoyer un fichier word pour confirmer notre inscription, avec nos noms, prénoms et photos d’identité. Tu trouveras les photos d’identité dans le dossier “vacances”. Peux-tu l’enregistrer sur mon cloud? Je pourrais l’avoir directement sur mon téléphone.",
+                    content: `Nous aimerions bien faire cette activité, mais nous devons créer un fichier pour confirmer notre inscription avec nos noms, prénoms et photos d’identité.<br><br> - Peux-tu le faire depuis mon application éditeur de texte ?<br> - Tu trouveras les photos d’identité dans le dossier "vacances".<br> - Peux-tu l’enregistrer sur mon cloud ? Je pourrai l’avoir directement sur mon téléphone.<br><br> - Pour rappel, voici nos noms et prénoms :<br> &nbsp;&nbsp;&nbsp;&nbsp;- Vincent Inclume<br> &nbsp;&nbsp;&nbsp;&nbsp;- Céline Dupont.`
                 });
                 addNotification({
                     title: "Nouveau message !",
@@ -194,7 +194,7 @@ export const StepsListenerProvider = memo(({ children }) => {
                 beacon("message", {
                     id: Math.random(),
                     sender: 0,
-                    content: "Notre réservation pour l’activité est confirmée mais il n’est pas possible de payer sur place? Il faut faire un virement avant le début de l’activité. Pourrais tu le faire pour nous? Il faut envoyer 20€ au Compte BE12345678910. Merci!",
+                    content: `Notre réservation pour l’activité est confirmée mais il n’est pas possible de payer sur place? Il faut faire un virement avant le début de l’activité. Pourrais tu le faire pour nous? Il faut envoyer 20€ au Compte BE12345678910. Pour le nom du bénéficiaire, le voici : Visiter Namur. <br><br> Merci!`,
                 });
                 addNotification({
                     title: "Nouveau message !",

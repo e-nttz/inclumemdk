@@ -48,7 +48,7 @@ const Explorer = ({ forceRender = false, defaultContent, ...props }) => {
 				{(onSave || onSelect) && (
 					<div className="bg-[#F7F7F7] dark:bg-gray-900 flex items-center justify-end">
 						<div>
-							<input type="text" id="inputSaveFile" value={fileName} placeholder="Insérez le nom du fichier" className="w-96 border border-[#] py-2 px-4 rounded-xl" onChange={(e) => {
+							<input autoComplete="off" type="text" id="inputSaveFile" value={fileName} placeholder="Insérez le nom du fichier" className="w-96 border border-[#] py-2 px-4 rounded-xl" onChange={(e) => {
 								setFileName(e.target.value)
 							}}/>
 						</div>

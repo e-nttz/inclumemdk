@@ -285,7 +285,8 @@ const BngBanque = () => {
                     Nom du bénéficiaire
                   </label>
                   <input
-				  		required
+				  		        required
+                      autoComplete="off"
                     	className="border w-96 p-1 rounded-sm w-full"
                     	type="text"
                     	id="nomBeneficiaire"
@@ -299,7 +300,8 @@ const BngBanque = () => {
                     Compte du bénéficiaire
                   </label>
                   <input
-				 		required
+				 		          required
+                      autoComplete="off"
                     	className="border w-96 p-1 rounded-sm w-full"
                     	type="text"
                     	id="compteBeneficiaire"
@@ -318,7 +320,8 @@ const BngBanque = () => {
                   Montant (€)
                 </label>
                 <input
-					required
+                    required
+                    autoComplete="off"
                   	className="border w-96 p-1 rounded-sm"
                   	type="number"
                   	id="montant"
@@ -332,6 +335,7 @@ const BngBanque = () => {
                   Communication structurée (facultatif)
                 </label>
                 <input
+                    autoComplete="off"
                   	className="border w-96 p-1 rounded-sm"
                   	type="text"
                   	id="communication"
@@ -344,6 +348,7 @@ const BngBanque = () => {
 						<div className="flex w-full">
 							<div className="flex items-center border p-1 rounded-sm w-1/2">
 								<input
+                  autoComplete="off"
 									required
 									id="default-radio-1"
 									type="radio"
@@ -360,6 +365,7 @@ const BngBanque = () => {
 							</div>
 							<div className="flex items-center border p-1 rounded-sm ml-4 w-1/2">
 								<input
+                  autoComplete="off"
 									required
 									id="default-radio-1"
 									type="radio"

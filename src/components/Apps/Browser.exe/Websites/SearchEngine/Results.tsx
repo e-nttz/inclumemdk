@@ -222,6 +222,7 @@ const Results = ({ url }: ResultsProps) => {
 			<div className="relative flex items-center mb-4">
 			  <form onSubmit={handleSubmit} className="w-full">
 				<input
+				autoComplete="off"
 				  type="text"
 				  placeholder="Rechercher sur Goulougoulou"
 				  className="bg-[#f2f2f2] rounded-[85px] h-[40px] w-full px-2 py-2 transition border shadow-sm border-gray-50 focus-visible:outline-accent pr-[40px] pl-[10px]"

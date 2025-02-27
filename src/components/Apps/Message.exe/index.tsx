@@ -153,7 +153,7 @@ const Message: AppProps = (defaultContent) => {
 						beacon("message", {
 							id: Math.random(),
 							sender: 0,
-							content: "Nous aimerions bien faire une activité mais nous devons envoyer un fichier word pour confirmer notre inscription, avec nos noms, prénoms et photos d’identité. Tu trouveras les photos d’identité dans le dossier “vacances”. Peux-tu l’enregistrer sur mon cloud? Je pourrais l’avoir directement sur mon téléphone.",
+							content: `Nous aimerions bien faire cette activité, mais nous devons créer un fichier pour confirmer notre inscription avec nos noms, prénoms et photos d’identité.<br><br> - Peux-tu le faire depuis mon application éditeur de texte ?<br> - Tu trouveras les photos d’identité dans le dossier "vacances".<br> - Peux-tu l’enregistrer sur mon cloud ? Je pourrai l’avoir directement sur mon téléphone.<br><br> - Pour rappel, voici nos noms et prénoms :<br> &nbsp;&nbsp;&nbsp;&nbsp;- Vincent Inclume<br> &nbsp;&nbsp;&nbsp;&nbsp;- Céline Dupont.`
 						});
 						addNotification({
 							title: "Nouveau message !",
@@ -198,7 +198,7 @@ const Message: AppProps = (defaultContent) => {
                 beacon("message", {
                     id: Math.random(),
                     sender: 0,
-                    content: "Voici le numéro de compte auquel tu dois faire le virement de 20€ : BE12345678910",
+                    content: "Voici le numéro de compte auquel tu dois faire le virement de 20€ : BE12345678910. Pour le nom du bénéficiaire, le voici : Visiter Namur.",
                 });
                 addNotification({
                     title: "Nouveau message !",

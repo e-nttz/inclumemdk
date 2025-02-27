@@ -134,6 +134,7 @@ const FileItem = ({ file, complete = false }: FileItemProps) => {
 							}}
 						>
 							<input
+							autoComplete="off"
 								type="text"
 								className="w-full border border-transparent max-w-none focus:outline-none focus:border focus:border-gray-200"
 								ref={renameRef}

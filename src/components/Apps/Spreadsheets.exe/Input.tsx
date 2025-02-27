@@ -45,6 +45,7 @@ const Input = memo(
 
 		return editionMode ? (
 			<input
+			autoComplete="off"
 				type="text"
 				className={classNames(
 					`relative w-full min-h-8 text-sm cursor-pointer text-left border border-r-transparent border-t-transparent border-b border-l bg-white dark:bg-gray-800 border-gray-50 last:border-b-0 px-1 outline-none focus-visible:border-green-600`,

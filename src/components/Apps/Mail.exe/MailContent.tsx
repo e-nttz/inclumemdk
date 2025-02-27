@@ -84,6 +84,9 @@ const MailContent = ({
         const newContent = contentRef.current?.innerHTML || "";
         if (onSend) {
             onSend(newContent, editableEmailTo, editableTitle, selectedFiles);
+            setEditableEmailTo("");
+            setEditableTitle("");
+            setSelectedFiles([]);
         }
     };
     const { setOpenedApps, openedApps } = useOS();
@@ -215,11 +218,12 @@ const MailContent = ({
                                 className="border-none outline-none w-[90%]" 
                                 value={editableTitle} 
                                 onChange={(e) => setEditableTitle(e.target.value)}
+                                autoComplete="off"
                             />
                         </div>
                         <div className="inputMessage w-full border-b border-gray-50 pb-2 pt-2">
                             <label htmlFor="de" className="mr-3 opacity-60">De :</label>
-                            <input type="text" id="de" className="border-none outline-none w-[90%]" value={"Moi"} disabled/>
+                            <input autoComplete="off" type="text" id="de" className="border-none outline-none w-[90%]" value={"Moi"} disabled/>
                         </div>
                     </div>
 
@@ -306,11 +310,11 @@ const MailContent = ({
                         </div>
                         <div className="inputMessage w-full border-b border-gray-50 pb-2 pt-2">
                             <label htmlFor="objet" className="mr-3 opacity-60">Objet :</label>
-                            <input type="text" id="objet" className="border-none outline-none w-[90%]" value={title || ""}/>
+                            <input autoComplete="off" type="text" id="objet" className="border-none outline-none w-[90%]" value={title || ""}/>
                         </div>
                         <div className="inputMessage w-full border-b border-gray-50 pb-2 pt-2">
                             <label htmlFor="de" className="mr-3 opacity-60">De :</label>
-                            <input type="text" id="de" className="border-none outline-none w-[90%]" value={"Moi"} disabled/>
+                            <input autoComplete="off" type="text" id="de" className="border-none outline-none w-[90%]" value={"Moi"} disabled/>
                         </div>
                     </div>
 

@@ -41,6 +41,7 @@ const Input = ({
 
 			<span className="relative block">
 				<input
+				autoComplete="off"
 					{...props}
 					className={classNames(
 						"block w-full px-3 py-3 border-2 border-black/5 rounded-md sm:text-sm focus:outline-none backdrop-blur bg-white/75 dark:bg-gray/75 text-gray dark:text-white dark:border-white/5 focus:border-accent dark:focus:border-accent-dark transition-all focus-visible:border-accent focus:ring-transparent focus:!ring-0 outline-transparent focus:shadow-none",
