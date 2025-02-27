@@ -84,9 +84,6 @@ const MailContent = ({
         const newContent = contentRef.current?.innerHTML || "";
         if (onSend) {
             onSend(newContent, editableEmailTo, editableTitle, selectedFiles);
-            setEditableEmailTo("");
-            setEditableTitle("");
-            setSelectedFiles([]);
         }
     };
     const { setOpenedApps, openedApps } = useOS();
