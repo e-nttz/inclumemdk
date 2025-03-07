@@ -81,7 +81,7 @@ const Radio = ({
 			<>
 				<figure
 				className={classNames(
-					"max-w-[400px] rounded-[12px] overflow-hidden shadow-[0px_6px_20px_0px_#005FB814] border-2 border-accent/10 group-hover:-translate-y-2 transition cursor-zoom-in",
+					"max-w-[380px] rounded-[12px] overflow-hidden shadow-[0px_6px_20px_0px_#005FB814] border-2 border-accent/10 group-hover:-translate-y-2 transition cursor-zoom-in",
 					checked && "border-accent/100"
 				)}
 				onClick={() => setIsZoomed(true)} // Ouvre l'image au clic

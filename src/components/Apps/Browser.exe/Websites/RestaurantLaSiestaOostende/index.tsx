@@ -163,14 +163,15 @@ RestaurantLaSiestaOostende.motsCles = [
 	"fête",
 	"fêtes",
 	"siesta",
-	"la siesta"
+	"la siesta",
+	"restaurant"
 ];
 
 // Site favicon icon
 RestaurantLaSiestaOostende.favicon = <IconSearchEngine />;
 
 RestaurantLaSiestaOostende.images = [
-	"La Siesta Oostende.webp"
+	"La Siesta Oostende zoom.webp"
 ]
 
 RestaurantLaSiestaOostende.pages = [
