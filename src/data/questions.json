@@ -255,7 +255,7 @@
 	},
 	{
 		"id" : 12,
-		"question" : "Parmi ces propositions, lesquelles sont correctes concernant l'impact environnemental des technologies numériques ?",
+		"question" : "Parmi ces propositions concernant l'impact environnemental des technologies numériques, lesquelles sont correctes ?",
 		"type" : "multiple",
 		"display" : "vertical",
 		"answer" : [1,3],
