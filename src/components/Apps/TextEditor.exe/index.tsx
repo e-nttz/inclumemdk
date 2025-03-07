@@ -49,20 +49,29 @@ const TextEditor: AppProps<TextEditorProps> = ({ content = "" }) => {
 		img.className = "h-auto max-w-[50%] inline-block";
 	
 		if (selection.rangeCount > 0) {
-			const range = selection.getRangeAt(0);
-			const startContainer = range.startContainer;
-	
-			// Vérifier si le startContainer est un élément HTML avant d'afficher sa className
-			if (startContainer.nodeType === 1) {
-				const element = startContainer as HTMLElement;
-				// Vérifier si l'élément ou un de ses ancêtres a la classe "rsw-ce"
-				if (element.closest(".rsw-ce")) {
-					range.insertNode(img);
-					range.collapse(false);
-					setValue(editorRef.current.innerHTML);
-				}
-			}
-		} else {
+    const range = selection.getRangeAt(0);
+    const startContainer = range.startContainer;
+    console.log(startContainer);
+
+    // Vérifier si le startContainer est un élément HTML ou un nœud texte
+    let element = startContainer.nodeType === 1 ? startContainer : startContainer.parentNode;
+
+    if (element && (element instanceof HTMLElement)) {
+        console.log(element);
+
+        if (element.closest(".rsw-ce") || element.classList.contains("rsw-ce")) {
+            if (range.collapsed) {
+                range.insertNode(img);
+            } else {
+                range.deleteContents();
+                range.insertNode(img);
+            }
+            range.collapse(false);
+            setValue(editorRef.current.innerHTML);
+        }
+    }
+}
+ else {
 			setValue(value + img.outerHTML);
 		}
 	};
@@ -94,6 +103,7 @@ const TextEditor: AppProps<TextEditorProps> = ({ content = "" }) => {
 			window.removeEventListener("keydown", handleUserKeyPress);
 		};
 	}, [handleUserKeyPress]);
+
 	return (
 		<Window
 			appName={TextEditor.title}

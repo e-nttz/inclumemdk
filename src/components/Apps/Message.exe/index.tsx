@@ -46,6 +46,13 @@ const Message: AppProps = (defaultContent) => {
 	const [stepId, setStepId] = useState(1)
 	const [videoLink, setVideoLink] = useState(null)
 	
+	setTimeout(() => {
+		messagesList.current?.scrollTo({
+			top: messagesList.current.scrollHeight,
+			behavior: "smooth",
+		});
+	}, 100);
+
 	useEffect(() => {
 		const fetchStepVideo = async () => {
 		  try {
@@ -220,7 +227,7 @@ const Message: AppProps = (defaultContent) => {
 				beacon("message", {
 					id: Math.random(),
 					sender: 0,
-					content: "Merci grâce à toi nous avons pu commander notre repas. En attendant qu’il soit prêt, j’aimerai montrer les vidéos de mes dernières vacances à Céline mais je n’arrive pas à me connecter au Wifi du resto. Peux-tu m’envoyer un tuto qui pourrait m’aider à résoudre ce problème?",
+					content: "Merci grâce à toi nous avons pu commander notre repas. En attendant qu’il soit prêt, j’aimerai montrer les vidéos de mes dernières vacances à Céline mais je n’arrive pas à me connecter au Wifi du resto. Peux-tu m’envoyer le lien d'une page web qui pourrait m’aider à résoudre ce problème?",
 				});
 				addNotification({
 					title: "Nouveau message !",

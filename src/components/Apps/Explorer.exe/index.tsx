@@ -71,7 +71,7 @@ const Explorer = ({ forceRender = false, defaultContent, ...props }) => {
 								className={!selectedFile && "opacity-75"}
 								disabled={!selectedFile}
 							>
-								{t("confirm", "Confirmer")}
+								{t("confirm", "Ajouter")}
 							</Button>
 						)}
 					</div>

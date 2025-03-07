@@ -240,7 +240,8 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 							message.textContent += text;
 						} else if (
 							focusedElement.tagName === "P" ||
-							focusedElement.tagName === "SPAN"
+							focusedElement.tagName === "SPAN"||
+							focusedElement.tagName === "DIV"
 						) {
 							focusedElement.textContent += text;
 						}

@@ -220,16 +220,21 @@ const Results = ({ url }: ResultsProps) => {
 		  </div>
 		  <div className={`ml-8 max-w-7xl mr-8 ${imagesActive ? "w-full" : "w-5/12"}`}>
 			<div className="relative flex items-center mb-4">
-			  <form onSubmit={handleSubmit} className="w-full">
+			<form onSubmit={handleSubmit} className="w-full">
 				<input
-				autoComplete="off"
-				  type="text"
-				  placeholder="Rechercher sur Goulougoulou"
-				  className="bg-[#f2f2f2] rounded-[85px] h-[40px] w-full px-2 py-2 transition border shadow-sm border-gray-50 focus-visible:outline-accent pr-[40px] pl-[10px]"
-				  defaultValue={searchedValue || ""}
-				  onChange={(e) => handleInputChange(e)}
+					autoComplete="off"
+					type="text"
+					placeholder="Rechercher sur Goulougoulou"
+					className="bg-[#f2f2f2] rounded-[85px] h-[40px] w-full px-2 py-2 transition border shadow-sm border-gray-50 focus-visible:outline-accent pr-[40px] pl-[10px]"
+					defaultValue={searchedValue || ""}
+					onKeyDown={(e) => {
+					if (e.key === 'Enter') {
+						e.preventDefault();
+						handleInputChange(e)
+					}
+					}}
 				/>
-			  </form>
+			</form>
 			  <img
 				src={SearchIcon}
 				alt="Icône de recherche"

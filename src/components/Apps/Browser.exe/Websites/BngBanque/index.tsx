@@ -160,9 +160,9 @@ const BngBanque = () => {
     saveTransactions(virementData.nomBeneficiaire, montant, "sortie", new Date().toISOString());
     setTodayTransactions(getTransactions());
 
-	setVirement(false);
-	setErrorMessage("");
-    setVirementDone(true);	
+	  setVirement(false);
+	  setErrorMessage("");
+    setVirementDone(true);
   };
   
   const groupedTransactions = transactionsData.transactions
@@ -385,22 +385,26 @@ const BngBanque = () => {
 			</div>
 			<p className="text-red">{errorMessage}</p>
             <div className="flex">
-				<button
-				className="bg-[#FF7212] text-white rounded-md py-2 px-6 mt-8"
-				onClick={executeVirement}
-				>
-					Exécuter le virement
-				</button>
-				<button
-				className="bg-gray text-white rounded-md py-2 px-6 mt-8 ml-4"
-				onClick={() => {
-					setVirement(false)
-					setErrorMessage("");
-				}}
-				>
-					Annuler
-				</button>
-			</div>
+              <button
+              className="bg-[#FF7212] text-white rounded-md py-2 px-6 mt-8"
+              onClick={executeVirement}
+              >
+                Exécuter le virement
+              </button>
+              <button
+              className="bg-gray text-white rounded-md py-2 px-6 mt-8 ml-4"
+              onClick={() => {
+                setVirement(false)
+                setErrorMessage("");
+                virementData.montant = "";
+                virementData.compteBeneficiaire = "";
+                virementData.nomBeneficiaire = "";
+                setCommunicationStructuree("+++ / / ++");
+              }}
+              >
+                Annuler
+              </button>
+			    </div>
           </div>
         </section>
       )}
@@ -416,6 +420,10 @@ const BngBanque = () => {
             className="bg-[#FF7212] text-white rounded-md py-2 px-6 mt-8 float-right"
             onClick={() => {
               setVirementDone(false);
+              virementData.montant = "";
+              virementData.compteBeneficiaire = "";
+              virementData.nomBeneficiaire = "";
+              setCommunicationStructuree("+++ / / ++");
             }}
             >
               Retour

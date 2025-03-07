@@ -192,7 +192,7 @@
 	},
 	{
 		"id" : 9,
-		"question" : "Vous êtes en vacances en Espagne et vous essayez de vous connecter à votre boîte mail. Soudainement, vous recevez cette notification. Que faites-vous? ",
+		"question" : "Vous êtes en vacances en Espagne, soudainement, vous recevez cette notification. Que faites-vous?",
 		"type" : "single",
 		"display" : "vertical",
 		"answer" : [2],
@@ -255,26 +255,26 @@
 	},
 	{
 		"id" : 12,
-		"question" : "Parmi ces propositions, lesquelles vous semblent correctes ?",
+		"question" : "Parmi ces propositions, lesquelles sont correctes concernant l'impact environnemental des technologies numériques ?",
 		"type" : "multiple",
 		"display" : "vertical",
 		"answer" : [1,3],
 		"choices" : [
 			{
 				"id" : 1,
-				"text" : "Travailler depuis chez soi grâce à Internet réduit les voyages en voiture, ce qui diminue la pollution."
+				"text" : "Travailler depuis chez soi grâce à Internet permet de réduire les déplacements en voiture, ce qui contribue à diminuer la pollution."
 			},
 			{
 				"id" : 2,
-				"text" : "Les smartphones rechargés à l'énergie solaire éliminent complètement les émissions de carbone, rendant leur utilisation totalement neutre pour l'environnement."
+				"text" : "Les smartphones rechargés à l’énergie solaire ne génèrent absolument aucun impact environnemental."
 			},
 			{
 				"id" : 3,
-				"text" : "La fabrication et le jet des appareils électroniques comme les téléphones portables nécessitent beaucoup de ressources naturelles."
+				"text" : "La fabrication et l’élimination des appareils électroniques, comme les téléphones portables, nécessitent beaucoup de ressources naturelles et ont un impact environnemental important."
 			},
 			{
 				"id" : 4,
-				"text" : "Les publicités en ligne encouragent les comportements écologiques en offrant des récompenses virtuelles pour les actions durables."
+				"text" : "Toutes les publicités en ligne encouragent les comportements écologiques et n’ont aucun impact négatif sur l’environnement."
 			}
 		]
 	},

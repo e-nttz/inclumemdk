@@ -6,6 +6,7 @@ import { useAuth } from "@/providers/auth";
 import { useEffect, useState } from "react";
 import { classNames } from "@/helpers/sanitize";
 import FullScreenToggler from "../Ui/Toggle/FullScreen";
+import { useOS } from "@/providers/InclumeOS";
 
 const LoginScreen = () => {
 	const { t } = useTranslate();
@@ -13,6 +14,7 @@ const LoginScreen = () => {
 	const { authLoading, login } = useAuth();
 
 	const [sessionError, setSessionError] = useState<string | null>(null);
+	const { changeTheme, theme} = useOS();
 
 	useEffect(() => {
 		// Clear all localStorage and sessionStorage
@@ -49,7 +51,7 @@ const LoginScreen = () => {
 							setSessionError(null);
 
 							const userSession = await login(value);
-
+							changeTheme(theme === "light" ? "dark" : "light");
 							if (typeof userSession === "string") {
 								setSessionError(userSession);
 								return;
