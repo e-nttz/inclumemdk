@@ -196,7 +196,7 @@ const Questionnary = () => {
 								/>
 
 								<Button
-									className="mt-8"
+									className="mt-16"
 									onClick={() => {
 										welcomeRef.current?.classList.add(
 											"-translate-x-4",
