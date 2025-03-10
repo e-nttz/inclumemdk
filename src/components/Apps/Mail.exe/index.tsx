@@ -88,7 +88,7 @@ const Mail: AppProps<MailProps> = () => {
           beacon("message", {
               id: Math.random(),
               sender: 0,
-              content: "Salut, c’est encore moi, nous avons mal organisé nos vacances... Pourrais tu regarder sur internet quelles sont les activités disponibles dans le ville de Namur et nous envoyer le lien (url) de ce que tu as trouvé par mail?",
+              content: "Salut, c’est encore moi, nous avons mal organisé nos vacances... Pourrais tu regarder sur internet quelles sont les activités disponibles dans la ville de Namur et nous envoyer le lien (url) de ce que tu as trouvé par mail?",
           });
           addNotification({
               title: "Nouveau message !",
@@ -113,7 +113,7 @@ const Mail: AppProps<MailProps> = () => {
           beacon("message", {
               id: Math.random(),
               sender: 0,
-              content: `Nous aimerions bien faire cette activité, mais nous devons créer un fichier pour confirmer notre inscription avec nos noms, prénoms et photos d’identité.<br><br> - Peux-tu le faire depuis mon application éditeur de texte ?<br> - Tu trouveras les photos d’identité dans le dossier "vacances".<br> - Peux-tu l’enregistrer sur mon cloud ? Je pourrai l’avoir directement sur mon téléphone.<br><br> - Pour rappel, voici nos noms et prénoms :<br> &nbsp;&nbsp;&nbsp;&nbsp;- Vincent Inclume<br> &nbsp;&nbsp;&nbsp;&nbsp;- Céline Dupont.`
+              content: `Nous aimerions bien faire cette activité, mais nous devons créer un fichier pour confirmer notre inscription avec nos noms, prénoms et photos d’identité.<br><br> - Peux-tu le faire depuis mon application traitement de texte ?<br> - Tu trouveras les photos d’identité dans le dossier "vacances".<br> - Peux-tu l’enregistrer sur mon cloud ? Je pourrai l’avoir directement sur mon téléphone.<br><br> - Pour rappel, voici nos noms et prénoms :<br> &nbsp;&nbsp;&nbsp;&nbsp;- Vincent Inclume<br> &nbsp;&nbsp;&nbsp;&nbsp;- Céline Dupont.`
           });
           addNotification({
               title: "Nouveau message !",
@@ -141,7 +141,7 @@ const Mail: AppProps<MailProps> = () => {
           beacon("message", {
               id: Math.random(),
               sender: 0,
-              content: `Nous aimerions bien faire cette activité, mais nous devons créer un fichier pour confirmer notre inscription avec nos noms, prénoms et photos d’identité.<br><br> - Peux-tu le faire depuis mon application éditeur de texte ?<br> - Tu trouveras les photos d’identité dans le dossier "vacances".<br> - Peux-tu l’enregistrer sur mon cloud ? Je pourrai l’avoir directement sur mon téléphone.<br><br> - Pour rappel, voici nos noms et prénoms :<br> &nbsp;&nbsp;&nbsp;&nbsp;- Vincent Inclume<br> &nbsp;&nbsp;&nbsp;&nbsp;- Céline Dupont.`
+              content: `Nous aimerions bien faire cette activité, mais nous devons créer un fichier pour confirmer notre inscription avec nos noms, prénoms et photos d’identité.<br><br> - Peux-tu le faire depuis mon application traitement de texte ?<br> - Tu trouveras les photos d’identité dans le dossier "vacances".<br> - Peux-tu l’enregistrer sur mon cloud ? Je pourrai l’avoir directement sur mon téléphone.<br><br> - Pour rappel, voici nos noms et prénoms :<br> &nbsp;&nbsp;&nbsp;&nbsp;- Vincent Inclume<br> &nbsp;&nbsp;&nbsp;&nbsp;- Céline Dupont.`
           });
           addNotification({
               title: "Nouveau message !",

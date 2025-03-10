@@ -145,7 +145,7 @@ export const StepsListenerProvider = memo(({ children }) => {
                 beacon("message", {
                     id: Math.random(),
                     sender: 0,
-                    content: "Salut, c’est encore moi, nous avons mal organisé nos vacances... Pourrais tu regarder sur internet quelles sont les activités disponibles dans le ville de Namur et nous envoyer le lien (url) de ce que tu as trouvé par mail?",
+                    content: "Salut, c’est encore moi, nous avons mal organisé nos vacances... Pourrais tu regarder sur internet quelles sont les activités disponibles dans la ville de Namur et nous envoyer le lien (url) de ce que tu as trouvé par mail?",
                 });
                 addNotification({
                     title: "Nouveau message !",
@@ -159,7 +159,7 @@ export const StepsListenerProvider = memo(({ children }) => {
                 beacon("message", {
                     id: Math.random(),
                     sender: 0,
-                    content: "Salut, c’est encore moi, nous avons mal organisé nos vacances... Pourrais tu regarder sur internet quelles sont les activités disponibles dans le ville de Namur et nous envoyer le lien (url) de ce que tu as trouvé par message?",
+                    content: "Salut, c’est encore moi, nous avons mal organisé nos vacances... Pourrais tu regarder sur internet quelles sont les activités disponibles dans la ville de Namur et nous envoyer le lien (url) de ce que tu as trouvé par message?",
                 });
                 addNotification({
                     title: "Nouveau message !",
@@ -173,7 +173,7 @@ export const StepsListenerProvider = memo(({ children }) => {
                 beacon("message", {
                     id: Math.random(),
                     sender: 0,
-                    content: `Nous aimerions bien faire cette activité, mais nous devons créer un fichier pour confirmer notre inscription avec nos noms, prénoms et photos d’identité.<br><br> - Peux-tu le faire depuis mon application éditeur de texte ?<br> - Tu trouveras les photos d’identité dans le dossier "vacances".<br> - Peux-tu l’enregistrer sur mon cloud ? Je pourrai l’avoir directement sur mon téléphone.<br><br> - Pour rappel, voici nos noms et prénoms :<br> &nbsp;&nbsp;&nbsp;&nbsp;- Vincent Inclume<br> &nbsp;&nbsp;&nbsp;&nbsp;- Céline Dupont.`
+                    content: `Nous aimerions bien faire cette activité, mais nous devons créer un fichier pour confirmer notre inscription avec nos noms, prénoms et photos d’identité.<br><br> - Peux-tu le faire depuis mon application traitement de texte ?<br> - Tu trouveras les photos d’identité dans le dossier "vacances".<br> - Peux-tu l’enregistrer sur mon cloud ? Je pourrai l’avoir directement sur mon téléphone.<br><br> - Pour rappel, voici nos noms et prénoms :<br> &nbsp;&nbsp;&nbsp;&nbsp;- Vincent Inclume<br> &nbsp;&nbsp;&nbsp;&nbsp;- Céline Dupont.`
                 });
                 addNotification({
                     title: "Nouveau message !",
@@ -194,7 +194,7 @@ export const StepsListenerProvider = memo(({ children }) => {
                 beacon("message", {
                     id: Math.random(),
                     sender: 0,
-                    content: `Notre réservation pour l’activité est confirmée mais il n’est pas possible de payer sur place? Il faut faire un virement avant le début de l’activité. Pourrais tu le faire pour nous? Il faut envoyer 20€ au Compte BE12345678910. Pour le nom du bénéficiaire, le voici : Visiter Namur. <br><br> Merci!`,
+                    content: `Notre réservation pour l’activité est confirmée mais il n’est pas possible de payer sur place. Il faut faire un virement avant le début de l’activité.<br><br> Pourrais tu le faire pour nous? <br>Il faut envoyer 20€ au Compte BE012345678910. Indique “Visiter Namur” en bénéficiaire.<br><br> Merci! `,
                 });
                 addNotification({
                     title: "Nouveau message !",
@@ -278,7 +278,7 @@ export const StepsListenerProvider = memo(({ children }) => {
                 beacon("message", {
                 id: Math.random(),
                 sender: 0,
-                content: "Merci pour tout ce que tu as fait pour moi, avant de partir, n’oublie d’éteindre mon ordinateur!",
+                content: "Merci pour tout ce que tu as fait pour moi, avant de partir, n’oublie pas d’éteindre mon ordinateur!",
                 });
                 addNotification({
                 title: "Nouveau message !",

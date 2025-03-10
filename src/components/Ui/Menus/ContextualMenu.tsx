@@ -78,7 +78,7 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 							beacon("message", {
 							id: Math.random(),
 							sender: 0,
-							content: "Merci pour tout ce que tu as fait pour moi, avant de partir, n’oublie d’éteindre mon ordinateur!",
+							content: "Merci pour tout ce que tu as fait pour moi, avant de partir, n’oublie pas d’éteindre mon ordinateur!",
 							});
 							addNotification({
 							title: "Nouveau message !",

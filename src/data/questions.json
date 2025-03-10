@@ -25,7 +25,7 @@
 	},
 	{
 		"id": 2,
-		"question": "Parmi ces différentes propositions, lesquelles sont réalisables à l’aide d’une application bancaire ?",
+		"question": "Parmi ces différentes propositions, lesquelles sont réalisables depuis une application bancaire ?",
 		"type": "multiple",
 		"display": "vertical",
 		"answer": [2, 4],

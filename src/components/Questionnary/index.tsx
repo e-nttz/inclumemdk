@@ -110,7 +110,7 @@ const Questionnary = () => {
 									{score >= REQUIRED_SCORE
 										? t(
 												"questionnary_success_message",
-												"Nous allons pouvoir passer à l’étape suivante en nous immergeant pleinement dans le monde numérique.\nTu es prêt ?"
+												"Nous allons pouvoir passer à l’étape suivante en nous immergeant pleinement dans le monde numérique.\nTu es prêt.e ?"
 										  )
 										: t(
 												"questionnary_failure_message",

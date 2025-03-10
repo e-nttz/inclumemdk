@@ -179,5 +179,5 @@ const TextEditor: AppProps<TextEditorProps> = ({ content = "" }) => {
 export default TextEditor;
 
 TextEditor.unmount = true;
-TextEditor.title = "Editeur de texte";
+TextEditor.title = "Traitement de texte";
 TextEditor.icon = <TextEditorIcon />;
