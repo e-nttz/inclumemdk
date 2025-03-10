@@ -190,7 +190,7 @@ const Questionnary = () => {
 									dangerouslySetInnerHTML={{
 										__html: t(
 											"welcome_message",
-											"<p>Bienvenue sur <strong>Inclume</strong> ! Vous allez dans un instant découvrir le monde du numérique en ma compagnie.</p><p>D’ailleurs, je suis Wap-e (créé par Wallon Musk), un robot qui t’accompagnera tout au long de l’aventure !</p><p>Est-ce que tu es prêt.e !? Si oui, je t’invite à répondre à un petit questionnaire.</p>"
+											"<p>Bienvenue sur <strong>Inclume</strong> ! Vous allez dans un instant découvrir le monde du numérique en ma compagnie.</p><p>D’ailleurs, je suis Wap-e, un robot qui t’accompagnera tout au long de l’aventure !</p><p>Est-ce que tu es prêt.e !? Si oui, je t’invite à répondre à un petit questionnaire.</p>"
 										),
 									}}
 								/>
