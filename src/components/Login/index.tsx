@@ -51,7 +51,7 @@ const LoginScreen = () => {
 							setSessionError(null);
 
 							const userSession = await login(value);
-							changeTheme(theme === "light" ? "dark" : "light");
+							changeTheme(theme === "dark" ? "light" : "light");
 							if (typeof userSession === "string") {
 								setSessionError(userSession);
 								return;
