@@ -98,7 +98,7 @@ export default ActiverWifi;
 // used in RenderAllWebsites to select the right website
 ActiverWifi.componentName = "activerWifi";
 // used in tab as site title
-ActiverWifi.title = "Comment Activer son Wi-Fi";
+ActiverWifi.title = "Comment se connecter au Wifi";
 // used in searchEngine
 ActiverWifi.excerpt = "Un tutoriel simple et rapide pour activer votre Wi-Fi.";
 
@@ -190,7 +190,7 @@ ActiverWifi.images = [
 
 ActiverWifi.pages = [
 	{
-		title: "Tutoriel Wi-Fi",
+		title: "Comment se connecter au Wifi",
 		url: "https://tutoriel-wifi.com",
 	},
 ];

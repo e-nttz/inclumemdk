@@ -51,53 +51,29 @@ const Browser: AppProps = () => {
 	const handleOpenWebsite = (e, prevNav) => {
 		setLoading(true);
 		const tab = tabs.find((tab) => tab.id === currentTab);
-		if (!prevNav) {
-			tab?.history.push({
-				website: e.detail.website,
-				url: e.detail.url,
-			});
-			setTabs((prev: Tab[]) => {
-				const index = prev.findIndex((tab) => tab.id === currentTab);
-				const newTabs = [...prev];
-				newTabs[index] = tab;
-				return newTabs;
-			});
-
-			setCurrentHistoryIndex(tab?.history.length - 1);
-
-			setCurrentHistoryTab((prev) => [
-				// find if the tab is already in the history
-				...prev.filter((tab) => tab.tabId !== currentTab),
-				{
-					tabId: currentTab,
-					historyIndex: tab?.history.length - 1,
-				},
-			]);
-		} else {
-			setTabs((prev: Tab[]) => {
-				const index = prev.findIndex((tab) => tab.id === currentTab);
-				const newTabs = [...prev];
-				newTabs[index] = tab;
-				return newTabs;
-			});
-
-			setCurrentHistoryIndex(tab?.history.length - 1);
-
-			setCurrentHistoryTab((prev) => [
-				// find if the tab is already in the history
-				...prev.filter((tab) => tab.tabId !== currentTab),
-				{
-					tabId: currentTab,
-					historyIndex: tab?.history.length - 2,
-				},
-			]);
-		}
-
-		// add tab in tabs
-		setTimeout(() => {
-			setLoading(false);
-		}, 500);
-	};
+		if (!tab) return;
+	
+		// Ajouter la nouvelle entrée dans l'historique
+		tab.history.push({ website: e.detail.website, url: e.detail.url });
+	
+		// Mettre à jour les onglets
+		setTabs((prev: Tab[]) =>
+			prev.map((t) => (t.id === currentTab ? { ...t, history: tab.history } : t))
+		);
+	
+		// Déterminer le nouvel index d'historique
+		const newIndex = prevNav ? tab.history.length - 2 : tab.history.length - 1;
+		setCurrentHistoryIndex(newIndex);
+	
+		// Mettre à jour l'historique des onglets
+		setCurrentHistoryTab((prev) => [
+			...prev.filter((t) => t.tabId !== currentTab),
+			{ tabId: currentTab, historyIndex: newIndex },
+		]);
+	
+		// Désactiver le chargement après 500ms
+		setTimeout(() => setLoading(false), 500);
+	};	
 
 	const handlePreviousButton = () => {
 		const tab = tabs.find((tab) => tab.id === currentTab);
@@ -127,6 +103,7 @@ const Browser: AppProps = () => {
 				},
 			]);
 		}
+		console.log(currentHistoryIndex, tab)
 	};
 
 	const handleNextButton = () => {

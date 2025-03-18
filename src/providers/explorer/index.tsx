@@ -76,10 +76,23 @@ export const ExplorerProvider = ({ children }) => {
 			});
 			setTimeout(() => {
                 beacon("message", {
-                    id: Math.random(),
-                    sender: 0,
-                    content: "Super merci pour l’envoi du document mais le centre nous demande d’envoyer nos informations sous forme d’un tableau. Mais ce n’est pas la peine de remettre les photos d’identité. Voici les informations à ajouter : Inclume, Vincent, 03/09/1976 et Celine, Dupont, 25/04/1983.” Peux-tu enregistrer le fichier sur “mon cloud.",
-                });
+					id: Math.random(),
+					sender: 0,
+					content: `
+						Super merci pour l’envoi du document mais le centre nous demande d’envoyer nos informations sous forme d’un tableau. 
+						Mais ce n’est pas la peine de remettre les photos d’identité.<br><br>
+						Voici les informations à ajouter :<br>
+						<ul>
+							<li><strong>Nom :</strong> Inclume</li>
+							<li><strong>Prénom :</strong> Vincent</li>
+							<li><strong>Date de naissance :</strong> 03/09/1976</li>
+							<li><strong>Nom :</strong> Dupont</li>
+							<li><strong>Prénom :</strong> Celine</li>
+							<li><strong>Date de naissance :</strong> 25/04/1983</li>
+						</ul>
+						Peux-tu créer ce tableau avec un tableur et l'enregistrer sur mon cloud ?
+					`
+				});				
                 addNotification({
                     title: "Nouveau message !",
                     message:

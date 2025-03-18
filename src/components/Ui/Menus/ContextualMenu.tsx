@@ -170,83 +170,38 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 			<ContextMenuItem
 				inset
 				onSelect={() => {
-					// Paste selected content to target
 					navigator.clipboard.readText().then(async (text) => {
 						if (
 							focusedElement.tagName === "TEXTAREA" ||
 							focusedElement.tagName === "INPUT"
 						) {
-							// If the data contains a path like a file (/images/**/*.[ext]), create an image element without using blob
-							const filePattern =
-								/^\/images\/.*\.(png|jpg|jpeg|gif|webp|svg|pdf)$/;
-							if (filePattern.test(text)) {
-								beacon("message", {
-									id: Math.random(),
-									sender: 1,
-									content: (
-										<img
-											src={text}
-											alt="Pasted image"
-											className="h-auto max-w-full"
-										/>
-									),
-								});
-
-								return;
-							} else {
-								(focusedElement as HTMLInputElement).value = text;
-
-								return;
-							}
-
-							// Get navigator clipboard data and check if this is a file
-							// navigator.clipboard.read().then(async (data) => {
-							// if (data[0].types.includes("image/png")) {
-							// 	// Get the image dataset
-							// 	const blob = await data[0].getType("image/png");
-							// 	// Create a new file reader
-							// 	const reader = new FileReader();
-							// 	// Read the blob as a data URL
-							// 	reader.readAsDataURL(blob);
-							// 	// When the reader is done
-							// 	reader.onload = () => {
-							// 		// Create a new message
-							// 		const message = {
-							// 			id: Math.random(),
-							// 			sender: 1,
-							// 			content: (
-							// 				<img
-							// 					src={reader.result as string}
-							// 					alt="Pasted image"
-							// 					className="h-auto max-w-full"
-							// 				/>
-							// 			),
-							// 		};
-							// 		// add message to the list
-							// 		// use beaconMessage
-							// 		window.dispatchEvent(
-							// 			new CustomEvent("beaconMessage", {
-							// 				detail: message,
-							// 			})
-							// 		);
-							// 	};
-							// }
-							// });
-
-							// (focusedElement as HTMLInputElement).value = text;
+							const inputElement = focusedElement as HTMLInputElement;
+				
+							// Si un texte est sélectionné, on le remplace, sinon on insère à la position actuelle du curseur
+							const start = inputElement.selectionStart ?? 0;
+							const end = inputElement.selectionEnd ?? 0;
+				
+							// Insérer le texte à la position du curseur
+							inputElement.setRangeText(text, start, end, "end");
+				
+							// Créer et déclencher un événement `InputEvent`
+							const event = new InputEvent("input", { bubbles: true, cancelable: true });
+							inputElement.dispatchEvent(event);
+				
+							return;
 						} else if (focusedElement.classList.contains("message")) {
-							// Add the text to the message
 							const message = focusedElement.querySelector("p");
 							message.textContent += text;
 						} else if (
 							focusedElement.tagName === "P" ||
-							focusedElement.tagName === "SPAN"||
+							focusedElement.tagName === "SPAN" ||
 							focusedElement.tagName === "DIV"
 						) {
 							focusedElement.textContent += text;
 						}
 					});
 				}}
+				
 			>
 				{t("paste", "Coller")}
 				<ContextMenuShortcut>⌘V</ContextMenuShortcut>

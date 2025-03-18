@@ -11,6 +11,7 @@ import MascotteIndice from "@/assets/mascotte/mascotte_indice.svg"
 export const StepsListenerContext = createContext({});
 
 export const StepsListenerProvider = memo(({ children }) => {
+    const [disabled, setDisabled] = useState(false);
     const [showHintButton, setShowHintButton] = useState(true);
     const [showSkipButton, setShowSkipButton] = useState(true);
     const { addNotification } = useNotification();
@@ -194,7 +195,7 @@ export const StepsListenerProvider = memo(({ children }) => {
                 beacon("message", {
                     id: Math.random(),
                     sender: 0,
-                    content: `Notre réservation pour l’activité est confirmée mais il n’est pas possible de payer sur place. Il faut faire un virement avant le début de l’activité.<br><br> Pourrais tu le faire pour nous? <br>Il faut envoyer 20€ au Compte BE012345678910. Indique “Visiter Namur” en bénéficiaire.<br><br> Merci! `,
+                    content: `Notre réservation pour l’activité est confirmée mais il n’est pas possible de payer sur place. Il faut faire un virement avant le début de l’activité.<br><br> Pourrais tu le faire pour nous? <br>Il faut envoyer 20€ au Compte BE12345678910. Indique “Visiter Namur” en bénéficiaire.<br><br> Merci! `,
                 });
                 addNotification({
                     title: "Nouveau message !",
@@ -303,11 +304,20 @@ export const StepsListenerProvider = memo(({ children }) => {
             )}
 
             {showSkipButton && stepType === "TEST" && (
-                <div onClick={skipStep} className="cursor-pointer absolute right-2 bottom-40 flex items-center bg-[#EB5D1D] rounded-2xl opacity-60 hover:opacity-100 transition-opacity duration-300">
+                <div onClick={() => {
+                    if (disabled) return;
+                    setDisabled(true);
+                    skipStep()
+                    setTimeout(() => setDisabled(false), 5000);
+                }} className={`cursor-pointer absolute right-2 bottom-40 flex items-center 
+                    bg-[#EB5D1D] rounded-2xl opacity-60 hover:opacity-100 transition-opacity duration-300
+                    ${disabled ? "pointer-events-none opacity-50" : ""}`}>
                     <div className="bg-white px-6 py-2 mr-3 rounded-l-2xl">
                         <img src={MascotteNeutre} className="h-6" alt="" />
                     </div>
-                    <p className="text-[#D7EBFF] pr-6 py-2 font-semibold">Passer cette étape</p>
+                    <p className="text-[#D7EBFF] pr-6 py-2 font-semibold">
+                        {disabled ? "Chargement..." : "Passer cette étape"}
+                    </p>                
                 </div>
             )}
         </StepsListenerContext.Provider>

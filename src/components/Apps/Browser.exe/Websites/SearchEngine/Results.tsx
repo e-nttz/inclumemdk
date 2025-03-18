@@ -7,7 +7,7 @@ import Partenaires from "@/assets/icons/partenaires.svg"
 import { useAuth } from "@/providers/auth";
 import { getNextStep, saveStep } from "@/lib/client/quiz";
 import { websites } from "../../Websites";
-
+import { useRef } from "react";
 import ActivitesNamur from "../ActivitesNamur";
 import AntivirusAdvisor from "../AntivirusAdvisor";
 import AntivirusDeals from "../AntivirusDeals";
@@ -118,6 +118,7 @@ interface WebsiteProps extends React.FC {
   
 const Results = ({ url }: ResultsProps) => {
 	const {user, session} = useAuth();
+	const inputRef = useRef<HTMLInputElement>(null); 
 	const validationEtape3 = async () =>{
 		const step = await getNextStep(session);
 		if (step.id === 4) {
@@ -138,9 +139,9 @@ const Results = ({ url }: ResultsProps) => {
   
 	const handleSubmit = (e) => {
 	  e.preventDefault();
-	  if (!searchedValue) return;
+	  if (!inputRef.current) return;
   
-	  let copiedSearchValue = searchedValue;
+	  let copiedSearchValue = inputRef.current.value.trim();
   
 	  // Remplacer les espaces par des +
 	  copiedSearchValue = encodeURI(copiedSearchValue);
@@ -219,28 +220,30 @@ const Results = ({ url }: ResultsProps) => {
 			</h1>
 		  </div>
 		  <div className={`ml-8 max-w-7xl mr-8 ${imagesActive ? "w-full" : "w-5/12"}`}>
-			<div className="relative flex items-center mb-4">
+		  <div className="relative flex items-center mb-4">
 			<form onSubmit={handleSubmit} className="w-full">
 				<input
+					ref={inputRef} // Référence ici
 					autoComplete="off"
 					type="text"
 					placeholder="Rechercher sur Goulougoulou"
 					className="bg-[#f2f2f2] rounded-[85px] h-[40px] w-full px-2 py-2 transition border shadow-sm border-gray-50 focus-visible:outline-accent pr-[40px] pl-[10px]"
 					defaultValue={searchedValue || ""}
 					onKeyDown={(e) => {
-					if (e.key === 'Enter') {
-						e.preventDefault();
-						handleInputChange(e)
-					}
+						if (e.key === "Enter") {
+							e.preventDefault();
+							handleSubmit(e);
+						}
 					}}
 				/>
 			</form>
-			  <img
+			<img
 				src={SearchIcon}
 				alt="Icône de recherche"
-				className="search absolute w-[30px] right-[10px]"
-			  />
-			</div>
+				onClick={handleSubmit} // Clique déclenche handleSubmit
+				className="cursor-pointer search absolute w-[30px] right-[10px]"
+			/>
+		</div>
 			<div className="filtres flex mb-4">
 			  <div
 				className={`filtre border rounded-[20px] cursor-pointer pl-3 pr-3 pt-2 pb-2 mr-2 ${

@@ -88,7 +88,7 @@ const Message: AppProps = (defaultContent) => {
 			}
 		  }
 		  if (step.id === 2) {
-			if(message){
+			if(["rodestraat", "24", "oostende", "adres"].some(keyword => message.toLowerCase().includes(keyword))){
 				await saveStep(session, {
 					test_step_template_id: step.id,
 					is_successful: true,
@@ -215,7 +215,7 @@ const Message: AppProps = (defaultContent) => {
             }, 25000)
 		  }
 		  if(step.id === 38 &&
-  				["salade", "epicee", "épicée", "epicée", "épicee", "epice"].some(keyword => message.toLowerCase().includes(keyword))){
+			["salade", "epicee", "épicée", "epicée", "épicee", "epice", "épicé", "epicée", "epicé", "épissée", "épissé", "épiceé", "épisée", "épicee", "épissé", "epicée", "epicéé"].some(keyword => message.toLowerCase().includes(keyword))){
 			await saveStep(session, {
 				test_step_template_id: step.id,
 				is_successful: true,
@@ -227,7 +227,7 @@ const Message: AppProps = (defaultContent) => {
 				beacon("message", {
 					id: Math.random(),
 					sender: 0,
-					content: "Merci grâce à toi nous avons pu commander notre repas. En attendant qu’il soit prêt, j’aimerai montrer les vidéos de mes dernières vacances à Céline mais je n’arrive pas à me connecter au Wifi du resto. Peux-tu m’envoyer le lien d'une page web qui pourrait m’aider à résoudre ce problème?",
+					content: "Merci grâce à toi nous avons pu commander notre repas. En attendant qu’il soit prêt, j’aimerai montrer les vidéos de mes dernières vacances à Céline mais je n’arrive pas à me connecter au Wifi du resto. Peux-tu m’envoyer le lien d'un tuto qui pourrait m’aider à résoudre ce problème ?",
 				});
 				addNotification({
 					title: "Nouveau message !",

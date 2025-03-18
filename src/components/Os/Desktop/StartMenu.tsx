@@ -5,13 +5,15 @@ import { useAuth } from "@/providers/auth";
 import { getNextStep, saveStep, updateTestSession } from "@/lib/client/quiz";
 import { useOS } from "@/providers/InclumeOS";
 import { Transition } from "@headlessui/react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { getAntivirusInstalledFromLocalStorage } from "@/utils/localeStorage";
-
+import IconSettings from "@/assets/icons/settings.svg?react";
+import { motion } from "framer-motion";
 
 const StartMenu = () => {
-	const { startMenuOpen, setStartMenuOpen, launchApp } = useOS();
+	const { startMenuOpen, setStartMenuOpen, launchApp, changeTheme, theme } = useOS();
 	const { logout, session } = useAuth();
+	const [showText, setShowText] = useState(false);
   	const validationEtape19 = async (confirmation) =>{
 		const step = await getNextStep(session);
 		if (step.id === 41) {
@@ -185,9 +187,33 @@ const StartMenu = () => {
 						</figure>
 						<span className="font-medium">Inclume</span>
 					</div>
+					<div className="flex items-center">
+					<div className="relative">
+						<button
+							type="button"
+							onClick={() => setShowText(!showText)}
+							className="mr-3 transition rounded hover:bg-blue-200 focus:outline-none active:bg-transparent dark:hover:bg-black/20 dark:active:bg-black/30"
+						>
+							<IconSettings className="block w-8 h-8" />
+						</button>
+						{showText && (
+							<motion.div
+							initial={{ opacity: 0, y: -10, scale: 0.9 }}
+							animate={{ opacity: 1, y: 0, scale: 1 }}
+							exit={{ opacity: 0, y: -10, scale: 0.9 }}
+							transition={{ duration: 0.2 }}
+							onClick={
+								() => changeTheme(theme === "dark" ? "light" : "dark")
+							}
+							className="cursor-pointer flex items-center justify-center p-3 absolute dark:bg-gray-900 text-lg bg-blue-200 rounded w-56 right-4 top-[-60px]"
+							>
+							<p>Passer en mode {theme === "dark" ? "jour" : "nuit"}</p>
+							</motion.div>
+						)}
+					</div>
 					<button
 						type="button"
-						className="p-3 -mr-3 transition rounded hover:bg-blue-200 focus:outline-none active:bg-transparent dark:hover:bg-black/20 dark:active:bg-black/30"
+						className="mr-3 transition rounded hover:bg-blue-200 focus:outline-none active:bg-transparent dark:hover:bg-black/20 dark:active:bg-black/30"
 						onClick={() => {
 							const confirmation = confirm(
 								"Voulez-vous vraiment éteindre votre ordinateur ? Toutes modifications non sauvegardées seront perdues."
@@ -207,6 +233,7 @@ const StartMenu = () => {
 							<path d="M152.579 117h21c5.514 0 10-4.486 10-10V10c0-5.514-4.486-10-10-10h-21c-5.514 0-10 4.486-10 10v97c0 5.514 4.485 10 10 10z" />
 						</svg>
 					</button>
+					</div>
 				</div>
 			</div>
 		</Transition>
