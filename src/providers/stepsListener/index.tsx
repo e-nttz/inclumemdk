@@ -195,7 +195,7 @@ export const StepsListenerProvider = memo(({ children }) => {
                 beacon("message", {
                     id: Math.random(),
                     sender: 0,
-                    content: `Notre réservation pour l’activité est confirmée mais il n’est pas possible de payer sur place. Il faut faire un virement avant le début de l’activité.<br><br> Pourrais tu le faire pour nous? <br>Il faut envoyer 20€ au Compte BE12345678910. Indique “Visiter Namur” en bénéficiaire.<br><br> Merci! `,
+                    content: `Notre réservation pour l’activité est confirmée mais il n’est pas possible de payer sur place. Il faut faire un virement avant le début de l’activité.<br><br> Pourrais tu le faire pour nous? <br>Il faut envoyer 20€ au Compte BE12345678910. Indique “Visiter Namur” en bénéficiaire.<br><br>Pour information, j'utilise la banque BNG. <br><br> Merci! `,
                 });
                 addNotification({
                     title: "Nouveau message !",

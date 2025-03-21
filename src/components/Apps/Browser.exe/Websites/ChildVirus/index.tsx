@@ -27,7 +27,7 @@ const ChildVirus = () => {
         launchApp({
           title: apps.explorer.title,
           icon: apps.explorer.icon,
-          defaultContent: true,
+          defaultContent: "download",
         });
         beacon("triggerStep", {
           value: "downloadChildVirus",

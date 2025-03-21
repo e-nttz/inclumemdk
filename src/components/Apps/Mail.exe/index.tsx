@@ -52,7 +52,8 @@ const Mail: AppProps<MailProps> = () => {
           - Trouve la fiche client pour la réservation à l’hôtel.<br>
           - Ajoute "Dupont" comme nom de famille de Céline.<br>
           - Enregistre le fichier en le renommant "dupont".<br>
-          - Envoie-le par e-mail à l’hôtel. L’adresse est enregistrée dans mes contacts sous "hôtel Namur".`
+          - Envoie-le par e-mail à l’hôtel.<br>
+          Voici l'adresse e-mail de l'hôtel : reservation@hotlenamur.be`
         });              
         addNotification({
           title: "Nouveau message !",

@@ -95,7 +95,7 @@ const ChildVirus: AppProps<ChildVirusProps> = () => {
             }
             return prev + 1;
           });
-        }, 200);
+        }, 150);
       };
 
       startProgress();
@@ -118,9 +118,9 @@ const ChildVirus: AppProps<ChildVirusProps> = () => {
               setAnalyseEnded(true);
               return 100;
             }
-            return prev + 1; // Incrémentation par 1% toutes les 200ms
+            return prev + 1; // Incrémentation par 1% toutes les 150ms
           });
-        }, 200);
+        }, 150);
       };
 
       startProgress();
@@ -229,7 +229,7 @@ const ChildVirus: AppProps<ChildVirusProps> = () => {
                     <div className="relative w-full h-3 bg-black rounded-lg overflow-hidden mt-4">
                       <div
                         id="progress-bar"
-                        className="absolute top-0 left-0 h-full bg-green-500 rounded-lg transition-all duration-[200ms]"
+                        className="absolute top-0 left-0 h-full bg-green-500 rounded-lg transition-all duration-[150ms]"
                         style={{ width: `${progress}%` }}
                       />
                     </div>

@@ -101,7 +101,7 @@ const Message: AppProps = (defaultContent) => {
 					beacon("message", {
 						id: Math.random(),
 						sender: 0,
-						content: "Désolé de t’embêter, nous sommes dans la bonne rue mais nous ne trouvons pas le bâtiment. Pourrais-tu m’envoyer une photo du bâtiment par mail à l’adresse : vincent@inclume.be ?",
+						content: "Désolé de t’embêter, nous sommes dans la bonne rue mais nous ne trouvons pas le bâtiment. Pourrais-tu <strong>télécharger</strong> sur l'ordinateur et m’envoyer une photo du bâtiment par mail à l’adresse : vincent@inclume.be ?",
 					});
 					addNotification({
 						title: "Nouveau message !",
@@ -194,26 +194,33 @@ const Message: AppProps = (defaultContent) => {
 			}
 		  }
 		  if(step.id === 35 || step.id === 51 || step.id === 55){
-			await saveStep(session, {
-				test_step_template_id: step.id,
-				is_successful: true,
-				extra_data: {
-					"message" : message,
-				},
-			});
-			setTimeout(() => {
-                beacon("message", {
-                    id: Math.random(),
-                    sender: 0,
-                    content: "Voici le numéro de compte auquel tu dois faire le virement de 20€ : BE12345678910. Pour le nom du bénéficiaire, le voici : Visiter Namur.",
-                });
-                addNotification({
-                    title: "Nouveau message !",
-                    message:
-                        "<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
-                });
-            }, 25000)
-		  }
+			if(message === "raté"){
+				await saveStep(session, {
+					test_step_template_id: step.id,
+					is_successful: false,
+				  })
+			}else{
+				await saveStep(session, {
+					test_step_template_id: step.id,
+					is_successful: true,
+					extra_data: {
+						"message" : message,
+					},
+				});
+				setTimeout(() => {
+					beacon("message", {
+						id: Math.random(),
+						sender: 0,
+						content: "Voici le numéro de compte auquel tu dois faire le virement de 20€ : BE12345678910. Pour le nom du bénéficiaire, le voici : Visiter Namur. Pour information, j'utilise la banque BNG.",
+					});
+					addNotification({
+						title: "Nouveau message !",
+						message:
+							"<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+					});
+				}, 25000)
+			}
+		}
 		  if(step.id === 38 &&
 			["salade", "epicee", "épicée", "epicée", "épicee", "epice", "épicé", "epicée", "epicé", "épissée", "épissé", "épiceé", "épisée", "épicee", "épissé", "epicée", "epicéé"].some(keyword => message.toLowerCase().includes(keyword))){
 			await saveStep(session, {
@@ -545,6 +552,9 @@ const Message: AppProps = (defaultContent) => {
 					onEnded={() => {
 						setTimeout(() => {
 							setCall(false);
+							if(!isSoundOn){
+								fetchStepId(session, "raté");
+							}
 						}, 1500);
 					}}
 				>

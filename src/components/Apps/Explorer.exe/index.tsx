@@ -16,13 +16,13 @@ const Explorer = ({ forceRender = false, defaultContent, ...props }) => {
 	const [fileName, setFileName] = useState("sans-titre");
 
 	if (defaultContent) {
-		if (defaultContent === "vacances") {
+		if (defaultContent === "download") {
 			setPath({
-				name: "Vacances",
+				name: "Téléchargements",
 				type: "folder",
 				createdAt: new Date().toISOString(),
 				updatedAt: new Date().toISOString(),
-				path: "vacances",
+				path: "download",
 			});
 		}
 		defaultContent = "";

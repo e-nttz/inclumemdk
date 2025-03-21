@@ -109,7 +109,10 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 
 			{actions?.length && <ContextMenuSeparator />}
 
-			<ContextMenuItem
+			{focusedElement &&
+  				focusedElement.tagName !== "IMG" &&
+  				!(focusedElement.tagName === "DIV" && getComputedStyle(focusedElement).backgroundImage !== "none") && (
+				<ContextMenuItem
 				inset
 				onClick={async () => {
 					try {
@@ -166,6 +169,7 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 				{t("copy", "Copier")}
 				<ContextMenuShortcut>⌘C</ContextMenuShortcut>
 			</ContextMenuItem>
+			)}
 
 			<ContextMenuItem
 				inset
