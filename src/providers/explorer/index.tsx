@@ -412,7 +412,7 @@ export const ExplorerProvider = ({ children }) => {
 	 */
 	const handleInfoWindow = (
 		onSelect: (selectedFile: FileNode) => void = undefined,
-		onSave: (filename: string) => void = undefined
+		onSave: (filename: string) => void = undefined,
 	) => {
 		setOnSave(onSave ? () => onSave : undefined);
 		setOnSelect(onSelect ? () => onSelect : undefined);

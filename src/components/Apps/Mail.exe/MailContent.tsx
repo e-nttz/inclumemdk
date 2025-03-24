@@ -168,7 +168,6 @@ const MailContent = ({
                                                         },
                                                         currentPath
                                                     );
-                
                                                     closeInfoWindow();
                                                 });
                                             }}
