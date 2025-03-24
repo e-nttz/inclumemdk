@@ -90,6 +90,8 @@ RestaurantLaSiesta.excerpt = "Découvrez les saveurs espagnoles et latino-améri
 // Mots clés
 RestaurantLaSiesta.motsCles = [
 	"restaurant",
+	"oostende",
+	"la",
     "restorant",
     "mexicain",
     "mexican",
@@ -129,7 +131,6 @@ RestaurantLaSiesta.motsCles = [
     "repas",
     "repa",
 	"siesta",
-	"la siesta"
 ];
 
 // Site favicon icon

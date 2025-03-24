@@ -297,7 +297,7 @@
 	},
 	{
 		"id" : 14,
-		"question" : "Combien de formations avez-vous suivi ?",
+		"question" : "Combien de formations avez-vous suivies ?",
 		"type" : "single",
 		"display" : "vertical",
 		"answer" : [1,2,3],

@@ -206,7 +206,7 @@ const ChildVirus: AppProps<ChildVirusProps> = () => {
                     ChildVirus
                   </h1>
                   <p className="text-lg font-semibold w-6/12 text-center mt-16 mb-8">
-                    En cliquant sur installer, vous confirmez avoir lu et approuver la Politique de confidentialité de ChildVirus, qui régissent le téléchargement et l’utilisation des produits concernés.
+                    En cliquant sur installer, vous confirmez avoir lu et approuvé la Politique de confidentialité de ChildVirus, qui régit le téléchargement et l’utilisation des produits concernés.
                   </p>
                   <button className="bg-[#FF7100] text-white px-8 py-2 rounded-3xl cursor-pointer" onClick={
                     () => {
@@ -327,7 +327,7 @@ const ChildVirus: AppProps<ChildVirusProps> = () => {
                         <div className="w-9/12">
                           <h2 className="text-xl text-white">Des logiciels malveillants et autres menaces pourraient s’exécuter dans la mémoire de votre PC</h2>
                           <p className="text-white mt-2">Activez la Prévention de l’exécution des données pour détecter les codes malveillants (l’activation se
-                            fere aprés le redémarrage du PC).</p>
+                            fera après le redémarrage du PC).</p>
                         </div>
                       </div>
                       <div className="bg-[#FF7100] bg-opacity-80 flex items-center p-4 w-[70%] mt-4">
@@ -358,11 +358,11 @@ const ChildVirus: AppProps<ChildVirusProps> = () => {
                     </p>
                     <div className="flex items-center mb-4">
                       <img src={Good} alt="Ok" className="mr-4 w-8"/>
-                      <p className="text-lg">0 probléme de paramètres systèmme trouvé</p>
+                      <p className="text-lg">0 problème de paramètres système trouvé</p>
                     </div>
                     <div className="flex items-center mb-4">
                       <img src={Good} alt="Ok" className="mr-4 w-8"/>
-                      <p className="text-lg">2 menace de malware trouvées</p>
+                      <p className="text-lg">2 menaces de malware trouvées</p>
                     </div>
                     <div className="flex items-center mb-4">
                       <img src={Good} alt="Ok" className="mr-4 w-8"/>

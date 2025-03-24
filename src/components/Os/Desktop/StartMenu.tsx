@@ -9,11 +9,15 @@ import { useRef, useState } from "react";
 import { getAntivirusInstalledFromLocalStorage } from "@/utils/localeStorage";
 import IconSettings from "@/assets/icons/settings.svg?react";
 import { motion } from "framer-motion";
+import { beacon } from "@/helpers/beacon";
+import { useNotification } from "@/providers/notifications";
 
 const StartMenu = () => {
 	const { startMenuOpen, setStartMenuOpen, launchApp, changeTheme, theme } = useOS();
 	const { logout, session } = useAuth();
 	const [showText, setShowText] = useState(false);
+	const { addNotification } = useNotification();
+	
   	const validationEtape19 = async (confirmation) =>{
 		const step = await getNextStep(session);
 		if (step.id === 41) {
@@ -26,6 +30,27 @@ const StartMenu = () => {
 		logout();
 		window.location.reload();
 	}
+	const validationEtape18 = async () =>{
+				const step = await getNextStep(session);
+				if (step.id === 64) {
+					await saveStep(session, {
+						test_step_template_id: step.id,
+						is_successful: true,
+				});
+				setTimeout(() => {
+								beacon("message", {
+								id: Math.random(),
+								sender: 0,
+								content: "Merci pour tout ce que tu as fait pour moi, avant de partir, n’oublie pas d’éteindre mon ordinateur!",
+								});
+								addNotification({
+								title: "Nouveau message !",
+								message:
+									"<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+							});
+						},5000)
+			}
+		}
 	const nodeRef = useRef<HTMLDivElement>(null);
 
 	useClickOutside(nodeRef, (e: MouseEvent) => {
@@ -203,7 +228,11 @@ const StartMenu = () => {
 							exit={{ opacity: 0, y: -10, scale: 0.9 }}
 							transition={{ duration: 0.2 }}
 							onClick={
-								() => changeTheme(theme === "dark" ? "light" : "dark")
+								() => {
+									changeTheme(theme === "dark" ? "light" : "dark")
+									validationEtape18()
+								}
+								
 							}
 							className="cursor-pointer flex items-center justify-center p-3 absolute dark:bg-gray-900 text-lg bg-blue-200 rounded w-56 right-4 top-[-60px]"
 							>

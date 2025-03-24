@@ -465,7 +465,7 @@
 					{
 						"time_launched": 60,
 						"title": "Vérifiez l'adresse mail",
-						"message": "L’adresse mail enregistrée dans les contacts contient peut-être une faute. Vérifie l'adresse mail !",
+						"message": "L’adresse mail contient peut-être une faute. Vérifie l'adresse mail !",
 						"visualHint": {
 							"image": ""
 						}

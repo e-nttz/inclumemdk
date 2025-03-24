@@ -279,8 +279,8 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 						}}
 					>
 						{theme === "light"
-							? t("dark_mode", "Passez en mode sombre")
-							: t("light_mode", "Passez en mode clair")}
+							? t("dark_mode", "Passer en mode sombre")
+							: t("light_mode", "Passer en mode clair")}
 					</ContextMenuItem>
 				</ContextMenuSubContent>
 			</ContextMenuSub>
