@@ -562,12 +562,10 @@ const Message: AppProps = (defaultContent) => {
 					ref={videoRef} 
 					muted={!isSoundOn} 
 					onEnded={() => {
-						setTimeout(() => {
-							if(!isSoundOn){
-								fetchStepId(session, "raté");
-							}
-						}, 1500);
 						setCall(false);
+						if(!isSoundOn){
+								fetchStepId(session, "raté");
+						}
 					}}
 				>
 					<source src={videoLink} />
