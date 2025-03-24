@@ -210,7 +210,7 @@ const Message: AppProps = (defaultContent) => {
 						message:
 							"<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
 					});
-				}, 1000)
+				}, 2000)
 			}else{
 				await saveStep(session, {
 					test_step_template_id: step.id,
@@ -562,12 +562,12 @@ const Message: AppProps = (defaultContent) => {
 					ref={videoRef} 
 					muted={!isSoundOn} 
 					onEnded={() => {
+						setCall(false);
 						setTimeout(() => {
 							if(!isSoundOn){
 								fetchStepId(session, "raté");
 							}
 						}, 1500);
-						setCall(false);
 					}}
 				>
 					<source src={videoLink} />
