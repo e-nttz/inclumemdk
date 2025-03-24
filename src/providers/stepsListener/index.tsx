@@ -308,7 +308,7 @@ export const StepsListenerProvider = memo(({ children }) => {
                     if (disabled) return;
                     setDisabled(true);
                     skipStep()
-                    setTimeout(() => setDisabled(false), 5000);
+                    setTimeout(() => setDisabled(false), 6500);
                 }} className={`cursor-pointer absolute right-2 bottom-40 flex items-center 
                     bg-[#EB5D1D] rounded-2xl opacity-60 hover:opacity-100 transition-opacity duration-300
                     ${disabled ? "pointer-events-none opacity-50" : ""}`}>

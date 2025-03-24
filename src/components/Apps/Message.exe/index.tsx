@@ -199,6 +199,18 @@ const Message: AppProps = (defaultContent) => {
 					test_step_template_id: step.id,
 					is_successful: false,
 				  })
+				  setTimeout(() => {
+					beacon("message", {
+						id: Math.random(),
+						sender: 0,
+						content: "Notre réservation pour l’activité est confirmée mais il n’est pas possible de payer sur place. Il faut faire un virement avant le début de l’activité. Pourrais tu le faire pour nous? Il faut envoyer 20€ au Compte BE12345678910. Indique “Visiter Namur” en bénéficiaire. Pour information, j'utilise la banque BNG. Merci!",
+					});
+					addNotification({
+						title: "Nouveau message !",
+						message:
+							"<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+					});
+				}, 1000)
 			}else{
 				await saveStep(session, {
 					test_step_template_id: step.id,
