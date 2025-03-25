@@ -285,6 +285,7 @@ const Message: AppProps = (defaultContent) => {
 					setSoundOn(false);
 					setVideoLink("https://ik.imagekit.io/0jngziwft/Appels%20/Appel%20%C3%A9tape%2013.mp4");
 					localStorage.setItem("call2", "true"); // Marque l'appel 2 comme exécuté
+					localStorage.setItem("call1", "true"); // Marque l'appel 1 comme exécuté si test a été relancé
 				} else {
 					localStorage.setItem("call1", "true"); // Marque l'appel 1 comme exécuté
 				}
