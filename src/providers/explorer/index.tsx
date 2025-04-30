@@ -354,7 +354,7 @@ export const ExplorerProvider = ({ children }) => {
 				content,
 			};
 
-			if (name.toLocaleLowerCase() === "dupont") {
+			if (name.toLowerCase().includes("dupont")) {
 				if (content.data.toLowerCase().includes("dupont")) {
 					validationEtape6();  
 					beacon("triggerStep", {
