@@ -354,14 +354,16 @@ export const ExplorerProvider = ({ children }) => {
 				content,
 			};
 
-			if (name.toLowerCase().includes("dupont")) {
-				if (content.data.toLowerCase().includes("dupont")) {
-					validationEtape6();  
-					beacon("triggerStep", {
-						value: "stepValidated",
-					  });
-				}
+			const nameLower = name.toLowerCase();
+			const contentLower = content.data.toLowerCase();
+
+			if (nameLower.includes("dupont") && contentLower.includes("dupont")) {
+				validationEtape6();
+				beacon("triggerStep", {
+					value: "stepValidated",
+				});
 			}
+
 
 			if(fileType === "xlsx" && currentFolderPath === "/root/cloud"){
 				content.data.forEach(cellule => {
