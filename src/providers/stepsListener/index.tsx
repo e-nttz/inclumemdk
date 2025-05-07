@@ -106,6 +106,9 @@ export const StepsListenerProvider = memo(({ children }) => {
     // 🔹 Fonction pour passer une étape
     const skipStep = async () => {
         const step = await getNextStep(session);
+        if(step.id === 39 && step.id === 35 && step.id === 55 && step.id === 51){
+            invalidateStepProb()
+        }
         await saveStep(session, {
             test_step_template_id: step.id,
             is_successful: false,
