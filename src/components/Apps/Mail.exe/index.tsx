@@ -152,6 +152,27 @@ const Mail: AppProps<MailProps> = () => {
       }, 5000)
     }
   };
+  const echecEtape10 = async () =>{
+    const step = await getNextStep(session);
+    if (step.id === 13) {
+      await saveStep(session, {
+        test_step_template_id: step.id,
+        is_successful: false,
+      });
+      setTimeout(() => {
+          beacon("message", {
+              id: Math.random(),
+              sender: 0,
+              content: `Nous aimerions bien faire cette activité, mais nous devons créer un fichier pour confirmer notre inscription avec nos noms, prénoms et photos d’identité.<br><br> - Peux-tu le faire depuis mon application traitement de texte ?<br> - Tu trouveras les photos d’identité dans le dossier "vacances".<br> - Peux-tu l’enregistrer sur mon cloud ? Je pourrai l’avoir directement sur mon téléphone.<br><br> - Pour rappel, voici nos noms et prénoms :<br> &nbsp;&nbsp;&nbsp;&nbsp;- Vincent Inclume<br> &nbsp;&nbsp;&nbsp;&nbsp;- Céline Dupont.`
+          });
+          addNotification({
+              title: "Nouveau message !",
+              message:
+                  "<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+          });
+      }, 5000)
+    }
+  };
   const [folderName, setFolderName] = useState("Boîte de réception");
   const [activeFolder, setActiveFolder] = useState<string | null>("Boîte de réception");
   const [newMessage, setNewMessage] = useState(false);
@@ -379,8 +400,13 @@ const Mail: AppProps<MailProps> = () => {
       validationEtape8(newContent)
     }
 
-    if(toEmail === "vincent@inclume.be" && newContent.toLowerCase().includes("namur") && newContent.toLowerCase().includes("https")){
-      validationEtape10()
+    if(toEmail === "vincent@inclume.be" && newContent.toLowerCase().includes("namur") && newContent.toLowerCase().includes("http")){
+      if(newContent.toLowerCase().includes("https")){
+        validationEtape10()
+      }
+      else{
+        echecEtape10()
+      }
     }
     const updatedMails = [...mails, newMail];
     updateMails(updatedMails);

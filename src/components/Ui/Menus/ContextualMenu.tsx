@@ -201,7 +201,9 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 							focusedElement.tagName === "SPAN" ||
 							focusedElement.tagName === "DIV"
 						) {
-							focusedElement.textContent += text;
+							if(!focusedElement.className.includes("message")){
+								focusedElement.textContent += text;
+							}
 						}
 					});
 				}}

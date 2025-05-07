@@ -10,11 +10,11 @@ const BubbleChat = ({ message, isMine }) => {
 		>
 			<div
 				className={classNames(
-					"rounded-xl px-4 py-3 relative",
+					"rounded-xl px-4 py-3 relative message",
 					isMine ? "bg-[#2897FD] text-white" : "bg-[#E9E9EB] text-black"
 				)}
 			>
-				<p dangerouslySetInnerHTML={{ __html: message.content }}></p>
+				<p className="message" dangerouslySetInnerHTML={{ __html: message.content }}></p>
 
 				<svg
 					xmlns="http://www.w3.org/2000/svg"

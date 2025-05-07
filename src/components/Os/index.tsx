@@ -60,7 +60,7 @@ const InclumeOs = () => {
 							}`
 						}
 					</p> */}
-					<div
+					{/* <div
 						id="fullscreen-notice"
 						className="absolute top-6 px-4 py-3 right-6 z-[100000] rounded border border-gray-100 bg-white/80 dark:border-gray dark:bg-gray/50 backdrop-blur gap-4 max-w-[320px] items-start text-sm hidden"
 					>
@@ -71,7 +71,7 @@ const InclumeOs = () => {
 								"Pour une meilleure immersion, l'application devrait être affichée en pleine écran."
 							)}
 						</p>
-					</div>
+					</div> */}
 
 					<Desktop />
 					<Taskbar />

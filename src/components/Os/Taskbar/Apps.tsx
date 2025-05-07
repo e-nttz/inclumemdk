@@ -56,8 +56,22 @@ const Apps = () => {
 				id="btn-fullscreen"
 				className="relative transition duration-75 rounded group hover:bg-white/50 focus:outline-none active:bg-white/75 dark:hover:bg-black/25 dark:active:bg-black/50"
 				onClick={() => {
-					toggleFullscreen();
+					const doc = document as any;
+					if (
+						!document.fullscreenElement &&
+						!doc.webkitFullscreenElement &&
+						!doc.mozFullScreenElement &&
+						!doc.msFullscreenElement
+					) {
+						const elem = document.documentElement;
+						if (elem.requestFullscreen) {
+							elem.requestFullscreen();
+						} else if (elem.requestFullscreen) {
+							elem.requestFullscreen();
+						}
+					}
 				}}
+				
 			>
 				<figure className="block p-2 transition duration-75 active:scale-90">
 					<img

@@ -202,18 +202,6 @@
 					"extension": ".jpg",
 					"slug": "id-vincent.jpg",
 					"url": "https://ik.imagekit.io/0jngziwft/ID%20/Vincent.png"
-				},
-				{
-					"name": "Info resto",
-					"type": "file",
-					"createdAt": "2023-10-01T13:45:00Z",
-					"updatedAt": "2023-10-02T20:00:00Z",
-					"path": "info-resto-docx",
-					"extension": ".docx",
-					"slug": "info-resto.docx",
-					"content": {
-						"data": "<div>Adresse : <div>+image</div></div>"
-					}
 				}
 			]
 		},

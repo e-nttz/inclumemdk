@@ -148,26 +148,50 @@ const Message: AppProps = (defaultContent) => {
 			}
 		  }
 		  	if(step.id === 14){
-				if(message.toLowerCase().includes("https") && message.toLowerCase().includes("namur")){
-					await saveStep(session, {
-						test_step_template_id: step.id,
-						is_successful: true,
-						extra_data: {
-							"message" : message,
-						},
-					});
-					setTimeout(() => {
-						beacon("message", {
-							id: Math.random(),
-							sender: 0,
-							content: `Nous aimerions bien faire cette activité, mais nous devons créer un fichier pour confirmer notre inscription avec nos noms, prénoms et photos d’identité.<br><br> - Peux-tu le faire depuis mon application traitement de texte ?<br> - Tu trouveras les photos d’identité dans le dossier "vacances".<br> - Peux-tu l’enregistrer sur mon cloud ? Je pourrai l’avoir directement sur mon téléphone.<br><br> - Pour rappel, voici nos noms et prénoms :<br> &nbsp;&nbsp;&nbsp;&nbsp;- Vincent Inclume<br> &nbsp;&nbsp;&nbsp;&nbsp;- Céline Dupont.`
+				if(message.toLowerCase().includes("http") && message.toLowerCase().includes("namur")){
+					if(message.toLowerCase().includes("https")){
+						await saveStep(session, {
+							test_step_template_id: step.id,
+							is_successful: true,
+							extra_data: {
+								"message" : message,
+							},
 						});
-						addNotification({
-							title: "Nouveau message !",
-							message:
-								"<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+						setTimeout(() => {
+							beacon("message", {
+								id: Math.random(),
+								sender: 0,
+								content: `Nous aimerions bien faire cette activité, mais nous devons créer un fichier pour confirmer notre inscription avec nos noms, prénoms et photos d’identité.<br><br> - Peux-tu le faire depuis mon application traitement de texte ?<br> - Tu trouveras les photos d’identité dans le dossier "vacances".<br> - Peux-tu l’enregistrer sur mon cloud ? Je pourrai l’avoir directement sur mon téléphone.<br><br> - Pour rappel, voici nos noms et prénoms :<br> &nbsp;&nbsp;&nbsp;&nbsp;- Vincent Inclume<br> &nbsp;&nbsp;&nbsp;&nbsp;- Céline Dupont.`
+							});
+							addNotification({
+								title: "Nouveau message !",
+								message:
+									"<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+							});
+						}, 5000)
+					}
+					else{
+						//AJOUTER MESSAGE + DIALOGUE
+						await saveStep(session, {
+							test_step_template_id: step.id,
+							is_successful: false,
+							extra_data: {
+								"message" : message,
+							},
 						});
-					}, 5000)
+						setTimeout(() => {
+							beacon("message", {
+								id: Math.random(),
+								sender: 0,
+								content: `Nous aimerions bien faire cette activité, mais nous devons créer un fichier pour confirmer notre inscription avec nos noms, prénoms et photos d’identité.<br><br> - Peux-tu le faire depuis mon application traitement de texte ?<br> - Tu trouveras les photos d’identité dans le dossier "vacances".<br> - Peux-tu l’enregistrer sur mon cloud ? Je pourrai l’avoir directement sur mon téléphone.<br><br> - Pour rappel, voici nos noms et prénoms :<br> &nbsp;&nbsp;&nbsp;&nbsp;- Vincent Inclume<br> &nbsp;&nbsp;&nbsp;&nbsp;- Céline Dupont.`
+							});
+							addNotification({
+								title: "Nouveau message !",
+								message:
+									"<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+							});
+						}, 5000)
+					}
 				}
 			}
 		  if(step.id === 39){
