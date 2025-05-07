@@ -97,18 +97,9 @@ export const StepsListenerProvider = memo(({ children }) => {
 		};
 	}, [showHintButton, currentStepId]); // Ajout de `currentStepId` pour suivre les changements d'étape	
 
-    const invalidateStepProb = async () =>{
-        await saveStep(session, {
-            test_step_template_id: 66,
-            is_successful: false,
-        });
-    }
     // 🔹 Fonction pour passer une étape
     const skipStep = async () => {
         const step = await getNextStep(session);
-        if(step.id === 39 && step.id === 35 && step.id === 55 && step.id === 51){
-            invalidateStepProb()
-        }
         await saveStep(session, {
             test_step_template_id: step.id,
             is_successful: false,
