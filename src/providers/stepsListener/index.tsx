@@ -223,7 +223,6 @@ export const StepsListenerProvider = memo(({ children }) => {
                         "<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
                 });
             }, 5000)
-            invalidateStepProb()
         }
         if(step.id === 61 || step.id === 36){
             setTimeout(() => {
@@ -266,7 +265,6 @@ export const StepsListenerProvider = memo(({ children }) => {
 						"<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
 				});
 			},5000)
-            invalidateStepProb()
         }
         if(step.id === 40 || step.id === 56 || step.id === 63){
             setTimeout(() => {
