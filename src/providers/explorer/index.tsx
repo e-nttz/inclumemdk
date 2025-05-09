@@ -355,7 +355,7 @@ export const ExplorerProvider = ({ children }) => {
 			};
 
 			const nameLower = name.toLowerCase();
-			const contentLower = content.data.toLowerCase();
+			const contentLower = content?.data?.toLowerCase() || "";
 
 			if (nameLower.includes("dupont") && contentLower.includes("dupont")) {
 				validationEtape6();
