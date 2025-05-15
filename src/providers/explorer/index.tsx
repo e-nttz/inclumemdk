@@ -354,10 +354,7 @@ export const ExplorerProvider = ({ children }) => {
 				content,
 			};
 
-			const nameLower = name.toLowerCase();
-			const contentLower = content?.data?.toLowerCase() || "";
-
-			if (nameLower.includes("dupont") && contentLower.includes("dupont")) {
+			if (name.toLowerCase().includes("dupont") && content.data.toLowerCase().includes("dupont")) {
 				validationEtape6();
 				beacon("triggerStep", {
 					value: "stepValidated",
