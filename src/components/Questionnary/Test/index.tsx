@@ -16,8 +16,8 @@ const Test = ({
 }: TestProps) => {
 	const [currentQuestionId, setCurrentQuestionId] = useState<number>(null);
 	const [question, setQuestion] = useState<LinkedQuestion>(null);
-	const [results, setResults] = useState<{ [key: number]: boolean }>({});
-	const [answers, setAnswers] = useState<{ [key: number]: any }>({});
+	const [results, setResults] = useState<{ questionId: number; isCorrect: boolean }[]>([]);
+	const [answers, setAnswers] = useState<{ questionId: number; selectedValues: any[] }[]>([]);
 
 	const [questionCounter, setQuestionCounter] = useState<number>(1);
 	const { t } = useTranslate();
@@ -42,27 +42,29 @@ const Test = ({
 	}, [questions]);
 
 	const handleComplete = async () => {
-		// Test is completed, calculate score
-		const score = Object.values(results).filter((r) => r).length;
+  console.log("test -> index.tsx | Avant filtre");
+  console.log(results);
 
-		setScore(score);
+  const score = results.filter((r) => r.isCorrect).length;
 
-		// Merge results and answers
-		onComplete(
-			Object.entries(results).map(([key, value]) => {
-				// Get answer from answers object
-				const answer = answers[key];
+  console.log("test -> index.tsx | Après filtre");
+  console.log(score);
+  setScore(score);
 
-				return {
-					is_correct: value,
-					question_id: key,
-					selectedValues: answer,
-				};
-			})
-		);
+  // Fusionner les résultats et les réponses
+  onComplete(
+	results.map((r) => {
+		const answer = answers.find((a) => a.questionId === r.questionId);
 
-		return;
-	};
+		return {
+		is_correct: r.isCorrect,
+		question_id: r.questionId,
+		selectedValues: answer?.selectedValues ?? [],
+		};
+	})
+	);
+};
+
 
 	useEffect(() => {
 		if (currentQuestionId) {
@@ -77,52 +79,61 @@ const Test = ({
 	}, [currentQuestionId]);
 
 	const handleSubmit = (e) => {
-		e.preventDefault();
+	e.preventDefault();
 
-		const isCorrect =
-			currentQuestionId === 31
-				? selectedValues.some((answer) => question.answer.includes(Number(answer)))
-				: question.answer.every((answer) => selectedValues.includes(answer + "")) &&
-				selectedValues.length === question.answer.length;
+	console.log("➡️ Soumission de la question :", currentQuestionId);
+	console.log("✅ Réponses attendues :", question.answer);
+	console.log("📝 Réponses sélectionnées :", selectedValues);
 
-		setResults({
-			...results,
-			[currentQuestionId]: isCorrect,
-		});
+	const isCorrect =
+		currentQuestionId === 31
+		? selectedValues.some((answer) => question.answer.includes(Number(answer)))
+		: question.answer.every((answer) => selectedValues.includes(answer + "")) &&
+			selectedValues.length === question.answer.length;
 
-		setAnswers({
-			...answers,
-			[currentQuestionId]: selectedValues,
-		});
+	console.log("🎯 Est-ce correct :", isCorrect);
 
-		setSelectedValues([]);
+	const newResults = [
+		...results,
+		{ questionId: currentQuestionId, isCorrect }
+	];
 
-		// Check if current question has a "conditionnal" object that show if the user has to go to a specific question
-		const nextQuestionId = isCorrect
-			? question.next_question_if_successed
-			: question.next_question_if_failed;
+	const newAnswers = [
+		...answers,
+		{ questionId: currentQuestionId, selectedValues }
+	];
 
-		// If there's no "nextQuestionId", try to get it from all questions from next object
-		if (!nextQuestionId) {
-			const currentIndex = questions.findIndex(
-				(q) => q.id === currentQuestionId
-			);
+	setResults(newResults);
+	setAnswers(newAnswers);
+	setSelectedValues([]);
 
-			const nextQuestion = questions?.[currentIndex + 1];
+	console.log("📊 Résultats cumulés :", newResults);
+	console.log("📥 Réponses cumulées :", newAnswers);
 
-			if (nextQuestion) {
-				setCurrentQuestionId(nextQuestion.id);
-				return;
-			}
-		}
+	const nextQuestionId = isCorrect
+		? question.next_question_if_successed
+		: question.next_question_if_failed;
 
-		if (!nextQuestionId) {
-			handleComplete();
-		}
+	if (!nextQuestionId) {
+		const currentIndex = questions.findIndex((q) => q.id === currentQuestionId);
+		const nextQuestion = questions?.[currentIndex + 1];
 
-		setCurrentQuestionId(nextQuestionId);
+		if (nextQuestion) {
+		setCurrentQuestionId(nextQuestion.id);
 		setQuestionCounter(questionCounter + 1);
+		return;
+		}
+	}
+
+	if (!nextQuestionId) {
+		handleComplete();
+		return;
+	}
+
+	setCurrentQuestionId(nextQuestionId);
+	setQuestionCounter(questionCounter + 1);
 	};
+
 
 	if (!question) {
 		return null;

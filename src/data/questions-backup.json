@@ -9,17 +9,17 @@
 			{
 				"id": 1,
 				"text": "",
-				"image": "/images/questionnary/questionnaire_question_1_reponse_1.svg"
+				"image": "/images/questionnary/questionnaire_question_1_reponse_1.png"
 			},
 			{
 				"id": 2,
 				"text": "",
-				"image": "/images/questionnary/questionnaire_question_1_reponse_2.svg"
+				"image": "/images/questionnary/questionnaire_question_1_reponse_2.png"
 			},
 			{
 				"id": 3,
 				"text": "",
-				"image": "/images/questionnary/questionnaire_question_1_reponse_3.svg"
+				"image": "/images/questionnary/questionnaire_question_1_reponse_3.png"
 			}
 		]
 	},
@@ -58,22 +58,22 @@
 			{
 				"id": 1,
 				"text": "",
-				"image": "/images/questionnary/questionnaire_question_3_reponse_1.svg"
+				"image": "/images/questionnary/questionnaire_question_3_reponse_1.png"
 			},
 			{
 				"id": 2,
 				"text": "",
-				"image": "/images/questionnary/questionnaire_question_3_reponse_2.svg"
+				"image": "/images/questionnary/questionnaire_question_3_reponse_2.png"
 			},
 			{
 				"id": 3,
 				"text": "",
-				"image": "/images/questionnary/questionnaire_question_3_reponse_3.svg"
+				"image": "/images/questionnary/questionnaire_question_3_reponse_3.png"
 			},
 			{
 				"id": 4,
 				"text": "",
-				"image": "/images/questionnary/teams.svg"
+				"image": "/images/questionnary/teams.png"
 			}
 		]
 	},
@@ -107,15 +107,15 @@
 		"choices" : [
 			{
 				"id" : 1,
-				"image" : "/images/questionnary/questionnaire_question_5_reponse_1.svg"
+				"image" : "/images/questionnary/questionnaire_question_5_reponse_1.png"
 			},
 			{
 				"id" : 2,
-				"image" : "/images/questionnary/questionnaire_question_5_reponse_2.svg"
+				"image" : "/images/questionnary/questionnaire_question_5_reponse_2.png"
 			},
 			{
 				"id" : 3,
-				"image" : "/images/questionnary/questionnaire_question_5_reponse_3.svg"
+				"image" : "/images/questionnary/questionnaire_question_5_reponse_3.png"
 			}
 		]
 	},
@@ -128,19 +128,19 @@
 		"choices" : [
 			{
 				"id" : 1,
-				"image" : "/images/questionnary/questionnaire_question_6_reponse_1.svg"
+				"image" : "/images/questionnary/questionnaire_question_6_reponse_1.png"
 			},
 			{
 				"id" : 2,
-				"image" : "/images/questionnary/questionnaire_question_6_reponse_2.svg"
+				"image" : "/images/questionnary/questionnaire_question_6_reponse_2.png"
 			},
 			{
 				"id" : 3,
-				"image" : "/images/questionnary/questionnaire_question_6_reponse_3.svg"
+				"image" : "/images/questionnary/questionnaire_question_6_reponse_3.png"
 			},
 			{
 				"id" : 4,
-				"image" : "/images/questionnary/questionnaire_question_6_reponse_4.svg"
+				"image" : "/images/questionnary/questionnaire_question_6_reponse_4.png"
 			}
 		]
 	},
@@ -182,11 +182,15 @@
 			},
 			{
 				"id" : 2,
-				"text" : "console.log (texte + “ à tous”)"
+				"text" : "console.log(texte + “ à tous”)"
 			},
 			{
 				"id" : 3,
-				"text" : "console.log (“bonjour à tous) "
+				"text" : "console.log(“bonjour à tous)"
+			},
+			{
+				"id" : 4,
+				"text" : "Je ne sais pas"
 			}
 		]
 	},
@@ -209,6 +213,27 @@
 	},
 	{
 		"id" : 10,
+		"question" : "Utilisez-vous des mots de passe différents pour accéder à vos équipements, appareils et services numériques ?",
+		"type" : "single",
+		"display" : "vertical",
+		"answer" : [1],
+		"choices" : [
+			{
+				"id" : 1,
+				"text" : "Oui"
+			},
+			{
+				"id" : 2,
+				"text" : "Non"
+			},
+			{
+				"id" : 3,
+				"text" : "J’utilise presque toujours le même mot de passe, en changeant seulement un ou deux caractères."
+			}
+		]
+	},
+	{
+		"id" : 11,
 		"question" : "L’usage intensif des écrans est-il recommandé par les médecins ? ",
 		"type" : "single",
 		"display" : "vertical",
@@ -229,7 +254,7 @@
 		]
 	},
 	{
-		"id" : 11,
+		"id" : 12,
 		"question" : "Dans quelle position devriez-vous vous tenir lorsque vous utilisez un ordinateur ?",
 		"type" : "single",
 		"display" : "image",
@@ -237,24 +262,24 @@
 		"choices" : [
 			{
 				"id" : 1,
-				"image" : "/images/questionnary/questionnaire_question_11_reponse_1.svg"
+				"image" : "/images/questionnary/questionnaire_question_11_reponse_1.png"
 			},
 			{
 				"id" : 2,
-				"image" : "/images/questionnary/questionnaire_question_11_reponse_2.svg"
+				"image" : "/images/questionnary/questionnaire_question_11_reponse_2.png"
 			},
 			{
 				"id" : 3,
-				"image" : "/images/questionnary/questionnaire_question_11_reponse_3.svg"
+				"image" : "/images/questionnary/questionnaire_question_11_reponse_3.png"
 			},
 			{
 				"id" : 4,
-				"image" : "/images/questionnary/questionnaire_question_11_reponse_4.svg"
+				"image" : "/images/questionnary/questionnaire_question_11_reponse_4.png"
 			}
 		]
 	},
 	{
-		"id" : 12,
+		"id" : 13,
 		"question" : "Parmi ces propositions concernant l'impact environnemental des technologies numériques, lesquelles sont correctes ?",
 		"type" : "multiple",
 		"display" : "vertical",
@@ -279,7 +304,28 @@
 		]
 	},
 	{
-		"id" : 13,
+		"id" : 14,
+		"question" : "Quelle est votre première réaction lorsque vous êtes confronté(e) à un problème que vous ne savez pas résoudre ?",
+		"type" : "single",
+		"display" : "vertical",
+		"answer" : [1],
+		"choices" : [
+			{
+				"id" : 1,
+				"text" : "Je cherche des informations sur Internet (moteur de recherche, forums, tutoriels, etc.)."
+			},
+			{
+				"id" : 2,
+				"text" : "Je demande de l’aide à quelqu’un que je connais (famille, amis, collègues)."
+			},
+			{
+				"id" : 3,
+				"text" : "J’essaie de me débrouiller seul(e), même si je ne suis pas sûr(e) de la solution."
+			}
+		]
+	},
+	{
+		"id" : 15,
 		"question" : "Avez-vous déjà suivi une formation en informatique/numérique ?",
 		"type" : "single",
 		"display" : "vertical",
@@ -296,11 +342,11 @@
 		]
 	},
 	{
-		"id" : 14,
+		"id" : 16,
 		"question" : "Combien de formations avez-vous suivies ?",
 		"type" : "single",
 		"display" : "vertical",
-		"answer" : [1,2,3],
+		"answer" : [2,3],
 		"choices" : [
 			{
 				"id" : 1,

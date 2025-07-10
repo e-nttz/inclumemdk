@@ -966,5 +966,23 @@
 				]
 			}
 		]
+	},
+	{
+		"step_id": 71, 
+		"items": [
+			{
+				"value": "",
+				"clues": [
+					{
+						"time_launched": 60,
+						"title": "Transférer un document",
+						"message": "Il existe des services en ligne qui permettent de transférer des documents trop lourds pour être envoyer par mail.",
+						"visualHint": {
+							"image": ""
+						}
+					}
+				]
+			}
+		]
 	}
 ]

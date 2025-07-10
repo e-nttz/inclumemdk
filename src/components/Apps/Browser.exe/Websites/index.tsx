@@ -47,6 +47,7 @@ import WereldsmakenOostende from "./WereldsmakenOostende";
 import BngBanque from "./BngBanque";
 import ChildVirus from "./ChildVirus";
 import ActiverWifi from "./Wifi";
+import OuiTransfer from "./OuiTransfer";
 
 interface WebsiteComponentProps {
 	url: string;
@@ -110,7 +111,8 @@ export const websites: WebsitesProps = {
 	restaurantLaSiestaOostende: RestaurantLaSiestaOostende,
 	bngBanque: BngBanque,
 	childVirus: ChildVirus,
-	activerWifi: ActiverWifi
+	activerWifi: ActiverWifi,
+	ouiTransfer: OuiTransfer
 };
 
 const RenderWebsite = ({ componentName, url }: RenderWebsiteProps) => {

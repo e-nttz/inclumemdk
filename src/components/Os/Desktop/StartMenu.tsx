@@ -2,7 +2,7 @@ import { apps } from "@/components/Apps";
 import { classNames } from "@/helpers/sanitize";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { useAuth } from "@/providers/auth";
-import { getNextStep, saveStep, updateTestSession } from "@/lib/client/quiz";
+import { getNextStep, saveStep, getAllTestSteps, updateTestSession } from "@/lib/client/quiz";
 import { useOS } from "@/providers/InclumeOS";
 import { Transition } from "@headlessui/react";
 import { useRef, useState } from "react";
@@ -11,24 +11,53 @@ import IconSettings from "@/assets/icons/settings.svg?react";
 import { motion } from "framer-motion";
 import { beacon } from "@/helpers/beacon";
 import { useNotification } from "@/providers/notifications";
+import { useTranslate } from "@tolgee/react";
 
 const StartMenu = () => {
 	const { startMenuOpen, setStartMenuOpen, launchApp, changeTheme, theme } = useOS();
 	const { logout, session } = useAuth();
 	const [showText, setShowText] = useState(false);
+	const [showTextShutDown, setShowTextShutDown] = useState(false);
 	const { addNotification } = useNotification();
-	
+	const [loading, setLoading] = useState(false);
+	const { t } = useTranslate();
   	const validationEtape19 = async (confirmation) =>{
+		setLoading(true)
 		const step = await getNextStep(session);
+		const allSteps = await getAllTestSteps(session)
 		if (step.id === 41) {
 			await saveStep(session, {
 				test_step_template_id: step.id,
 				is_successful: true,
 			});
 		}
+		if(allSteps){
+			const step37 = allSteps.find(s => s.test_step_template === 37);
+			const step39 = allSteps.find(s => s.test_step_template === 39);
+			const step11 = allSteps.find(s => s.test_step_template === 11);
+			const step54 = allSteps.find(s => s.test_step_template === 54);
+
+			if(step11?.is_successful || step54?.is_successful){
+				if (step37?.is_successful && step39?.is_successful) {
+					await saveStep(session, {
+						test_step_template_id: 66,
+						is_successful: true,
+					});			
+				}
+			}
+		}
 		await updateTestSession(session, true)
+		setLoading(false)
 		logout();
 		window.location.reload();
+	}
+	const validationMaj = async (confirmation) =>{
+		await saveStep(session, {
+			test_step_template_id: 75,
+			is_successful: true,
+		});
+		
+		validationEtape19(confirmation)
 	}
 	const validationEtape18 = async () =>{
 				const step = await getNextStep(session);
@@ -63,6 +92,7 @@ const StartMenu = () => {
 	});
 
 	return (
+		<>
 		<Transition
 			show={startMenuOpen}
 			enter="transition ease-out duration-300"
@@ -213,7 +243,7 @@ const StartMenu = () => {
 						<span className="font-medium">Inclume</span>
 					</div>
 					<div className="flex items-center">
-					<div className="relative">
+					<div className="relative flex">
 						<button
 							type="button"
 							onClick={() => setShowText(!showText)}
@@ -242,15 +272,33 @@ const StartMenu = () => {
 					</div>
 					<button
 						type="button"
-						className="mr-3 transition rounded hover:bg-blue-200 focus:outline-none active:bg-transparent dark:hover:bg-black/20 dark:active:bg-black/30"
-						onClick={() => {
-							const confirmation = confirm(
-								"Voulez-vous vraiment éteindre votre ordinateur ? Toutes modifications non sauvegardées seront perdues."
-							);
-
-							validationEtape19(confirmation);
-						}}
+						className="relative mr-3 transition rounded hover:bg-blue-200 focus:outline-none active:bg-transparent dark:hover:bg-black/20 dark:active:bg-black/30"
+						onClick={() => setShowTextShutDown(!showTextShutDown)}
 					>
+						{showTextShutDown && (
+							<motion.div
+								initial={{ opacity: 0, y: -10, scale: 0.9 }}
+								animate={{ opacity: 1, y: 0, scale: 1 }}
+								exit={{ opacity: 0, y: -10, scale: 0.9 }}
+								transition={{ duration: 0.2 }}
+								className="cursor-pointer flex flex-col gap-1 justify-center absolute z-50 dark:bg-gray-900 text-lg bg-blue-200 rounded w-56 right-0 top-[-122px] shadow-lg"
+							>
+								<p className="text-right hover:text-black hover:bg-blue-100 p-3" onClick={() => {
+									const confirmation = confirm(
+										"Voulez-vous vraiment éteindre votre ordinateur ? Toutes modifications non sauvegardées seront perdues."
+									);
+
+									validationEtape19(confirmation);
+								}}>Arrêter</p>
+								<p className="text-right hover:text-black hover:bg-blue-100 p-3" onClick={() => {
+									const confirmation = confirm(
+										"Voulez-vous vraiment éteindre votre ordinateur ? Toutes modifications non sauvegardées seront perdues."
+									);
+									validationMaj(confirmation);
+								}}>Arrêter et mettre à jour</p>
+							</motion.div>
+						)}
+
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							className="w-5 h-auto dark:fill-white"
@@ -266,6 +314,33 @@ const StartMenu = () => {
 				</div>
 			</div>
 		</Transition>
+		
+		
+		{loading && (
+				<div
+					className={classNames(
+						"p-2.5 rounded-[30px] mx-auto transition bg-[#F9F9F9]/90 backdrop-blur-lg w-full max-w-[560px] flex flex-col self-center mt-auto mb-auto border border-gray-100/40  shadow-[0px_40px_80px_0px_#0000002E,0px_4px_26px_0px_#00000024] dark:bg-black/75 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 shadow-[0_0_0_10000px_rgba(0,0,0,0.6)]"
+					)}
+					>
+							<>
+								<div className="py-4 font-bold text-center">
+									{t(
+										"Loading...",
+										"Chargement en cours ..."
+									)}
+								</div>
+								<div className="relative flex flex-col items-center w-full">
+									<figure className="h-[220px] mx-auto overflow-visible mt-4">
+										<img
+											src={"/images/mascotte/avatar.png"}
+										/>
+									</figure>
+								</div>
+							</>
+					
+				</div>
+				)}
+				</>
 	);
 };
 

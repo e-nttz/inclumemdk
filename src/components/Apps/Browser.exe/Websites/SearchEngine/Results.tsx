@@ -55,6 +55,7 @@ import WereldsmakenOostende from "../WereldsmakenOostende";
 import BngBanque from "../BngBanque";
 import ChildVirus from "../ChildVirus";
 import ActiverWifi from "../Wifi";
+import OuiTransfer from "../OuiTransfer";
 
 const sites = [
 	RestaurantVueSurMer,
@@ -103,7 +104,8 @@ const sites = [
 	RestaurantLaSiestaOostende,
 	BngBanque,
 	ChildVirus,
-	ActiverWifi
+	ActiverWifi,
+	OuiTransfer
 ];
 interface WebsiteProps extends React.FC {
 	pages: {

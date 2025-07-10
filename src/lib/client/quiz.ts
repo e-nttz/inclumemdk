@@ -16,7 +16,6 @@ export const getQuestions = async (): Promise<LinkedQuestion[]> => {
 	const db = database();
 
 	const response = await db.get("/teststeptemplate/form");
-
 	const questions: LinkedQuestion[] = [];
 
 	if (response) {
@@ -50,6 +49,12 @@ export const getNextStep = async (sessionId: string): Promise<any> => {
 	const response = await db.get(`/testsession/${sessionId}/teststeptemplate/next`);
 	return response;
 };
+
+export const getAllTestSteps = async (sessionId: string): Promise<any> => {
+	const db = database();
+	const response = await db.get(`/testsession/${sessionId}/teststep`);
+	return response;
+}
 
 export const saveStep = async (
 	sessionId: string,

@@ -36,14 +36,14 @@ const Questionnary = () => {
 		// Get question from API
 		(async () => {
 			const response = await getQuestions();
-
 			setQuestions(response);
 		})();
 	}, []);
 
 	const onComplete = async (results) => {
+		console.log("Questionnary -> index.tsx")
+		console.log(results)
 		setTestCompleted(true);
-
 		// For each result, save it to the API
 		for (const result of results) {
 			await saveStep(session, {
@@ -53,6 +53,7 @@ const Questionnary = () => {
 					selectedValues: result.selectedValues,
 				},
 			});
+			console.log(result)
 		}
 
 		setScoreLoading(false);

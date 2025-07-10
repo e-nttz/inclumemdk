@@ -11,6 +11,7 @@ import { useKeyboardEvent } from "@/hooks/useKeyboardEvent";
 import { useExplorer } from "@/providers/explorer";
 import { useTranslate } from "@tolgee/react";
 import { beacon } from "@/helpers/beacon";
+
 export interface CellProps {
 	position: string;
 	data: {
@@ -21,6 +22,8 @@ export interface CellProps {
 		underline: boolean;
 	};
 }
+
+
 
 const Spreadsheets = () => {
 	const { createFile, handleInfoWindow, closeInfoWindow } = useExplorer();
@@ -50,6 +53,7 @@ const Spreadsheets = () => {
 		}
 		newCells = newCells.map((c) => (c.position === cell.position ? cell : c));
 		setCells(newCells);
+
 	};
 	
 	const addImage = (url) => {

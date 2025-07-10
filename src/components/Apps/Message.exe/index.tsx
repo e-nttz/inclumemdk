@@ -101,7 +101,7 @@ const Message: AppProps = (defaultContent) => {
 					beacon("message", {
 						id: Math.random(),
 						sender: 0,
-						content: "Désolé de t’embêter, nous sommes dans la bonne rue mais nous ne trouvons pas le bâtiment. Pourrais-tu <strong>télécharger</strong> sur l'ordinateur et m’envoyer une photo du bâtiment par mail à l’adresse : vincent@inclume.be ?",
+						content: "Désolé de t’embêter, nous sommes dans la bonne rue mais nous ne trouvons pas le bâtiment. Pourrais-tu <strong>télécharger</strong> une photo du bâtiment sur l'ordinateur et me l'envoyer par mail à l’adresse : vincent@inclume.be ?",
 					});
 					addNotification({
 						title: "Nouveau message !",
@@ -161,7 +161,7 @@ const Message: AppProps = (defaultContent) => {
 							beacon("message", {
 								id: Math.random(),
 								sender: 0,
-								content: `Nous aimerions bien faire cette activité, mais nous devons créer un fichier pour confirmer notre inscription avec nos noms, prénoms et photos d’identité.<br><br> - Peux-tu le faire depuis mon application traitement de texte ?<br> - Tu trouveras les photos d’identité dans le dossier "vacances".<br> - Peux-tu l’enregistrer sur mon cloud ? Je pourrai l’avoir directement sur mon téléphone.<br><br> - Pour rappel, voici nos noms et prénoms :<br> &nbsp;&nbsp;&nbsp;&nbsp;- Vincent Inclume<br> &nbsp;&nbsp;&nbsp;&nbsp;- Céline Dupont.`
+								content: `Nous aimerions bien faire cette activité, mais nous devons créer un fichier pour confirmer notre inscription avec nos noms, prénoms et photos d’identité.<br><br> - Peux-tu le faire depuis mon application traitement de texte ?<br> - Tu trouveras les photos d’identité dans le dossier "vacances".<br> - Peux-tu l’enregistrer sur mon cloud ? Je pourrai l’avoir directement sur mon téléphone.<br><br> - Pour rappel, voici nos noms et prénoms. <strong>Ecris-les en gras.</strong>  :<br> &nbsp;&nbsp;&nbsp;&nbsp;- Vincent Inclume<br> &nbsp;&nbsp;&nbsp;&nbsp;- Céline Dupont.`
 							});
 							addNotification({
 								title: "Nouveau message !",
@@ -183,7 +183,7 @@ const Message: AppProps = (defaultContent) => {
 							beacon("message", {
 								id: Math.random(),
 								sender: 0,
-								content: `Nous aimerions bien faire cette activité, mais nous devons créer un fichier pour confirmer notre inscription avec nos noms, prénoms et photos d’identité.<br><br> - Peux-tu le faire depuis mon application traitement de texte ?<br> - Tu trouveras les photos d’identité dans le dossier "vacances".<br> - Peux-tu l’enregistrer sur mon cloud ? Je pourrai l’avoir directement sur mon téléphone.<br><br> - Pour rappel, voici nos noms et prénoms :<br> &nbsp;&nbsp;&nbsp;&nbsp;- Vincent Inclume<br> &nbsp;&nbsp;&nbsp;&nbsp;- Céline Dupont.`
+								content: `Nous aimerions bien faire cette activité, mais nous devons créer un fichier pour confirmer notre inscription avec nos noms, prénoms et photos d’identité.<br><br> - Peux-tu le faire depuis mon application traitement de texte ?<br> - Tu trouveras les photos d’identité dans le dossier "vacances".<br> - Peux-tu l’enregistrer sur mon cloud ? Je pourrai l’avoir directement sur mon téléphone.<br><br> - Pour rappel, voici nos noms et prénoms. <strong>Ecris-les en gras.</strong>  :<br> &nbsp;&nbsp;&nbsp;&nbsp;- Vincent Inclume<br> &nbsp;&nbsp;&nbsp;&nbsp;- Céline Dupont.`
 							});
 							addNotification({
 								title: "Nouveau message !",
@@ -218,6 +218,7 @@ const Message: AppProps = (defaultContent) => {
 			}
 		  }
 		  if(step.id === 35 || step.id === 51 || step.id === 55){
+			console.log("Début")
 			if(message === "raté"){
 				await saveStep(session, {
 					test_step_template_id: step.id,

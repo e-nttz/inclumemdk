@@ -41,17 +41,23 @@ const ChildVirus: AppProps<ChildVirusProps> = () => {
 				is_successful: true,
 			});
       setTimeout(() => {
-              beacon("message", {
-                id: Math.random(),
-                sender: 0,
-                content: "Merci pour tout ce que tu as fait pour moi aujourd’hui! J’ai un dernier service à te demander, peux-tu changer l’interface de mon bureau pour le mode “sombre”? Si tu n’y arrives, pas ce n’est pas grave, je le ferais moi-même. N’oublie pas d’éteindre l’ordinateur quand tu auras fini!",
-              });
-              addNotification({
-                title: "Nouveau message !",
-                message:
-                  "<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
-          });
-      },5000)
+      beacon("message", {
+        id: Math.random(),
+        sender: 0,
+        content: `D’ailleurs, en parlant d’<strong>antivirus</strong>…<br />
+                  Mon amie <strong>Céline</strong> aimerait en installer un sur son ordinateur.<br />
+                  Tu pourrais lui envoyer <strong>celui que tu as téléchargé sur mon PC</strong> ?<br />
+                  Son adresse e-mail, c’est : <strong>celine@dupont.be</strong>.<br />
+                  Mais attention, le fichier est probablement <strong>trop lourd pour être envoyé directement par mail</strong>,<br />
+                  tu devrais utiliser un <strong>outil de transfert de fichiers</strong> !`,
+        });
+
+      addNotification({
+        title: "Nouveau message !",
+         message:
+          "<strong>Tu as reçu un nouveau message !</strong> Ouvre l'application Message pour le consulter.",
+        });
+      }, 5000);
 		}
 	}
   const [installationStarted, setInstallationStarted] = useState<boolean>(false);

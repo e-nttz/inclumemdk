@@ -56,7 +56,7 @@ export const ExplorerProvider = ({ children }) => {
 					beacon("message", {
 						id: Math.random(),
 						sender: 0,
-						content: `Nous aimerions bien faire cette activité, mais nous devons créer un fichier pour confirmer notre inscription avec nos noms, prénoms et photos d’identité.<br><br> - Peux-tu le faire depuis mon application traitement de texte ?<br> - Tu trouveras les photos d’identité dans le dossier "vacances".<br> - Peux-tu l’enregistrer sur mon cloud ? Je pourrai l’avoir directement sur mon téléphone.<br><br> - Pour rappel, voici nos noms et prénoms :<br> &nbsp;&nbsp;&nbsp;&nbsp;- Vincent Inclume<br> &nbsp;&nbsp;&nbsp;&nbsp;- Céline Dupont.`
+						content: `Nous aimerions bien faire cette activité, mais nous devons créer un fichier pour confirmer notre inscription avec nos noms, prénoms et photos d’identité.<br><br> - Peux-tu le faire depuis mon application traitement de texte ?<br> - Tu trouveras les photos d’identité dans le dossier "vacances".<br> - Peux-tu l’enregistrer sur mon cloud ? Je pourrai l’avoir directement sur mon téléphone.<br><br> - Pour rappel, voici nos noms et prénoms. <strong>Ecris-les en gras.</strong>  :<br> &nbsp;&nbsp;&nbsp;&nbsp;- Vincent Inclume<br> &nbsp;&nbsp;&nbsp;&nbsp;- Céline Dupont.`
 					});
 					addNotification({
 						title: "Nouveau message !",
@@ -90,6 +90,7 @@ export const ExplorerProvider = ({ children }) => {
 							<li><strong>Prénom :</strong> Celine</li>
 							<li><strong>Date de naissance :</strong> 25/04/1983</li>
 						</ul>
+						Il est important d'indiquer les noms et prénoms en gras. <br>
 						Peux-tu créer ce tableau avec un tableur et l'enregistrer sur mon cloud ?
 					`
 				});				
@@ -101,13 +102,24 @@ export const ExplorerProvider = ({ children }) => {
             }, 5000)
 		}
 	}
-	const validationEtape12 = async () =>{
+	const validationEtape12 = async (miseEnForme) =>{
 		const step = await getNextStep(session);
 		if (step.id === 17 || step.id === 52 || step.id === 57 || step.id === 34) {
 			await saveStep(session, {
 				test_step_template_id: step.id,
 				is_successful: true,
 			});
+			if(miseEnForme === true){
+				await saveStep(session, {
+				test_step_template_id: 67,
+				is_successful: true,
+			});
+			}else{
+				await saveStep(session, {
+				test_step_template_id: 67,
+				is_successful: false,
+			});
+			}
 			setTimeout(() => {
 				beacon("call", {
 					status: "incoming",
@@ -361,11 +373,10 @@ export const ExplorerProvider = ({ children }) => {
 				});
 			}
 
-
-			if(fileType === "xlsx" && currentFolderPath === "/root/cloud"){
+			if(fileType === "xlsx"){
 				content.data.forEach(cellule => {
-					if(cellule.data["value"].toLowerCase().includes("1976")){
-						validationEtape12();
+					if(cellule.data["value"].toLowerCase().includes("vincent")){
+						validationEtape12(cellule.data.bold);
 					}
 				});
 			}
