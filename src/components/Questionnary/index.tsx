@@ -22,7 +22,7 @@ const Questionnary = () => {
 
 	const welcomeRef = useRef<HTMLDivElement>(null);
 
-	const REQUIRED_SCORE = 5;
+	const REQUIRED_SCORE = 7;
 
 	const [closeWelcome, setCloseWelcome] = useState<boolean>(false);
 	const [startTest, setStartTest] = useState<boolean>(false);
