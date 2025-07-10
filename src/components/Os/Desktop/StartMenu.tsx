@@ -319,7 +319,7 @@ const StartMenu = () => {
 		{loading && (
 				<div
 					className={classNames(
-						"p-2.5 rounded-[30px] mx-auto transition bg-[#F9F9F9]/90 backdrop-blur-lg w-full max-w-[560px] flex flex-col self-center mt-auto mb-auto border border-gray-100/40  shadow-[0px_40px_80px_0px_#0000002E,0px_4px_26px_0px_#00000024] dark:bg-black/75 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 shadow-[0_0_0_10000px_rgba(0,0,0,0.6)]"
+						"p-2.5 rounded-[30px] mx-auto transition bg-[#F9F9F9]/90 backdrop-blur-lg w-full max-w-[560px] flex flex-col self-center mt-auto mb-auto border border-gray-100/40  shadow-[0px_40px_80px_0px_#0000002E,0px_4px_26px_0px_#00000024] dark:bg-black/75 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 shadow-[0_0_0_10000px_rgba(0,0,0,0.6)] z-[999999]"
 					)}
 					>
 							<>
