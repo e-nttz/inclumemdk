@@ -61,14 +61,16 @@ const MailContent = ({
             .replace(/<[^>]*>/g, '');
     };
     const handleChange = (e) => {
-        const value = e.target.value;
+        let value = e.target.value.trim(); // 🔹 Supprime les espaces au début et à la fin
         setEditableEmailTo(value);
 
-        // Vérifier si les 3 premières lettres correspondent à "res"
+        // Vérifier si les 3 premières lettres correspondent à "res" ou "hot"
         if (value.toLowerCase().startsWith("res") || value.toLowerCase().startsWith("hot")) {
-            setShowSuggestion(true);
-            const email = "reservation@hotlenamur.be"
-            if(!email.includes(value.toLowerCase())){
+            const email = "reservation@hotlenamur.be";
+
+            if (email.includes(value.toLowerCase())) {
+                setShowSuggestion(true);
+            } else {
                 setShowSuggestion(false);
             }
         } else {
