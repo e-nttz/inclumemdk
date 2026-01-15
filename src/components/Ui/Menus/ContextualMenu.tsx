@@ -205,12 +205,6 @@ const OSContextualMenu = ({ actions }: OSContextualMenuProps) => {
 								focusedElement.textContent += text;
 							}
 						}
-
-						if (focusedElement.classList.contains("cellule_spreadsheets")) {
-							const button = focusedElement as HTMLButtonElement;
-							const span = button.querySelector("span");
-							span.textContent += text
-						}
 					});
 				}}
 				
