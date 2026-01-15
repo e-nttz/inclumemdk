@@ -11,6 +11,8 @@ import { useKeyboardEvent } from "@/hooks/useKeyboardEvent";
 import { useExplorer } from "@/providers/explorer";
 import { useTranslate } from "@tolgee/react";
 import { beacon } from "@/helpers/beacon";
+import { saveStep } from "@/lib/client/quiz";
+import { useAuth } from "@/providers/auth";
 
 export interface CellProps {
 	position: string;
@@ -30,6 +32,14 @@ const Spreadsheets = () => {
 	const [currentCell, setCurrentCell] = useState<string>("");
 	const [cells, setCells] = useState<CellProps[]>([]);
 	const { t } = useTranslate();
+	const { session } = useAuth();
+
+	const miseEnForme = async () => {
+		await saveStep(session, {
+			test_step_template_id: 67,
+			is_successful: true,
+		});
+	};
 
 	const handleToolButtonClick = (tool: string) => {
 		let newCells = [...cells];
@@ -53,6 +63,8 @@ const Spreadsheets = () => {
 		}
 		newCells = newCells.map((c) => (c.position === cell.position ? cell : c));
 		setCells(newCells);
+
+		miseEnForme();
 
 	};
 	

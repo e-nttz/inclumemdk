@@ -102,24 +102,13 @@ export const ExplorerProvider = ({ children }) => {
             }, 5000)
 		}
 	}
-	const validationEtape12 = async (miseEnForme) =>{
+	const validationEtape12 = async () =>{
 		const step = await getNextStep(session);
 		if (step.id === 17 || step.id === 52 || step.id === 57 || step.id === 34) {
 			await saveStep(session, {
 				test_step_template_id: step.id,
 				is_successful: true,
 			});
-			if(miseEnForme === true){
-				await saveStep(session, {
-				test_step_template_id: 67,
-				is_successful: true,
-			});
-			}else{
-				await saveStep(session, {
-				test_step_template_id: 67,
-				is_successful: false,
-			});
-			}
 			setTimeout(() => {
 				beacon("call", {
 					status: "incoming",
