@@ -4,6 +4,7 @@ import { ReactElement, FormEvent, useRef, useState, useEffect } from "react";
 import { useTranslate } from "@tolgee/react";
 import AttachmentDocument from "@/assets/icons/mail_attachment.svg"
 
+import { getMessagesFromLocalStorage, saveMessageToLocalStorage } from "@/utils/localeStorage";
 import Window from "@/components/Os/Window";
 import ContextualBar from "@/components/Os/Window/ContextualBar";
 import BubbleChat from "./bubble";
@@ -35,7 +36,9 @@ interface Message {
 	id: number;
 	sender: number;
 	content: string | ReactElement;
+	rawContent?: string; 
 }
+
 
 const Message: AppProps = (defaultContent) => {
 	const {user, session} = useAuth();
@@ -99,7 +102,7 @@ const Message: AppProps = (defaultContent) => {
 				
 				setTimeout(() => {
 					beacon("message", {
-						id: Math.random(),
+						id: Date.now(),
 						sender: 0,
 						content: "Désolé de t’embêter, nous sommes dans la bonne rue mais nous ne trouvons pas le bâtiment. Pourrais-tu <strong>télécharger</strong> une photo du bâtiment sur l'ordinateur et me l'envoyer par mail à l’adresse : vincent@inclume.be ?",
 					});
@@ -126,7 +129,7 @@ const Message: AppProps = (defaultContent) => {
 				});
 				setTimeout(() => {
 					beacon("message", {
-						id: Math.random(),
+						id: Date.now(),
 						sender: 0,
 						content: "Je viens de me rappeler que dans mon dossier “vacances”, il y a un fichier “info resto” avec toutes les informations sur ce restaurant, peux-tu me l’envoyer par mail? Mon adresse est vincent@inclume.be.",
 					});
@@ -159,7 +162,7 @@ const Message: AppProps = (defaultContent) => {
 						});
 						setTimeout(() => {
 							beacon("message", {
-								id: Math.random(),
+								id: Date.now(),
 								sender: 0,
 								content: `<p>Nous aimerions bien faire cette activité, mais nous devons créer un fichier pour confirmer notre inscription avec nos noms, prénoms et photos d’identité.</p><ul style="list-style-type: disc; margin-left: 20px; padding-left: 0;"><li style="margin-bottom: 5px;">Peux-tu le faire depuis mon application de traitement de texte ?</li><li style="margin-bottom: 5px;">N’oublie pas <strong>d’importer les photos directement depuis l’application</strong>.</li><li style="margin-bottom: 5px;">Tu trouveras les photos d’identité dans le dossier <strong>&quot;vacances&quot;</strong>.</li><li style="margin-bottom: 5px;">Peux-tu ensuite l’enregistrer sur mon <strong>cloud</strong> ? Je pourrai l’avoir directement sur mon téléphone.</li></ul><p>Pour rappel, voici nos noms et prénoms. <strong>Écris-les en gras :</strong></p><ul style="list-style-type: disc; margin-left: 20px; padding-left: 0;"><li style="margin-bottom: 5px;"><strong>Vincent Inclume</strong></li><li style="margin-bottom: 5px;"><strong>Céline Dupont</strong></li></ul>`
 							});
@@ -181,7 +184,7 @@ const Message: AppProps = (defaultContent) => {
 						});
 						setTimeout(() => {
 							beacon("message", {
-								id: Math.random(),
+								id: Date.now(),
 								sender: 0,
 								content: `<p>Nous aimerions bien faire cette activité, mais nous devons créer un fichier pour confirmer notre inscription avec nos noms, prénoms et photos d’identité.</p><ul style="list-style-type: disc; margin-left: 20px; padding-left: 0;"><li style="margin-bottom: 5px;">Peux-tu le faire depuis mon application de traitement de texte ?</li><li style="margin-bottom: 5px;">N’oublie pas <strong>d’importer les photos directement depuis l’application</strong>.</li><li style="margin-bottom: 5px;">Tu trouveras les photos d’identité dans le dossier <strong>&quot;vacances&quot;</strong>.</li><li style="margin-bottom: 5px;">Peux-tu ensuite l’enregistrer sur mon <strong>cloud</strong> ? Je pourrai l’avoir directement sur mon téléphone.</li></ul><p>Pour rappel, voici nos noms et prénoms. <strong>Écris-les en gras :</strong></p><ul style="list-style-type: disc; margin-left: 20px; padding-left: 0;"><li style="margin-bottom: 5px;"><strong>Vincent Inclume</strong></li><li style="margin-bottom: 5px;"><strong>Céline Dupont</strong></li></ul>`
 							});
@@ -205,7 +208,7 @@ const Message: AppProps = (defaultContent) => {
 				});
 				setTimeout(() => {
 					beacon("message", {
-						id: Math.random(),
+						id: Date.now(),
 						sender: 0,
 						content: "Tu te rappelles, tu m’avais dit que tu allais installer l’antivirus ChildVirus et faire une analyse de mon pc avec l’antivirus ? Peux-tu le faire maintenant ? Merci!",
 					});
@@ -226,7 +229,7 @@ const Message: AppProps = (defaultContent) => {
 				  })
 				  setTimeout(() => {
 					beacon("message", {
-						id: Math.random(),
+						id: Date.now(),
 						sender: 0,
 						content: "Notre réservation pour l’activité est confirmée mais il n’est pas possible de payer sur place. Il faut faire un virement avant le début de l’activité. Pourrais tu le faire pour nous? Il faut envoyer 20€ au Compte BE12345678910. Indique “Visiter Namur” en bénéficiaire. Pour information, j'utilise la banque BNG. Merci!",
 					});
@@ -246,7 +249,7 @@ const Message: AppProps = (defaultContent) => {
 				});
 				setTimeout(() => {
 					beacon("message", {
-						id: Math.random(),
+						id: Date.now(),
 						sender: 0,
 						content: "Voici le numéro de compte auquel tu dois faire le virement de 20€ : BE12345678910. Pour le nom du bénéficiaire, le voici : Visiter Namur. Pour information, j'utilise la banque BNG.",
 					});
@@ -269,7 +272,7 @@ const Message: AppProps = (defaultContent) => {
 			});
 			setTimeout(() => {
 				beacon("message", {
-					id: Math.random(),
+					id: Date.now(),
 					sender: 0,
 					content: "Merci grâce à toi nous avons pu commander notre repas. En attendant qu’il soit prêt, j’aimerai montrer les vidéos de mes dernières vacances à Céline mais je n’arrive pas à me connecter au Wifi du resto. Peux-tu m’envoyer le lien d'un tuto qui pourrait m’aider à résoudre ce problème ?",
 				});
@@ -331,17 +334,46 @@ const Message: AppProps = (defaultContent) => {
 
 	const [isWebcamOn, setWebcamOn] = useState(false);
 	const [isMicOn, setMicOn] = useState(true);
-	const [messages, setMessages] = useState<Message[]>([
-		{
-		  id: 1,
-		  sender: 4,
-		  content: `Salut ${user.candidate.first_name}, merci de garder la maison pendant les vacances. Nous arrivons dans quelques instants à Ostende, je t’appelle à mon arrivée !`,
-		},
-	]);
+	const [messages, setMessages] = useState<Message[]>(() => {
+		const stored = getMessagesFromLocalStorage(session);
+
+		if (stored.length > 0) {
+			return stored.map((m) => ({
+				...m,
+				content: m.rawContent ?? m.content,
+			}));
+		}
+
+		const initialMessage = {
+			id: Date.now(),
+			sender: 4,
+			content: `Salut ${user.candidate.first_name}, merci de garder la maison pendant les vacances. Nous arrivons dans quelques instants à Ostende, je t’appelle à mon arrivée !`,
+			rawContent: `Salut ${user.candidate.first_name}, merci de garder la maison pendant les vacances. Nous arrivons dans quelques instants à Ostende, je t’appelle à mon arrivée !`,
+		};
+
+		saveMessageToLocalStorage(session, initialMessage);
+		return [initialMessage];
+	});
+
 
 	useBeaconListener("message", (e) => {
-		const message = e.detail;
-		setMessages((prev) => [...prev, message]);
+		const incoming = e.detail;
+
+		const message: Message = {
+			id: incoming.id ?? Date.now(),
+			sender: incoming.sender,
+			content: incoming.content,
+			rawContent:
+				typeof incoming.content === "string"
+					? incoming.content
+					: "[media]",
+		};
+
+		setMessages((prev) => {
+			const updated = [...prev, message];
+			saveMessageToLocalStorage(session, message);
+			return updated;
+		});
 
 		setTimeout(() => {
 			messagesList.current?.scrollTo({
@@ -350,6 +382,7 @@ const Message: AppProps = (defaultContent) => {
 			});
 		}, 150);
 	});
+
 
 	/**
 	 * Handle form submission
@@ -369,7 +402,7 @@ const Message: AppProps = (defaultContent) => {
 		if (selectedFiles) {
 			if(selectedFiles.includes("image")){
 				beacon("message", {
-					id: Math.random(),
+					id: Date.now(),
 					sender: 1,
 					content: (
 						<img
@@ -381,7 +414,7 @@ const Message: AppProps = (defaultContent) => {
 				});
 			}else{
 				beacon("message", {
-					id: Math.random(),
+					id: Date.now(),
 					sender: 1,
 					content: (
 						<div className="flex items-center">
@@ -398,7 +431,7 @@ const Message: AppProps = (defaultContent) => {
 
 		if (message.trim() !== "") {
 			beacon("message", {
-				id: Math.random(),
+				id: Date.now(),
 				sender: 1,
 				content: message,
 			});
@@ -532,7 +565,7 @@ const Message: AppProps = (defaultContent) => {
 											// Send new message with image
 
 											beacon("message", {
-												id: Math.random(),
+												id: Date.now(),
 												sender: 1,
 												content: (
 													<img
