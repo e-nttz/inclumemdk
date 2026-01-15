@@ -22,19 +22,17 @@ const Input = memo(
 		onDoubleClick?: (e: React.MouseEvent<HTMLInputElement>) => void;
 	}) => {
 		const [editionMode, setEditionMode] = useState<boolean>(false);
-
 		const inputRef = useRef<HTMLInputElement>(null);
 
+		// Focus automatique quand on passe en édition
 		useEffect(() => {
 			if (editionMode && inputRef.current) {
 				inputRef.current.focus();
+				inputRef.current.select();
 			}
 		}, [editionMode]);
-		
-		useEffect(() => {
-			setEditionMode(false);
-		}, [currentCell]);
-		
+
+		// Rendu d'image si la valeur contient "imagekit"
 		const buttonValueWithImage = (value: string) => {
 			return value && value.includes("imagekit") ? (
 				<img src={value} alt="" className="w-full h-full" />
@@ -43,35 +41,38 @@ const Input = memo(
 			);
 		};
 
+		const cellPosition = `${String.fromCharCode(65 + indexRow)}:${indexCol + 1}`;
+		const currentCellValue =
+			cells?.find((cell) => cell.position === cellPosition)?.data.value || "";
+
+		const updateCellValue = (value: string) => {
+			const newCells = [...(cells || [])];
+			let currCell = newCells.find((cell) => cell.position === cellPosition);
+			if (!currCell) {
+				currCell = {
+					position: cellPosition,
+					data: { value: "", bold: false, italic: false, underline: false },
+				};
+				newCells.push(currCell);
+			}
+			currCell.data.value = value;
+			setCells?.(newCells);
+		};
+
 		return editionMode ? (
 			<input
-			autoComplete="off"
+				autoComplete="off"
 				type="text"
 				className={classNames(
 					`cellule_spreadsheets relative w-full min-h-8 text-sm cursor-pointer text-left border border-r-transparent border-t-transparent border-b border-l bg-white dark:bg-gray-800 border-gray-50 last:border-b-0 px-1 outline-none focus-visible:border-green-600`,
-					currentCell ===
-						`${String.fromCharCode(65 + indexRow)}:${indexCol + 1}`
-						? "!border-2 border-green-600 z-50"
-						: "z-0",
-					cells?.find(
-						(cell) =>
-							cell.position ===
-							`${String.fromCharCode(65 + indexRow)}:${indexCol + 1}`
-					)?.data.bold
+					currentCell === cellPosition ? "!border-2 border-green-600 z-50" : "z-0",
+					cells?.find((cell) => cell.position === cellPosition)?.data.bold
 						? "font-bold"
 						: "",
-					cells?.find(
-						(cell) =>
-							cell.position ===
-							`${String.fromCharCode(65 + indexRow)}:${indexCol + 1}`
-					)?.data.italic
+					cells?.find((cell) => cell.position === cellPosition)?.data.italic
 						? "italic"
 						: "",
-					cells?.find(
-						(cell) =>
-							cell.position ===
-							`${String.fromCharCode(65 + indexRow)}:${indexCol + 1}`
-					)?.data.underline
+					cells?.find((cell) => cell.position === cellPosition)?.data.underline
 						? "underline"
 						: ""
 				)}
@@ -79,6 +80,9 @@ const Input = memo(
 					gridColumn: `${indexRow + 2} / ${indexRow + 3}`,
 					gridRow: `${indexCol + 2} / ${indexCol + 3}`,
 				}}
+				ref={inputRef}
+				value={currentCellValue}
+				onChange={(e) => updateCellValue(e.target.value)}
 				onKeyUp={(e) => {
 					if (e.key === "Enter") {
 						setEditionMode(false);
@@ -88,42 +92,14 @@ const Input = memo(
 					}
 				}}
 				onBlur={() => setEditionMode(false)}
-				value={
-					cells?.find(
-						(cell) =>
-							cell.position ===
-							`${String.fromCharCode(65 + indexRow)}:${indexCol + 1}`
-					)?.data.value || ""
-				}
-				ref={inputRef}
-				onChange={(e) => {
-					const newCells = [...cells];
-					let currCell = newCells.find(
-						(cell) => cell.position === currentCell
-					);
-					if (!currCell) {
-						currCell = {
-							position: currentCell,
-							data: {
-								value: "",
-								bold: false,
-								italic: false,
-								underline: false,
-							},
-						};
-						newCells.push(currCell);
-					}
-					currCell.data.value = e.target.value;
-					setCells(newCells);
-				}}
 				{...props}
 			/>
 		) : (
 			<button
+				tabIndex={0}
 				className={classNames(
 					`cellule_spreadsheets relative w-full min-h-8 text-sm cursor-pointer text-left border border-b border-l bg-white dark:bg-gray-800 border-gray-50 last:border-b-0 outline-none`,
-					currentCell ===
-						`${String.fromCharCode(65 + indexRow)}:${indexCol + 1}`
+					currentCell === cellPosition
 						? "!border-2 border-t-green-600 border-r-green-600 border-green-600 z-50"
 						: "z-0 border-t-transparent border-r-transparent",
 					(indexCol + 2).toString() === currentCell.split(":")[1] &&
@@ -135,68 +111,42 @@ const Input = memo(
 					gridColumn: `${indexRow + 2} / ${indexRow + 3}`,
 					gridRow: `${indexCol + 2} / ${indexCol + 3}`,
 				}}
-				onContextMenu={() =>
-					setCurrentCell(
-						`${String.fromCharCode(65 + indexRow)}:${indexCol + 1}`
-					)
-				}
+				onContextMenu={() => setCurrentCell(cellPosition)}
+
+				// clic → sélection + édition
 				onClick={() => {
-					setCurrentCell(`${String.fromCharCode(65 + indexRow)}:${indexCol + 1}`);
+					setCurrentCell(cellPosition);
 					setEditionMode(true);
-				}}				
+				}}
+
+				// focus (TAB) → sélection + édition
+				onFocus={() => {
+					setCurrentCell(cellPosition);
+					setEditionMode(true);
+				}}
+
+				// frappe clavier → édition
 				onKeyDown={(e) => {
 					if (e.key.length === 1 || e.key === "Backspace") {
 						setEditionMode(true);
-					}
-					if (e.key === "Backspace") {
-						const newCells = [...cells];
-						const currCell = newCells.find(
-							(cell) => cell.position === currentCell
-						);
-						if (currCell && currCell.data.value.includes("/images/")) {
-							// remove currCell from newCells
-							const index = newCells.indexOf(currCell);
-							if (index > -1) {
-								newCells.splice(index, 1);
-								setCells(newCells);
-							}
-						}
 					}
 				}}
 			>
 				<span
 					className={classNames(
-						cells?.find(
-							(cell) =>
-								cell.position ===
-								`${String.fromCharCode(65 + indexRow)}:${indexCol + 1}`
-						)?.data.bold
+						cells?.find((cell) => cell.position === cellPosition)?.data.bold
 							? "font-bold"
 							: "",
-						cells?.find(
-							(cell) =>
-								cell.position ===
-								`${String.fromCharCode(65 + indexRow)}:${indexCol + 1}`
-						)?.data.italic
+						cells?.find((cell) => cell.position === cellPosition)?.data.italic
 							? "italic"
 							: "",
-						cells?.find(
-							(cell) =>
-								cell.position ===
-								`${String.fromCharCode(65 + indexRow)}:${indexCol + 1}`
-						)?.data.underline
+						cells?.find((cell) => cell.position === cellPosition)?.data.underline
 							? "underline"
 							: "",
 						"whitespace-break-spaces"
 					)}
 				>
-					{buttonValueWithImage(
-						cells?.find(
-							(cell) =>
-								cell.position ===
-								`${String.fromCharCode(65 + indexRow)}:${indexCol + 1}`
-						)?.data.value
-					)}
+					{buttonValueWithImage(currentCellValue)}
 				</span>
 			</button>
 		);

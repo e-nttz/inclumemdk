@@ -270,7 +270,7 @@ const Spreadsheets = () => {
 								<Input
 									key={`inputs-spreadsheets-${indexRow}-${indexCol}`}
 									indexRow={indexRow}
-									indexCol={indexCol}
+									indexCol={indexCol}  
 									currentCell={currentCell}
 									setCurrentCell={setCurrentCell}
 									cells={cells}
