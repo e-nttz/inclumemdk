@@ -243,7 +243,7 @@ const Spreadsheets = () => {
 							<Button
 								key={`buttons-row-${index}`}
 								className={classNames(
-									"w-full h-8 text-sm text-center border-b border-l bg-gray-50 bg-opacity-30 dark:bg-gray-800 border-gray-50"
+									"cellule_spreadsheets w-full h-8 text-sm text-center border-b border-l bg-gray-50 bg-opacity-30 dark:bg-gray-800 border-gray-50"
 								)}
 							>
 								{String.fromCharCode(65 + index)}
@@ -255,7 +255,7 @@ const Spreadsheets = () => {
 						// first column buttons
 						Array.from({ length: 99 }).map((_, index) => (
 							<Button
-								className="w-full col-start-1 text-sm text-center border-b border-l min-h-8 bg-gray-50 bg-opacity-30 dark:bg-gray-800 border-gray-50 last:border-b-0"
+								className="cellule_spreadsheets w-full col-start-1 text-sm text-center border-b border-l min-h-8 bg-gray-50 bg-opacity-30 dark:bg-gray-800 border-gray-50 last:border-b-0"
 								key={`buttons-col-${index}`}
 							>
 								{index + 1}

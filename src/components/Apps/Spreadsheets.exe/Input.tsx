@@ -48,7 +48,7 @@ const Input = memo(
 			autoComplete="off"
 				type="text"
 				className={classNames(
-					`relative w-full min-h-8 text-sm cursor-pointer text-left border border-r-transparent border-t-transparent border-b border-l bg-white dark:bg-gray-800 border-gray-50 last:border-b-0 px-1 outline-none focus-visible:border-green-600`,
+					`cellule_spreadsheets relative w-full min-h-8 text-sm cursor-pointer text-left border border-r-transparent border-t-transparent border-b border-l bg-white dark:bg-gray-800 border-gray-50 last:border-b-0 px-1 outline-none focus-visible:border-green-600`,
 					currentCell ===
 						`${String.fromCharCode(65 + indexRow)}:${indexCol + 1}`
 						? "!border-2 border-green-600 z-50"
@@ -121,7 +121,7 @@ const Input = memo(
 		) : (
 			<button
 				className={classNames(
-					`relative w-full min-h-8 text-sm cursor-pointer text-left border border-b border-l bg-white dark:bg-gray-800 border-gray-50 last:border-b-0 outline-none`,
+					`cellule_spreadsheets relative w-full min-h-8 text-sm cursor-pointer text-left border border-b border-l bg-white dark:bg-gray-800 border-gray-50 last:border-b-0 outline-none`,
 					currentCell ===
 						`${String.fromCharCode(65 + indexRow)}:${indexCol + 1}`
 						? "!border-2 border-t-green-600 border-r-green-600 border-green-600 z-50"
