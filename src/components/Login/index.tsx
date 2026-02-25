@@ -10,16 +10,22 @@ import { useOS } from "@/providers/InclumeOS";
 
 const LoginScreen = () => {
 	const { t } = useTranslate();
-
 	const { authLoading, login } = useAuth();
-
 	const [sessionError, setSessionError] = useState<string | null>(null);
-	const { changeTheme, theme} = useOS();
+	const [sessionCode, setSessionCode] = useState<string>(""); // État pour le champ
+	const { changeTheme, theme } = useOS();
 
 	useEffect(() => {
 		// Clear all localStorage and sessionStorage
 		localStorage.clear();
 		sessionStorage.clear();
+
+		// Vérifier si le paramètre "test" est présent dans l'URL
+		const params = new URLSearchParams(window.location.search);
+		const testParam = params.get("test");
+		if (testParam) {
+			setSessionCode(testParam); // Pré-remplir le champ
+		}
 	}, []);
 
 	return (
@@ -42,6 +48,10 @@ const LoginScreen = () => {
 						placeholder={t("paste_code", "Saisir le code de session")}
 						wrapperClassName="max-w-[420px] w-full"
 						isLoading={authLoading}
+						value={sessionCode} // Valeur contrôlée
+						onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+							setSessionCode(e.target.value)
+						}
 						handleSubmitButton={async (
 							e: React.MouseEvent<HTMLButtonElement>,
 							value: string
