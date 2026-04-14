@@ -9,23 +9,18 @@ import FullScreenToggler from "../Ui/Toggle/FullScreen";
 import { useOS } from "@/providers/InclumeOS";
 
 const LoginScreen = () => {
+	const params = new URLSearchParams(window.location.search);
+	const testParam = params.get("test");
 	const { t } = useTranslate();
 	const { authLoading, login } = useAuth();
 	const [sessionError, setSessionError] = useState<string | null>(null);
-	const [sessionCode, setSessionCode] = useState<string>(""); // État pour le champ
+	const [sessionCode, setSessionCode] = useState<string>(testParam || "");
 	const { changeTheme, theme } = useOS();
 
 	useEffect(() => {
 		// Clear all localStorage and sessionStorage
 		localStorage.clear();
 		sessionStorage.clear();
-
-		// Vérifier si le paramètre "test" est présent dans l'URL
-		const params = new URLSearchParams(window.location.search);
-		const testParam = params.get("test");
-		if (testParam) {
-			setSessionCode(testParam); // Pré-remplir le champ
-		}
 	}, []);
 
 	return (
